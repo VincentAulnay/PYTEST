@@ -20,8 +20,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from openpyxl import load_workbook
-import threading
-import sys
+
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -31,17 +30,7 @@ chrome_options.add_experimental_option("prefs", prefs)
 #chrome_options.add_argument("-disable-gpu")
 
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
-#--------SELECTION DU FICHIER AVEC LES NOUVELLES ANNONCES--------
-path_RESULT = Tk()
-Label1 = Label(path_RESULT, text = "Sélectionner le fichier dont les nuitées doivent être calculées", fg = 'red')
-Label1.pack()
-path_RESULT.filename =  filedialog.askopenfilename(initialdir = "/",title = "Sélectionner le fichier dont les nuitées doivent être calculées",filetypes = (("Excel file","*.xlsx"),("all files","*.*")))
-print (path_RESULT.filename)
-NAMEFile=os.path.splitext(os.path.basename(path_RESULT.filename))[0]
-print(NAMEFile)
-DIR=os.path.dirname(path_RESULT.filename)
-DIR2=DIR+'/'
-print(os.path.dirname(path_RESULT.filename))
+
 
 #-----EXCEL RESULT OPEN AND READ-----
 
@@ -72,11 +61,11 @@ if V_mouth!='3/5_mois':
 	ws.cell(row=1, column=c_mouth).value = '3/5_mois'
 
 #-----RECUP INFO XPATH FROM EXCEL------
-#book_GMAIL = xlrd.open_workbook('/home/odroid/Desktop/GMAIL_ACCOUNT.xls')
-#sheet_GMAIL = book_GMAIL.sheet_by_index(0)
-#ADRESS_GMAIL=sheet_GMAIL.cell(0,1).value
-#PSW_GMAIL=sheet_GMAIL.cell(1,1).value
-#RECEIVER=sheet_GMAIL.cell(2,1).value
+book_GMAIL = xlrd.open_workbook('/home/pi/Desktop/GMAIL_ACCOUNT.xls')
+sheet_GMAIL = book_GMAIL.sheet_by_index(0)
+ADRESS_GMAIL=sheet_GMAIL.cell(0,1).value
+PSW_GMAIL=sheet_GMAIL.cell(1,1).value
+RECEIVER=sheet_GMAIL.cell(2,1).value
 
 #-------DATE DU JOUR-------
 date = int(datetime.datetime.now().day)
@@ -359,74 +348,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	except:
 		pass
 
-def A_Statu_day6(c_write,j,ResAirbnb,new_mo):	
-	month5=soup2.find('div', attrs={"class":u"_kuxo8ai"})
-	i=0
-	li=[]
-	if new_mo==1:
-		ResAirbnb='/D'
-	while i<=31:
-		try:
-			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
-			div=the_tr.find('div', attrs={"class": "_1fhupg9r"}).text
-			intdiv=int(div)
-			li.append(intdiv)
-			i=i+1
-		except:
-			break
-	try:
-		if len(li)>0:
-			ca=ws.cell(row=j, column=c_write).value
-			#-------DATE DU JOUR-------
-			date = int(datetime.datetime.now().day)
-			month = int(datetime.datetime.now().month)
-			toto=str(date)+'-'+str(month)
-			if ca!=None:
-				li_ca=ca.split(";")
-			else:
-				li_ca=[]
-
-			lie=[]
-			if li_ca!=[]:
-				lenL=len(li_ca)
-				h=0
-				LB=[]
-				while h!=lenL:
-					LA=li_ca[h]
-					LA=LA.split(':')
-					del LA[0]
-					LA=LA[0].split(',')
-					lenLA=len(LA)
-					g=0
-					while g!=lenLA:
-						intV=int(LA[g])
-						LB.append(intV)
-						g=g+1
-					h=h+1
-			
-				lie=[elem for elem in li if elem not in LB ]
-				if len(lie)!=0:
-					t=ResAirbnb+toto+':'+str(lie)
-					t=t.replace("[","")
-					t=t.replace("]","")
-					r=str(ca)+';    '+t
-					#lenli=len(lie)+len(LB)
-					#ws.cell(row=j, column=c_write+3).value=lenli
-			else:
-				t=ResAirbnb+toto+':'+str(li)
-				t=t.replace("[","")
-				t=t.replace("]","")
-				r=t
-				#lenli=len(li)
-				#ws.cell(row=j, column=c_write+3).value=lenli
-			if r!='set()':
-				print (r)
-				ws.cell(row=j, column=c_write).value=r
-	except:
-		pass
-		
 def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):	
-	month5=soup2.findAll('div', attrs={"class":u"_1lds9wb"})[g]
+	month5=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
 	if new_mo==1:
@@ -725,13 +648,12 @@ def COMPUTE_M1(name_mois1):
 		c=c+1
 	wbx.save(path_RESULT.filename)
 
+
 		
 #-----OPEN GOOGLE CHROME and AIRBNB PAGE---------
 
-rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-rootdriver2 = webdriver.Chrome(chrome_options=chrome_options)
-#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-#rootdriver.set_page_load_timeout(2)
+rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+rootdriver2 = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 rootdriver.set_window_size(2000, 1000)
 rootdriver2.set_window_size(2000, 1000)
 wait = WebDriverWait(rootdriver, 5)
@@ -776,7 +698,6 @@ while end==0:
 				j=j+1
 				print('h=None')
 			elif 'airbnb' in h:
-				#rootdriver.get(h)
 				ResAirbnb=''
 				V_up=ws.cell(row=j, column=k).value
 				v_m=ws.cell(row=j, column=c_mouth).value
@@ -998,8 +919,8 @@ while end==0:
 		except:
 			pass
 		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
-		rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-		rootdriver2 = webdriver.Chrome(chrome_options=chrome_options)
+		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+		rootdriver2 = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 		rootdriver.set_window_size(1000, 1500)
 		rootdriver2.set_window_size(1000, 1500)
 		wait = WebDriverWait(rootdriver, 3)
