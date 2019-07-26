@@ -348,8 +348,74 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	except:
 		pass
 
+def A_Statu_day6(c_write,j,ResAirbnb,new_mo):	
+	month5=soup2.find('div', attrs={"class":u"_kuxo8ai"})
+	i=0
+	li=[]
+	if new_mo==1:
+		ResAirbnb='/D'
+	while i<=31:
+		try:
+			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
+			div=the_tr.find('div', attrs={"class": "_1fhupg9r"}).text
+			intdiv=int(div)
+			li.append(intdiv)
+			i=i+1
+		except:
+			break
+	try:
+		if len(li)>0:
+			ca=ws.cell(row=j, column=c_write).value
+			#-------DATE DU JOUR-------
+			date = int(datetime.datetime.now().day)
+			month = int(datetime.datetime.now().month)
+			toto=str(date)+'-'+str(month)
+			if ca!=None:
+				li_ca=ca.split(";")
+			else:
+				li_ca=[]
+
+			lie=[]
+			if li_ca!=[]:
+				lenL=len(li_ca)
+				h=0
+				LB=[]
+				while h!=lenL:
+					LA=li_ca[h]
+					LA=LA.split(':')
+					del LA[0]
+					LA=LA[0].split(',')
+					lenLA=len(LA)
+					g=0
+					while g!=lenLA:
+						intV=int(LA[g])
+						LB.append(intV)
+						g=g+1
+					h=h+1
+			
+				lie=[elem for elem in li if elem not in LB ]
+				if len(lie)!=0:
+					t=ResAirbnb+toto+':'+str(lie)
+					t=t.replace("[","")
+					t=t.replace("]","")
+					r=str(ca)+';    '+t
+					#lenli=len(lie)+len(LB)
+					#ws.cell(row=j, column=c_write+3).value=lenli
+			else:
+				t=ResAirbnb+toto+':'+str(li)
+				t=t.replace("[","")
+				t=t.replace("]","")
+				r=t
+				#lenli=len(li)
+				#ws.cell(row=j, column=c_write+3).value=lenli
+			if r!='set()':
+				print (r)
+				ws.cell(row=j, column=c_write).value=r
+	except:
+		pass
+		
 def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):	
-	month5=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
+	month5=soup2.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
 	if new_mo==1:
