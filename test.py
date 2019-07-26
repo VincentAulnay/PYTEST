@@ -944,11 +944,16 @@ while end==0:
 						print('----click KO')
 						pass
 					C_mois5=1
+					print('A1')
 				if (j/10).is_integer():
+					print('A2')
 					wbx.save(path_RESULT.filename)
+				print('A3')
 				if C_mois==0:
+					print('A4')
 					threading.Thread(target=f1, args=(h,)).start()
 					threading.Thread(target=f2, args=(h,)).start()
+				print('A5')
 				C_mois=1
 				j=j+1
 			elif 'abritel' in h:
