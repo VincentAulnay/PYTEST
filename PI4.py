@@ -903,11 +903,11 @@ def f1(a):
 	print('OK')
 	hok=1
 def f2(a):
-	global hok
+	global hok2
 	print('F2')
 	rootdriver2.get(str(a)+'?check_in=2019-11-05&check_out=2019-11-06')
 	print('OK2')
-	hok=1
+	hok2=1
 h=ws.cell(row=j, column=2).value
 rootdriver.get(h)
 v_nextmounth='?check_in=2019-11-05&check_out=2019-11-06'
@@ -933,7 +933,14 @@ while end==0:
 					e=e+1
 					if e==10:
 						hok=1
+				e=0
+				while hok2!=1:
+					time.sleep(1)
+					e=e+1
+					if e==10:
+						hok2=1
 				hok=0
+				hok2=0
 				time.sleep(6)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
