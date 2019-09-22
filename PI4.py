@@ -796,6 +796,7 @@ wait2 = WebDriverWait(rootdriver2, 5)
 f_xpathdate=0
 w_month=0
 c_month=0
+fff=1
 while w_month==0:
 	run_month=whatmounth()
 	print (name_mois1)
