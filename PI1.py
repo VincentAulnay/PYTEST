@@ -1014,32 +1014,13 @@ while end==0:
 				print('h=None')
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(5)
-				try:
-					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-				except:
-					time.sleep(3)
+				time.sleep(2)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(2)
+				time.sleep(1)
 				ResAirbnb=''
 				V_up=ws.cell(row=j, column=k).value
 				v_m=ws.cell(row=j, column=c_mouth).value
-				try:
-					script=soup.find('script', attrs={"data-state":u"true"}).text
-					p1=script.split("calendar_last")
-					p2=p1[1].split("guest_controls")
-					p3=p2[0].replace('_updated_at":"', '')
-					p4=p3.replace('","', '')
-					#print (p4)
-					if p4==V_up:
-						#ResAirbnb='/A'
-						ResAirbnb=''
-					else:
-						#ws.cell(row=j, column=k).value=p4
-						ResAirbnb=''
-				except:
-					pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 1--------
 					print('le mois N est '+name_mois1)
@@ -1056,7 +1037,7 @@ while end==0:
 				#-----RECUPERATION CALANDAR MOIS 3--------
 					print('le mois N+2 est '+name_mois3)
 					RA4=ResAirbnb
-					if v_m=='X' and date==1:
+					if date==1:
 						RA4='/D'
 					run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth)
 				except:
@@ -1071,9 +1052,9 @@ while end==0:
 						time.sleep(1)
 						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
 						next_calendar.click()
-						time.sleep(2)
+						time.sleep(1)
 						next_calendar.click()
-						time.sleep(2)
+						time.sleep(1)
 						next_calendar.click()
 						time.sleep(2)
 						html = rootdriver.page_source
