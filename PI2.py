@@ -20,8 +20,8 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from openpyxl import load_workbook
-#import threading
-#import sys
+import threading
+import sys
 
 
 chrome_options = webdriver.ChromeOptions()
