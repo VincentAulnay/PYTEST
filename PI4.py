@@ -980,8 +980,8 @@ while end==0:
 					if date==1:
 						RA4='/D'
 						run_day=A_Statu_day6(m5_write,j,ResAirbnb,m5_newmonth)
-					except:
-						pass
+				except:
+					pass
 				if (j/10).is_integer():
 					print('A2')
 					wbx.save(path_RESULT.filename)
