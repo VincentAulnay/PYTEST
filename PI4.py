@@ -937,8 +937,10 @@ while end==0:
 				time.sleep(6)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
+				time.sleep(3)
 				html2 = rootdriver2.page_source
 				soup2 = BeautifulSoup(html2, 'html.parser')
+				time.sleep(3)
 				threading.Thread(target=f1, args=(h,)).start()
 				threading.Thread(target=f2, args=(h,)).start()
 				time.sleep(1)
