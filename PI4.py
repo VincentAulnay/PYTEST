@@ -914,6 +914,7 @@ v_nextmounth='?check_in=2019-11-05&check_out=2019-11-06'
 rootdriver2.get(str(h)+str(v_nextmounth))
 time.sleep(2)
 hok=1
+hok2=1
 while end==0:
 	try:
 		while j<=nrow:
