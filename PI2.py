@@ -981,11 +981,11 @@ while c_month==0:
 	print (m5_newmonth)
 	time.sleep(5)
 	c_month=1
-	
+fff=2	
 while f_xpathdate==0:
-	h=ws.cell(row=fm, column=2).value
+	h=ws.cell(row=fff, column=2).value
 	print(h)
-	if fff==5:
+	if fff==7:
 		f_mounth=1
 		f_xpathdate=1
 		end=0
@@ -996,16 +996,16 @@ while f_xpathdate==0:
 		#time.sleep(2)
 		#html = rootdriver.page_source
 		#soup = BeautifulSoup(html, 'html.parser')
-		time.sleep(4)
+		time.sleep(6)
 		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 		print("x date trouve")
 		f_xpathdate=1
 	except:
-		if fff!=5:
+		if fff!=7:
 			rootdriver.quit()
 			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			rootdriver.set_window_size(1000, 1500)
-			wait = WebDriverWait(rootdriver, 3)
+			wait = WebDriverWait(rootdriver, 5)
 def f1(a):
 	global hok
 	print('F1')
