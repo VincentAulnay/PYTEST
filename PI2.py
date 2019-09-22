@@ -1017,7 +1017,7 @@ def f1(a):
 	print('OK')
 	hok=1
 def f2(a):
-	global hok
+	global hok2
 	print('F2')
 	rootdriver2.get(a)
 	try:
@@ -1025,7 +1025,12 @@ def f2(a):
 	except:
 		time.sleep(3)
 	print('OK2')
-	hok=1	
+	hok2=1	
+hok=1
+hok2=1
+h=ws.cell(row=2, column=2).value
+rootdriver2.get(h)
+
 while end==0:
 	try:
 		while j<=nrow:
