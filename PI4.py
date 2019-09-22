@@ -934,11 +934,11 @@ while end==0:
 					e=e+1
 					if e==10:
 						hok=1
-				e=0
+				ee=0
 				while hok2!=1:
 					time.sleep(1)
-					e=e+1
-					if e==10:
+					ee=ee+1
+					if ee==10:
 						hok2=1
 				hok=0
 				hok2=0
