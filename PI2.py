@@ -788,7 +788,8 @@ print('NROW'+str(nrow))
 j=2
 z=0
 end=0
-EE=0
+ee=0
+e=0
 Tr=0
 C_mois=0
 C_mois5=0
@@ -981,6 +982,7 @@ while c_month==0:
 	print (m5_newmonth)
 	time.sleep(5)
 	c_month=1
+
 fff=2	
 while f_xpathdate==0:
 	h=ws.cell(row=fff, column=2).value
@@ -996,7 +998,7 @@ while f_xpathdate==0:
 		#time.sleep(2)
 		#html = rootdriver.page_source
 		#soup = BeautifulSoup(html, 'html.parser')
-		time.sleep(6)
+		time.sleep(4)
 		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 		print("x date trouve")
 		f_xpathdate=1
@@ -1005,7 +1007,7 @@ while f_xpathdate==0:
 			rootdriver.quit()
 			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			rootdriver.set_window_size(1000, 1500)
-			wait = WebDriverWait(rootdriver, 5)
+			wait = WebDriverWait(rootdriver, 3)
 def f1(a):
 	global hok
 	print('F1')
@@ -1030,7 +1032,7 @@ hok=1
 hok2=1
 h=ws.cell(row=2, column=2).value
 rootdriver2.get(h)
-
+time.sleep(5)
 while end==0:
 	try:
 		while j<=nrow:
@@ -1063,8 +1065,7 @@ while end==0:
 
 				time.sleep(1)
 				ResAirbnb=''
-				V_up=ws.cell(row=j, column=k).value
-				v_m=ws.cell(row=j, column=c_mouth).value
+				#V_up=ws.cell(row=j, column=k).value
 				try:
 				#-----RECUPERATION CALANDAR MOIS 1--------
 					print('le mois N est '+name_mois1)
@@ -1088,54 +1089,53 @@ while end==0:
 					#print('PAS DE MOIS 3')
 					pass
 			#-----MOIS 4-5 -----
-				if v_m!='x':
+
+				try:
+					if j%2==0:
+						ele=rootdriver2.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+						rootdriver2.execute_script("arguments[0].scrollIntoView(true);", ele)
+						rootdriver2.execute_script("window.scrollBy(0,-500);")
+						time.sleep(1)
+						next_calendar = wait2.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+						next_calendar.click()
+						time.sleep(1)
+						next_calendar.click()
+						time.sleep(1)
+						next_calendar.click()
+						time.sleep(2)
+						html = rootdriver2.page_source
+						soup = BeautifulSoup(html, 'html.parser')
+						time.sleep(1)
+					else:
+						ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+						rootdriver.execute_script("window.scrollBy(0,-500);")
+						time.sleep(1)
+						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+						next_calendar.click()
+						time.sleep(1)
+						next_calendar.click()
+						time.sleep(1)
+						next_calendar.click()
+						time.sleep(2)
+						html = rootdriver.page_source
+						soup = BeautifulSoup(html, 'html.parser')
+						time.sleep(1)
 					try:
-						if j%2==0:
-							ele=rootdriver2.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-							rootdriver2.execute_script("arguments[0].scrollIntoView(true);", ele)
-							rootdriver2.execute_script("window.scrollBy(0,-500);")
-							time.sleep(1)
-							next_calendar = wait2.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
-							next_calendar.click()
-							time.sleep(1)
-							next_calendar.click()
-							time.sleep(1)
-							next_calendar.click()
-							time.sleep(2)
-							html = rootdriver2.page_source
-							soup = BeautifulSoup(html, 'html.parser')
-							time.sleep(1)
-						else:
-							ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-							rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-							rootdriver.execute_script("window.scrollBy(0,-500);")
-							time.sleep(1)
-							next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
-							next_calendar.click()
-							time.sleep(1)
-							next_calendar.click()
-							time.sleep(1)
-							next_calendar.click()
-							time.sleep(2)
-							html = rootdriver.page_source
-							soup = BeautifulSoup(html, 'html.parser')
-							time.sleep(1)
-						try:
-						#-----RECUPERATION CALANDAR MOIS 4--------
-							print('le mois N est '+name_mois4)
-							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
-						except:
-							pass
-					#-----RECUPERATION CALANDAR MOIS 5--------
-						try:
-							print('le mois N+1 est '+name_mois5)
-							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
-						except:
-							pass
+					#-----RECUPERATION CALANDAR MOIS 4--------
+						print('le mois N est '+name_mois4)
+						run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
 					except:
-						print('----click KO')
 						pass
-					C_mois5=1
+				#-----RECUPERATION CALANDAR MOIS 5--------
+					try:
+						print('le mois N+1 est '+name_mois5)
+						run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
+					except:
+						pass
+				except:
+					print('----click KO')
+					pass
 				if (j/10).is_integer():
 					wbx.save(path_RESULT.filename)
 				C_mois=1
