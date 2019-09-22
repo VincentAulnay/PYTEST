@@ -927,8 +927,6 @@ while end==0:
 			elif 'airbnb' in h:
 				ResAirbnb=''
 				V_up=ws.cell(row=j, column=k).value
-				v_m=ws.cell(row=j, column=c_mouth).value
-				print('html')
 				e=0
 				while hok!=1:
 					time.sleep(1)
@@ -936,7 +934,7 @@ while end==0:
 					if e==10:
 						hok=1
 				hok=0
-				time.sleep(2)
+				time.sleep(6)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				html2 = rootdriver2.page_source
