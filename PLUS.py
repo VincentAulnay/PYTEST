@@ -309,7 +309,6 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 		while(td<=7):
 			XP_day ="//div[@class='_14676s3']/div[2]/div/div["+str(page)+"]//tr["+str(tr)+"]/td["+str(td)+"]"
 			link = rootdriver.find_element_by_xpath(XP_day)
-			print ('link OK')
 			class_att=link.get_attribute("class")
 			if len(class_att) !=0:
 				if class_att=='_z39f86g':
@@ -418,7 +417,6 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 		while(td<=7):
 			XP_day ="//div[@class='_14676s3']/div[2]/div/div["+str(page)+"]//tr["+str(tr)+"]/td["+str(td)+"]"
 			link = rootdriver.find_element_by_xpath(XP_day)
-			print ('link OK')
 			class_att=link.get_attribute("class")
 			if len(class_att) !=0:
 				if class_att=='_z39f86g':
@@ -1171,35 +1169,37 @@ while c_month==0:
 	print (m5_newmonth)
 	time.sleep(5)
 	c_month=1
-	
-while f_xpathdate==0:
-	h=ws.cell(row=fm, column=2).value
-	print(h)
-	if fff==5:
-		f_mounth=1
-		f_xpathdate=1
-		end=0
-		#run=emailfalde2()
-	fff=fff+1
-	try:
-		rootdriver.get(h)
-		#time.sleep(2)
-		#html = rootdriver.page_source
-		#soup = BeautifulSoup(html, 'html.parser')
-		time.sleep(4)
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-		print("x date trouve")
-		f_xpathdate=1
-		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-		b_cookie.click()
-	except:
-		if fff!=5:
-			rootdriver.quit()
-			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-			rootdriver.set_window_size(1000, 1500)
-			wait = WebDriverWait(rootdriver, 3)
-	
+
+def xpath():
+	f_xpathdate=0
+	while f_xpathdate==0:
+		h=ws.cell(row=fm, column=2).value
+		print(h)
+		if fff==5:
+			f_mounth=1
+			f_xpathdate=1
+			end=0
+			#run=emailfalde2()
+		fff=fff+1
+		try:
+			rootdriver.get(h)
+			#time.sleep(2)
+			#html = rootdriver.page_source
+			#soup = BeautifulSoup(html, 'html.parser')
+			time.sleep(4)
+			x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+			print("x date trouve")
+			f_xpathdate=1
+			b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+			b_cookie.click()
+		except:
+			if fff!=5:
+				rootdriver.quit()
+				rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+				#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+				rootdriver.set_window_size(1000, 1500)
+				wait = WebDriverWait(rootdriver, 3)
+run_xpath=xpath()
 while end==0:
 	try:
 		while j<=nrow:
@@ -1278,19 +1278,19 @@ while end==0:
 				#	pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 1--------
-					print('le mois N est '+name_mois1)
+					#print('le mois N est '+name_mois1)
 					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1)
 				except:
 					pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 2--------
-					print('le mois N+1 est '+name_mois2)
+					#print('le mois N+1 est '+name_mois2)
 					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
 				except:
 					pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 3--------
-					print('le mois N+2 est '+name_mois3)
+					#print('le mois N+2 est '+name_mois3)
 					RA4=ResAirbnb
 					if v_m=='X' and date==1:
 						RA4='/D'
@@ -1317,13 +1317,13 @@ while end==0:
 						time.sleep(1)
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
-							print('le mois N est '+name_mois4)
+							#print('le mois N est '+name_mois4)
 							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
 						except:
 							pass
 					#-----RECUPERATION CALANDAR MOIS 5--------
 						try:
-							print('le mois N+1 est '+name_mois5)
+							#print('le mois N+1 est '+name_mois5)
 							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
 						except:
 							pass
@@ -1345,23 +1345,14 @@ while end==0:
 		now = str(datetime.datetime.now())[:19]
 		now = now.replace(":","_")
 		Tr=date
-		print ('_______    ___    ___     ___')
-		print ('|      |   |  |   |  \    |  |')
-		print ('|  |__     |  |   |   \   |  |')
-		print ('|     |    |  |   |    \  |  |')
-		print ('|  |       |  |   |  |\ \ |  |')
-		print ('|  |       |  |   |  | \ \|  |')
-		print ('|__|       |__|   |__|  \____|')
+		print ('FIN')
 		wbx = load_workbook(path_RESULT.filename)
 		ws = wbx.active
 		COMPUTE_M1(name_mois1)
 		COMPUTE_M1(name_mois2)
-		#COMPUTE_M1('juin 2019')
-		#COMPUTE_M1(name_mois4)
-		#COMPUTE_M1(name_mois5)
 		wbx.save(DIR2+NAMEFile+str(now)+".xlsx")
 		try:
-			#run=email(DIR2,NAMEFile,now)
+			run=email(DIR2,NAMEFile,now)
 			print('sent email')
 		except:
 			print('rien')
@@ -1377,6 +1368,7 @@ while end==0:
 		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 		rootdriver.set_window_size(1000, 1500)
 		wait = WebDriverWait(rootdriver, 3)
+		run_xpath=xpath()
 
 		
 		
