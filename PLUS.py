@@ -1171,6 +1171,7 @@ while c_month==0:
 	c_month=1
 
 def xpath():
+	fff=0
 	f_xpathdate=0
 	while f_xpathdate==0:
 		h=ws.cell(row=fm, column=2).value
