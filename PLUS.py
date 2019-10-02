@@ -30,18 +30,6 @@ chrome_options.add_experimental_option("prefs", prefs)
 #chrome_options.add_argument("-headless")
 #chrome_options.add_argument("-disable-gpu")
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
-#--------SELECTION DU FICHIER AVEC LES NOUVELLES ANNONCES--------
-path_RESULT = Tk()
-Label1 = Label(path_RESULT, text = "Sélectionner le fichier dont les nuitées doivent être calculées", fg = 'red')
-Label1.pack()
-path_RESULT.filename =  filedialog.askopenfilename(initialdir = "/",title = "Sélectionner le fichier dont les nuitées doivent être calculées",filetypes = (("Excel file","*.xlsx"),("all files","*.*")))
-print (path_RESULT.filename)
-NAMEFile=os.path.splitext(os.path.basename(path_RESULT.filename))[0]
-print(NAMEFile)
-DIR=os.path.dirname(path_RESULT.filename)
-DIR2=DIR+'/'
-print(os.path.dirname(path_RESULT.filename))
-print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
 
 #-----EXCEL RESULT OPEN AND READ-----
 
@@ -980,8 +968,8 @@ def COMPUTE_M1(name_mois1):
 		
 #-----OPEN GOOGLE CHROME and AIRBNB PAGE---------
 
-#rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 #rootdriver.set_page_load_timeout(2)
 rootdriver.set_window_size(2000, 1000)
 wait = WebDriverWait(rootdriver, 5)
@@ -1207,8 +1195,8 @@ while f_xpathdate==0:
 	except:
 		if fff!=5:
 			rootdriver.quit()
-			#rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-			rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 			rootdriver.set_window_size(1000, 1500)
 			wait = WebDriverWait(rootdriver, 3)
 	
@@ -1385,8 +1373,8 @@ while end==0:
 		except:
 			pass
 		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
-		#rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-		rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 		rootdriver.set_window_size(1000, 1500)
 		wait = WebDriverWait(rootdriver, 3)
 
