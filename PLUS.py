@@ -1170,37 +1170,31 @@ while c_month==0:
 	time.sleep(5)
 	c_month=1
 
-def xpath():
-	fff=0
-	f_xpathdate=0
-	while f_xpathdate==0:
-		h=ws.cell(row=fm, column=2).value
-		print(h)
-		if fff==5:
-			f_mounth=1
-			f_xpathdate=1
-			end=0
-			#run=emailfalde2()
-		fff=fff+1
-		try:
-			rootdriver.get(h)
-			#time.sleep(2)
-			#html = rootdriver.page_source
-			#soup = BeautifulSoup(html, 'html.parser')
-			time.sleep(4)
-			x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-			print("x date trouve")
-			f_xpathdate=1
-			b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-			b_cookie.click()
-		except:
-			if fff!=5:
-				rootdriver.quit()
-				rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-				#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-				rootdriver.set_window_size(1000, 1500)
-				wait = WebDriverWait(rootdriver, 3)
-run_xpath=xpath()
+while f_xpathdate==0:
+	h=ws.cell(row=fm, column=2).value
+	print(h)
+	if fff==5:
+		f_mounth=1
+		f_xpathdate=1
+		end=0
+		#run=emailfalde2()
+	fff=fff+1
+	try:
+		rootdriver.get(h)
+		time.sleep(4)
+		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+		print("x date trouve")
+		f_xpathdate=1
+		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+		b_cookie.click()
+	except:
+		if fff!=5:
+			rootdriver.quit()
+			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+			rootdriver.set_window_size(1000, 1500)
+			wait = WebDriverWait(rootdriver, 3)
+
 while end==0:
 	try:
 		while j<=nrow:
@@ -1369,7 +1363,32 @@ while end==0:
 		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 		rootdriver.set_window_size(1000, 1500)
 		wait = WebDriverWait(rootdriver, 3)
-		run_xpath=xpath()
+		f_xpathdate=0
+		fff=0
+		while f_xpathdate==0:
+			h=ws.cell(row=fm, column=2).value
+			print(h)
+			if fff==5:
+				f_mounth=1
+				f_xpathdate=1
+				end=0
+				#run=emailfalde2()
+			fff=fff+1
+			try:
+				rootdriver.get(h)
+				time.sleep(4)
+				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+				print("x date trouve")
+				f_xpathdate=1
+				b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+				b_cookie.click()
+			except:
+				if fff!=5:
+					rootdriver.quit()
+					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+					rootdriver.set_window_size(1000, 1500)
+					wait = WebDriverWait(rootdriver, 3)
 
 		
 		
