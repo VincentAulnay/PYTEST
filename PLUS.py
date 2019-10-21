@@ -917,23 +917,29 @@ def COMPUTE_M1(name_mois1):
 			count_P=0
 			count=0
 			count_NBA=0
+			count_R=0
+			count_L=0
+			count_RP=0
+			count_RP=STR_NBA.count('/R/P')
 			count_AP=STR_NBA.count('/A/P')
 			count_NBA=STR_NBA.count('/A')
 			real_NBA=count_NBA-count_AP
-			count_P=STR_NBA.count(' /P')
+			count_P=STR_NBA.count('/P')
 			count_D=STR_NBA.count('/D')
 			count=STR_NBA.count(':')
+			count_R=STR_NBA.count('/R')
+			count_L=STR_NBA.count('/L')
 			
-			NBNOA=count-count_D-count_NBA-count_P
+			NBNOA=count-count_D-count_NBA-count_P-count_L
 			#print (('NB_NO/A ===')+str(NBNOA))
 			ws.cell(row=c, column=C_nbA).value=real_NBA
 			ws.cell(row=c, column=C_nbnoA).value=NBNOA
-			ws.cell(row=c, column=C_nb_P).value=count_P+count_AP
+			ws.cell(row=c, column=C_nb_P).value=count_P+count_AP+count_RP
 			write=int(NBNOA)+int(real_NBA)
 			ws.cell(row=c, column=C_SUMnb).value=write
 		#---------COUNT nJ ---------
 			list=STR_NBA.split(';')
-			B=['/P', '/D', '/A/P']
+			B=['/P', '/D', '/A/P', '/R', '/L', '/R/P']
 			blacklist = re.compile('|'.join([re.escape(word) for word in B]))
 			newL=[word for word in list if not blacklist.search(word)]
 			D=['/D']
