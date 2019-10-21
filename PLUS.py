@@ -303,6 +303,7 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 	td=1
 	#x_ = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_14676s3']/div[2]/div/div["+str(page)+"]//tr[2]/td[6]/span/div/div/div"))).text
 	#print (x_)
+	ResAirbnb='/R'
 	if new_mo==1:
 		ResAirbnb='/D'
 	while (tr <=5):
@@ -327,80 +328,88 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			td=td+1
 		tr=tr+1
 		td=1
+	back_li=ws.cell(row=j, column=c_write+1).value
+	if back_li!=None:
+		back_li=back_li.replace("[","")
+		back_li=back_li.replace("]","")
+		back_li=back_li.split(",")
+		i=0
+		bl=[]
+		while i!=len(back_li):
+			ivb=int(back_li[i])
+			if ivb>=int_timeday:
+				bl.append(ivb)
+			i=i+1
+		back_li=bl
+		print ("back_li="+str(back_li))
+	else:
+		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
-	print(li)
-	try:
-		if len(li)>0:
-			ca=ws.cell(row=j, column=c_write).value
-			#print(ca)
-			#-------DATE DU JOUR-------
-			date = int(datetime.datetime.now().day)
-			month = int(datetime.datetime.now().month)
-			toto=str(date)+'-'+str(month)
-			if ca!=None:
-				li_ca=ca.split(";")
+	#print(li)
+	c_added=[]
+	c_remove=[]
+	c_added=[elem for elem in li if elem not in back_li ]
+	c_remove=[elem for elem in back_li if elem not in li ]
+	print(c_added)
+	print(c_remove)
+	date = int(datetime.datetime.now().day)
+	month = int(datetime.datetime.now().month)
+	toto=str(date)+'-'+str(month)
+	t_add='vide'
+	t_rem='vide'
+	t_wri='vide'
+	if len(c_added)>0:
+		if len(c_added)==1:
+			dif=c_added[0]-date
+			if dif==0 or dif==1 or dif==2 or dif==6:
+				ResAirbnb='/P'
+			elif dif<0:
+				difP=MNday-date+lie[0]
+				if difP==0 or difP==1 or difP==2 or difP==6:
+					ResAirbnb='/P'		
+		t_add=ResAirbnb+toto+':'+str(c_added)
+		t_add=t_add.replace("[","")
+		t_add=t_add.replace("]","")
+		print (t_add)
+	if len(c_remove)>0:
+		t_rem='/L'+toto+':'+str(c_remove)
+		t_rem=t_rem.replace("[","")
+		t_rem=t_rem.replace("]","")
+		print(t_rem)
+	ca=ws.cell(row=j, column=c_write).value
+	if ca==None:
+		if t_add!='vide':
+			t_wri=str(t_add)
+	else:
+		if t_add!='vide':
+			if t_rem!='vide':
+				t_wri=str(t_add)+';    '+str(t_rem)
 			else:
-				li_ca=[]
-
-			lie=[]
-			if li_ca!=[]:
-				lenL=len(li_ca)
-				h=0
-				LB=[]
-				while h!=lenL:
-					LA=li_ca[h]
-					LA=LA.split(':')
-					del LA[0]
-					LA=LA[0].split(',')
-					lenLA=len(LA)
-					g=0
-					while g!=lenLA:
-						intV=int(LA[g])
-						LB.append(intV)
-						g=g+1
-					h=h+1
-			
-				lie=[elem for elem in li if elem not in LB ]
-				if len(lie)!=0:
-					#identification si nuitée est bloquée par préavis automatique
-					preavis=''
-					if len(lie)==1:
-						dif=lie[0]-date
-						preavis=''
-						if dif==0 or dif==1 or dif==2 or dif==6:
-							preavis='/P'
-						elif dif<0:
-							difP=MNday-date+lie[0]
-							if difP==0 or difP==1 or difP==2 or difP==6:
-								preavis='/P'
-							
-					t=ResAirbnb+preavis+toto+':'+str(lie)
-					t=t.replace("[","")
-					t=t.replace("]","")
-					r=str(ca)+';    '+t
-					#lenli=len(lie)+len(LB)
-					#ws.cell(row=j, column=c_write+3).value=lenli
-			else:
-				t=ResAirbnb+toto+':'+str(li)
-				t=t.replace("[","")
-				t=t.replace("]","")
-				r=t
-				#print(r)
-				#lenli=len(li)
-				#ws.cell(row=j, column=c_write+3).value=lenli
-			if r!='set()':
-				print (r)
-				ws.cell(row=j, column=c_write).value=r
-	except:
-		#print('rater 1')
-		pass
+				t_wri=str(t_add)
+		else:
+			if t_rem!='vide':
+				t_wri=str(t_rem)
+		if t_wri!='vide':
+			t_wri=str(ca)+';    '+t_wri
+	if t_wri!='vide':
+		print(t_wri)
+		ws.cell(row=j, column=c_write).value=t_wri
 	#COMMENTAIRE
 	ONC=ONCOM
 	if ONC==1:
 		try:
-			Bcomment=soup.find('button', attrs={"class": "_ff6jfq"})
-			Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
-			ws.cell(row=j, column=c_write+2).value=Scomment
+			#//span[@class='_so3dpm2']
+			#Bcomment=soup.find('button', attrs={"class": "_ff6jfq"})
+			#Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
+			Lcomment=[]
+			Icomment=0
+			Scomment=soup.find('span', attrs={"class": "_1oftqjo1"}).text
+			Scomment=Scomment.replace("(","")
+			Scomment=Scomment.replace(")","")
+			Scomment=Scomment.replace(" ","")
+			Lcomment=Scomment.split("c")
+			Icomment=int(Lcomment[0])
+			ws.cell(row=j, column=c_write+2).value=S=Icomment
 		except:
 			pass
 
@@ -432,64 +441,70 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 			td=td+1
 		tr=tr+1
 		td=1
+	back_li=ws.cell(row=j, column=c_write+1).value
+	if back_li!=None:
+		back_li=back_li.replace("[","")
+		back_li=back_li.replace("]","")
+		back_li=back_li.split(",")
+		i=0
+		bl=[]
+		while i!=len(back_li):
+			ivb=int(back_li[i])
+			bl.append(ivb)
+			i=i+1
+		back_li=bl
+		print ("back_li="+str(back_li))
+	else:
+		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
-	print(li)
-	try:
-		if len(li)>0:
-			ca=ws.cell(row=j, column=c_write).value
-			#-------DATE DU JOUR-------
-			date = int(datetime.datetime.now().day)
-			month = int(datetime.datetime.now().month)
-			toto=str(date)+'-'+str(month)
-			if ca!=None:
-				li_ca=ca.split(";")
+	#print(li)
+	c_added=[]
+	c_remove=[]
+	c_added=[elem for elem in li if elem not in back_li ]
+	c_remove=[elem for elem in back_li if elem not in li ]
+	print(c_added)
+	print(c_remove)
+	date = int(datetime.datetime.now().day)
+	month = int(datetime.datetime.now().month)
+	toto=str(date)+'-'+str(month)
+	t_add='vide'
+	t_rem='vide'
+	t_wri='vide'
+	if len(c_added)>0:		
+		t_add=ResAirbnb+toto+':'+str(c_added)
+		t_add=t_add.replace("[","")
+		t_add=t_add.replace("]","")
+		print (t_add)
+	if len(c_remove)>0:
+		t_rem='/L'+toto+':'+str(c_remove)
+		t_rem=t_rem.replace("[","")
+		t_rem=t_rem.replace("]","")
+		print(t_rem)
+	ca=ws.cell(row=j, column=c_write).value
+	if ca==None:
+		if t_add!='vide':
+			t_wri=str(t_add)
+	else:
+		if t_add!='vide':
+			if t_rem!='vide':
+				t_wri=str(t_add)+';    '+str(t_rem)
 			else:
-				li_ca=[]
-
-			lie=[]
-			if li_ca!=[]:
-				lenL=len(li_ca)
-				h=0
-				LB=[]
-				while h!=lenL:
-					LA=li_ca[h]
-					LA=LA.split(':')
-					del LA[0]
-					LA=LA[0].split(',')
-					lenLA=len(LA)
-					g=0
-					while g!=lenLA:
-						intV=int(LA[g])
-						LB.append(intV)
-						g=g+1
-					h=h+1
-			
-				lie=[elem for elem in li if elem not in LB ]
-				if len(lie)!=0:
-					t=ResAirbnb+toto+':'+str(lie)
-					t=t.replace("[","")
-					t=t.replace("]","")
-					r=str(ca)+';    '+t
-					#lenli=len(lie)+len(LB)
-					#ws.cell(row=j, column=c_write+3).value=lenli
-			else:
-				t=ResAirbnb+toto+':'+str(li)
-				t=t.replace("[","")
-				t=t.replace("]","")
-				r=t
-				#lenli=len(li)
-				#ws.cell(row=j, column=c_write+3).value=lenli
-			if r!='set()':
-				print (r)
-				ws.cell(row=j, column=c_write).value=r
-	except:
-		pass
+				t_wri=str(t_add)
+		else:
+			if t_rem!='vide':
+				t_wri=str(t_rem)
+		if t_wri!='vide':
+			t_wri=str(ca)+';    '+t_wri
+	if t_wri!='vide':
+		print(t_wri)
+		ws.cell(row=j, column=c_write).value=t_wri
 			
 def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):	
 	int_timeday=int(date)
 	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
+	ResAirbnb='/R'
 	if new_mo==1:
 		ResAirbnb='/D'
 	while i<=31:
@@ -502,87 +517,96 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			i=i+1
 		except:
 			break
+	back_li=ws.cell(row=j, column=c_write+1).value
+	if back_li!=None:
+		back_li=back_li.replace("[","")
+		back_li=back_li.replace("]","")
+		back_li=back_li.split(",")
+		i=0
+		bl=[]
+		while i!=len(back_li):
+			ivb=int(back_li[i])
+			if ivb>=int_timeday:
+				bl.append(ivb)
+			i=i+1
+		back_li=bl
+		print ("back_li="+str(back_li))
+	else:
+		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
 	#print(li)
-	try:
-		if len(li)>0:
-			ca=ws.cell(row=j, column=c_write).value
-			#print(ca)
-			#-------DATE DU JOUR-------
-			date = int(datetime.datetime.now().day)
-			month = int(datetime.datetime.now().month)
-			toto=str(date)+'-'+str(month)
-			if ca!=None:
-				li_ca=ca.split(";")
+	c_added=[]
+	c_remove=[]
+	c_added=[elem for elem in li if elem not in back_li ]
+	c_remove=[elem for elem in back_li if elem not in li ]
+	print(c_added)
+	print(c_remove)
+	date = int(datetime.datetime.now().day)
+	month = int(datetime.datetime.now().month)
+	toto=str(date)+'-'+str(month)
+	t_add='vide'
+	t_rem='vide'
+	t_wri='vide'
+	if len(c_added)>0:
+		if len(c_added)==1:
+			dif=c_added[0]-date
+			if dif==0 or dif==1 or dif==2 or dif==6:
+				ResAirbnb='/P'
+			elif dif<0:
+				difP=MNday-date+lie[0]
+				if difP==0 or difP==1 or difP==2 or difP==6:
+					ResAirbnb='/P'		
+		t_add=ResAirbnb+toto+':'+str(c_added)
+		t_add=t_add.replace("[","")
+		t_add=t_add.replace("]","")
+		print (t_add)
+	if len(c_remove)>0:
+		t_rem='/L'+toto+':'+str(c_remove)
+		t_rem=t_rem.replace("[","")
+		t_rem=t_rem.replace("]","")
+		print(t_rem)
+	ca=ws.cell(row=j, column=c_write).value
+	if ca==None:
+		if t_add!='vide':
+			t_wri=str(t_add)
+	else:
+		if t_add!='vide':
+			if t_rem!='vide':
+				t_wri=str(t_add)+';    '+str(t_rem)
 			else:
-				li_ca=[]
+				t_wri=str(t_add)
+		else:
+			if t_rem!='vide':
+				t_wri=str(t_rem)
+		if t_wri!='vide':
+			t_wri=str(ca)+';    '+t_wri
+	if t_wri!='vide':
+		print(t_wri)
+		ws.cell(row=j, column=c_write).value=t_wri
 
-			lie=[]
-			if li_ca!=[]:
-				lenL=len(li_ca)
-				h=0
-				LB=[]
-				while h!=lenL:
-					LA=li_ca[h]
-					LA=LA.split(':')
-					del LA[0]
-					LA=LA[0].split(',')
-					lenLA=len(LA)
-					g=0
-					while g!=lenLA:
-						intV=int(LA[g])
-						LB.append(intV)
-						g=g+1
-					h=h+1
-			
-				lie=[elem for elem in li if elem not in LB ]
-				if len(lie)!=0:
-					#identification si nuitée est bloquée par préavis automatique
-					preavis=''
-					if len(lie)==1:
-						dif=lie[0]-date
-						preavis=''
-						if dif==0 or dif==1 or dif==2 or dif==6:
-							preavis='/P'
-						elif dif<0:
-							difP=MNday-date+lie[0]
-							if difP==0 or difP==1 or difP==2 or difP==6:
-								preavis='/P'
-							
-					t=ResAirbnb+preavis+toto+':'+str(lie)
-					t=t.replace("[","")
-					t=t.replace("]","")
-					r=str(ca)+';    '+t
-					#lenli=len(lie)+len(LB)
-					#ws.cell(row=j, column=c_write+3).value=lenli
-			else:
-				t=ResAirbnb+toto+':'+str(li)
-				t=t.replace("[","")
-				t=t.replace("]","")
-				r=t
-				#print(r)
-				#lenli=len(li)
-				#ws.cell(row=j, column=c_write+3).value=lenli
-			if r!='set()':
-				print (r)
-				ws.cell(row=j, column=c_write).value=r
-	except:
-		#print('rater 1')
-		pass
 	#COMMENTAIRE
 	ONC=ONCOM
 	if ONC==1:
 		try:
-			Bcomment=soup.find('button', attrs={"class": "_ff6jfq"})
-			Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
-			ws.cell(row=j, column=c_write+2).value=Scomment
+			#//span[@class='_so3dpm2']
+			#Bcomment=soup.find('button', attrs={"class": "_ff6jfq"})
+			#Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
+			Lcomment=[]
+			Scomment=soup.find('span', attrs={"class": "_1plk0jz1"}).text
+			Scomment=Scomment.replace("(","")
+			Scomment=Scomment.replace(")","")
+			Scomment=Scomment.replace(" ","")
+			Lcomment=Scomment.split("c")
+			Icomment=int(Lcomment[0])
+			ws.cell(row=j, column=c_write+2).value=S=Icomment
 		except:
 			pass
 
-def A_Statu_day4(c_write,j,ResAirbnb,new_mo):	
+def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	month5=soup.find('div', attrs={"class":u"_kuxo8ai"})
 	i=0
 	li=[]
+	ResAirbnb='/R'
 	if new_mo==1:
 		ResAirbnb='/D'
 	while i<=31:
@@ -594,63 +618,71 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 			i=i+1
 		except:
 			break
+	print(li)
+	back_li=ws.cell(row=j, column=c_write+1).value
+	if back_li!=None:
+		back_li=back_li.replace("[","")
+		back_li=back_li.replace("]","")
+		back_li=back_li.split(",")
+		i=0
+		bl=[]
+		while i!=len(back_li):
+			ivb=int(back_li[i])
+			bl.append(ivb)
+			i=i+1
+		back_li=bl
+		print ("back_li="+str(back_li))
+	else:
+		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
 	#print(li)
-	try:
-		if len(li)>0:
-			ca=ws.cell(row=j, column=c_write).value
-			#-------DATE DU JOUR-------
-			date = int(datetime.datetime.now().day)
-			month = int(datetime.datetime.now().month)
-			toto=str(date)+'-'+str(month)
-			if ca!=None:
-				li_ca=ca.split(";")
+	c_added=[]
+	c_remove=[]
+	c_added=[elem for elem in li if elem not in back_li ]
+	c_remove=[elem for elem in back_li if elem not in li ]
+	print(c_added)
+	print(c_remove)
+	date = int(datetime.datetime.now().day)
+	month = int(datetime.datetime.now().month)
+	toto=str(date)+'-'+str(month)
+	t_add='vide'
+	t_rem='vide'
+	t_wri='vide'
+	if len(c_added)>0:		
+		t_add=ResAirbnb+toto+':'+str(c_added)
+		t_add=t_add.replace("[","")
+		t_add=t_add.replace("]","")
+		print (t_add)
+	if len(c_remove)>0:
+		t_rem='/L'+toto+':'+str(c_remove)
+		t_rem=t_rem.replace("[","")
+		t_rem=t_rem.replace("]","")
+		print(t_rem)
+	ca=ws.cell(row=j, column=c_write).value
+	if ca==None:
+		if t_add!='vide':
+			t_wri=str(t_add)
+	else:
+		if t_add!='vide':
+			if t_rem!='vide':
+				t_wri=str(t_add)+';    '+str(t_rem)
 			else:
-				li_ca=[]
+				t_wri=str(t_add)
+		else:
+			if t_rem!='vide':
+				t_wri=str(t_rem)
+		if t_wri!='vide':
+			t_wri=str(ca)+';    '+t_wri
+	if t_wri!='vide':
+		print(t_wri)
+		ws.cell(row=j, column=c_write).value=t_wri
 
-			lie=[]
-			if li_ca!=[]:
-				lenL=len(li_ca)
-				h=0
-				LB=[]
-				while h!=lenL:
-					LA=li_ca[h]
-					LA=LA.split(':')
-					del LA[0]
-					LA=LA[0].split(',')
-					lenLA=len(LA)
-					g=0
-					while g!=lenLA:
-						intV=int(LA[g])
-						LB.append(intV)
-						g=g+1
-					h=h+1
-			
-				lie=[elem for elem in li if elem not in LB ]
-				if len(lie)!=0:
-					t=ResAirbnb+toto+':'+str(lie)
-					t=t.replace("[","")
-					t=t.replace("]","")
-					r=str(ca)+';    '+t
-					#lenli=len(lie)+len(LB)
-					#ws.cell(row=j, column=c_write+3).value=lenli
-			else:
-				t=ResAirbnb+toto+':'+str(li)
-				t=t.replace("[","")
-				t=t.replace("]","")
-				r=t
-				#lenli=len(li)
-				#ws.cell(row=j, column=c_write+3).value=lenli
-			if r!='set()':
-				print (r)
-				ws.cell(row=j, column=c_write).value=r
-	except:
-		pass
 
 def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):	
 	month5=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
+	ResAirbnb='/R'
 	if new_mo==1:
 		ResAirbnb='/D'
 	while i<=31:
@@ -662,72 +694,64 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 			i=i+1
 		except:
 			break
-	v_li=ws.cell(row=j, column=c_write+1).value
-	try:
-		t=str(li)
-		t=t.replace("[","")
-		t=t.replace("]","")
-		l_t=t.split(",")
-		len_t=len(l_t)
-		h=0
-		li_t=[]
-		while h<len_t:
-			li_t.append(l_t[h])
-			h=h+1
-	except:
-		pass
-	ws.cell(row=j, column=c_write+1).value=str(li)
+	print (li)
+	back_li=ws.cell(row=j, column=c_write+1).value
+	if back_li!=None:
+		back_li=back_li.replace("[","")
+		back_li=back_li.replace("]","")
+		back_li=back_li.split(",")
+		i=0
+		bl=[]
+		while i!=len(back_li):
+			ivb=int(back_li[i])
+			bl.append(ivb)
+			i=i+1
+		back_li=bl
+		print ("back_li="+str(back_li))
+	else:
+		back_li=[]
+	ws.cell(row=j, column=c_write+1).value = str(li)
 	#print(li)
-	try:
-		if len(li)>0:
-			ca=ws.cell(row=j, column=c_write).value
-			#-------DATE DU JOUR-------
-			date = int(datetime.datetime.now().day)
-			month = int(datetime.datetime.now().month)
-			toto=str(date)+'-'+str(month)
-			if ca!=None:
-				li_ca=ca.split(";")
+	c_added=[]
+	c_remove=[]
+	c_added=[elem for elem in li if elem not in back_li ]
+	c_remove=[elem for elem in back_li if elem not in li ]
+	print(c_added)
+	print(c_remove)
+	date = int(datetime.datetime.now().day)
+	month = int(datetime.datetime.now().month)
+	toto=str(date)+'-'+str(month)
+	t_add='vide'
+	t_rem='vide'
+	t_wri='vide'
+	if len(c_added)>0:		
+		t_add=ResAirbnb+toto+':'+str(c_added)
+		t_add=t_add.replace("[","")
+		t_add=t_add.replace("]","")
+		print (t_add)
+	if len(c_remove)>0:
+		t_rem='/L'+toto+':'+str(c_remove)
+		t_rem=t_rem.replace("[","")
+		t_rem=t_rem.replace("]","")
+		print(t_rem)
+	ca=ws.cell(row=j, column=c_write).value
+	if ca==None:
+		if t_add!='vide':
+			t_wri=str(t_add)
+	else:
+		if t_add!='vide':
+			if t_rem!='vide':
+				t_wri=str(t_add)+';    '+str(t_rem)
 			else:
-				li_ca=[]
-
-			lie=[]
-			if li_ca!=[]:
-				lenL=len(li_ca)
-				h=0
-				LB=[]
-				while h!=lenL:
-					LA=li_ca[h]
-					LA=LA.split(':')
-					del LA[0]
-					LA=LA[0].split(',')
-					lenLA=len(LA)
-					g=0
-					while g!=lenLA:
-						intV=int(LA[g])
-						LB.append(intV)
-						g=g+1
-					h=h+1
-			
-				lie=[elem for elem in li if elem not in LB ]
-				if len(lie)!=0:
-					t=ResAirbnb+toto+':'+str(lie)
-					t=t.replace("[","")
-					t=t.replace("]","")
-					r=str(ca)+';    '+t
-					#lenli=len(lie)+len(LB)
-					#ws.cell(row=j, column=c_write+3).value=lenli
-			else:
-				t=ResAirbnb+toto+':'+str(li)
-				t=t.replace("[","")
-				t=t.replace("]","")
-				r=t
-				#lenli=len(li)
-				#ws.cell(row=j, column=c_write+3).value=lenli
-			if r!='set()':
-				print (r)
-				ws.cell(row=j, column=c_write).value=r
-	except:
-		pass
+				t_wri=str(t_add)
+		else:
+			if t_rem!='vide':
+				t_wri=str(t_rem)
+		if t_wri!='vide':
+			t_wri=str(ca)+';    '+t_wri
+	if t_wri!='vide':
+		print(t_wri)
+		ws.cell(row=j, column=c_write).value=t_wri
 	
 
 def COMPUTE_M1(name_mois1):
