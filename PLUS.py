@@ -341,7 +341,7 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 				bl.append(ivb)
 			i=i+1
 		back_li=bl
-		print ("back_li="+str(back_li))
+		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -350,8 +350,8 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
 	c_remove=[elem for elem in back_li if elem not in li ]
-	print(c_added)
-	print(c_remove)
+	#print(c_added)
+	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
 	toto=str(date)+'-'+str(month)
@@ -370,12 +370,12 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 		t_add=ResAirbnb+toto+':'+str(c_added)
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
-		print (t_add)
+		#print (t_add)
 	if len(c_remove)>0:
 		t_rem='/L'+toto+':'+str(c_remove)
 		t_rem=t_rem.replace("[","")
 		t_rem=t_rem.replace("]","")
-		print(t_rem)
+		#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
 		if t_add!='vide':
@@ -453,7 +453,7 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 			bl.append(ivb)
 			i=i+1
 		back_li=bl
-		print ("back_li="+str(back_li))
+		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -462,8 +462,8 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
 	c_remove=[elem for elem in back_li if elem not in li ]
-	print(c_added)
-	print(c_remove)
+	#print(c_added)
+	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
 	toto=str(date)+'-'+str(month)
@@ -496,7 +496,7 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		print(t_wri)
+		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 			
 def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):	
@@ -530,7 +530,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 				bl.append(ivb)
 			i=i+1
 		back_li=bl
-		print ("back_li="+str(back_li))
+		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -539,8 +539,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
 	c_remove=[elem for elem in back_li if elem not in li ]
-	print(c_added)
-	print(c_remove)
+	#print(c_added)
+	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
 	toto=str(date)+'-'+str(month)
@@ -618,7 +618,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 			i=i+1
 		except:
 			break
-	print(li)
+	#print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -631,7 +631,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 			bl.append(ivb)
 			i=i+1
 		back_li=bl
-		print ("back_li="+str(back_li))
+		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -640,8 +640,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
 	c_remove=[elem for elem in back_li if elem not in li ]
-	print(c_added)
-	print(c_remove)
+	#print(c_added)
+	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
 	toto=str(date)+'-'+str(month)
@@ -674,7 +674,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		print(t_wri)
+		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 
 
@@ -694,7 +694,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 			i=i+1
 		except:
 			break
-	print (li)
+	#print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -707,7 +707,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 			bl.append(ivb)
 			i=i+1
 		back_li=bl
-		print ("back_li="+str(back_li))
+		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -716,8 +716,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
 	c_remove=[elem for elem in back_li if elem not in li ]
-	print(c_added)
-	print(c_remove)
+	#print(c_added)
+	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
 	toto=str(date)+'-'+str(month)
@@ -750,7 +750,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		print(t_wri)
+		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 	
 
