@@ -1279,7 +1279,14 @@ while end==0:
 				try:
 					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 				except:
-					time.sleep(3)
+					time.sleep(2)
+				try:
+					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+					rootdriver.execute_script("window.scrollBy(0,-500);")
+					time.sleep(1)
+				except:
+					time.sleep(1)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(2)
@@ -1326,10 +1333,6 @@ while end==0:
 			#-----MOIS 4-5 -----
 				if v_m!='x':
 					try:
-						ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-						rootdriver.execute_script("window.scrollBy(0,-500);")
-						time.sleep(1)
 						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
 						next_calendar.click()
 						time.sleep(2)
