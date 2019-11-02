@@ -1284,10 +1284,11 @@ while end==0:
 					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 					rootdriver.execute_script("window.scrollBy(0,-500);")
-					time.sleep(1)
+					time.sleep(2)
 				except:
-					time.sleep(1)
+					time.sleep(2)
 				html = rootdriver.page_source
+				time.sleep(1)
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(2)
 				ResAirbnb=''
@@ -1341,6 +1342,7 @@ while end==0:
 						next_calendar.click()
 						time.sleep(2)
 						html = rootdriver.page_source
+						time.sleep(1)
 						soup = BeautifulSoup(html, 'html.parser')
 						time.sleep(1)
 						try:
