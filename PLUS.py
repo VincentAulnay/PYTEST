@@ -1206,7 +1206,7 @@ while c_month==0:
 while f_xpathdate==0:
 	h=ws.cell(row=fm, column=2).value
 	print(h)
-	if fff==5:
+	if fff==20:
 		f_mounth=1
 		f_xpathdate=1
 		end=0
@@ -1221,12 +1221,13 @@ while f_xpathdate==0:
 		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
 		b_cookie.click()
 	except:
-		if fff!=5:
+		if fff!=20:
 			rootdriver.quit()
 			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 			rootdriver.set_window_size(2000, 1000)
 			wait = WebDriverWait(rootdriver, 3)
+			fm=fm+1
 
 			
 while end==0:
@@ -1409,7 +1410,7 @@ while end==0:
 		while f_xpathdate==0:
 			h=ws.cell(row=fm, column=2).value
 			print(h)
-			if fff==5:
+			if fff==20:
 				f_mounth=1
 				f_xpathdate=1
 				end=0
@@ -1424,7 +1425,7 @@ while end==0:
 				b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
 				b_cookie.click()
 			except:
-				if fff!=5:
+				if fff!=20:
 					rootdriver.quit()
 					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
