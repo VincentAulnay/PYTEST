@@ -210,7 +210,7 @@ def whatmounth():
 	elif month==12:
 		name_mois1='décembre 2019'
 		name_mois2='janvier 2020'
-		name_mois3='fevrier 2020'
+		name_mois3='février 2020'
 		name_mois4='mars 2020'
 		name_mois5='avril 2020'
 
@@ -219,7 +219,7 @@ def MnumDay (Mmois):
 	if Mmois=='janvier':
 		MNumday=31
 	elif Mmois=='février':
-		MNumday=28
+		MNumday=29
 	elif Mmois=='mars':
 		MNumday=31	
 	elif Mmois=='avril':
@@ -231,15 +231,15 @@ def MnumDay (Mmois):
 	elif Mmois=='juillet':
 		MNumday=31
 	elif Mmois=='août':
-		MNumday=30
+		MNumday=31
 	elif Mmois=='septembre':
-		MNumday=31
+		MNumday=30
 	elif Mmois=='octobre':
-		MNumday=30
-	elif Mmois=='novembre':
 		MNumday=31
-	elif Mmois=='décembre':
+	elif Mmois=='novembre':
 		MNumday=30
+	elif Mmois=='décembre':
+		MNumday=31
 		
 def A_Colonne_mois(name_mois,c):
 #1- récupération book Result qui évolue au court du script
@@ -510,7 +510,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 	while i<=31:
 		try:
 			the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
-			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
 			intdiv=int(div)
 			if intdiv>=int_timeday:
 				li.append(intdiv)
@@ -612,7 +613,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	while i<=31:
 		try:
 			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
-			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
 			intdiv=int(div)
 			li.append(intdiv)
 			i=i+1
@@ -688,7 +690,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 	while i<=31:
 		try:
 			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
-			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
 			intdiv=int(div)
 			li.append(intdiv)
 			i=i+1
@@ -1212,7 +1215,7 @@ while f_xpathdate==0:
 	try:
 		rootdriver.get(h)
 		time.sleep(4)
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 		print("x date trouve")
 		f_xpathdate=1
 		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
@@ -1222,9 +1225,10 @@ while f_xpathdate==0:
 			rootdriver.quit()
 			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-			rootdriver.set_window_size(1000, 1500)
+			rootdriver.set_window_size(2000, 1000)
 			wait = WebDriverWait(rootdriver, 3)
 
+			
 while end==0:
 	try:
 		while j<=nrow:
@@ -1276,13 +1280,13 @@ while end==0:
 			elif 'airbnb' in h:
 				rootdriver.get(h)
 				time.sleep(5)
-				x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
+				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
+				#try:
+				#	x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+				#except:
+				#	time.sleep(2)
 				try:
-					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-				except:
-					time.sleep(2)
-				try:
-					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+					ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
 					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 					rootdriver.execute_script("window.scrollBy(0,-500);")
 					time.sleep(2)
@@ -1335,7 +1339,7 @@ while end==0:
 			#-----MOIS 4-5 -----
 				if v_m!='x':
 					try:
-						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 						next_calendar.click()
 						time.sleep(2)
 						next_calendar.click()
@@ -1398,7 +1402,7 @@ while end==0:
 		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
 		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-		rootdriver.set_window_size(1000, 1500)
+		rootdriver.set_window_size(2000, 1000)
 		wait = WebDriverWait(rootdriver, 3)
 		f_xpathdate=0
 		fff=0
@@ -1414,7 +1418,7 @@ while end==0:
 			try:
 				rootdriver.get(h)
 				time.sleep(4)
-				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 				print("x date trouve")
 				f_xpathdate=1
 				b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
@@ -1424,7 +1428,7 @@ while end==0:
 					rootdriver.quit()
 					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-					rootdriver.set_window_size(1000, 1500)
+					rootdriver.set_window_size(2000, 1000)
 					wait = WebDriverWait(rootdriver, 3)
 
 		
