@@ -1214,12 +1214,12 @@ while f_xpathdate==0:
 	fff=fff+1
 	try:
 		rootdriver.get(h)
-		time.sleep(4)
+		time.sleep(6)
 		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 		print("x date trouve")
 		f_xpathdate=1
-		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-		b_cookie.click()
+		#b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+		#b_cookie.click()
 	except:
 		if fff!=20:
 			rootdriver.quit()
@@ -1289,7 +1289,7 @@ while end==0:
 				try:
 					ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
 					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-					rootdriver.execute_script("window.scrollBy(0,-500);")
+					#rootdriver.execute_script("window.scrollBy(0,-500);")
 					time.sleep(2)
 				except:
 					time.sleep(2)
