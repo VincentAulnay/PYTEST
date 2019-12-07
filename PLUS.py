@@ -1345,7 +1345,7 @@ while end==0:
 			#-----MOIS 4-5 -----
 				if v_m!='x':
 					try:
-						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
+						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
 						next_calendar.click()
 						time.sleep(2)
 						next_calendar.click()
