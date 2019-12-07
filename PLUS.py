@@ -511,8 +511,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 	while i<=31:
 		try:
 			the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
-			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
+			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
 			intdiv=int(div)
 			if intdiv>=int_timeday:
 				li.append(intdiv)
@@ -614,8 +614,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	while i<=31:
 		try:
 			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
-			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
+			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
 			intdiv=int(div)
 			li.append(intdiv)
 			i=i+1
@@ -691,8 +691,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 	while i<=31:
 		try:
 			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
-			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
+			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
 			intdiv=int(div)
 			li.append(intdiv)
 			i=i+1
@@ -1216,7 +1216,8 @@ while f_xpathdate==0:
 	try:
 		rootdriver.get(h)
 		time.sleep(4)
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
+		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 		print("x date trouve")
 		f_xpathdate=1
 		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
@@ -1282,7 +1283,8 @@ while end==0:
 				rootdriver.get(h)
 				time.sleep(2)
 				#je test si je suis sur une annonce au bon design
-				wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
+				#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
+				#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
 				#OK j'extrait les détails
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				#try:
@@ -1428,7 +1430,8 @@ while end==0:
 				try:
 					rootdriver.get(h)
 					time.sleep(4)
-					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
+					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+					#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 					print("x date trouve")
 					f_xpathdate=1
 					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
