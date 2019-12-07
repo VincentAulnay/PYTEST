@@ -1281,7 +1281,7 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(2)
+				time.sleep(6)
 				#je test si je suis sur une annonce au bon design
 				#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
 				#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
@@ -1429,7 +1429,7 @@ while end==0:
 				fff=fff+1
 				try:
 					rootdriver.get(h)
-					time.sleep(4)
+					time.sleep(5)
 					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 					#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 					print("x date trouve")
