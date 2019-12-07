@@ -31,6 +31,7 @@ chrome_options.add_experimental_option("prefs", prefs)
 #chrome_options.add_argument("-disable-gpu")
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
 
+
 #-----EXCEL RESULT OPEN AND READ-----
 
 wbx = load_workbook(path_RESULT.filename)
@@ -1206,7 +1207,7 @@ while c_month==0:
 while f_xpathdate==0:
 	h=ws.cell(row=fm, column=2).value
 	print(h)
-	if fff==20:
+	if fff==5:
 		f_mounth=1
 		f_xpathdate=1
 		end=0
@@ -1214,20 +1215,19 @@ while f_xpathdate==0:
 	fff=fff+1
 	try:
 		rootdriver.get(h)
-		time.sleep(6)
+		time.sleep(4)
 		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 		print("x date trouve")
 		f_xpathdate=1
-		#b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-		#b_cookie.click()
+		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+		b_cookie.click()
 	except:
-		if fff!=20:
+		if fff!=5:
 			rootdriver.quit()
 			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 			rootdriver.set_window_size(2000, 1000)
 			wait = WebDriverWait(rootdriver, 3)
-			fm=fm+1
 
 			
 while end==0:
@@ -1280,7 +1280,10 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(5)
+				time.sleep(2)
+				#je test si je suis sur une annonce au bon design
+				wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
+				#OK j'extrait les détails
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				#try:
 				#	x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
@@ -1289,7 +1292,7 @@ while end==0:
 				try:
 					ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
 					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-					#rootdriver.execute_script("window.scrollBy(0,-500);")
+					rootdriver.execute_script("window.scrollBy(0,-500);")
 					time.sleep(2)
 				except:
 					time.sleep(2)
@@ -1395,42 +1398,48 @@ while end==0:
 		rootdriver.quit()
 		wbx.close()
 	except:
-		j=j+1
 		try:
-			rootdriver.quit()
+			#page sans annonce, je dois trouver quelque soit le type
+			print('Je tente de voir si cest encore le bon design')
+			wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_jlnmn0l']")))
+			j=j+1
 		except:
-			pass
-		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
-		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-		rootdriver.set_window_size(2000, 1000)
-		wait = WebDriverWait(rootdriver, 3)
-		f_xpathdate=0
-		fff=0
-		while f_xpathdate==0:
-			h=ws.cell(row=fm, column=2).value
-			print(h)
-			if fff==20:
-				f_mounth=1
-				f_xpathdate=1
-				end=0
-				#run=emailfalde2()
-			fff=fff+1
 			try:
-				rootdriver.get(h)
-				time.sleep(4)
-				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
-				print("x date trouve")
-				f_xpathdate=1
-				b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-				b_cookie.click()
+				rootdriver.quit()
 			except:
-				if fff!=20:
-					rootdriver.quit()
-					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-					rootdriver.set_window_size(2000, 1000)
-					wait = WebDriverWait(rootdriver, 3)
+				print('page pas clos')
+			# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
+			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+			rootdriver.set_window_size(2000, 1000)
+			wait = WebDriverWait(rootdriver, 3)
+			f_xpathdate=0
+			fff=0
+			fm=2
+			while f_xpathdate==0:
+				h=ws.cell(row=fm, column=2).value
+				print(h)
+				if fff==5:
+					f_mounth=1
+					f_xpathdate=1
+					end=0
+					#run=emailfalde2()
+				fff=fff+1
+				try:
+					rootdriver.get(h)
+					time.sleep(4)
+					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
+					print("x date trouve")
+					f_xpathdate=1
+					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+					b_cookie.click()
+				except:
+					if fff!=5:
+						rootdriver.quit()
+						rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+						#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+						rootdriver.set_window_size(2000, 1000)
+						wait = WebDriverWait(rootdriver, 3)
 
 		
 		
