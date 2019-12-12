@@ -1281,7 +1281,7 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(6)
+				time.sleep(7)
 				#je test si je suis sur une annonce au bon design
 				#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
 				#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
@@ -1299,7 +1299,7 @@ while end==0:
 				except:
 					time.sleep(2)
 				html = rootdriver.page_source
-				time.sleep(1)
+				time.sleep(2)
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(2)
 				ResAirbnb=''
