@@ -521,18 +521,21 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			break
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
-		back_li=back_li.replace("[","")
-		back_li=back_li.replace("]","")
-		back_li=back_li.split(",")
-		i=0
-		bl=[]
-		while i!=len(back_li):
-			ivb=int(back_li[i])
-			if ivb>=int_timeday:
-				bl.append(ivb)
-			i=i+1
-		back_li=bl
-		#print ("back_li="+str(back_li))
+		try:
+			back_li=back_li.replace("[","")
+			back_li=back_li.replace("]","")
+			back_li=back_li.split(",")
+			i=0
+			bl=[]
+			while i!=len(back_li):
+				ivb=int(back_li[i])
+				if ivb>=int_timeday:
+					bl.append(ivb)
+				i=i+1
+			back_li=bl
+			#print ("back_li="+str(back_li))
+		except:
+			pass
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -561,12 +564,13 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 		t_add=ResAirbnb+toto+':'+str(c_added)
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
-		print (t_add)
-	if len(c_remove)>0:
-		t_rem='/L'+toto+':'+str(c_remove)
-		t_rem=t_rem.replace("[","")
-		t_rem=t_rem.replace("]","")
-		print(t_rem)
+		#print (t_add)
+	if c_remove!=['']:
+		if c_remove!=[]:
+			t_rem='/L'+toto+':'+str(c_remove)
+			t_rem=t_rem.replace("[","")
+			t_rem=t_rem.replace("]","")
+			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
 		if t_add!='vide':
@@ -602,7 +606,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			Icomment=int(Lcomment[0])
 			ws.cell(row=j, column=c_write+2).value=S=Icomment
 		except:
-			pass
+			print('no comment')
 
 def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	month5=soup.find('div', attrs={"class":u"_kuxo8ai"})
@@ -624,17 +628,21 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	#print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
-		back_li=back_li.replace("[","")
-		back_li=back_li.replace("]","")
-		back_li=back_li.split(",")
-		i=0
-		bl=[]
-		while i!=len(back_li):
-			ivb=int(back_li[i])
-			bl.append(ivb)
-			i=i+1
-		back_li=bl
-		#print ("back_li="+str(back_li))
+		try:
+			back_li=back_li.replace("[","")
+			back_li=back_li.replace("]","")
+			back_li=back_li.split(",")
+			i=0
+			bl=[]
+			while i!=len(back_li):
+				ivb=int(back_li[i])
+				bl.append(ivb)
+				i=i+1
+			back_li=bl
+			#print ("back_li="+str(back_li))
+		except:
+			back_li=[]
+			pass
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -655,12 +663,13 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 		t_add=ResAirbnb+toto+':'+str(c_added)
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
-		print (t_add)
-	if len(c_remove)>0:
-		t_rem='/L'+toto+':'+str(c_remove)
-		t_rem=t_rem.replace("[","")
-		t_rem=t_rem.replace("]","")
-		print(t_rem)
+		#print (t_add)
+	if c_remove!=['']:
+		if c_remove!=[]:
+			t_rem='/L'+toto+':'+str(c_remove)
+			t_rem=t_rem.replace("[","")
+			t_rem=t_rem.replace("]","")
+			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
 		if t_add!='vide':
@@ -677,7 +686,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		#print(t_wri)
+		print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 
 
@@ -701,17 +710,21 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 	#print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
-		back_li=back_li.replace("[","")
-		back_li=back_li.replace("]","")
-		back_li=back_li.split(",")
-		i=0
-		bl=[]
-		while i!=len(back_li):
-			ivb=int(back_li[i])
-			bl.append(ivb)
-			i=i+1
-		back_li=bl
-		#print ("back_li="+str(back_li))
+		try:
+			back_li=back_li.replace("[","")
+			back_li=back_li.replace("]","")
+			back_li=back_li.split(",")
+			i=0
+			bl=[]
+			while i!=len(back_li):
+				ivb=int(back_li[i])
+				bl.append(ivb)
+				i=i+1
+			back_li=bl
+			#print ("back_li="+str(back_li))
+		except:
+			back_li=[]
+			pass
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -732,12 +745,13 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 		t_add=ResAirbnb+toto+':'+str(c_added)
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
-		print (t_add)
-	if len(c_remove)>0:
-		t_rem='/L'+toto+':'+str(c_remove)
-		t_rem=t_rem.replace("[","")
-		t_rem=t_rem.replace("]","")
-		print(t_rem)
+		#print (t_add)
+	if c_remove!=['']:
+		if c_remove!=[]:
+			t_rem='/L'+toto+':'+str(c_remove)
+			t_rem=t_rem.replace("[","")
+			t_rem=t_rem.replace("]","")
+			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
 		if t_add!='vide':
@@ -754,7 +768,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		#print(t_wri)
+		print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 	
 
@@ -1343,47 +1357,46 @@ while end==0:
 					#print('PAS DE MOIS 3')
 					pass
 			#-----MOIS 4-5 -----
-				if v_m!='x':
+				try:
+					next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+					next_calendar.click()
+					time.sleep(2)
+					next_calendar.click()
+					time.sleep(2)
+					next_calendar.click()
+					time.sleep(2)
+					html = rootdriver.page_source
+					time.sleep(1)
+					soup = BeautifulSoup(html, 'html.parser')
+					time.sleep(1)
 					try:
-						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
-						next_calendar.click()
-						time.sleep(2)
-						next_calendar.click()
-						time.sleep(2)
-						next_calendar.click()
-						time.sleep(2)
-						html = rootdriver.page_source
-						time.sleep(1)
-						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(1)
-						try:
-						#-----RECUPERATION CALANDAR MOIS 4--------
-							#print('le mois N est '+name_mois4)
-							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
-						except:
-							pass
-					#-----RECUPERATION CALANDAR MOIS 5--------
-						try:
-							#print('le mois N+1 est '+name_mois5)
-							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
-						except:
-							pass
+					#-----RECUPERATION CALANDAR MOIS 4--------
+						#print('le mois N est '+name_mois4)
+						run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
 					except:
-						print('----click KO')
 						pass
-					C_mois5=1
-				if (j/10).is_integer():
-					wbx.save(path_RESULT.filename)
+				#-----RECUPERATION CALANDAR MOIS 5--------
+					try:
+						#print('le mois N+1 est '+name_mois5)
+						run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
+					except:
+						pass
+				except:
+					print('----click KO')
+					pass
+				C_mois5=1
 				C_mois=1
 				j=j+1
 			elif 'abritel' in h:
 				j=j+1
 			else:
 				j=j+1
+			if (j/10).is_integer():
+				wbx.save(path_RESULT.filename)
 		
 		wbx.save(path_RESULT.filename)
 		end=1
-		now = str(datetime.datetime.now())[:19]
+		now = str(datetime.datetime.now())[:19
 		now = now.replace(":","_")
 		Tr=date
 		print ('FIN')
