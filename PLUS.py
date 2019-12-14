@@ -1017,7 +1017,7 @@ def COMPUTE_M1(name_mois1):
 rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 #rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 #rootdriver.set_page_load_timeout(2)
-rootdriver.set_window_size(2000, 1000)
+rootdriver.set_window_size(1500, 600)
 wait = WebDriverWait(rootdriver, 5)
 nrow=ws.max_row
 print('NROW'+str(nrow))
@@ -1396,7 +1396,7 @@ while end==0:
 		
 		wbx.save(path_RESULT.filename)
 		end=1
-		now = str(datetime.datetime.now())[:19
+		now = str(datetime.datetime.now())[:19]
 		now = now.replace(":","_")
 		Tr=date
 		print ('FIN')
@@ -1426,7 +1426,7 @@ while end==0:
 			# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
 			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-			rootdriver.set_window_size(2000, 1000)
+			rootdriver.set_window_size(1500, 600)
 			wait = WebDriverWait(rootdriver, 3)
 			f_xpathdate=0
 			fff=0
@@ -1454,7 +1454,7 @@ while end==0:
 						rootdriver.quit()
 						rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 						#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-						rootdriver.set_window_size(2000, 1000)
+						rootdriver.set_window_size(1500, 600)
 						wait = WebDriverWait(rootdriver, 3)
 
 		
