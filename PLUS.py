@@ -1317,7 +1317,7 @@ while end==0:
 						time.sleep(4)
 					except:
 						time.sleep(4)
-					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']")))
+					#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']")))
 					#je test si je suis sur une annonce au bon design
 					html = rootdriver.page_source
 					time.sleep(2)
@@ -1343,19 +1343,19 @@ while end==0:
 					#	pass
 					try:
 					#-----RECUPERATION CALANDAR MOIS 1--------
-						#print('le mois N est '+name_mois1)
+						print('le mois N est '+name_mois1)
 						run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1)
 					except:
 						pass
 					try:
 					#-----RECUPERATION CALANDAR MOIS 2--------
-						#print('le mois N+1 est '+name_mois2)
+						print('le mois N+1 est '+name_mois2)
 						run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
 					except:
 						pass
 					try:
 					#-----RECUPERATION CALANDAR MOIS 3--------
-						#print('le mois N+2 est '+name_mois3)
+						print('le mois N+2 est '+name_mois3)
 						RA4=ResAirbnb
 						if v_m=='X' and date==1:
 							RA4='/D'
@@ -1378,13 +1378,13 @@ while end==0:
 						time.sleep(2)
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
-							#print('le mois N est '+name_mois4)
+							print('le mois N est '+name_mois4)
 							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
 						except:
 							pass
 					#-----RECUPERATION CALANDAR MOIS 5--------
 						try:
-							#print('le mois N+1 est '+name_mois5)
+							print('le mois N+1 est '+name_mois5)
 							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
 						except:
 							pass
