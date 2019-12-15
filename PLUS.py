@@ -1403,6 +1403,11 @@ while end==0:
 				j=j+1
 			if (j/10).is_integer():
 				wbx.save(path_RESULT.filename)
+				try:
+					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+					b_cookie.click()
+				except:
+					print('no cookie')
 		
 		wbx.save(path_RESULT.filename)
 		end=1
