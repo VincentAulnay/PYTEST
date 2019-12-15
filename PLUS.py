@@ -1221,28 +1221,28 @@ while c_month==0:
 while f_xpathdate==0:
 	h=ws.cell(row=fm, column=2).value
 	print(h)
-	if fff==5:
-		f_mounth=1
-		f_xpathdate=1
-		end=0
-		#run=emailfalde2()
 	fff=fff+1
 	try:
 		rootdriver.get(h)
 		time.sleep(4)
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']"))).text
 		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 		print("x date trouve")
 		f_xpathdate=1
 		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
 		b_cookie.click()
 	except:
-		if fff!=5:
+		if fff!=10:
 			rootdriver.quit()
 			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 			rootdriver.set_window_size(2000, 1000)
 			wait = WebDriverWait(rootdriver, 3)
+		else:
+			end=1
+	if fff==10:
+		f_xpathdate=1
+		#run=emailfalde2()
 
 			
 while end==0:
@@ -1301,97 +1301,102 @@ while end==0:
 			elif 'airbnb' in h:
 				rootdriver.get(h)
 				time.sleep(7)
-				#je test si je suis sur une annonce au bon design
-				#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
-				#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
-				#OK j'extrait les détails
-				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
-				#try:
-				#	x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-				#except:
-				#	time.sleep(2)
 				try:
-					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-					rootdriver.execute_script("window.scrollBy(0,-200);")
-					time.sleep(2)
-				except:
-					time.sleep(2)
-				html = rootdriver.page_source
-				time.sleep(2)
-				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(2)
-				ResAirbnb=''
-				V_up=ws.cell(row=j, column=k).value
-				v_m=ws.cell(row=j, column=c_mouth).value
-				#try:
-				#	script=soup.find('script', attrs={"data-state":u"true"}).text
-				#	p1=script.split("calendar_last")
-				#	p2=p1[1].split("guest_controls")
-				#	p3=p2[0].replace('_updated_at":"', '')
-				#	p4=p3.replace('","', '')
-					#print (p4)
-				#	if p4==V_up:
-						#ResAirbnb='/A'
-				#		ResAirbnb=''
-				#	else:
-						#ws.cell(row=j, column=k).value=p4
-				#		ResAirbnb=''
-				#except:
-				#	pass
-				try:
-				#-----RECUPERATION CALANDAR MOIS 1--------
-					#print('le mois N est '+name_mois1)
-					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1)
-				except:
-					pass
-				try:
-				#-----RECUPERATION CALANDAR MOIS 2--------
-					#print('le mois N+1 est '+name_mois2)
-					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
-				except:
-					pass
-				try:
-				#-----RECUPERATION CALANDAR MOIS 3--------
-					#print('le mois N+2 est '+name_mois3)
-					RA4=ResAirbnb
-					if v_m=='X' and date==1:
-						RA4='/D'
-					run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth)
-				except:
-					#print('PAS DE MOIS 3')
-					pass
-			#-----MOIS 4-5 -----
-				try:
-					next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
-					next_calendar.click()
-					time.sleep(2)
-					next_calendar.click()
-					time.sleep(2)
-					next_calendar.click()
-					time.sleep(2)
+					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']")))
+					#je test si je suis sur une annonce au bon design
+					#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
+					#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
+					#OK j'extrait les détails
+					#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
+					#try:
+					#	x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+					#except:
+					#	time.sleep(2)
+					try:
+						ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+						rootdriver.execute_script("window.scrollBy(0,-200);")
+						time.sleep(2)
+					except:
+						time.sleep(2)
 					html = rootdriver.page_source
-					time.sleep(1)
+					time.sleep(2)
 					soup = BeautifulSoup(html, 'html.parser')
-					time.sleep(1)
+					time.sleep(2)
+					ResAirbnb=''
+					V_up=ws.cell(row=j, column=k).value
+					v_m=ws.cell(row=j, column=c_mouth).value
+					#try:
+					#	script=soup.find('script', attrs={"data-state":u"true"}).text
+					#	p1=script.split("calendar_last")
+					#	p2=p1[1].split("guest_controls")
+					#	p3=p2[0].replace('_updated_at":"', '')
+					#	p4=p3.replace('","', '')
+						#print (p4)
+					#	if p4==V_up:
+							#ResAirbnb='/A'
+					#		ResAirbnb=''
+					#	else:
+							#ws.cell(row=j, column=k).value=p4
+					#		ResAirbnb=''
+					#except:
+					#	pass
 					try:
-					#-----RECUPERATION CALANDAR MOIS 4--------
-						#print('le mois N est '+name_mois4)
-						run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
+					#-----RECUPERATION CALANDAR MOIS 1--------
+						#print('le mois N est '+name_mois1)
+						run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1)
 					except:
 						pass
-				#-----RECUPERATION CALANDAR MOIS 5--------
 					try:
-						#print('le mois N+1 est '+name_mois5)
-						run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
+					#-----RECUPERATION CALANDAR MOIS 2--------
+						#print('le mois N+1 est '+name_mois2)
+						run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
 					except:
 						pass
+					try:
+					#-----RECUPERATION CALANDAR MOIS 3--------
+						#print('le mois N+2 est '+name_mois3)
+						RA4=ResAirbnb
+						if v_m=='X' and date==1:
+							RA4='/D'
+						run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth)
+					except:
+						#print('PAS DE MOIS 3')
+						pass
+				#-----MOIS 4-5 -----
+					try:
+						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+						next_calendar.click()
+						time.sleep(2)
+						next_calendar.click()
+						time.sleep(2)
+						next_calendar.click()
+						time.sleep(2)
+						html = rootdriver.page_source
+						time.sleep(1)
+						soup = BeautifulSoup(html, 'html.parser')
+						time.sleep(1)
+						try:
+						#-----RECUPERATION CALANDAR MOIS 4--------
+							#print('le mois N est '+name_mois4)
+							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
+						except:
+							pass
+					#-----RECUPERATION CALANDAR MOIS 5--------
+						try:
+							#print('le mois N+1 est '+name_mois5)
+							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
+						except:
+							pass
+					except:
+						print('----click KO')
+						pass
+					C_mois5=1
+					C_mois=1
+					j=j+1
 				except:
-					print('----click KO')
-					pass
-				C_mois5=1
-				C_mois=1
-				j=j+1
+					print('design not good')
+					j=j+1
 			elif 'abritel' in h:
 				j=j+1
 			else:
@@ -1439,28 +1444,28 @@ while end==0:
 			while f_xpathdate==0:
 				h=ws.cell(row=fm, column=2).value
 				print(h)
-				if fff==5:
-					f_mounth=1
-					f_xpathdate=1
-					end=0
 					#run=emailfalde2()
 				fff=fff+1
 				try:
 					rootdriver.get(h)
 					time.sleep(5)
-					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']"))).text
 					#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
 					print("x date trouve")
 					f_xpathdate=1
 					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
 					b_cookie.click()
 				except:
-					if fff!=5:
+					if fff!=10:
 						rootdriver.quit()
 						rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 						#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 						rootdriver.set_window_size(1500, 600)
 						wait = WebDriverWait(rootdriver, 3)
+					else:
+						end=1
+				if fff==10:
+					f_xpathdate=1
 
 		
 		
