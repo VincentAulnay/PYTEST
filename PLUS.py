@@ -1300,7 +1300,7 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(5)
+				time.sleep(8)
 				try:
 					#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
 					#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
@@ -1314,9 +1314,9 @@ while end==0:
 						ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 						rootdriver.execute_script("window.scrollBy(0,-150);")
-						time.sleep(1)
+						time.sleep(4)
 					except:
-						time.sleep(1)
+						time.sleep(4)
 					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']")))
 					#je test si je suis sur une annonce au bon design
 					html = rootdriver.page_source
