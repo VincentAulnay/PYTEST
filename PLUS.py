@@ -1302,8 +1302,6 @@ while end==0:
 				rootdriver.get(h)
 				time.sleep(5)
 				try:
-					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']")))
-					#je test si je suis sur une annonce au bon design
 					#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
 					#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
 					#OK j'extrait les détails
@@ -1319,6 +1317,8 @@ while end==0:
 						time.sleep(1)
 					except:
 						time.sleep(1)
+					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']")))
+					#je test si je suis sur une annonce au bon design
 					html = rootdriver.page_source
 					time.sleep(2)
 					soup = BeautifulSoup(html, 'html.parser')
