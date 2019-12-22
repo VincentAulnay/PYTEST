@@ -1241,12 +1241,14 @@ def f1(a):
 	global hok
 	print('F1')
 	rootdriver.get(a)
-	time.sleep(3)
+	time.sleep(5)
 	try:
 		rootdriver.execute_script("window.scrollBy(0,1000);")
 		time.sleep(1)
 		ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+		print('DOWN 1')
 		rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+		print('DOWN 1.1')
 		rootdriver.execute_script("window.scrollBy(0,-200);")
 		time.sleep(2)
 	except:
@@ -1257,12 +1259,14 @@ def f2(a):
 	global hok2
 	print('F2')
 	rootdriver2.get(a)
-	time.sleep(3)
+	time.sleep(5)
 	try:
 		rootdriver2.execute_script("window.scrollBy(0,1000);")
 		time.sleep(1)
 		ele2=rootdriver2.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-		rootdriver2.execute_script("arguments[0].scrollIntoView(true);", ele)
+		print('DOWN 2')
+		rootdriver2.execute_script("arguments[0].scrollIntoView(true);", ele2)
+		print('DOWN 2.2')
 		rootdriver2.execute_script("window.scrollBy(0,-200);")
 		time.sleep(2)
 	except:
@@ -1330,7 +1334,7 @@ while end==0:
 					while hok2!=1:
 						time.sleep(1)
 						ee=ee+1
-						if ee==10:
+						if ee==20:
 							hok2=1
 					hok2=0
 					html = rootdriver2.page_source
@@ -1340,7 +1344,7 @@ while end==0:
 					while hok!=1:
 						time.sleep(1)
 						e=e+1
-						if e==10:
+						if e==20:
 							hok=1
 					hok=0
 					html = rootdriver.page_source
