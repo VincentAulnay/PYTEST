@@ -1371,7 +1371,7 @@ while end==0:
 			elif 'airbnb' in h:
 				#threading.Thread(target=f1, args=(h,)).start()
 				run_F1=f1(h)
-				html = rootdriver1.page_source
+				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				#threading.Thread(target=f2, args=(h,)).start()
 				run_F2=f2(h)
