@@ -1017,7 +1017,8 @@ print('NROW'+str(nrow))
 j=2
 z=0
 end=0
-EE=0
+ee=0
+e=0
 Tr=0
 C_mois=0
 C_mois5=0
@@ -1278,7 +1279,7 @@ time.sleep(5)
 while end==0:
 	try:
 		while j<=nrow:
-			h=ws.cell(row=j, column=2).value
+			h=ws.cell(row=j+1, column=2).value
 			print('------'+str(j-1)+'------'+str(h))
 			if h==None:
 				j=j+1
