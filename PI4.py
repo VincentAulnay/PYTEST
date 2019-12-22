@@ -1393,25 +1393,26 @@ while end==0:
 				html2 = rootdriver2.page_source
 				print('try BS2')
 				soup2 = BeautifulSoup(html2, 'html.parser')
+				time.sleep(1)
 				print('BS2 ok')
 				ResAirbnb=''
 				hf2=0
 				hf1=0
 				try:
 				#-----RECUPERATION CALANDAR MOIS 1--------
-					#print('le mois N est '+name_mois1)
+					print('le mois N est '+name_mois1)
 					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1)
 				except:
 					pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 2--------
-					#print('le mois N+1 est '+name_mois2)
+					print('le mois N+1 est '+name_mois2)
 					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
 				except:
 					pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 3--------
-					#print('le mois N+2 est '+name_mois3)
+					print('le mois N+2 est '+name_mois3)
 					run_resday=A_Statu_day4(m3_write,j,ResAirbnb,m3_newmonth)
 				except:
 					#print('PAS DE MOIS 3')
@@ -1419,13 +1420,13 @@ while end==0:
 			#-----MOIS 4-5 -----
 				try:
 				#-----RECUPERATION CALANDAR MOIS 4--------
-					#print('le mois N est '+name_mois4)
+					print('le mois N est '+name_mois4)
 					run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,1)
 				except:
 					pass
 			#-----RECUPERATION CALANDAR MOIS 5--------
 				try:
-					#print('le mois N+1 est '+name_mois5)
+					print('le mois N+1 est '+name_mois5)
 					RA4=ResAirbnb
 					if date==1:
 						RA4='/D'
