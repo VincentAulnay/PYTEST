@@ -1018,7 +1018,7 @@ C_mois5=0
 drive=0
 date = int(datetime.datetime.now().day)
 f_mounth=1
-fm=3
+fm=2
 fff=0
 f_xpathdate=0
 w_month=0
@@ -1207,6 +1207,7 @@ while c_month==0:
 
 while f_xpathdate==0:
 	h=ws.cell(row=fm, column=2).value
+	fm=fm+1
 	print(h)
 	if fff==5:
 		f_mounth=1
@@ -1346,7 +1347,6 @@ while end==0:
 						next_calendar.click()
 						time.sleep(2)
 						html = rootdriver.page_source
-						time.sleep(2)
 						soup = BeautifulSoup(html, 'html.parser')
 						time.sleep(2)
 						try:
@@ -1407,6 +1407,7 @@ while end==0:
 		fff=0
 		while f_xpathdate==0:
 			h=ws.cell(row=fm, column=2).value
+			fm=fm+1
 			print(h)
 			if fff==5:
 				f_mounth=1
