@@ -1296,7 +1296,7 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(2)
+				time.sleep(4)
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				threading.Thread(target=scroll, args=(1,)).start()
 				#time.sleep(2)
