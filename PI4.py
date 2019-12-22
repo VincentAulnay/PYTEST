@@ -1313,13 +1313,13 @@ while f_xpathdate==1:
 			wait = WebDriverWait(rootdriver, 5)
 
 def f1(a):
-	global(hf1)
+	global hf1
 	print('F1')
 	rootdriver.get(a)
 	time.sleep(2)
 	hf1=1
 def f2(a):
-	global(hf2)
+	global hf2
 	print('F2')
 	rootdriver2.get(str(a)+'?check_in=2020-02-01&check_out=2020-02-04')
 	time.sleep(2)
