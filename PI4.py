@@ -1386,7 +1386,7 @@ while end==0:
 				print('hf2 ok')
 				#run_F2=f2(h)
 				html2 = rootdriver2.page_source
-				soup2 = BeautifulSoup(html, 'html.parser')
+				soup2 = BeautifulSoup(html2, 'html.parser')
 				print('BS1 ok')
 				time.sleep(1)
 				html = rootdriver.page_source
