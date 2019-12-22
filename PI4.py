@@ -1378,14 +1378,15 @@ while end==0:
 				threading.Thread(target=f1, args=(h,)).start()
 				threading.Thread(target=f2, args=(h,)).start()
 				#run_F1=f1(h)
-				while hf1==1:
-					html = rootdriver.page_source
-					soup = BeautifulSoup(html, 'html.parser')
-					
-				while hf2==1:
+				while hf1==0:
+					time.sleep(1)
+				while hf2==0:
+					time.sleep(1)
 				#run_F2=f2(h)
-					html2 = rootdriver2.page_source
-					soup2 = BeautifulSoup(html, 'html.parser')
+				html2 = rootdriver2.page_source
+				soup2 = BeautifulSoup(html, 'html.parser')
+				html = rootdriver.page_source
+				soup = BeautifulSoup(html, 'html.parser')
 
 				ResAirbnb=''
 				hf2=0
