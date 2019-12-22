@@ -1270,8 +1270,10 @@ def f2(a):
 	hok2=1
 hok=1
 hok2=1
-h=ws.cell(row=3, column=2).value
-rootdriver2.get(h)
+h1=ws.cell(row=2, column=2).value
+h2=ws.cell(row=3, column=2).value
+rootdriver2.get(h2)
+rootdriver.get(h1)
 time.sleep(5)
 while end==0:
 	try:
