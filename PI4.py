@@ -1384,17 +1384,17 @@ while end==0:
 				while hf2==0:
 					time.sleep(1)
 				print('hf2 ok')
-				#time.sleep(4)
+				time.sleep(2)
 				#run_F2=f2(h)
 				html = rootdriver.page_source
 				print('try BS1')
 				soup = BeautifulSoup(html, 'html.parser')
 				print('BS1 ok')
-				#time.sleep(1)
+				time.sleep(1)
 				html2 = rootdriver2.page_source
 				print('try BS2')
 				soup2 = BeautifulSoup(html2, 'html.parser')
-				#time.sleep(1)
+				time.sleep(1)
 				print('BS2 ok')
 				ResAirbnb=''
 				hf2=0
