@@ -31,7 +31,6 @@ chrome_options.add_experimental_option("prefs", prefs)
 #chrome_options.add_argument("-disable-gpu")
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
 
-
 #-----EXCEL RESULT OPEN AND READ-----
 
 wbx = load_workbook(path_RESULT.filename)
@@ -211,7 +210,7 @@ def whatmounth():
 	elif month==12:
 		name_mois1='décembre 2019'
 		name_mois2='janvier 2020'
-		name_mois3='février 2020'
+		name_mois3='fevrier 2020'
 		name_mois4='mars 2020'
 		name_mois5='avril 2020'
 
@@ -220,7 +219,7 @@ def MnumDay (Mmois):
 	if Mmois=='janvier':
 		MNumday=31
 	elif Mmois=='février':
-		MNumday=29
+		MNumday=28
 	elif Mmois=='mars':
 		MNumday=31	
 	elif Mmois=='avril':
@@ -232,15 +231,15 @@ def MnumDay (Mmois):
 	elif Mmois=='juillet':
 		MNumday=31
 	elif Mmois=='août':
-		MNumday=31
+		MNumday=30
 	elif Mmois=='septembre':
-		MNumday=30
+		MNumday=31
 	elif Mmois=='octobre':
-		MNumday=31
-	elif Mmois=='novembre':
 		MNumday=30
-	elif Mmois=='décembre':
+	elif Mmois=='novembre':
 		MNumday=31
+	elif Mmois=='décembre':
+		MNumday=30
 		
 def A_Colonne_mois(name_mois,c):
 #1- récupération book Result qui évolue au court du script
@@ -512,7 +511,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 		try:
 			the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
 			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			#div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
+			#_1lds9wb
 			intdiv=int(div)
 			if intdiv>=int_timeday:
 				li.append(intdiv)
@@ -521,21 +520,18 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			break
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
-		try:
-			back_li=back_li.replace("[","")
-			back_li=back_li.replace("]","")
-			back_li=back_li.split(",")
-			i=0
-			bl=[]
-			while i!=len(back_li):
-				ivb=int(back_li[i])
-				if ivb>=int_timeday:
-					bl.append(ivb)
-				i=i+1
-			back_li=bl
-			#print ("back_li="+str(back_li))
-		except:
-			pass
+		back_li=back_li.replace("[","")
+		back_li=back_li.replace("]","")
+		back_li=back_li.split(",")
+		i=0
+		bl=[]
+		while i!=len(back_li):
+			ivb=int(back_li[i])
+			if ivb>=int_timeday:
+				bl.append(ivb)
+			i=i+1
+		back_li=bl
+		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -606,10 +602,11 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			Icomment=int(Lcomment[0])
 			ws.cell(row=j, column=c_write+2).value=S=Icomment
 		except:
-			print('no comment')
+			pass
 
 def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	month5=soup.find('div', attrs={"class":u"_kuxo8ai"})
+	print('fevrier')
 	i=0
 	li=[]
 	ResAirbnb='/R'
@@ -619,7 +616,6 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 		try:
 			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
 			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			#div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
 			intdiv=int(div)
 			li.append(intdiv)
 			i=i+1
@@ -628,21 +624,17 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	#print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
-		try:
-			back_li=back_li.replace("[","")
-			back_li=back_li.replace("]","")
-			back_li=back_li.split(",")
-			i=0
-			bl=[]
-			while i!=len(back_li):
-				ivb=int(back_li[i])
-				bl.append(ivb)
-				i=i+1
-			back_li=bl
-			#print ("back_li="+str(back_li))
-		except:
-			back_li=[]
-			pass
+		back_li=back_li.replace("[","")
+		back_li=back_li.replace("]","")
+		back_li=back_li.split(",")
+		i=0
+		bl=[]
+		while i!=len(back_li):
+			ivb=int(back_li[i])
+			bl.append(ivb)
+			i=i+1
+		back_li=bl
+		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -686,7 +678,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		print(t_wri)
+		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 
 
@@ -701,7 +693,6 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 		try:
 			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
 			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			#div=the_tr.find('div', attrs={"class": "_d32e0qc"}).text
 			intdiv=int(div)
 			li.append(intdiv)
 			i=i+1
@@ -710,21 +701,17 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 	#print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
-		try:
-			back_li=back_li.replace("[","")
-			back_li=back_li.replace("]","")
-			back_li=back_li.split(",")
-			i=0
-			bl=[]
-			while i!=len(back_li):
-				ivb=int(back_li[i])
-				bl.append(ivb)
-				i=i+1
-			back_li=bl
-			#print ("back_li="+str(back_li))
-		except:
-			back_li=[]
-			pass
+		back_li=back_li.replace("[","")
+		back_li=back_li.replace("]","")
+		back_li=back_li.split(",")
+		i=0
+		bl=[]
+		while i!=len(back_li):
+			ivb=int(back_li[i])
+			bl.append(ivb)
+			i=i+1
+		back_li=bl
+		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
@@ -768,7 +755,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		print(t_wri)
+		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 	
 
@@ -1017,7 +1004,7 @@ def COMPUTE_M1(name_mois1):
 rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 #rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 #rootdriver.set_page_load_timeout(2)
-rootdriver.set_window_size(1500, 600)
+rootdriver.set_window_size(2000, 1000)
 wait = WebDriverWait(rootdriver, 5)
 nrow=ws.max_row
 print('NROW'+str(nrow))
@@ -1031,7 +1018,7 @@ C_mois5=0
 drive=0
 date = int(datetime.datetime.now().day)
 f_mounth=1
-fm=2
+fm=3
 fff=0
 f_xpathdate=0
 w_month=0
@@ -1221,30 +1208,28 @@ while c_month==0:
 while f_xpathdate==0:
 	h=ws.cell(row=fm, column=2).value
 	print(h)
+	if fff==5:
+		f_mounth=1
+		f_xpathdate=1
+		end=0
+		#run=emailfalde2()
 	fff=fff+1
 	try:
 		rootdriver.get(h)
 		time.sleep(4)
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']"))).text
-		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
+		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 		print("x date trouve")
 		f_xpathdate=1
 		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
 		b_cookie.click()
 	except:
-		if fff!=10:
+		if fff!=5:
 			rootdriver.quit()
 			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 			rootdriver.set_window_size(2000, 1000)
-			wait = WebDriverWait(rootdriver, 3)
-		else:
-			end=1
-	if fff==10:
-		f_xpathdate=1
-		#run=emailfalde2()
+			wait = WebDriverWait(rootdriver, 5)
 
-			
 while end==0:
 	try:
 		while j<=nrow:
@@ -1258,11 +1243,6 @@ while end==0:
 				rootdriver.get(h)
 				rootdriver.execute_script("window.scrollBy(0,100);")
 				time.sleep(2)
-				try:
-					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-					b_cookie.click()
-				except:
-					print('nocookie')
 				try:
 					b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
 					b_add_date.click()
@@ -1300,72 +1280,65 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(8)
+				time.sleep(5)
+				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				try:
-					#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
-					#wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1jmdsh14']")))
-					#OK j'extrait les détails
-					#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
-					#try:
-					#	x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-					#except:
-					#	time.sleep(2)
-					try:
-						ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-						rootdriver.execute_script("window.scrollBy(0,-150);")
-						time.sleep(4)
-					except:
-						time.sleep(4)
-					#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']")))
-					#je test si je suis sur une annonce au bon design
-					html = rootdriver.page_source
+					rootdriver.execute_script("window.scrollBy(0,1000);")
+					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+					rootdriver.execute_script("window.scrollBy(0,-200);")
 					time.sleep(2)
-					soup = BeautifulSoup(html, 'html.parser')
+				except:
 					time.sleep(2)
-					ResAirbnb=''
-					V_up=ws.cell(row=j, column=k).value
-					v_m=ws.cell(row=j, column=c_mouth).value
-					#try:
-					#	script=soup.find('script', attrs={"data-state":u"true"}).text
-					#	p1=script.split("calendar_last")
-					#	p2=p1[1].split("guest_controls")
-					#	p3=p2[0].replace('_updated_at":"', '')
-					#	p4=p3.replace('","', '')
-						#print (p4)
-					#	if p4==V_up:
-							#ResAirbnb='/A'
-					#		ResAirbnb=''
-					#	else:
-							#ws.cell(row=j, column=k).value=p4
-					#		ResAirbnb=''
-					#except:
-					#	pass
-					try:
-					#-----RECUPERATION CALANDAR MOIS 1--------
-						print('le mois N est '+name_mois1)
-						run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1)
-					except:
-						pass
-					try:
-					#-----RECUPERATION CALANDAR MOIS 2--------
-						print('le mois N+1 est '+name_mois2)
-						run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
-					except:
-						pass
-					try:
-					#-----RECUPERATION CALANDAR MOIS 3--------
-						print('le mois N+2 est '+name_mois3)
-						RA4=ResAirbnb
-						if v_m=='X' and date==1:
-							RA4='/D'
-						run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth)
-					except:
-						#print('PAS DE MOIS 3')
-						pass
-				#-----MOIS 4-5 -----
+					print('DOWN KO')
+				html = rootdriver.page_source
+				soup = BeautifulSoup(html, 'html.parser')
+				time.sleep(2)
+				ResAirbnb=''
+				V_up=ws.cell(row=j, column=k).value
+				v_m=ws.cell(row=j, column=c_mouth).value
+				#try:
+				#	script=soup.find('script', attrs={"data-state":u"true"}).text
+				#	p1=script.split("calendar_last")
+				#	p2=p1[1].split("guest_controls")
+				#	p3=p2[0].replace('_updated_at":"', '')
+				#	p4=p3.replace('","', '')
+					#print (p4)
+				#	if p4==V_up:
+						#ResAirbnb='/A'
+				#		ResAirbnb=''
+				#	else:
+						#ws.cell(row=j, column=k).value=p4
+				#		ResAirbnb=''
+				#except:
+				#	pass
+				try:
+				#-----RECUPERATION CALANDAR MOIS 1--------
+					#print('le mois N est '+name_mois1)
+					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1)
+				except:
+					pass
+				try:
+				#-----RECUPERATION CALANDAR MOIS 2--------
+					#print('le mois N+1 est '+name_mois2)
+					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
+				except:
+					pass
+				try:
+				#-----RECUPERATION CALANDAR MOIS 3--------
+					#print('le mois N+2 est '+name_mois3)
+					RA4=ResAirbnb
+					if v_m=='X' and date==1:
+						RA4='/D'
+					run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth)
+				except:
+					#print('PAS DE MOIS 3')
+					pass
+			#-----MOIS 4-5 -----
+				if v_m!='z':
 					try:
 						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+						#or button class _f8a140
 						next_calendar.click()
 						time.sleep(2)
 						next_calendar.click()
@@ -1378,13 +1351,13 @@ while end==0:
 						time.sleep(2)
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
-							print('le mois N est '+name_mois4)
+							#print('le mois N est '+name_mois4)
 							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
 						except:
 							pass
 					#-----RECUPERATION CALANDAR MOIS 5--------
 						try:
-							print('le mois N+1 est '+name_mois5)
+							#print('le mois N+1 est '+name_mois5)
 							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
 						except:
 							pass
@@ -1392,22 +1365,14 @@ while end==0:
 						print('----click KO')
 						pass
 					C_mois5=1
-					C_mois=1
-					j=j+1
-				except:
-					print('design not good')
-					j=j+1
+				if (j/10).is_integer():
+					wbx.save(path_RESULT.filename)
+				C_mois=1
+				j=j+1
 			elif 'abritel' in h:
 				j=j+1
 			else:
 				j=j+1
-			if (j/10).is_integer():
-				wbx.save(path_RESULT.filename)
-				try:
-					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-					b_cookie.click()
-				except:
-					print('no cookie')
 		
 		wbx.save(path_RESULT.filename)
 		end=1
@@ -1428,49 +1393,42 @@ while end==0:
 		rootdriver.quit()
 		wbx.close()
 	except:
+		j=j+1
 		try:
-			#page sans annonce, je dois trouver quelque soit le type
-			print('Je tente de voir si cest encore le bon design')
-			wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_jlnmn0l']")))
-			j=j+1
+			rootdriver.quit()
 		except:
+			pass
+		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
+		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+		rootdriver.set_window_size(2000, 1000)
+		wait = WebDriverWait(rootdriver, 5)
+		f_xpathdate=0
+		fff=0
+		while f_xpathdate==0:
+			h=ws.cell(row=fm, column=2).value
+			print(h)
+			if fff==5:
+				f_mounth=1
+				f_xpathdate=1
+				end=0
+				#run=emailfalde2()
+			fff=fff+1
 			try:
-				rootdriver.quit()
+				rootdriver.get(h)
+				time.sleep(4)
+				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+				print("x date trouve")
+				f_xpathdate=1
+				b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+				b_cookie.click()
 			except:
-				print('page pas clos')
-			# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
-			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-			rootdriver.set_window_size(1500, 600)
-			wait = WebDriverWait(rootdriver, 3)
-			f_xpathdate=0
-			fff=0
-			fm=2
-			while f_xpathdate==0:
-				h=ws.cell(row=fm, column=2).value
-				print(h)
-					#run=emailfalde2()
-				fff=fff+1
-				try:
-					rootdriver.get(h)
-					time.sleep(5)
-					x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_fdp53bg']//td[@class='_z39f86g']//div[@class='_13m7kz7i']"))).text
-					#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_d32e0qc']"))).text
-					print("x date trouve")
-					f_xpathdate=1
-					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-					b_cookie.click()
-				except:
-					if fff!=10:
-						rootdriver.quit()
-						rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-						#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-						rootdriver.set_window_size(1500, 600)
-						wait = WebDriverWait(rootdriver, 3)
-					else:
-						end=1
-				if fff==10:
-					f_xpathdate=1
+				if fff!=5:
+					rootdriver.quit()
+					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+					rootdriver.set_window_size(2000, 1000)
+					wait = WebDriverWait(rootdriver, 5)
 
 		
 		
