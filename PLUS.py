@@ -20,8 +20,8 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from openpyxl import load_workbook
-#import threading
-#import sys
+import threading
+import sys
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -1231,6 +1231,19 @@ while f_xpathdate==0:
 			rootdriver.set_window_size(2000, 1000)
 			wait = WebDriverWait(rootdriver, 5)
 
+def scroll (a):
+	try:
+		rootdriver.execute_script("window.scrollBy(0,1200);")
+	except:
+		time.sleep(2)
+		pass
+	try:
+		ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+		rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+		rootdriver.execute_script("window.scrollBy(0,-200);")
+	except:
+		print('DOWN KO')
+			
 while end==0:
 	try:
 		while j<=nrow:
@@ -1283,19 +1296,8 @@ while end==0:
 				rootdriver.get(h)
 				#time.sleep(4)
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
-				try:
-					rootdriver.execute_script("window.scrollBy(0,1200);")
-				except:
-					time.sleep(1)
-					pass
-				try:
-					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-					rootdriver.execute_script("window.scrollBy(0,-200);")
-					time.sleep(1)
-				except:
-					time.sleep(2)
-					print('DOWN KO')
+				threading.Thread(target=scroll, args=(1,)).start()
+				time.sleep(2)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(1)
