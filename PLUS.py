@@ -1230,22 +1230,7 @@ while f_xpathdate==0:
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 			rootdriver.set_window_size(2000, 1000)
 			wait = WebDriverWait(rootdriver, 5)
-
-def scroll (a):
-	global scr
-	try:
-		rootdriver.execute_script("window.scrollBy(0,1200);")
-	except:
-		time.sleep(1)
-		pass
-	try:
-		ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-		rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-		rootdriver.execute_script("window.scrollBy(0,-200);")
-	except:
-		print('DOWN KO')
-	scr=1
-scr=0			
+		
 while end==0:
 	try:
 		while j<=nrow:
@@ -1298,8 +1283,19 @@ while end==0:
 				rootdriver.get(h)
 				time.sleep(4)
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
-				threading.Thread(target=scroll, args=(1,)).start()
-				#time.sleep(2)
+				#threading.Thread(target=scroll, args=(1,)).start()
+				try:
+					rootdriver.execute_script("window.scrollBy(0,1200);")
+				except:
+					time.sleep(1)
+					pass
+				try:
+					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+					rootdriver.execute_script("window.scrollBy(0,-200);")
+				except:
+					print('DOWN KO')
+				time.sleep(1)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(1)
@@ -1344,13 +1340,6 @@ while end==0:
 					#print('PAS DE MOIS 3')
 					pass
 			#-----MOIS 4-5 -----
-				w_scr=0
-				while w_scr<5:
-					time.sleep(1)
-					if scr==1:
-						w_scr=10
-						scr=0
-					w_scr=w_scr+1
 				if v_m!='z':
 					try:
 						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
