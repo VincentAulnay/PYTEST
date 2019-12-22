@@ -1241,10 +1241,11 @@ def f1(a):
 	global hok
 	print('F1')
 	rootdriver.get(a)
-	time.sleep(5)
+	time.sleep(3)
 	try:
 		rootdriver.execute_script("window.scrollBy(0,1000);")
 		time.sleep(1)
+		print('DOWN 01')
 		ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 		print('DOWN 1')
 		rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
@@ -1259,10 +1260,11 @@ def f2(a):
 	global hok2
 	print('F2')
 	rootdriver2.get(a)
-	time.sleep(5)
+	time.sleep(3)
 	try:
 		rootdriver2.execute_script("window.scrollBy(0,1000);")
 		time.sleep(1)
+		print('DOWN 02')
 		ele2=rootdriver2.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 		print('DOWN 2')
 		rootdriver2.execute_script("arguments[0].scrollIntoView(true);", ele2)
