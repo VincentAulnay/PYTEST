@@ -677,7 +677,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		#print(t_wri)
+		print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 
 def A_Statu_day42(c_write,j,ResAirbnb,new_mo):
@@ -753,7 +753,7 @@ def A_Statu_day42(c_write,j,ResAirbnb,new_mo):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		#print(t_wri)
+		print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 		
 def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):	
@@ -829,7 +829,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		#print(t_wri)
+		print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 	
 
@@ -1316,13 +1316,13 @@ def f1(a):
 	global hf1
 	print('F1')
 	rootdriver.get(a)
-	time.sleep(4)
+	time.sleep(3)
 	hf1=1
 def f2(a):
 	global hf2
 	print('F2')
 	rootdriver2.get(str(a)+'?check_in=2020-02-01&check_out=2020-02-04')
-	time.sleep(4)
+	time.sleep(3)
 	hf2=1
 hf1=0
 hf2=0
@@ -1390,11 +1390,11 @@ while end==0:
 				print('try BS1')
 				soup = BeautifulSoup(html, 'html.parser')
 				print('BS1 ok')
-				time.sleep(3)
+				time.sleep(1)
 				html2 = rootdriver2.page_source
 				print('try BS2')
 				soup2 = BeautifulSoup(html2, 'html.parser')
-				time.sleep(3)
+				time.sleep(1)
 				print('BS2 ok')
 				ResAirbnb=''
 				hf2=0
