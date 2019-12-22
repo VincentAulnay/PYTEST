@@ -1235,7 +1235,7 @@ def scroll (a):
 	try:
 		rootdriver.execute_script("window.scrollBy(0,1200);")
 	except:
-		time.sleep(2)
+		#time.sleep(2)
 		pass
 	try:
 		ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
@@ -1294,10 +1294,10 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				#time.sleep(4)
+				time.sleep(2)
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				threading.Thread(target=scroll, args=(1,)).start()
-				time.sleep(2)
+				#time.sleep(2)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(1)
