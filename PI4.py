@@ -24,9 +24,9 @@ import threading
 import sys
 
 
-chrome_options = webdriver.ChromeOptions()
+Options = webdriver.ChromeOptions()
 prefs = {"profile.managed_default_content_settings.images": 2}
-chrome_options.add_experimental_option("prefs", prefs)
+Options.add_experimental_option("prefs", prefs)
 #chrome_options.add_argument("-headless")
 #chrome_options.add_argument("-disable-gpu")
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
@@ -1075,13 +1075,13 @@ def COMPUTE_M1(name_mois1):
 		
 #-----OPEN GOOGLE CHROME and AIRBNB PAGE---------
 
-rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=Options)
 #rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 #rootdriver.set_page_load_timeout(2)
 rootdriver.set_window_size(2000, 1000)
 wait = WebDriverWait(rootdriver, 5)
 
-rootdriver2 = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+rootdriver2 = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=Options)
 #rootdriver2 = webdriver.Chrome(chrome_options=chrome_options)
 #rootdriver2.set_page_load_timeout(2)
 rootdriver2.set_window_size(2000, 1000)
@@ -1307,7 +1307,7 @@ while f_xpathdate==0:
 	except:
 		if fff!=5:
 			rootdriver.quit()
-			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=Options)
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 			rootdriver.set_window_size(2000, 1000)
 			wait = WebDriverWait(rootdriver, 5)
@@ -1446,7 +1446,7 @@ while end==0:
 		except:
 			pass
 		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
-		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=Options)
 		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 		rootdriver.set_window_size(2000, 1000)
 		wait = WebDriverWait(rootdriver, 5)
@@ -1472,7 +1472,7 @@ while end==0:
 			except:
 				if fff!=5:
 					rootdriver.quit()
-					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=Options)
 					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 					rootdriver.set_window_size(2000, 1000)
 					wait = WebDriverWait(rootdriver, 5)
