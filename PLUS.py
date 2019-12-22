@@ -1285,6 +1285,10 @@ while end==0:
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				try:
 					rootdriver.execute_script("window.scrollBy(0,1200);")
+				except:
+					time.sleep(1)
+					pass
+				try:
 					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 					rootdriver.execute_script("window.scrollBy(0,-200);")
