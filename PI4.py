@@ -1316,13 +1316,13 @@ def f1(a):
 	global hf1
 	print('F1')
 	rootdriver.get(a)
-	time.sleep(2)
+	time.sleep(4)
 	hf1=1
 def f2(a):
 	global hf2
 	print('F2')
 	rootdriver2.get(str(a)+'?check_in=2020-02-01&check_out=2020-02-04')
-	time.sleep(2)
+	time.sleep(4)
 	hf2=1
 hf1=0
 hf2=0
@@ -1385,12 +1385,14 @@ while end==0:
 					time.sleep(1)
 				print('hf2 ok')
 				#run_F2=f2(h)
-				html2 = rootdriver2.page_source
-				soup2 = BeautifulSoup(html2, 'html.parser')
+				html = rootdriver.page_source
+				print('try BS1')
+				soup = BeautifulSoup(html, 'html.parser')
 				print('BS1 ok')
 				time.sleep(1)
-				html = rootdriver.page_source
-				soup = BeautifulSoup(html, 'html.parser')
+				html2 = rootdriver2.page_source
+				print('try BS2')
+				soup2 = BeautifulSoup(html2, 'html.parser')
 				print('BS2 ok')
 				ResAirbnb=''
 				hf2=0
