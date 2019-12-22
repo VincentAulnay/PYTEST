@@ -1313,13 +1313,19 @@ while f_xpathdate==1:
 			wait = WebDriverWait(rootdriver, 5)
 
 def f1(a):
+	global(hf1)
 	print('F1')
 	rootdriver.get(a)
-	time.sleep(5)
+	time.sleep(2)
+	hf1=1
 def f2(a):
+	global(hf2)
 	print('F2')
 	rootdriver2.get(str(a)+'?check_in=2020-02-01&check_out=2020-02-04')
-	time.sleep(5)
+	time.sleep(2)
+	hf2=1
+hf1=0
+hf2=0
 while end==0:
 	try:
 		while j<=nrow:
@@ -1369,15 +1375,21 @@ while end==0:
 					wbx.save(path_RESULT.filename)
 				j=j+1
 			elif 'airbnb' in h:
-				#threading.Thread(target=f1, args=(h,)).start()
-				run_F1=f1(h)
-				html = rootdriver.page_source
-				soup = BeautifulSoup(html, 'html.parser')
-				#threading.Thread(target=f2, args=(h,)).start()
-				run_F2=f2(h)
-				html2 = rootdriver2.page_source
-				soup2 = BeautifulSoup(html, 'html.parser')
+				threading.Thread(target=f1, args=(h,)).start()
+				threading.Thread(target=f2, args=(h,)).start()
+				#run_F1=f1(h)
+				while hf1==1:
+					html = rootdriver.page_source
+					soup = BeautifulSoup(html, 'html.parser')
+					
+				while hf2==1:
+				#run_F2=f2(h)
+					html2 = rootdriver2.page_source
+					soup2 = BeautifulSoup(html, 'html.parser')
+
 				ResAirbnb=''
+				hf2=0
+				hf1=0
 				try:
 				#-----RECUPERATION CALANDAR MOIS 1--------
 					#print('le mois N est '+name_mois1)
