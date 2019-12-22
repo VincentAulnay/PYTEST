@@ -1281,20 +1281,20 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(5)
+				time.sleep(4)
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				try:
 					rootdriver.execute_script("window.scrollBy(0,1000);")
 					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 					rootdriver.execute_script("window.scrollBy(0,-200);")
-					time.sleep(2)
+					time.sleep(1)
 				except:
 					time.sleep(2)
 					print('DOWN KO')
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(2)
+				time.sleep(1)
 				ResAirbnb=''
 				V_up=ws.cell(row=j, column=k).value
 				v_m=ws.cell(row=j, column=c_mouth).value
@@ -1348,7 +1348,7 @@ while end==0:
 						time.sleep(1)
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(2)
+						time.sleep(1)
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
 							print('le mois N est '+name_mois4)
