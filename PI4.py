@@ -1380,7 +1380,7 @@ while end==0:
 				#run_F1=f1(h)
 				while hf1==0:
 					time.sleep(1)
-				print('hf1 ok V3')
+				print('hf1 ok V4')
 				while hf2==0:
 					time.sleep(1)
 				print('hf2 ok')
