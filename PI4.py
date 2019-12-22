@@ -1316,13 +1316,13 @@ def f1(a):
 	global hf1
 	print('F1')
 	rootdriver.get(a)
-	time.sleep(3)
+	time.sleep(2)
 	hf1=1
 def f2(a):
 	global hf2
 	print('F2')
 	rootdriver2.get(str(a)+'?check_in=2020-02-01&check_out=2020-02-04')
-	time.sleep(3)
+	time.sleep(2)
 	hf2=1
 hf1=0
 hf2=0
@@ -1380,7 +1380,7 @@ while end==0:
 				#run_F1=f1(h)
 				while hf1==0:
 					time.sleep(1)
-				print('hf1 ok V2')
+				print('hf1 ok V3')
 				while hf2==0:
 					time.sleep(1)
 				print('hf2 ok')
