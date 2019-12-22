@@ -1232,10 +1232,11 @@ while f_xpathdate==0:
 			wait = WebDriverWait(rootdriver, 5)
 
 def scroll (a):
+	global scr
 	try:
 		rootdriver.execute_script("window.scrollBy(0,1200);")
 	except:
-		#time.sleep(2)
+		time.sleep(1)
 		pass
 	try:
 		ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
@@ -1243,7 +1244,8 @@ def scroll (a):
 		rootdriver.execute_script("window.scrollBy(0,-200);")
 	except:
 		print('DOWN KO')
-			
+	scr=1
+scr=0			
 while end==0:
 	try:
 		while j<=nrow:
@@ -1342,6 +1344,13 @@ while end==0:
 					#print('PAS DE MOIS 3')
 					pass
 			#-----MOIS 4-5 -----
+				w_scr=0
+				while w_scr<5:
+					time.sleep(1)
+					if scr==1
+						w_scr=10
+						scr=0
+					w_scr=w_scr+1
 				if v_m!='z':
 					try:
 						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
