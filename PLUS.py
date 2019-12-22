@@ -1347,7 +1347,7 @@ while end==0:
 				w_scr=0
 				while w_scr<5:
 					time.sleep(1)
-					if scr==1
+					if scr==1:
 						w_scr=10
 						scr=0
 					w_scr=w_scr+1
