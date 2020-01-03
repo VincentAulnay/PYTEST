@@ -1282,19 +1282,20 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(2)
+				time.sleep(3)
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				#threading.Thread(target=scroll, args=(1,)).start()
-				try:
-					rootdriver.execute_script("window.scrollBy(0,1200);")
-				except:
-					time.sleep(1)
-					pass
+				#try:
+				#	rootdriver.execute_script("window.scrollBy(0,1200);")
+				#except:
+				#	time.sleep(1)
+				#	pass
 				try:
 					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 					rootdriver.execute_script("window.scrollBy(0,-200);")
 				except:
+					rootdriver.execute_script("window.scrollBy(0,2000);")
 					print('DOWN KO')
 				time.sleep(1)
 				html = rootdriver.page_source
