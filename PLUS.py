@@ -1282,7 +1282,7 @@ while end==0:
 				j=j+1
 			elif 'airbnb' in h:
 				rootdriver.get(h)
-				time.sleep(3)
+				time.sleep(2)
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 				#threading.Thread(target=scroll, args=(1,)).start()
 				#try:
@@ -1305,7 +1305,7 @@ while end==0:
 				#time.sleep(1)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(1)
+				#time.sleep(1)
 				ResAirbnb=''
 				V_up=ws.cell(row=j, column=k).value
 				v_m=ws.cell(row=j, column=c_mouth).value
@@ -1359,7 +1359,7 @@ while end==0:
 						time.sleep(1)
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(1)
+						#time.sleep(1)
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
 							print('le mois N est '+name_mois4)
