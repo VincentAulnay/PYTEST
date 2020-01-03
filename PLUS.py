@@ -1300,6 +1300,7 @@ while end==0:
 					except:
 						#rootdriver.execute_script("window.scrollBy(0,2000);")
 						print('DOWN KO')
+						time.sleep(1)
 						f_ele=f_ele+1
 				#time.sleep(1)
 				html = rootdriver.page_source
