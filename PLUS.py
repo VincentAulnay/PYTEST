@@ -1290,14 +1290,18 @@ while end==0:
 				#except:
 				#	time.sleep(1)
 				#	pass
-				try:
-					ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-					rootdriver.execute_script("window.scrollBy(0,-200);")
-				except:
-					rootdriver.execute_script("window.scrollBy(0,2000);")
-					print('DOWN KO')
-				time.sleep(1)
+				f_ele=0
+				while f_ele<=5:
+					try:
+						ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+						rootdriver.execute_script("window.scrollBy(0,-200);")
+						f_ele=6
+					except:
+						#rootdriver.execute_script("window.scrollBy(0,2000);")
+						print('DOWN KO')
+						f_ele=f_ele+1
+				#time.sleep(1)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(1)
