@@ -607,7 +607,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 
 def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	month5=soup.find('div', attrs={"class":u"_kuxo8ai"})
-	print('fevrier')
+	#print('fevrier')
 	i=0
 	li=[]
 	ResAirbnb='/R'
@@ -1355,21 +1355,22 @@ while end==0:
 						time.sleep(1)
 						next_calendar.click()
 						time.sleep(1)
-						next_calendar.click()
-						time.sleep(1)
+						#next_calendar.click()
+						#time.sleep(1)
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
 						#time.sleep(1)
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
 							print('le mois N est '+name_mois4)
-							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0)
+							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,1)
 						except:
 							pass
 					#-----RECUPERATION CALANDAR MOIS 5--------
 						try:
 							print('le mois N+1 est '+name_mois5)
-							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
+							#run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
+							run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth)
 						except:
 							pass
 					except:
