@@ -1302,10 +1302,10 @@ while end==0:
 						print('DOWN KO')
 						time.sleep(1)
 						f_ele=f_ele+1
-				#time.sleep(1)
+				time.sleep(1)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
-				#time.sleep(1)
+				time.sleep(1)
 				ResAirbnb=''
 				V_up=ws.cell(row=j, column=k).value
 				v_m=ws.cell(row=j, column=c_mouth).value
