@@ -511,7 +511,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 	while i<=31:
 		try:
 			the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
-			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			div=the_tr.span.div.div.div.get_text()
 			#_1lds9wb
 			intdiv=int(div)
 			if intdiv>=int_timeday:
@@ -616,7 +617,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 	while i<=31:
 		try:
 			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
-			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			div=the_tr.span.div.div.div.get_text()
 			intdiv=int(div)
 			li.append(intdiv)
 			i=i+1
@@ -693,7 +695,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 	while i<=31:
 		try:
 			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
-			div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+			div=the_tr.span.div.div.div.get_text()
 			intdiv=int(div)
 			li.append(intdiv)
 			i=i+1
@@ -1024,6 +1027,7 @@ fff=0
 f_xpathdate=0
 w_month=0
 c_month=0
+bouton_mois_suivant=0
 while f_mounth==0:
 	h=ws.cell(row=fm, column=2).value
 	print(h)
@@ -1219,7 +1223,8 @@ while f_xpathdate==0:
 	try:
 		rootdriver.get(h)
 		time.sleep(4)
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
 		print("x date trouve")
 		f_xpathdate=1
 		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
@@ -1297,7 +1302,16 @@ while end==0:
 						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 						rootdriver.execute_script("window.scrollBy(0,-200);")
 						f_ele=6
+						bouton_mois_suivant=0
 					except:
+						try:
+							ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+							rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+							rootdriver.execute_script("window.scrollBy(0,-200);")
+							bouton_mois_suivant=1
+							f_ele=6
+						except:
+							print('DOWN KO')
 						#rootdriver.execute_script("window.scrollBy(0,2000);")
 						print('DOWN KO')
 						time.sleep(1)
@@ -1349,7 +1363,10 @@ while end==0:
 			#-----MOIS 4-5 -----
 				if v_m!='z':
 					try:
-						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+						if bouton_mois_suivant==0:
+							next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+						else:
+							next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 						#or button class _f8a140
 						next_calendar.click()
 						time.sleep(1)
@@ -1430,7 +1447,8 @@ while end==0:
 			try:
 				rootdriver.get(h)
 				time.sleep(4)
-				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+				#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
 				print("x date trouve")
 				f_xpathdate=1
 				b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
