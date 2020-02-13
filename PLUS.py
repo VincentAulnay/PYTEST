@@ -500,7 +500,7 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 			
-def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):	
+def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):	
 	int_timeday=int(date)
 	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
@@ -510,13 +510,32 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 		ResAirbnb='/D'
 	while i<=31:
 		try:
-			the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
+			if des==0:
+				the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
+				div=the_tr.span.div.div.div.get_text()
+				#_1lds9wb
+				intdiv=int(div)
+				if intdiv>=int_timeday:
+					li.append(intdiv)
+			if des==1:
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+					div=the_tr.span.div.div.div.get_text()
+					#_1lds9wb
+					intdiv=int(div)
+					if intdiv>=int_timeday:
+						li.append(intdiv)
+				except:
+					z=0
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
 			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			div=the_tr.span.div.div.div.get_text()
-			#_1lds9wb
-			intdiv=int(div)
-			if intdiv>=int_timeday:
-				li.append(intdiv)
+					div=the_tr.span.div.div.div.get_text()
+					intdiv=int(div)
+					if intdiv>=int_timeday:
+						li.append(intdiv)
+				except:
+					z=0
 			i=i+1
 		except:
 			break
@@ -606,8 +625,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 		except:
 			pass
 
-def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
-	month5=soup.find('div', attrs={"class":u"_kuxo8ai"})
+def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
+	month=soup.find('div', attrs={"class":u"_kuxo8ai"})
 	#print('fevrier')
 	i=0
 	li=[]
@@ -616,11 +635,29 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 		ResAirbnb='/D'
 	while i<=31:
 		try:
-			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
+			if des==0:
+				the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
+				div=the_tr.span.div.div.div.get_text()
+				#_1lds9wb
+				intdiv=int(div)
+				li.append(intdiv)
+			if des==1:
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+					div=the_tr.span.div.div.div.get_text()
+					#_1lds9wb
+					intdiv=int(div)
+					li.append(intdiv)
+				except:
+					z=0
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
 			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			div=the_tr.span.div.div.div.get_text()
-			intdiv=int(div)
-			li.append(intdiv)
+					div=the_tr.span.div.div.div.get_text()
+					intdiv=int(div)
+					li.append(intdiv)
+				except:
+					z=0
 			i=i+1
 		except:
 			break
@@ -685,8 +722,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo):
 		ws.cell(row=j, column=c_write).value=t_wri
 
 
-def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):	
-	month5=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
+def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):	
+	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
 	ResAirbnb='/R'
@@ -694,11 +731,28 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g):
 		ResAirbnb='/D'
 	while i<=31:
 		try:
-			the_tr= month5.findAll('td', attrs={"class": "_z39f86g"})[i]
+			if des==0:
+				the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
+				div=the_tr.span.div.div.div.get_text()
+				#_1lds9wb
+				intdiv=int(div)
+				li.append(intdiv)
+			if des==1:
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+					div=the_tr.span.div.div.div.get_text()
+					#_1lds9wb
+					intdiv=int(div)
+					li.append(intdiv)
+				except:
+					z=0
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
 			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
-			div=the_tr.span.div.div.div.get_text()
-			intdiv=int(div)
-			li.append(intdiv)
+					intdiv=int(div)
+					li.append(intdiv)
+				except:
+					z=0
 			i=i+1
 		except:
 			break
@@ -1316,6 +1370,11 @@ while end==0:
 						print('DOWN KO')
 						time.sleep(1)
 						f_ele=f_ele+1
+				try:
+					x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+					des=1
+				except:
+					des=0
 				time.sleep(1)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
@@ -1341,13 +1400,13 @@ while end==0:
 				try:
 				#-----RECUPERATION CALANDAR MOIS 1--------
 					print('le mois N est '+name_mois1)
-					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1)
+					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1,des)
 				except:
 					pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 2--------
 					print('le mois N+1 est '+name_mois2)
-					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
+					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0,des)
 				except:
 					pass
 				try:
@@ -1356,7 +1415,7 @@ while end==0:
 					RA4=ResAirbnb
 					if v_m=='X' and date==1:
 						RA4='/D'
-					run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth)
+					run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth,des)
 				except:
 					#print('PAS DE MOIS 3')
 					pass
@@ -1380,14 +1439,14 @@ while end==0:
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
 							print('le mois N est '+name_mois4)
-							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,1)
+							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,1,des)
 						except:
 							pass
 					#-----RECUPERATION CALANDAR MOIS 5--------
 						try:
 							print('le mois N+1 est '+name_mois5)
 							#run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
-							run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth)
+							run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth,des)
 						except:
 							pass
 					except:
