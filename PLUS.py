@@ -539,6 +539,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			i=i+1
 		except:
 			break
+	print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -604,7 +605,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		print(t_wri)
+		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 
 	#COMMENTAIRE
@@ -661,7 +662,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			i=i+1
 		except:
 			break
-	#print(li)
+	print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -718,7 +719,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		print(t_wri)
+		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 
 
@@ -756,7 +757,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			i=i+1
 		except:
 			break
-	#print (li)
+	print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -813,7 +814,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
-		print(t_wri)
+		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
 	
 
