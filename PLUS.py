@@ -751,6 +751,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 					z=0
 				try:
 					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
+					div=the_tr.span.div.div.div.get_text()
 			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					intdiv=int(div)
 					li.append(intdiv)
