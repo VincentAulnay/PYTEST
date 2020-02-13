@@ -536,9 +536,10 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 						li.append(intdiv)
 				except:
 					z=0
-			i=i+1
 		except:
 			break
+		i=i+1
+	li.sort()
 	print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
@@ -659,9 +660,10 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 					li.append(intdiv)
 				except:
 					z=0
-			i=i+1
 		except:
 			break
+		i=i+1
+	li.sort()
 	print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
@@ -754,9 +756,10 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 					li.append(intdiv)
 				except:
 					z=0
-			i=i+1
 		except:
 			break
+		i=i+1
+	li.sort()
 	print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
@@ -1432,8 +1435,8 @@ while end==0:
 						time.sleep(1)
 						next_calendar.click()
 						time.sleep(1)
-						#next_calendar.click()
-						#time.sleep(1)
+						next_calendar.click()
+						time.sleep(1)
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
 						#time.sleep(1)
@@ -1446,8 +1449,8 @@ while end==0:
 					#-----RECUPERATION CALANDAR MOIS 5--------
 						try:
 							print('le mois N+1 est '+name_mois5)
-							#run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1)
-							run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth,des)
+							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,2,des)
+							#run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth,des)
 						except:
 							pass
 					except:
