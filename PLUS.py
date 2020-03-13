@@ -42,17 +42,17 @@ k=1
 while up==0:
 	#V_up=sheet_read.cell(0,i).value
 	V_up=ws.cell(row=1, column=k).value
-	if V_up=='UPDATE_CALENDAR':
+	if V_up=='ACTIVE_YES/NO':
 		up=1
 	else:
 		k=k+1
 		
-c_mouth=k+1
+c_mouth=k
 
-V_mouth=ws.cell(row=1, column=c_mouth).value
-if V_mouth!='3/5_mois':
-	ws.insert_cols(c_mouth)
-	ws.cell(row=1, column=c_mouth).value = '3/5_mois'
+#V_mouth=ws.cell(row=1, column=c_mouth).value
+#if V_mouth!='3/5_mois':
+#	ws.insert_cols(c_mouth)
+#	ws.cell(row=1, column=c_mouth).value = '3/5_mois'
 
 #-----RECUP INFO XPATH FROM EXCEL------
 book_GMAIL = xlrd.open_workbook('/home/pi/Desktop/GMAIL_ACCOUNT.xls')
