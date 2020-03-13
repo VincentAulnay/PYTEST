@@ -1378,16 +1378,17 @@ while end==0:
 							f_ele=6
 						except:
 							print('DOWN KO')
+							time.sleep(1)
 						#rootdriver.execute_script("window.scrollBy(0,2000);")
-						print('DOWN KO')
-						time.sleep(1)
+						#print('DOWN KO')
+						
 						f_ele=f_ele+1
 				try:
 					x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
 					des=1
 				except:
 					des=0
-				time.sleep(1)
+				#time.sleep(1)
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(1)
@@ -1444,7 +1445,7 @@ while end==0:
 						next_calendar.click()
 						time.sleep(1)
 						next_calendar.click()
-						time.sleep(2)
+						time.sleep(1)
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
 						#time.sleep(1)
@@ -1465,7 +1466,7 @@ while end==0:
 						print('----click KO')
 						pass
 					C_mois5=1
-				if (j/10).is_integer():
+				if (j/20).is_integer():
 					wbx.save(path_RESULT.filename)
 				C_mois=1
 				j=j+1
