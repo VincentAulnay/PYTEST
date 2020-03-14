@@ -1302,7 +1302,23 @@ while f_xpathdate==0:
 			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 			rootdriver.set_window_size(2000, 1000)
 			wait = WebDriverWait(rootdriver, 5)
-		
+def f1(a):
+	global des
+	try:
+		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+		des=1
+	except:
+		des=0
+def f2(bouton_mois_suivant):
+	global next_calendar
+	try:
+		if bouton_mois_suivant==0:
+			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+		else:
+			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
+	except:
+		a=1
+
 while end==0:
 	try:
 		while j<=nrow:
@@ -1348,7 +1364,7 @@ while end==0:
 					#https://www.airbnb.fr/rooms/plus/21846063
 				except:
 					print('ECHEC PLUS')
-				if (j/10).is_integer():
+				if (j/20).is_integer():
 					wbx.save(path_RESULT.filename)
 				j=j+1
 			elif 'airbnb' in h:
@@ -1362,7 +1378,8 @@ while end==0:
 				#	time.sleep(1)
 				#	pass
 				f_ele=0
-				while f_ele<=5:
+				threading.Thread(target=f1, args=(h,)).start()
+				while f_ele<=3:
 					try:
 						ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
@@ -1383,18 +1400,15 @@ while end==0:
 						#print('DOWN KO')
 						
 						f_ele=f_ele+1
-				try:
-					x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
-					des=1
-				except:
-					des=0
 				#time.sleep(1)
+				threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 				html = rootdriver.page_source
 				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(1)
 				ResAirbnb=''
-				V_up=ws.cell(row=j, column=k).value
+				#V_up=ws.cell(row=j, column=k).value
 				v_m=ws.cell(row=j, column=c_mouth).value
+
 				#try:
 				#	script=soup.find('script', attrs={"data-state":u"true"}).text
 				#	p1=script.split("calendar_last")
@@ -1435,10 +1449,10 @@ while end==0:
 			#-----MOIS 4-5 -----
 				if v_m!='z':
 					try:
-						if bouton_mois_suivant==0:
-							next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
-						else:
-							next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
+						#if bouton_mois_suivant==0:
+						#	next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
+						#else:
+						#	next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 						#or button class _f8a140
 						next_calendar.click()
 						time.sleep(1)
