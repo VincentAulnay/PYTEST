@@ -30,7 +30,9 @@ chrome_options.add_experimental_option("prefs", prefs)
 #chrome_options.add_argument("-headless")
 #chrome_options.add_argument("-disable-gpu")
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
-
+now = str(datetime.datetime.now())[:19]
+now = now.replace(":","_")
+print(now)
 #-----EXCEL RESULT OPEN AND READ-----
 
 wbx = load_workbook(path_RESULT.filename)
@@ -542,7 +544,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			break
 		i=i+1
 	li.sort()
-	print(li)
+	#print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -668,7 +670,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			break
 		i=i+1
 	li.sort()
-	print(li)
+	#print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -768,7 +770,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			break
 		i=i+1
 	li.sort()
-	print (li)
+	#print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -1323,7 +1325,7 @@ while end==0:
 	try:
 		while j<=nrow:
 			h=ws.cell(row=j, column=2).value
-			print('------'+str(j-1)+'------'+str(h))
+			#print('------'+str(j-1)+'------'+str(h))
 			if h==None:
 				j=j+1
 				print('h=None')
@@ -1394,7 +1396,7 @@ while end==0:
 							bouton_mois_suivant=1
 							f_ele=6
 						except:
-							print('DOWN KO')
+							#print('DOWN KO')
 							time.sleep(1)
 						#rootdriver.execute_script("window.scrollBy(0,2000);")
 						#print('DOWN KO')
@@ -1426,19 +1428,19 @@ while end==0:
 				#	pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 1--------
-					print('le mois N est '+name_mois1)
+					#print('le mois N est '+name_mois1)
 					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1,des)
 				except:
 					pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 2--------
-					print('le mois N+1 est '+name_mois2)
+					#print('le mois N+1 est '+name_mois2)
 					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0,des)
 				except:
 					pass
 				try:
 				#-----RECUPERATION CALANDAR MOIS 3--------
-					print('le mois N+2 est '+name_mois3)
+					#print('le mois N+2 est '+name_mois3)
 					RA4=ResAirbnb
 					if v_m=='X' and date==1:
 						RA4='/D'
@@ -1465,19 +1467,20 @@ while end==0:
 						#time.sleep(1)
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
-							print('le mois N est '+name_mois4)
+							#print('le mois N est '+name_mois4)
 							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0,des)
 						except:
 							pass
 					#-----RECUPERATION CALANDAR MOIS 5--------
 						try:
-							print('le mois N+1 est '+name_mois5)
+							#print('le mois N+1 est '+name_mois5)
 							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1,des)
 							#run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth,des)
 						except:
 							pass
 					except:
-						print('----click KO')
+						#print('----click KO')
+						zzz=1
 						pass
 					C_mois5=1
 				if (j/20).is_integer():
@@ -1493,6 +1496,7 @@ while end==0:
 		end=1
 		now = str(datetime.datetime.now())[:19]
 		now = now.replace(":","_")
+		print(now)
 		Tr=date
 		print ('FIN')
 		wbx = load_workbook(path_RESULT.filename)
