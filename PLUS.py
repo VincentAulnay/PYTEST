@@ -72,11 +72,14 @@ Hr=dt.datetime.now().hour
 #------RECUP INFO CALANDAR------
 
 def email(DIR2,NAMEFile,now):
-	sender = ADRESS_GMAIL
-	sender_password = PSW_GMAIL
+	#sender = ADRESS_GMAIL
+	#sender_password = PSW_GMAIL
+	sender = 'vincent.aulnay@gmx.fr'
+	sender_password = '@Vincent94'
 	receivers = RECEIVER
 
-	s = smtplib.SMTP('smtp.gmail.com', 587)
+	#s = smtplib.SMTP('smtp.gmail.com', 587)
+	s = smtplib.SMTP('mail.gmx.com', 587)
 	s.starttls()
 	s.login(sender, sender_password)
 	msg = MIMEMultipart()
