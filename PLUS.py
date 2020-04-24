@@ -543,6 +543,14 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 						li.append(intdiv)
 				except:
 					z=0
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
+					div=the_tr.div.get_text()
+					intdiv=int(div)
+					if intdiv>=int_timeday:
+						li.append(intdiv)
+				except:
+					z=0
 		except:
 			break
 		i=i+1
@@ -669,6 +677,14 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 					li.append(intdiv)
 				except:
 					z=0
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
+					div=the_tr.div.get_text()
+					intdiv=int(div)
+					if intdiv>=int_timeday:
+						li.append(intdiv)
+				except:
+					z=0
 		except:
 			break
 		i=i+1
@@ -767,6 +783,14 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					intdiv=int(div)
 					li.append(intdiv)
+				except:
+					z=0
+				try:
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
+					div=the_tr.div.get_text()
+					intdiv=int(div)
+					if intdiv>=int_timeday:
+						li.append(intdiv)
 				except:
 					z=0
 		except:
