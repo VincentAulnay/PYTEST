@@ -510,6 +510,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
+	fakeli=[]
 	ResAirbnb='/R'
 	if new_mo==1:
 		ResAirbnb='/D'
@@ -548,7 +549,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 					div=the_tr.div.get_text()
 					intdiv=int(div)
 					if intdiv>=int_timeday:
-						li.append(intdiv)
+						#li.append(intdiv)
+						fakeli.append(intdiv)
 				except:
 					z=0
 		except:
@@ -681,8 +683,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
 					div=the_tr.div.get_text()
 					intdiv=int(div)
-					if intdiv>=int_timeday:
-						li.append(intdiv)
+					#if intdiv>=int_timeday:
+					#	li.append(intdiv)
 				except:
 					z=0
 		except:
@@ -789,8 +791,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
 					div=the_tr.div.get_text()
 					intdiv=int(div)
-					if intdiv>=int_timeday:
-						li.append(intdiv)
+				#	if intdiv>=int_timeday:
+				#		li.append(intdiv)
 				except:
 					z=0
 		except:
@@ -1320,6 +1322,7 @@ while f_xpathdate==0:
 		time.sleep(4)
 		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
+		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 		print("x date trouve")
 		f_xpathdate=1
 		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
