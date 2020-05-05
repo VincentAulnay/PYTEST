@@ -1522,6 +1522,7 @@ while end==0:
 					C_mois5=1
 				if (j/20).is_integer():
 					wbx.save(path_RESULT.filename)
+					x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				C_mois=1
 				j=j+1
 			elif 'abritel' in h:
@@ -1576,6 +1577,7 @@ while end==0:
 				time.sleep(4)
 				#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
+				x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				print("x date trouve")
 				f_xpathdate=1
 				b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
