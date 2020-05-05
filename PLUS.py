@@ -1324,10 +1324,13 @@ while f_xpathdate==0:
 		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
 		print('date find')
 		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
-		print(title trouve")
+		print('title trouve')
 		f_xpathdate=1
-		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-		b_cookie.click()
+		try:
+			b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+			b_cookie.click()
+		except:
+			pass
 	except:
 		if fff!=5:
 			rootdriver.quit()
