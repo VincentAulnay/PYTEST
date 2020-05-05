@@ -1322,8 +1322,9 @@ while f_xpathdate==0:
 		time.sleep(4)
 		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
+		print('date find')
 		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
-		print("x date trouve")
+		print(title trouve")
 		f_xpathdate=1
 		b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
 		b_cookie.click()
