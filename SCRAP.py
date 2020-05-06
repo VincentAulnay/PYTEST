@@ -295,13 +295,9 @@ while end==0:
 					try:
 						#page sans annonce, je dois trouver quelque soit le type
 						wait3.until(EC.presence_of_element_located((By.XPATH, "//h3[@class='_jmmm34f']")))
-						c=c+1
-						i=i+1
 					except:
 						# rien tourvé précédent, donc c'est que je suis sur mauvais design, clos et reopen chrome
 						driver.quit()
-						c=c-1
-						i=i-1
 						f_xpathdate=0
 						fff=0
 						fm=2
@@ -309,8 +305,6 @@ while end==0:
 						driver.set_window_size(800, 800)
 						wait3 = WebDriverWait(driver, 3)
 						while f_xpathdate==0:
-							c=c+1
-							i=i+1
 							h=ws.cell(row=fm, column=2).value
 							print(h)
 							if fff==10:
