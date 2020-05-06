@@ -57,7 +57,7 @@ YN_SdB='YES'
 
 #OUVERTURE DES PAGES CHROME
 #driver = webdriver.Chrome(chrome_options=chrome_options)
-driver = webdriver.Chrome(/usr/lib/chromium-browser/chromedriver')
+driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
 driver.set_window_size(800, 800)
 
 #c = ligne 2 du xls resultant
@@ -301,7 +301,7 @@ while end==0:
 						f_xpathdate=0
 						fff=0
 						fm=2
-						driver = webdriver.Chrome(/usr/lib/chromium-browser/chromedriver')
+						driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
 						driver.set_window_size(800, 800)
 						wait3 = WebDriverWait(driver, 3)
 						while f_xpathdate==0:
@@ -321,7 +321,7 @@ while end==0:
 							except:
 								if fff!=10:
 									driver.quit()
-									driver = webdriver.Chrome(/usr/lib/chromium-browser/chromedriver')
+									driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
 									#rootdriver = webdriver.Chrome(/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 									driver.set_window_size(800, 800)
 									wait3 = WebDriverWait(driver, 3)
