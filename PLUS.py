@@ -1359,6 +1359,7 @@ while end==0:
 	try:
 		while j<=nrow:
 			h=ws.cell(row=j, column=2).value
+			checker=0
 			#print('------'+str(j-1)+'------'+str(h))
 			if h==None:
 				j=j+1
@@ -1524,9 +1525,11 @@ while end==0:
 						zzz=1
 						pass
 					C_mois5=1
+					checker=1
 				if (j/20).is_integer():
 					wbx.save(path_RESULT.filename)
-					x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
+					if checker==1:
+						x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				C_mois=1
 				j=j+1
 			elif 'abritel' in h:
