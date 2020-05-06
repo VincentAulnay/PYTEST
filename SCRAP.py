@@ -88,7 +88,7 @@ while end==0:
 			do=ws.cell(row=i+1, column=1).value
 			if do==None:
 				driver.get(h)
-				time.sleep(2)
+				time.sleep(5)
 				if c==1:
 					time.sleep(5)
 			#PROFILE
