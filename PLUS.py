@@ -1557,6 +1557,7 @@ while end==0:
 		rootdriver.quit()
 		wbx.close()
 	except:
+		print(j)
 		j=j+1
 		try:
 			rootdriver.quit()
