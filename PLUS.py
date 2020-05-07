@@ -301,6 +301,7 @@ def A_Colonne_mois(name_mois,c):
 
 def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):	
 	int_timeday=int(date)
+	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
 	#SEMAINE
@@ -312,43 +313,50 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 	ResAirbnb='/R'
 	if new_mo==1:
 		ResAirbnb='/D'
-	while (tr <=5):
-		while(td<=7):
-			XP_day ="//div[@class='_14676s3']/div[2]/div/div["+str(page)+"]//tr["+str(tr)+"]/td["+str(td)+"]"
-			link = rootdriver.find_element_by_xpath(XP_day)
-			class_att=link.get_attribute("class")
-			if len(class_att) !=0:
-				if class_att=='_z39f86g':
-					XP_date="//div[@class='_14676s3']/div[2]/div/div["+str(page)+"]//tr["+str(tr)+"]/td["+str(td)+"]/span/div/div/div"
-					NM_date = wait.until(EC.presence_of_element_located((By.XPATH, XP_date))).text
-					int_date=int(NM_date)
-					if int_date>=int_timeday:
-						li.append(int_date)
-						#print (li)
-					else:
-						a=1
-				else:
-					a=1
-			else:
-				a=1
-			td=td+1
-		tr=tr+1
-		td=1
-	back_li=ws.cell(row=j, column=c_write+1).value
-	if back_li!=None:
-		back_li=back_li.replace("[","")
-		back_li=back_li.replace("]","")
-		back_li=back_li.split(",")
-		i=0
-		bl=[]
-		while i!=len(back_li):
-			ivb=int(back_li[i])
-			if ivb>=int_timeday:
-				bl.append(ivb)
+	while i<=31:
+		try:
+			try:
+				the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+				#div=the_tr.span.div.div.div.get_text()
+				div=the_tr.div.get_text()
+				#_1lds9wb
+				intdiv=int(div)
+				if intdiv>=int_timeday:
+					li.append(intdiv)
+			except:
+				z=0
+			try:
+				the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
+		#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+				#div=the_tr.span.div.div.div.get_text()
+				div=the_tr.div.get_text()
+				intdiv=int(div)
+				if intdiv>=int_timeday:
+					li.append(intdiv)
+			except:
+				z=0
 			i=i+1
-		back_li=bl
-		#print ("back_li="+str(back_li))
-	else:
+		except:
+			break
+	li.sort()
+	back_li=ws.cell(row=j, column=c_write+1).value
+	try:
+		if back_li!='[]':
+			back_li=back_li.replace("[","")
+			back_li=back_li.replace("]","")
+			back_li=back_li.split(",")
+			i=0
+			bl=[]
+			while i!=len(back_li):
+				ivb=int(back_li[i])
+				if ivb>=int_timeday:
+					bl.append(ivb)
+				i=i+1
+			back_li=bl
+			#print ("back_li="+str(back_li))
+		else:
+			back_li=[]
+	except:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
 	#print(li)
@@ -377,11 +385,12 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
 		#print (t_add)
-	if len(c_remove)>0:
-		t_rem='/L'+toto+':'+str(c_remove)
-		t_rem=t_rem.replace("[","")
-		t_rem=t_rem.replace("]","")
-		#print(t_rem)
+	if c_remove!=['']:
+		if c_remove!=[]:
+			t_rem='/L'+toto+':'+str(c_remove)
+			t_rem=t_rem.replace("[","")
+			t_rem=t_rem.replace("]","")
+			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
 		if t_add!='vide':
@@ -409,17 +418,16 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			#Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
 			Lcomment=[]
 			Icomment=0
-			Scomment=soup.find('span', attrs={"class": "_1oftqjo1"}).text
-			Scomment=Scomment.replace("(","")
-			Scomment=Scomment.replace(")","")
-			Scomment=Scomment.replace(" ","")
-			Lcomment=Scomment.split("c")
-			Icomment=int(Lcomment[0])
-			ws.cell(row=j, column=c_write+2).value=S=Icomment
+			Scomment=soup.find('span', attrs={"class": "_bq6krt"}).text
+			Lcomment=Scomment.split("(")
+			Tcomment=Lcomment[1].replace(")","")
+			Icomment=int(Tcomment)
+			ws.cell(row=j, column=c_write+2).value=Icomment
 		except:
 			pass
 
 def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):	
+	month=soup.find('div', attrs={"class":u"_kuxo8ai"})
 	i=0
 	li=[]
 	#SEMAINE
@@ -428,25 +436,32 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 	td=1
 	if new_mo==1:
 		ResAirbnb='/D'
-	while (tr <=5):
-		while(td<=7):
-			XP_day ="//div[@class='_14676s3']/div[2]/div/div["+str(page)+"]//tr["+str(tr)+"]/td["+str(td)+"]"
-			link = rootdriver.find_element_by_xpath(XP_day)
-			class_att=link.get_attribute("class")
-			if len(class_att) !=0:
-				if class_att=='_z39f86g':
-					XP_date="//div[@class='_14676s3']/div[2]/div/div["+str(page)+"]//tr["+str(tr)+"]/td["+str(td)+"]/span/div/div/div"
-					NM_date = wait.until(EC.presence_of_element_located((By.XPATH, XP_date))).text
-					int_date=int(NM_date)
-					li.append(int_date)
-					#print (li)
-				else:
-					a=1
-			else:
-				a=1
-			td=td+1
-		tr=tr+1
-		td=1
+	while i<=31:
+		try:
+			try:
+				the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+				#div=the_tr.span.div.div.div.get_text()
+				div=the_tr.div.get_text()
+				#_1lds9wb
+				intdiv=int(div)
+				if intdiv>=int_timeday:
+					li.append(intdiv)
+			except:
+				z=0
+			try:
+				the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
+		#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+				#div=the_tr.span.div.div.div.get_text()
+				div=the_tr.div.get_text()
+				intdiv=int(div)
+				if intdiv>=int_timeday:
+					li.append(intdiv)
+			except:
+				z=0
+			i=i+1
+		except:
+			break
+	li.sort()
 	back_li=ws.cell(row=j, column=c_write+1).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
@@ -480,12 +495,13 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 		t_add=ResAirbnb+toto+':'+str(c_added)
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
-		print (t_add)
-	if len(c_remove)>0:
-		t_rem='/L'+toto+':'+str(c_remove)
-		t_rem=t_rem.replace("[","")
-		t_rem=t_rem.replace("]","")
-		print(t_rem)
+		#print (t_add)
+	if c_remove!=['']:
+		if c_remove!=[]:
+			t_rem='/L'+toto+':'+str(c_remove)
+			t_rem=t_rem.replace("[","")
+			t_rem=t_rem.replace("]","")
+			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
 		if t_add!='vide':
@@ -1369,26 +1385,29 @@ while end==0:
 				rootdriver.get(h)
 				rootdriver.execute_script("window.scrollBy(0,100);")
 				time.sleep(2)
+				html = rootdriver.page_source
+				soup = BeautifulSoup(html, 'html.parser')
+				time.sleep(2)
 				try:
-					b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
-					b_add_date.click()
-					time.sleep(1)
-					print('1')
-					b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
-					b_arrival.click
-					time.sleep(3)
-					print('1')
+					#b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
+					#b_add_date.click()
+					#time.sleep(1)
+					#print('1')
+					#b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
+					#b_arrival.click
+					#time.sleep(3)
+					#print('1')
 					#(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM)
 					run_PLUS_1=A_Statu_PLUS(date,m1_write,2,j,0,ResAirbnb,m1_newmonth,500,1)
 					print('2')
 					ResAirbnb=''
-					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					b_next.click()
-					time.sleep(1)
+					#b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
+					#b_next.click()
+					#time.sleep(1)
 					run_PLUS_2=A_Statu_PLUS(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
 					print('3')
-					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					b_next.click()
+					#b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
+					#b_next.click()
 					rootdriver.execute_script("window.scrollBy(0,-100);")
 					time.sleep(1)
 					run_PLUS_3=A_Statu_PLUS2(m3_write,j,ResAirbnb,m3_newmonth,2)
