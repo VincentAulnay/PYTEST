@@ -1383,7 +1383,7 @@ while end==0:
 			elif 'plus' in h:
 				ResAirbnb=''
 				rootdriver.get(h)
-				time.sleep(2)
+				time.sleep(5)
 				ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
 				rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 				rootdriver.execute_script("window.scrollBy(0,-200);")
@@ -1396,7 +1396,7 @@ while end==0:
 					#b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
 					#b_add_date.click()
 					#time.sleep(1)
-					#print('1')
+					print('1')
 					#b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
 					#b_arrival.click
 					#time.sleep(3)
@@ -1420,6 +1420,7 @@ while end==0:
 					time.sleep(1)
 					html = rootdriver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
+					time.sleep(1)
 					run_PLUS_3=A_Statu_PLUS2(m3_write,j,ResAirbnb,m3_newmonth,2)
 					print('4')
 					#b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
@@ -1603,7 +1604,7 @@ while end==0:
 			h=ws.cell(row=fm, column=2).value
 			fm=fm+1
 			print(h)
-			if fff==5:
+			if fff==8:
 				f_mounth=1
 				f_xpathdate=1
 				end=0
@@ -1624,13 +1625,14 @@ while end==0:
 				except:
 					f_xpathdate=1
 			except:
-				if fff!=5:
+				if fff!=8:
 					rootdriver.quit()
 					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 					rootdriver.set_window_size(2000, 1000)
 					wait = WebDriverWait(rootdriver, 5)
-
+				else:
+					f_xpathdate=1
 		
 		
 try:
