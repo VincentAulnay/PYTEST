@@ -1558,8 +1558,8 @@ while end==0:
 					checker=1
 				if (j/20).is_integer():
 					wbx.save(path_RESULT.filename)
-					if checker==1:
-						x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
+					#if checker==1:
+					#	x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				C_mois=1
 				j=j+1
 			elif 'abritel' in h:
@@ -1616,7 +1616,7 @@ while end==0:
 				#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
 				print('date')
-				x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
+				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				print('x date trouve')
 				f_xpathdate=1
 				try:
