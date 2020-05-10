@@ -1144,11 +1144,11 @@ bouton_mois_suivant=0
 while f_mounth==0:
 	h=ws.cell(row=fm, column=2).value
 	print(h)
-	if fff==2:
-		f_mounth=1
-		f_xpathdate=1
-		end=1
-		run=emailfalde()
+	#if fff==2:
+	#	f_mounth=1
+	#	f_xpathdate=1
+	#	end=1
+	#	run=emailfalde()
 	fff=fff+1
 	try:
 		print('ici1')
@@ -1473,7 +1473,7 @@ while end==0:
 						#rootdriver.execute_script("window.scrollBy(0,2000);")
 						#print('DOWN KO')
 						
-						f_ele=f_ele+1
+					f_ele=f_ele+1
 				#time.sleep(1)
 				threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 				html = rootdriver.page_source
@@ -1481,7 +1481,7 @@ while end==0:
 				time.sleep(1)
 				ResAirbnb=''
 				#V_up=ws.cell(row=j, column=k).value
-				v_m=ws.cell(row=j, column=c_mouth).value
+				v_m='8'
 
 				#try:
 				#	script=soup.find('script', attrs={"data-state":u"true"}).text
@@ -1536,7 +1536,7 @@ while end==0:
 						time.sleep(1)
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
-						#time.sleep(1)
+						time.sleep(1)
 						try:
 						#-----RECUPERATION CALANDAR MOIS 4--------
 							#print('le mois N est '+name_mois4)
@@ -1617,7 +1617,7 @@ while end==0:
 				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
 				print('date')
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
-				print('x date trouve')
+				#print('x date trouve')
 				f_xpathdate=1
 				try:
 					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
