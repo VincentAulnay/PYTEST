@@ -1357,10 +1357,11 @@ while f_xpathdate==0:
 def f1(a):
 	global des
 	try:
-		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
-		des=1
-	except:
+		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']")))
 		des=0
+	except:
+		des=1
 def f2(bouton_mois_suivant):
 	global next_calendar
 	try:
@@ -1393,46 +1394,36 @@ while end==0:
 				time.sleep(2)
 				next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 				try:
-					#b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
-					#b_add_date.click()
-					#time.sleep(1)
+					b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
+					b_add_date.click()
+					time.sleep(1)
 					print('1')
-					#b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
-					#b_arrival.click
-					#time.sleep(3)
-					#print('1')
+					b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
+					b_arrival.click
+					time.sleep(3)
+					print('1')
 					#(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM)
 					run_PLUS_1=A_Statu_PLUS(date,m1_write,2,j,0,ResAirbnb,m1_newmonth,500,1)
 					print('2')
 					ResAirbnb=''
-					#b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					#b_next.click()
-					#time.sleep(1)
+					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
+					b_next.click()
+					time.sleep(1)
 					run_PLUS_2=A_Statu_PLUS(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
 					print('3')
-					#b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					#b_next.click()
-					next_calendar.click()
-					time.sleep(1)
-					next_calendar.click()
-					time.sleep(1)
-					next_calendar.click()
-					time.sleep(1)
-					html = rootdriver.page_source
-					soup = BeautifulSoup(html, 'html.parser')
+					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
+					b_next.click()
 					time.sleep(1)
 					run_PLUS_3=A_Statu_PLUS2(m3_write,j,ResAirbnb,m3_newmonth,2)
 					print('4')
-					#b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					#b_next.click()
-					#rootdriver.execute_script("window.scrollBy(0,-100);")
-					#time.sleep(1)
+					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
+					b_next.click()
+					time.sleep(1)
 					run_PLUS_4=A_Statu_PLUS2(m4_write,j,ResAirbnb,m4_newmonth,2)
 					print('5')
-					#b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					#b_next.click()
-					#rootdriver.execute_script("window.scrollBy(0,-100);")
-					#time.sleep(1)
+					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
+					b_next.click()
+					time.sleep(1)
 					run_PLUS_5=A_Statu_PLUS2(m5_write,j,ResAirbnb,m5_newmonth,2)
 					print('6')
 					#https://www.airbnb.fr/rooms/plus/21846063
