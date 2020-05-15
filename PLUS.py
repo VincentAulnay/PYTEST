@@ -1550,6 +1550,7 @@ while end==0:
 					checker=1
 				if (j/20).is_integer():
 					wbx.save(path_RESULT.filename)
+					x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
 					#if checker==1:
 					#	x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				C_mois=1
