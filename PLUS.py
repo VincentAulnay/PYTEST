@@ -30,6 +30,7 @@ chrome_options.add_experimental_option("prefs", prefs)
 #chrome_options.add_argument("-headless")
 #chrome_options.add_argument("-disable-gpu")
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
+
 now = str(datetime.datetime.now())[:19]
 now = now.replace(":","_")
 print(now)
@@ -524,6 +525,7 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):	
 	int_timeday=int(date)
 	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
+	print('ici1')
 	i=0
 	li=[]
 	fakeli=[]
@@ -646,17 +648,19 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	ONC=ONCOM
 	if ONC==1:
 		try:
+			#print('comment')
 			#//span[@class='_so3dpm2']
 			#Bcomment=soup.find('button', attrs={"class": "_ff6jfq"})
 			#Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
 			Lcomment=[]
-			Scomment=soup.find('span', attrs={"class": "_1plk0jz1"}).text
-			Scomment=Scomment.replace("(","")
-			Scomment=Scomment.replace(")","")
-			Scomment=Scomment.replace(" ","")
-			Lcomment=Scomment.split("c")
-			Icomment=int(Lcomment[0])
-			ws.cell(row=j, column=c_write+2).value=S=Icomment
+			Icomment=0
+			SScomment=soup.findAll('span', attrs={"class": "_bq6krt"})[0]
+			Scomment=SScomment.get_text()
+			Lcomment=Scomment.split("(")
+			Tcomment=Lcomment[1].replace(")","")
+			Icomment=int(Tcomment)
+			#print(Icomment)
+			ws.cell(row=j, column=c_write+2).value=Icomment
 		except:
 			pass
 
@@ -1360,9 +1364,9 @@ def f1(a):
 	try:
 		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
 		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']")))
-		des=0
-	except:
 		des=1
+	except:
+		des=0
 def f2(bouton_mois_suivant):
 	global next_calendar
 	try:
@@ -1386,48 +1390,67 @@ while end==0:
 				ResAirbnb=''
 				rootdriver.get(h)
 				time.sleep(5)
-				ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
-				rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-				rootdriver.execute_script("window.scrollBy(0,-200);")
-				time.sleep(2)
-				html = rootdriver.page_source
-				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(2)
-				next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
+				des=1
 				try:
-					b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
-					b_add_date.click()
+					ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+					rootdriver.execute_script("window.scrollBy(0,-200);")
+					time.sleep(2)
+					html = rootdriver.page_source
+					soup = BeautifulSoup(html, 'html.parser')
+					time.sleep(2)
+					next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
+				#b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
+					#b_add_date.click()
+					#b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
+					#b_arrival.click
 					time.sleep(1)
 					print('1')
-					b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
-					b_arrival.click
-					time.sleep(3)
-					print('1')
-					#(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM)
-					run_PLUS_1=A_Statu_PLUS(date,m1_write,2,j,0,ResAirbnb,m1_newmonth,500,1)
+					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,0,des)
 					print('2')
-					ResAirbnb=''
-					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					b_next.click()
-					time.sleep(1)
-					run_PLUS_2=A_Statu_PLUS(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
+					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0,des)
 					print('3')
-					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					b_next.click()
-					time.sleep(1)
-					run_PLUS_3=A_Statu_PLUS2(m3_write,j,ResAirbnb,m3_newmonth,2)
+					run_resday=A_Statu_day4(m3_write,j,ResAirbnb,m3_newmonth,des)
+					#(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM)
+					#run_PLUS_1=A_Statu_PLUS(date,m1_write,2,j,0,ResAirbnb,m1_newmonth,500,1)
+					#run_PLUS_2=A_Statu_PLUS(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
+					#run_PLUS_3=A_Statu_PLUS2(m3_write,j,ResAirbnb,m3_newmonth,2)
 					print('4')
-					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					b_next.click()
+					next_calendar.click()
 					time.sleep(1)
-					run_PLUS_4=A_Statu_PLUS2(m4_write,j,ResAirbnb,m4_newmonth,2)
-					print('5')
-					b_next = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1h5uiygl']")))
-					b_next.click()
+					next_calendar.click()
 					time.sleep(1)
-					run_PLUS_5=A_Statu_PLUS2(m5_write,j,ResAirbnb,m5_newmonth,2)
+					next_calendar.click()
+					time.sleep(1)
+					html = rootdriver.page_source
+					soup = BeautifulSoup(html, 'html.parser')
+					time.sleep(2)
+					try:
+					#-----RECUPERATION CALANDAR MOIS 4--------
+						run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0,des)
+					except:
+						pass
+				#-----RECUPERATION CALANDAR MOIS 5--------
+					try:
+						run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1,des)
+					except:
+						pass
 					print('6')
 					#https://www.airbnb.fr/rooms/plus/21846063
+					try:
+						#//span[@class='_so3dpm2']
+						#Bcomment=soup.find('button', attrs={"class": "_ff6jfq"})
+						#Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
+						Lcomment=[]
+						Icomment=0
+						Scomment=soup.find('span', attrs={"class": "_bq6krt"}).text
+						Lcomment=Scomment.split("(")
+						Tcomment=Lcomment[1].replace(")","")
+						Icomment=int(Tcomment)
+						print(Icomment)
+						ws.cell(row=j, column=c_write+2).value=Icomment
+					except:
+						pass
 				except:
 					print('ECHEC PLUS')
 				if (j/20).is_integer():
@@ -1550,7 +1573,6 @@ while end==0:
 					checker=1
 				if (j/20).is_integer():
 					wbx.save(path_RESULT.filename)
-					x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
 					#if checker==1:
 					#	x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				C_mois=1
@@ -1611,7 +1633,7 @@ while end==0:
 				print('date')
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
-				print('x date trouve')
+				#print('x date trouve')
 				f_xpathdate=1
 				try:
 					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
