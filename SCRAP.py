@@ -13,6 +13,9 @@ from openpyxl import load_workbook
 from tkinter import filedialog
 from tkinter import *
 import os
+from bs4 import BeautifulSoup
+import threading
+import sys
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -58,10 +61,11 @@ YN_SdB='YES'
 #OUVERTURE DES PAGES CHROME
 #driver = webdriver.Chrome(chrome_options=chrome_options)
 driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
+#driver = webdriver.Chrome()
 driver.set_window_size(800, 800)
-
+time.sleep(2)
 #c = ligne 2 du xls resultant
-c=1
+c=2
 wait2 = WebDriverWait(driver, 2)
 wait3 = WebDriverWait(driver, 3)	
 
@@ -84,44 +88,56 @@ while end==0:
 		for h in list_URL:
 			print (c)
 			print (h)
+			hh=ws.cell(row=c, column=2).value
 			#do=sheet_read.cell(i,0).value
-			do=ws.cell(row=i+1, column=1).value
+			do=ws.cell(row=c, column=1).value
 			if do==None:
-				driver.get(h)
-				time.sleep(5)
-				if c==1:
-					time.sleep(5)
+				driver.get(hh)
+				time.sleep(2)
+				f_ele=0
+				while f_ele<=3:
+					try:
+						ele=driver.find_element_by_xpath("//div[@class='_384m8u']")
+						driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+						driver.execute_script("window.scrollBy(0,-200);")
+						#driver.execute_script("window.scrollBy(0,500);")
+						f_ele=6
+						time.sleep(1)
+					except:
+						f_ele=f_ele+1
+						time.sleep(1)
 			#PROFILE
+				html = driver.page_source
+				soup = BeautifulSoup(html, 'html.parser')
+				time.sleep(1)
 				try:
-					#je test si je suis sur une annonce au bon design
-					wait3.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']")))
-					#OK j'extrait les détails
-#------------------------					
+				#TITLE
+					try:
+						div1=soup.find('div', attrs={"class": "_5z4v7g"})
+						ws.cell(row=c, column=1).value = div1.h1.text
+					except:
+						print('NO TITLE')
 				#URL HOTE
 					try:
-						element = driver.find_element_by_xpath("//div[@class='_1ij6gln6']/a")
-						hote=element.get_attribute('href')
-						#sheet.write(c, 4, hote)
-						ws.cell(row=c+1, column=4+1).value = hote
-						print ("URL HOTE ===")
-						print (hote)
+						div=soup.findAll('a', attrs={"class": "_105023be"})[-1]
+						div1=div['href']  #.attrs['href']
+						ws.cell(row=c, column=5).value = "https://www.airbnb.fr"+str(div1)
 					except:
 						print('NO PROFILE')
-				#PRICE
-					#PRICE='NO PRICE'
-					#run_price=extract(X_price,5,PRICE,c,YN_price)
 				#COMMENTAIRE
 					COMMENT='NO COMMENT'
 					#run_price=extract("//span[@class='_wfad8t']",6,COMMENT,c,YN_comment)
 					try:
 						p_c=[]
-						tp_c = wait3.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_1plk0jz1']"))).text
+						tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
 						p_c=tp_c.replace("(","")
 						cc=p_c.replace(")","")
-						Scomment=cc.replace(" ","")
-						Lcomment=Scomment.split("c")
-						Icomment=int(Lcomment[0])
-						ws.cell(row=c+1, column=6+1).value = Icomment
+						try:
+							pp=cc.split(' ')
+							cc=pp[1]
+						except:
+							pass
+						ws.cell(row=c, column=7).value = cc
 						print ("COMMENT ===")
 						print(cc)
 						#p_c=tp_c.split("(")
@@ -134,161 +150,134 @@ while end==0:
 				#VOYAGEUR
 					if YN_voyageur=='YES':
 						try:
-							#//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div[2]/div[2]/div[1]/div
-							#//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div/div/div[1]/div
-							#//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div/div/div[2]/div
-							#//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div[2]/div[2]/div[2]/div
-							tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//*[@id='room']/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div[1]/div/div/div[1]/div"))).text
-							p_tp=tp.split(" ")
-							ws.cell(row=c+1, column=8+1).value = p_tp[0]
-							print ("VOYAGEUR ===")
-							print (p_tp[0])
+							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+							tt=the_tr.find_all('div')[1]
+							tt1=tt.find_all('span')[0]
+							tt2=tt1.text
+							p_tp=tt2.split(" ")
+							ws.cell(row=c, column=9).value = p_tp[0]
 						except:
-							try:
-								tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//*[@id='room']/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div/div/div[1]/div"))).text
-								p_tp=tp.split(" ")
-								ws.cell(row=c+1, column=8+1).value = p_tp[0]
-								print ("VOYAGEUR ===")
-								print (p_tp[0])
-							except:
-								print('NO VOYAGER')
+							print('NO VOYAGER')
 
 				#LITS
 					if YN_bed=='YES':
 						try:
-							tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//*[@id='room']/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div[1]/div/div/div[3]/div"))).text
-							p_tp=tp.split(" ")
-							ws.cell(row=c+1, column=11+1).value = p_tp[0]
-							print ("LIT ===")
-							print (p_tp[0])
+							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+							tt=the_tr.find_all('div')[1]
+							tt1=tt.find_all('span')[4]
+							tt2=tt1.text
+							p_tp=tt2.split(" ")
+							ws.cell(row=c, column=12).value = p_tp[0]
 						except:
-							try:
-								tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//*[@id='room']/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div/div/div[3]/div"))).text
-								p_tp=tp.split(" ")
-								ws.cell(row=c+1, column=11+1).value = p_tp[0]
-								print ("LIT ===")
-								print (p_tp[0])
-							except:
-								print('NO LIT')
+							print('NO LIT')
 				#SdB
 					if YN_SdB=='YES':
 						try:
-							tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//*[@id='room']/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div[1]/div/div/div[4]/div"))).text
-							p_tp=tp.split(" ")
-							ws.cell(row=c+1, column=10+1).value = p_tp[0]
-							print ("SdB ===")
-							print (p_tp[0])
+							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+							tt=the_tr.find_all('div')[1]
+							tt1=tt.find_all('span')[6]
+							tt2=tt1.text
+							p_tp=tt2.split(" ")
+							ws.cell(row=c, column=11).value = p_tp[0]
 						except:
-							try:
-								tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//*[@id='room']/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div/div/div[4]/div"))).text
-								p_tp=tp.split(" ")
-								ws.cell(row=c+1, column=10+1).value = p_tp[0]
-								print ("SdB ===")
-								print (p_tp[0])
-							except:
-								print('NO SdB')
+							print('NO SdB')
 				#CHAMBRE
 					if YN_chamber=='YES':
 						try:
-							tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//*[@id='room']/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div[1]/div/div/div[2]/div"))).text
-							p_tp=tp.split(" ")
-							ws.cell(row=c+1, column=9+1).value = p_tp[0]
-							print ("CHAMBRE ===")
-							print (p_tp[0])
+							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+							tt=the_tr.find_all('div')[1]
+							tt1=tt.find_all('span')[2]
+							tt2=tt1.text
+							p_tp=tt2.split(" ")
+							ws.cell(row=c, column=10).value = p_tp[0]
 						except:
-							try:
-								tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//*[@id='room']/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div/div/div[2]/div"))).text
-								p_tp=tp.split(" ")
-								ws.cell(row=c+1, column=9+1).value = p_tp[0]
-								print ("CHAMBRE ===")
-								print (p_tp[0])
-							except:
-								print('NO CHAMBRE')
+							print('NO CHAMBRE')
 				#VILLE
-					VILLE='NO VILLE'
-					run_price=extract("//a[@class='_1biqilc']/div",12,VILLE,c,YN_ville)
+					try:
+						tp_c=soup.find('a', attrs={"class": "_5twioja"}).text
+						ws.cell(row=c, column=13).value = tp_c
+					except:
+						print('NO VILLE')
+
 				#GPS
 					try:
-						#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-						driver.execute_script('window.scrollBy(0,5500);')
-						time.sleep(1)
-						#wait4 = WebDriverWait(driver, 8)
-						gps = wait3.until(EC.presence_of_element_located((By.XPATH, "//img[@alt='Carte montrant votre lieu de séjour']")))
-						#"pdpPageType":1,"listingLat":46.23657,"listingLng":3.92341,"homeTier"
-						a_gps=gps.get_attribute('src')
+						tp_c=soup.find('div', attrs={"class": "gm-style"})
+						tt=tp_c.find('div', attrs={"style": "margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"})
+						tt1=tt.find('a', attrs={"target": "_blank"})
+						tt2=tt1['href']
 						#----------Create translation table----------
 						table = str.maketrans('=&', '++')
-						result_gps = a_gps.translate(table)
+						result_gps = tt2.translate(table)
 						split_gps=result_gps.split("+")
 						#https://www.google.com/maps?ll+46.23657,3.92341+z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
+						#https://maps.google.com/maps?ll=49.19054,-2.11715&z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
 						coor=split_gps[1]
-						long_lat=coor.split('%2C')
+						long_lat=coor.split(',')
 						#--------------Write results--------------
 						print(long_lat[0])
 						print(long_lat[1])
 						#sheet.write(c, 12, long_lat[0])
 						#sheet.write(c, 13, long_lat[1])
-						ws.cell(row=c+1, column=13+1).value = long_lat[0]
-						ws.cell(row=c+1, column=14+1).value = long_lat[1]
+						ws.cell(row=c, column=14).value = long_lat[0]
+						ws.cell(row=c, column=15).value = long_lat[1]
 					except:
 						print('NO GPS')
-				#TITLE
-					TITLE='NO TITLE'
-					run=extract('//span[@class="_18hrqvin"]',0,TITLE,c,YN_title)
 				#NAME_HOTE
-					#NAME='NO NAME'
-					#run=extract(X_name,2,NAME,c,YN_name)
 					try:
-						name = wait3.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_8b6uza1']"))).text
-						#a_name=name.get_attribute('aria-label')
-						ws.cell(row=c+1, column=3).value = name
-						print ("NAME HOTE ===")
-						print (name)
+						tp_c=soup.find('div', attrs={"class": "_f47qa6"})
+						tt=tp_c.find('div', attrs={"class": "_svr7sj"})
+						tt1=tt.h2.get_text()
+						pp=tt1.split('par ')
+						ws.cell(row=c, column=3).value = pp[1]
 					except:
 						print ('NO_NAME')
 				#TYPE_HOME
-					TYPE='NO TYPE'
-					#run=extract(X_type,7,TYPE,c,'//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[3]/div/div[2]/div[1]/span')
-					#//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div[2]/div[1]
 					try:
-						#run=extract('//div[@class="_ov9erb9"]//div[@class="_1ft6jxp"]',7,TYPE,c,YN_name)
-						#tp = wait3.until(EC.presence_of_element_located((By.XPATH, '//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/div[2]/div[1]'))).text
-						tp = wait3.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_504dcb']//span[@class='_1p3joamp']"))).text
-						#p_tp=tp.split(".")
-						ws.cell(row=c+1, column=7+1).value = tp
-						print ("TYPE ===")
-						print (tp)
+						the_tr= soup.find('div', attrs={"class": "_1b3ij9t"}).text
+						pp=the_tr.split('.')
+						ws.cell(row=c, column=8).value = pp[0]
 					except:
-						try:
-							#tp = wait3.until(EC.presence_of_element_located((By.XPATH, '//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div/div[3]/div/div[2]/div[1]/span'))).text
-							tp = wait3.until(EC.presence_of_element_located((By.XPATH, '//*[@id="room"]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div[1]/div[2]/div[1]_504dcb'))).text
-							ws.cell(row=c+1, column=7+1).value = tp
-							print ("TYPE ===")
-							print (tp)
-						except:
-							print('NOTYPE')
+						print('NOTYPE')
 					
 				#ANCIENNETE
 					try:
-						#run=extract('//div[@id="host-profile"]//div[@class="_czm8crp"]',3,TYPE,c,YN_name)
-						old=wait3.until(EC.presence_of_element_located((By.XPATH, '//div[@id="host-profile"]//div[@class="_czm8crp"]'))).text
-						print (old)
-						old1=old.split("·")
-						print (old1[1])
-						ws.cell(row=c+1, column=3+1).value = old1[1]
+						tp_c=soup.find('div', attrs={"class": "_f47qa6"})
+						tt=tp_c.find('div', attrs={"class": "_svr7sj"})
+						tt1=tt.div.get_text()
+						ws.cell(row=c, column=4).value = tt1
 					except:
 						print ('NOOLD')
 
 				#SUPER HOTE
 					try:
-						a_totot = wait3.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_8kd6yy']")))
-						#sheet.write(c, 14, 'X')
-						ws.cell(row=c+1, column=15+1).value = 'X'
-						print ('SUPER HOTE')
+						the_tr= soup.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
+						ws.cell(row=c, column=16).value = 'X'
 					except:
 						print('no superhote')
+				#AUTONOME
+					try:
+						the_tr= soup.find('div', text=re.compile(r'\bArrivée autonome\b'),attrs = {'class' : '_1qsawv5'})
+						div2=the_tr.findNextSibling('div')
+						print(the_tr.text)
+						ws.cell(row=c, column=17).value = div2.text
+						print(div2.text)
+					except:
+						print('no auto')
+				#CHILDREN
+					try:
+						the_tr= soup.find('span', text=re.compile(r'\bNe convient pas aux enfants ni aux bébés\b'))
+						ws.cell(row=c, column=18).value = the_tr.text
+					except:
+						print('no child')
+				#ANNULATION
+					try:
+						the_tr= soup.find('div', text=re.compile(r'\bAnnulation gratuite\b'),attrs = {'class' : '_1qsawv5'})
+						div2=the_tr.findNextSibling('div')
+						ws.cell(row=c, column=19).value = div2.text
+					except:
+						print('no child')
 
-					if (i/10).is_integer():
+					if (c/10).is_integer():
 						wbx.save(path_RESULT.filename)
 #------------------------
 				except:
@@ -302,6 +291,7 @@ while end==0:
 						fff=0
 						fm=2
 						driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
+						#driver = webdriver.Chrome()
 						driver.set_window_size(800, 800)
 						wait3 = WebDriverWait(driver, 3)
 						while f_xpathdate==0:
@@ -321,13 +311,12 @@ while end==0:
 							except:
 								if fff!=10:
 									driver.quit()
-									driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
-									#rootdriver = webdriver.Chrome(/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+									#driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
+									driver = webdriver.Chrome()
 									driver.set_window_size(800, 800)
 									wait3 = WebDriverWait(driver, 3)
 
 			c=c+1
-			i=i+1
 					
 
 	except:
