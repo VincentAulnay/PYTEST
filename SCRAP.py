@@ -93,7 +93,7 @@ while end==0:
 			do=ws.cell(row=c, column=1).value
 			if do==None:
 				driver.get(hh)
-				time.sleep(2)
+				time.sleep(6)
 				f_ele=0
 				while f_ele<=3:
 					try:
