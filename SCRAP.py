@@ -280,6 +280,8 @@ while end==0:
 
 					if (c/10).is_integer():
 						wbx.save(path_RESULT.filename)
+					if (c/1000).is_integer():
+						wbx.save(DIR2+NAMEFile+str(c)+".xlsx")
 #------------------------
 				except:
 					try:
