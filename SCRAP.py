@@ -251,7 +251,8 @@ while end==0:
 
 				#SUPER HOTE
 					try:
-						the_tr= soup.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
+						#the_tr= soup.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
+						tp_c=soup.find('div', attrs={"class": "_1ft6jxp"}).text
 						ws.cell(row=c, column=16).value = 'X'
 					except:
 						print('no superhote')
