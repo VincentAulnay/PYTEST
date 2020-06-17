@@ -93,7 +93,7 @@ while end==0:
 			do=ws.cell(row=c, column=1).value
 			if do==None:
 				driver.get(hh)
-				time.sleep(4)
+				time.sleep(5)
 				f_ele=0
 				while f_ele<=3:
 					try:
@@ -102,15 +102,15 @@ while end==0:
 						driver.execute_script("window.scrollBy(0,-100);")
 						#driver.execute_script("window.scrollBy(0,500);")
 						f_ele=6
-						time.sleep(3)
+						time.sleep(5)
 					except:
 						f_ele=f_ele+1
 						time.sleep(1)
 			#PROFILE
 				html = driver.page_source
-				time.sleep(1)
-				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(2)
+				soup = BeautifulSoup(html, 'html.parser')
+				time.sleep(3)
 				try:
 				#TITLE
 					try:
