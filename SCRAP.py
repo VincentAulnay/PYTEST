@@ -108,8 +108,9 @@ while end==0:
 						time.sleep(1)
 			#PROFILE
 				html = driver.page_source
-				soup = BeautifulSoup(html, 'html.parser')
 				time.sleep(1)
+				soup = BeautifulSoup(html, 'html.parser')
+				time.sleep(2)
 				try:
 				#TITLE
 					try:
