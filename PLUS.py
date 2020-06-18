@@ -651,15 +651,24 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			#//span[@class='_so3dpm2']
 			#Bcomment=soup.find('button', attrs={"class": "_ff6jfq"})
 			#Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
-			Lcomment=[]
-			Icomment=0
-			SScomment=soup.findAll('span', attrs={"class": "_bq6krt"})[0]
-			Scomment=SScomment.get_text()
-			Lcomment=Scomment.split("(")
-			Tcomment=Lcomment[1].replace(")","")
-			Icomment=int(Tcomment)
+			p_c=[]
+			tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
+			p_c=tp_c.replace("(","")
+			cc=p_c.replace(")","")
+			try:
+				pp=cc.split(' ')
+				cc=pp[1]
+			except:
+				pass
+			#Lcomment=[]
+			#Icomment=0
+			#SScomment=soup.findAll('span', attrs={"class": "_bq6krt"})[0]
+			#Scomment=SScomment.get_text()
+			#Lcomment=Scomment.split("(")
+			#Tcomment=Lcomment[1].replace(")","")
+			#Icomment=int(Tcomment)
 			#print(Icomment)
-			ws.cell(row=j, column=c_write+2).value=Icomment
+			ws.cell(row=j, column=c_write+2).value=cc
 		except:
 			pass
 
