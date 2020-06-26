@@ -523,6 +523,15 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 		ws.cell(row=j, column=c_write).value=t_wri
 			
 def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):	
+	global R1
+	global R2
+	global L1
+	global L2
+	global P1
+	global P2
+	P=0
+	R=0
+	L=0
 	int_timeday=int(date)
 	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
@@ -535,7 +544,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 		try:
 			if des==0:
 				the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
-				div=the_tr.span.div.div.div.get_text()
+				#div=the_tr.span.div.div.div.get_text()
+				div=the_tr.div.get_text()
 				#_1lds9wb
 				intdiv=int(div)
 				if intdiv>=int_timeday:
@@ -574,8 +584,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			break
 		i=i+1
 	li.sort()
-	#print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
+	#print(back_li)
 	try:
 		if back_li!=[]:
 			back_li=back_li.replace("[","")
@@ -595,7 +605,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	except:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
-	#print(li)
+	#print(str(li))
 	c_added=[]
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
@@ -609,14 +619,19 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	t_rem='vide'
 	t_wri='vide'
 	if len(c_added)>0:
+		R=1
 		if len(c_added)==1:
 			dif=c_added[0]-date
 			if dif==0 or dif==1 or dif==2 or dif==6:
 				ResAirbnb='/P'
+				P=1
+				R=0
 			elif dif<0:
 				difP=MNday-date+lie[0]
 				if difP==0 or difP==1 or difP==2 or difP==6:
-					ResAirbnb='/P'		
+					ResAirbnb='/P'
+					P=1
+					R=0
 		t_add=ResAirbnb+toto+':'+str(c_added)
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
@@ -625,7 +640,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 		if c_remove!=[]:
 			t_rem='/L'+toto+':'+str(c_remove)
 			t_rem=t_rem.replace("[","")
-			t_rem=t_rem.replace("]","")
+			t_rem=t_rem.replace
+			L=1
 			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
@@ -645,26 +661,39 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	if t_wri!='vide':
 		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
-
+	if g==0:
+		R1=R
+		L1=L
+		P1=P
+	else:
+		R2=R
+		L2=L
+		P2=P
 	#COMMENTAIRE
+	#print('comment')
 	ONC=ONCOM
 	if ONC==1:
 		try:
-			p_c=[]
 			tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
+			#print(tp_c)
 			p_c=tp_c.replace("(","")
 			cc=p_c.replace(")","")
 			try:
 				pp=cc.split(' ')
+				#print(pp)
 				cc=pp[1]
 			except:
 				pass
 			ws.cell(row=j, column=c_write+2).value=cc
-			print(cc)
+			#print(cc)
 		except:
 			pass
 
 def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
+	global R3
+	global L3
+	R3=0
+	L3=0
 	month=soup.find('div', attrs={"class":u"_kuxo8ai"})
 	#print('fevrier')
 	i=0
@@ -711,7 +740,6 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			break
 		i=i+1
 	li.sort()
-	#print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	try:
 		if back_li!=[]:
@@ -722,8 +750,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			bl=[]
 			while i!=len(back_li):
 				ivb=int(back_li[i])
-				if ivb>=int_timeday:
-					bl.append(ivb)
+				bl.append(ivb)
 				i=i+1
 			back_li=bl
 			#print ("back_li="+str(back_li))
@@ -745,7 +772,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	t_add='vide'
 	t_rem='vide'
 	t_wri='vide'
-	if len(c_added)>0:		
+	if len(c_added)>0:
+		R3=1
 		t_add=ResAirbnb+toto+':'+str(c_added)
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
@@ -755,6 +783,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			t_rem='/L'+toto+':'+str(c_remove)
 			t_rem=t_rem.replace("[","")
 			t_rem=t_rem.replace("]","")
+			L3=1
 			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
@@ -774,9 +803,14 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	if t_wri!='vide':
 		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
-
-
+		
 def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):	
+	global R4
+	global R5
+	global L4
+	global L5
+	R=0
+	L=0
 	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
@@ -787,8 +821,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 		try:
 			if des==0:
 				the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
-				div=the_tr.span.div.div.div.get_text()
-				#div=the_tr.div.get_text()
+				#div=the_tr.span.div.div.div.get_text()
+				div=the_tr.div.get_text()
 				#_1lds9wb
 				intdiv=int(div)
 				li.append(intdiv)
@@ -834,8 +868,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			bl=[]
 			while i!=len(back_li):
 				ivb=int(back_li[i])
-				if ivb>=int_timeday:
-					bl.append(ivb)
+				bl.append(ivb)
 				i=i+1
 			back_li=bl
 			#print ("back_li="+str(back_li))
@@ -861,12 +894,15 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 		t_add=ResAirbnb+toto+':'+str(c_added)
 		t_add=t_add.replace("[","")
 		t_add=t_add.replace("]","")
+		R=1
 		#print (t_add)
 	if c_remove!=['']:
 		if c_remove!=[]:
 			prefix='/L'
 			if len(c_remove)==1:
 				prefix='/X'
+			else:
+				L=1
 			t_rem=prefix+toto+':'+str(c_remove)
 			t_rem=t_rem.replace("[","")
 			t_rem=t_rem.replace("]","")
@@ -889,6 +925,12 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 	if t_wri!='vide':
 		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
+	if g==0:
+		R4=R
+		L4=L
+	else:
+		R5=R
+		L5=L
 	
 
 def COMPUTE_M1(name_mois1):
@@ -1156,6 +1198,21 @@ f_xpathdate=0
 w_month=0
 c_month=0
 bouton_mois_suivant=0
+R1=0
+R2=0
+R3=0
+R4=0
+R5=0
+L1=0
+L2=0
+L3=0
+L4=0
+L5=0
+P1=0
+P2=0
+total_R=0
+total_L=0
+total_P=0
 while f_mounth==0:
 	h=ws.cell(row=fm, column=2).value
 	print(h)
@@ -1355,7 +1412,8 @@ while f_xpathdate==0:
 		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
 		print('date find')
 		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_18hrqvin']")))
-		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
 		print('title trouve')
 		f_xpathdate=1
 		try:
@@ -1373,7 +1431,8 @@ while f_xpathdate==0:
 def f1(a):
 	global des
 	try:
-		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
 		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']")))
 		des=1
 	except:
@@ -1388,9 +1447,28 @@ def f2(bouton_mois_suivant):
 	except:
 		a=1
 
+
+
 while end==0:
 	try:
 		while j<=nrow:
+			#----COMPUTE REPORT----
+			total_R=total_R+R1+R2+R3+R4+R5
+			total_L=total_L+L1+L2+L3+L4+L5
+			total_P=total_P+P1+P2
+			R1=0
+			R2=0
+			R3=0
+			R4=0
+			R5=0
+			L1=0
+			L2=0
+			L3=0
+			L4=0
+			L5=0
+			P1=0
+			P2=0
+			#----START TRAQUING----
 			h=ws.cell(row=j, column=2).value
 			checker=0
 			#print('------'+str(j-1)+'------'+str(h))
@@ -1478,7 +1556,8 @@ while end==0:
 				#	time.sleep(1)
 				#	pass
 				f_ele=0
-				threading.Thread(target=f1, args=(h,)).start()
+				#threading.Thread(target=f1, args=(h,)).start()
+				des=1
 				while f_ele<=3:
 					try:
 						ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
@@ -1549,11 +1628,6 @@ while end==0:
 			#-----MOIS 4-5 -----
 				if v_m!='z':
 					try:
-						#if bouton_mois_suivant==0:
-						#	next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
-						#else:
-						#	next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
-						#or button class _f8a140
 						next_calendar.click()
 						time.sleep(1)
 						next_calendar.click()
@@ -1582,7 +1656,7 @@ while end==0:
 						pass
 					C_mois5=1
 					checker=1
-				if (j/20).is_integer():
+				if (j/10).is_integer():
 					wbx.save(path_RESULT.filename)
 					#if checker==1:
 					#	x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
@@ -1605,6 +1679,13 @@ while end==0:
 		COMPUTE_M1(name_mois1)
 		COMPUTE_M1(name_mois2)
 		wbx.save(DIR2+NAMEFile+str(now)+".xlsx")
+		try:
+			print('///REPORT///')
+			print('Total R = '+str(total_R))
+			print('Total L = '+str(total_L))
+			print('Total P = '+str(total_P))
+		except:
+			print('NO REPORT')
 		try:
 			run=email(DIR2,NAMEFile,now)
 			print('sent email')
@@ -1643,7 +1724,8 @@ while end==0:
 				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
 				print('date')
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
-				x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+				x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
 				#print('x date trouve')
 				f_xpathdate=1
 				try:
