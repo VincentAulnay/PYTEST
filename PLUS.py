@@ -1481,6 +1481,7 @@ while end==0:
 				time.sleep(5)
 				des=1
 				try:
+					print('search ele')
 					ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
 					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 					rootdriver.execute_script("window.scrollBy(0,-200);")
@@ -1488,6 +1489,7 @@ while end==0:
 					html = rootdriver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
 					time.sleep(2)
+					print('search bouton')
 					next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 				#b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
 					#b_add_date.click()
