@@ -114,7 +114,7 @@ while end==0:
 				try:
 				#TITLE
 					try:
-						div1=soup.find('div', attrs={"class": "_5z4v7g"})
+						div1=soup.find('div', attrs={"class": "_mbmcsn"})
 						ws.cell(row=c, column=1).value = div1.h1.text
 					except:
 						print('NO TITLE')
