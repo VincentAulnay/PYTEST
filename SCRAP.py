@@ -351,7 +351,40 @@ while end==0:
 						ws.cell(row=c, column=29).value = sp[1]
 					except:
 						print('no DELAI REPONSE')	
-						
+			#DURING SEJOUR
+					try:
+						the_tr= soup.find('div', attrs = {'class' : '_uz1jgk'})
+						tt= the_tr.findAll('div', attrs = {'class' : '_eeq7h0'})[0]
+						ttt=tt.span.text
+						ws.cell(row=c, column=30).value = ttt
+					except:
+						print('no DURING SEJOUR')
+		#INSIDE RULE
+			#DEPART
+					try:
+						the_tr= soup.findAll('div', attrs = {'class' : '_1byskwn})[-1]
+						try:
+							tt= the_tr.find('li', text=re.compile(r'\bArrivée\b'))
+							ws.cell(row=c, column=31).value = tt.text
+						except:
+							print('no ARRIVE')
+						try:
+							tt= the_tr.find('li', text=re.compile(r'\bNon fumeur\b'))
+							ws.cell(row=c, column=32).value = tt.text
+						except:
+							print('no FUMEUR')
+						try:
+							tt= the_tr.find('li', text=re.compile(r'\bNe convient pas aux\b'))
+							ws.cell(row=c, column=33).value = tt.text
+						except:
+							print('no CHILD')
+						try:
+							tt= the_tr.find('li', text=re.compile(r"\bPas d'animaux\b"))
+							ws.cell(row=c, column=34).value = tt.text
+						except:
+							print('no ANIMAL')
+					except:
+						print('no INSIDE RULE')
 		#------------------------
 				except:
 					try:
