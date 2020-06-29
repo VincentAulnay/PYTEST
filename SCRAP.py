@@ -327,8 +327,32 @@ while end==0:
 						ws.cell(row=c, column=26).value = tt.text
 					except:
 						print('no price quality')
-				
-#------------------------
+			#N° ENREGISTREMENT
+					try:
+						the_tr= soup.find('li', text=re.compile(r'\bNuméro d’enregistrement:\b'),attrs = {'class' : '_1q2lt74'})
+						pp=the_tr.text
+						sp=pp.split(' ')
+						ws.cell(row=c, column=27).value = sp[2]
+					except:
+						print('no N° enregistrement')				
+			#TAUX REPONSE
+					try:
+						the_tr= soup.find('li', text=re.compile(r'\bTaux de réponse:\b'),attrs = {'class' : '_1q2lt74'})
+						pp=the_tr.text
+						sp=pp.split(' ')
+						ws.cell(row=c, column=28).value = sp[3]
+					except:
+						print('no taux réponse')				
+			#DELAI REPONSE
+					try:
+						the_tr= soup.find('li', text=re.compile(r'\bDélai de réponse\b'),attrs = {'class' : '_1q2lt74'})
+						pp=the_tr.text
+						sp=pp.split(':')
+						ws.cell(row=c, column=29).value = sp[1]
+					except:
+						print('no DELAI REPONSE')	
+						
+		#------------------------
 				except:
 					try:
 						#page sans annonce, je dois trouver quelque soit le type
