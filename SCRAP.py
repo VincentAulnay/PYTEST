@@ -136,6 +136,7 @@ while end==0:
 						try:
 							pp=cc.split(' ')
 							cc=pp[1]
+							ws.cell(row=c, column=20).value = cc[0]
 						except:
 							pass
 						ws.cell(row=c, column=7).value = cc
@@ -283,6 +284,50 @@ while end==0:
 						wbx.save(path_RESULT.filename)
 					if (c/1000).is_integer():
 						wbx.save(DIR2+NAMEFile+str(c)+".xlsx")
+			#/////NOTATION////
+				#PROPRETE
+					try:
+						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[1]
+						tt=the_tr.find('div', attrs={"class": "_7pay"})
+						ws.cell(row=c, column=21).value = tt.text
+					except:
+						print('no proprete')
+				#PRECISION
+					try:
+						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[2]
+						tt=the_tr.find('div', attrs={"class": "_7pay"})
+						ws.cell(row=c, column=22).value = tt.text
+					except:
+						print('no precision')
+				#COMMUNICATION
+					try:
+						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[3]
+						tt=the_tr.find('div', attrs={"class": "_7pay"})
+						ws.cell(row=c, column=23).value = tt.text
+					except:
+						print('no communication')
+				#EMPLACEMENT
+					try:
+						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[4]
+						tt=the_tr.find('div', attrs={"class": "_7pay"})
+						ws.cell(row=c, column=24).value = tt.text
+					except:
+						print('no emplacement')
+				#ARRIVEE
+					try:
+						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[5]
+						tt=the_tr.find('div', attrs={"class": "_7pay"})
+						ws.cell(row=c, column=25).value = tt.text
+					except:
+						print('no arrivee')
+				#QUALITY PRICE
+					try:
+						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[6]
+						tt=the_tr.find('div', attrs={"class": "_7pay"})
+						ws.cell(row=c, column=26).value = tt.text
+					except:
+						print('no price quality')
+				
 #------------------------
 				except:
 					try:
