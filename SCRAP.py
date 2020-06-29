@@ -337,7 +337,7 @@ while end==0:
 						print('no N° enregistrement')				
 			#TAUX REPONSE
 					try:
-						the_tr= soup.find('li', text=re.compile(r'\bTaux de réponse:\b'),attrs = {'class' : '_1q2lt74'})
+						the_tr=soup.find('li', text=re.compile(r'\bTaux de réponse:\b'),attrs = {'class' : '_1q2lt74'})
 						pp=the_tr.text
 						sp=pp.split(' ')
 						ws.cell(row=c, column=28).value = sp[3]
@@ -345,22 +345,22 @@ while end==0:
 						print('no taux réponse')				
 			#DELAI REPONSE
 					try:
-						the_tr= soup.find('li', text=re.compile(r'\bDélai de réponse\b'),attrs = {'class' : '_1q2lt74'})
+						the_tr=soup.find('li', text=re.compile(r'\bDélai de réponse\b'),attrs = {'class' : '_1q2lt74'})
 						pp=the_tr.text
 						sp=pp.split(':')
 						ws.cell(row=c, column=29).value = sp[1]
 					except:
-						print('no DELAI REPONSE')	
+						print('no DELAI REPONSE')
 			#DURING SEJOUR
 					try:
-						the_tr= soup.find('div', attrs = {'class' : '_uz1jgk'})
+						the_tr=soup.find('div', attrs = {'class' : '_uz1jgk'})
 						tt= the_tr.findAll('div', attrs = {'class' : '_eeq7h0'})[0]
 						ttt=tt.span.text
 						ws.cell(row=c, column=30).value = ttt
 					except:
 						print('no DURING SEJOUR')
 					try:
-						the_tr=soup.findAll('div', attrs = {'class' : '_1byskwn})[-1]
+						the_tr=soup.findAll('div', attrs={"class": "_1byskwn"})[-1]
 						try:
 							tt= the_tr.find('span', text=re.compile(r'\bArrivée\b'))
 							ws.cell(row=c, column=31).value = tt.text
