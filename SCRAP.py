@@ -364,25 +364,45 @@ while end==0:
 					try:
 						the_tr= soup.findAll('div', attrs = {'class' : '_1byskwn})[-1]
 						try:
-							tt= the_tr.find('li', text=re.compile(r'\bArrivée\b'))
+							tt= the_tr.find('span', text=re.compile(r'\bArrivée\b'))
 							ws.cell(row=c, column=31).value = tt.text
 						except:
 							print('no ARRIVE')
 						try:
-							tt= the_tr.find('li', text=re.compile(r'\bNon fumeur\b'))
+							tt= the_tr.find('span', text=re.compile(r'\bNon fumeur\b'))
 							ws.cell(row=c, column=32).value = tt.text
 						except:
 							print('no FUMEUR')
 						try:
-							tt= the_tr.find('li', text=re.compile(r'\bNe convient pas aux\b'))
+							tt= the_tr.find('span', text=re.compile(r'\bNe convient pas aux\b'))
 							ws.cell(row=c, column=33).value = tt.text
 						except:
 							print('no CHILD')
 						try:
-							tt= the_tr.find('li', text=re.compile(r"\bPas d'animaux\b"))
+							tt= the_tr.find('span', text=re.compile(r"\bPas d'animaux\b"))
 							ws.cell(row=c, column=34).value = tt.text
 						except:
 							print('no ANIMAL')
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bCaution\b"))
+							ws.cell(row=c, column=35).value = tt.text
+						except:
+							print('no Caution')
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bDétecteur de fumée\b"))
+							ws.cell(row=c, column=36).value = tt.text
+						except:
+							print('no detecteur fumee')
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bDétecteur de monoxyde de carbone\b"))
+							ws.cell(row=c, column=37).value = tt.text
+						except:
+							print('no detecteur monoxyde')
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bPas de fête ni de soirée\b"))
+							ws.cell(row=c, column=38).value = tt.text
+						except:
+							print('no detecteur monoxyde')
 					except:
 						print('no INSIDE RULE')
 		#------------------------
