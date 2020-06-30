@@ -383,8 +383,8 @@ while end==0:
 						#print(sp[-1])
 						ws.cell(row=c, column=28).value = sp[-1]
 					except:
-						print('no taux réponse')				
-			#DELAI REPONSE
+						print('no taux réponse')
+				#DELAI REPONSE
 					try:
 						the_tr=soup.find('li', text=re.compile(r'\bDélai\b'))
 						pp=the_tr.text
