@@ -372,6 +372,7 @@ while end==0:
 						sp=pp.split(' ')
 						ws.cell(row=c, column=27).value = sp[-1]
 					except:
+						a=1
 						#print('no N° enregistrement')				
 			#TAUX REPONSE
 					try:
