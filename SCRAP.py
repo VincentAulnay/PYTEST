@@ -136,7 +136,7 @@ while end==0:
 						try:
 							pp=cc.split(' ')
 							cc=pp[1]
-							ws.cell(row=c, column=20).value = cc[0]
+							ws.cell(row=c, column=20).value = pp[0]
 						except:
 							pass
 						ws.cell(row=c, column=7).value = cc
