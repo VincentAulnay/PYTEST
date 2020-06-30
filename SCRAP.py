@@ -239,7 +239,12 @@ while end==0:
 						pp=the_tr.split('.')
 						ws.cell(row=c, column=8).value = pp[0]
 					except:
-						print('NOTYPE')
+						try:
+							the_tr= soup.find('div', attrs={"class": "_xcsyj0"}).text
+							pp=the_tr.split('.')
+							ws.cell(row=c, column=8).value = pp[0]
+						except:
+							print('NOTYPE')
 					
 				#ANCIENNETE
 					try:
@@ -259,11 +264,11 @@ while end==0:
 						print('no superhote')
 				#AUTONOME
 					try:
-						the_tr= soup.find('div', text=re.compile(r'\bArrivée autonome\b'),attrs = {'class' : '_1qsawv5'})
-						div2=the_tr.findNextSibling('div')
-						print(the_tr.text)
-						ws.cell(row=c, column=17).value = div2.text
-						print(div2.text)
+						the_tr= soup.find('div', attrs = {'class' : '_vd6w38n'})
+						#div2=the_tr.findNextSibling('div')
+						print(the_tr.section.span.div.span.text)
+						ws.cell(row=c, column=17).value = the_tr.section.span.div.span.text
+						#print(div2.text)
 					except:
 						print('no auto')
 				#CHILDREN
@@ -280,75 +285,111 @@ while end==0:
 					except:
 						print('no child')
 
-					if (c/10).is_integer():
-						wbx.save(path_RESULT.filename)
-					if (c/1000).is_integer():
-						wbx.save(DIR2+NAMEFile+str(c)+".xlsx")
 			#/////NOTATION////
 				#PROPRETE
 					try:
+						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[0]
+						tt=the_tr.find('div', attrs={"class": "_7pay"})
+						#print(tt.span.text)
+						ws.cell(row=c, column=21).value = tt.span.text
+					except:
+						try:
+							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
+							print(tt.text)
+							ws.cell(row=c, column=21).value = tt.text
+						except:
+							print('no proprete')
+				#PRECISION
+					try:
 						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[1]
 						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						ws.cell(row=c, column=21).value = tt.text
+						#print(tt.span.text)
+						ws.cell(row=c, column=22).value = tt.span.text
 					except:
-						print('no proprete')
-				#PRECISION
+						try:
+							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[1]
+							#print(tt.text)
+							ws.cell(row=c, column=22).value = tt.text
+						except:
+							print('no Precision')
+				#COMMUNICATION
 					try:
 						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[2]
 						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						ws.cell(row=c, column=22).value = tt.text
+						#print(tt.span.text)
+						ws.cell(row=c, column=23).value = tt.span.text
 					except:
-						print('no precision')
-				#COMMUNICATION
+						try:
+							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[2]
+							#print(tt.text)
+							ws.cell(row=c, column=23).value = tt.text
+						except:
+							print('no communication')
+				#EMPLACEMENT
 					try:
 						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[3]
 						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						ws.cell(row=c, column=23).value = tt.text
+						#print(tt.span.text)
+						ws.cell(row=c, column=24).value = tt.span.text
 					except:
-						print('no communication')
-				#EMPLACEMENT
+						try:
+							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[3]
+							#print(tt.text)
+							ws.cell(row=c, column=24).value = tt.text
+						except:
+							print('no emplacement')
+				#ARRIVEE
 					try:
 						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[4]
 						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						ws.cell(row=c, column=24).value = tt.text
+						#print(tt.span.text)
+						ws.cell(row=c, column=25).value = tt.span.text
 					except:
-						print('no emplacement')
-				#ARRIVEE
+						try:
+							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[4]
+							#print(tt.text)
+							ws.cell(row=c, column=25).value = tt.text
+						except:
+							print('no arrivee')
+				#QUALITY PRICE
 					try:
 						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[5]
 						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						ws.cell(row=c, column=25).value = tt.text
+						#print(tt.span.text)
+						ws.cell(row=c, column=26).value = tt.span.text
 					except:
-						print('no arrivee')
-				#QUALITY PRICE
-					try:
-						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[6]
-						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						ws.cell(row=c, column=26).value = tt.text
-					except:
-						print('no price quality')
+						try:
+							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[5]
+							#print(tt.text)
+							ws.cell(row=c, column=26).value = tt.text
+						except:
+							print('no price quality')
 			#N° ENREGISTREMENT
 					try:
-						the_tr= soup.find('li', text=re.compile(r'\bNuméro d’enregistrement:\b'),attrs = {'class' : '_1q2lt74'})
+						the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : '_1q2lt74'})
 						pp=the_tr.text
+						print(pp)
 						sp=pp.split(' ')
-						ws.cell(row=c, column=27).value = sp[2]
+						ws.cell(row=c, column=27).value = sp[-1]
 					except:
-						print('no N° enregistrement')				
+						#print('no N° enregistrement')				
 			#TAUX REPONSE
 					try:
-						the_tr=soup.find('li', text=re.compile(r'\bTaux de réponse:\b'),attrs = {'class' : '_1q2lt74'})
+						the_tr=soup.find('li', text=re.compile(r'\bTaux\b'))
 						pp=the_tr.text
-						sp=pp.split(' ')
-						ws.cell(row=c, column=28).value = sp[3]
+						pp=pp.replace(" ","")
+						#print(pp)
+						sp=pp.split(':')
+						#print(sp[-1])
+						ws.cell(row=c, column=28).value = sp[-1]
 					except:
 						print('no taux réponse')				
 			#DELAI REPONSE
 					try:
-						the_tr=soup.find('li', text=re.compile(r'\bDélai de réponse\b'),attrs = {'class' : '_1q2lt74'})
+						the_tr=soup.find('li', text=re.compile(r'\bDélai\b'))
 						pp=the_tr.text
 						sp=pp.split(':')
-						ws.cell(row=c, column=29).value = sp[1]
+						ws.cell(row=c, column=29).value = sp[-1]
 					except:
 						print('no DELAI REPONSE')
 			#DURING SEJOUR
@@ -367,42 +408,70 @@ while end==0:
 						except:
 							print('no ARRIVE')
 						try:
-							tt= the_tr.find('span', text=re.compile(r'\bNon fumeur\b'))
+							tt= the_tr.find('span', text=re.compile(r'\bDépart\b'))
 							ws.cell(row=c, column=32).value = tt.text
+						except:
+							print('no DEPART')
+						try:
+							tt= the_tr.find('span', text=re.compile(r'\bNon fumeur\b'))
+							ws.cell(row=c, column=33).value = tt.text
 						except:
 							print('no FUMEUR')
 						try:
 							tt= the_tr.find('span', text=re.compile(r'\bNe convient pas aux\b'))
-							ws.cell(row=c, column=33).value = tt.text
+							ws.cell(row=c, column=34).value = tt.text
 						except:
 							print('no CHILD')
 						try:
-							tt= the_tr.find('span', text=re.compile(r"\bPas d'animaux\b"))
-							ws.cell(row=c, column=34).value = tt.text
+							tt= the_tr.find('span', text=re.compile(r"\bArrivée autonome\b"))
+							ws.cell(row=c, column=35).value = tt.text
 						except:
-							print('no ANIMAL')
+							print('no AUTOMATIC')
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bPas d'animaux\b"))
+							ws.cell(row=c, column=36).value = tt.text
+						except:
+							try:
+								tt= the_tr.find('span', text=re.compile(r"\bAnimaux de compagnie\b"))
+								ws.cell(row=c, column=36).value = tt.text
+							except:
+								print('no ANIMAL')
 						try:
 							tt= the_tr.find('span', text=re.compile(r"\bCaution\b"))
-							ws.cell(row=c, column=35).value = tt.text
+							ws.cell(row=c, column=37).value = tt.text
 						except:
 							print('no Caution')
 						try:
 							tt= the_tr.find('span', text=re.compile(r"\bDétecteur de fumée\b"))
-							ws.cell(row=c, column=36).value = tt.text
+							ws.cell(row=c, column=38).value = tt.text
 						except:
 							print('no detecteur fumee')
 						try:
 							tt= the_tr.find('span', text=re.compile(r"\bDétecteur de monoxyde de carbone\b"))
-							ws.cell(row=c, column=37).value = tt.text
+							ws.cell(row=c, column=39).value = tt.text
 						except:
 							print('no detecteur monoxyde')
 						try:
 							tt= the_tr.find('span', text=re.compile(r"\bPas de fête ni de soirée\b"))
-							ws.cell(row=c, column=38).value = tt.text
+							ws.cell(row=c, column=40).value = tt.text
 						except:
 							print('no detecteur monoxyde')
 					except:
 						print('no INSIDE RULE')
+			#LANGUE
+					try:
+						the_tr= soup.find('li', text=re.compile(r'\bLangues\b'))
+						#print(the_tr)
+						pp=the_tr.text
+						#print(pp)
+						sp=pp.split(':')
+						ws.cell(row=c, column=41).value = sp[-1]
+					except:
+						print('no LANGUAGE')	
+					if (c/20).is_integer():
+						wbx.save(path_RESULT.filename)
+					if (c/1000).is_integer():
+						wbx.save(DIR2+NAMEFile+str(c)+".xlsx")
 		#------------------------
 				except:
 					try:
