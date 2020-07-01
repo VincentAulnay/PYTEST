@@ -85,10 +85,13 @@ def extract(XP, nb, type, c, YP):
 end=0
 while end==0:
 	try:
-		for h in list_URL:
+		hh=ws.cell(row=c, column=2).value
+		if hh==None:
+			print('END')
+			end=1
+		else:
 			print (c)
-			print (h)
-			hh=ws.cell(row=c, column=2).value
+			print (hh)
 			#do=sheet_read.cell(i,0).value
 			do=ws.cell(row=c, column=1).value
 			if do==None:
