@@ -86,6 +86,7 @@ end=0
 while end==0:
 	try:
 		hh=ws.cell(row=c, column=2).value
+		print(hh)
 		if hh==None:
 			print('END')
 			end=1
@@ -522,18 +523,18 @@ while end==0:
 		#driver = webdriver.Chrome()
 		#driver.set_window_size(800, 1500)
 		wbx.save(path_RESULT.filename)
-	wbx.save(path_RESULT.filename)
-	print ('_______    ___    ___     ___')
-	print ('|      |   |  |   |  \    |  |')
-	print ('|  |__     |  |   |   \   |  |')
-	print ('|     |    |  |   |    \  |  |')
-	print ('|  |       |  |   |  |\ \ |  |')
-	print ('|  |       |  |   |  | \ \|  |')
-	print ('|__|       |__|   |__|  \____|')
-	print ('Votre fichier RESULT est à présent terminé, renommer le et concerver le.')
-	print ('Vous pouvez maintenant:')
-	print ('  1- exécuter le .exe N°4 qui calcule le nombre de logement détenus par hôte')
-	print ('  2- exétuter le .exe N°5 qui lui calcule les nuitées de chaque annonces, à exécuter hebdomadairement')
-	print ('  3- N°6 qui est à utiliser si votre fichier RESULT contient plus de 2000 annonces, il va découper le fichier en lot de moins de 2000 annonces si vous voulez l importer sur GoogleMap')
-	print ('  4- N°7 vous permet de comparer le fichier RESULT avec un autre fichier de liste d annonce que vous possédez déjà, il va alors ajouter dans votre autre fichier les annonces manquante')
-	end=1
+wbx.save(path_RESULT.filename)
+print ('_______    ___    ___     ___')
+print ('|      |   |  |   |  \    |  |')
+print ('|  |__     |  |   |   \   |  |')
+print ('|     |    |  |   |    \  |  |')
+print ('|  |       |  |   |  |\ \ |  |')
+print ('|  |       |  |   |  | \ \|  |')
+print ('|__|       |__|   |__|  \____|')
+print ('Votre fichier RESULT est à présent terminé, renommer le et concerver le.')
+print ('Vous pouvez maintenant:')
+print ('  1- exécuter le .exe N°4 qui calcule le nombre de logement détenus par hôte')
+print ('  2- exétuter le .exe N°5 qui lui calcule les nuitées de chaque annonces, à exécuter hebdomadairement')
+print ('  3- N°6 qui est à utiliser si votre fichier RESULT contient plus de 2000 annonces, il va découper le fichier en lot de moins de 2000 annonces si vous voulez l importer sur GoogleMap')
+print ('  4- N°7 vous permet de comparer le fichier RESULT avec un autre fichier de liste d annonce que vous possédez déjà, il va alors ajouter dans votre autre fichier les annonces manquante')
+end=1
