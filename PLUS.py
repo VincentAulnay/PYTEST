@@ -622,13 +622,13 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 		R=1
 		if len(c_added)==1:
 			dif=c_added[0]-date
-			if dif==0 or dif==1 or dif==2 or dif==6:
+			if dif==0 or dif==1 or dif==2 or dif==3 or dif==6 or dif==7:
 				ResAirbnb='/P'
 				P=1
 				R=0
 			elif dif<0:
 				difP=MNday-date+lie[0]
-				if difP==0 or difP==1 or difP==2 or difP==6:
+				if difP==0 or difP==1 or difP==2 or dif==3 or difP==6 or dif==7:
 					ResAirbnb='/P'
 					P=1
 					R=0
@@ -640,7 +640,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 		if c_remove!=[]:
 			t_rem='/L'+toto+':'+str(c_remove)
 			t_rem=t_rem.replace("[","")
-			t_rem=t_rem.replace
+			t_rem=t_rem.replace("]","")
 			L=1
 			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
