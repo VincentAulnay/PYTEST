@@ -784,11 +784,10 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			if len(c_remove)==1:
 				prefix='/X'
 			else:
-				L=1
+				L3=1
 			t_rem=prefix+toto+':'+str(c_remove)
 			t_rem=t_rem.replace("[","")
 			t_rem=t_rem.replace("]","")
-			L3=1
 			#print(t_rem)
 	ca=ws.cell(row=j, column=c_write).value
 	if ca==None:
