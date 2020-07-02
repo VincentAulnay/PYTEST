@@ -780,7 +780,12 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 		#print (t_add)
 	if c_remove!=['']:
 		if c_remove!=[]:
-			t_rem='/L'+toto+':'+str(c_remove)
+			prefix='/L'
+			if len(c_remove)==1:
+				prefix='/X'
+			else:
+				L=1
+			t_rem=prefix+toto+':'+str(c_remove)
 			t_rem=t_rem.replace("[","")
 			t_rem=t_rem.replace("]","")
 			L3=1
