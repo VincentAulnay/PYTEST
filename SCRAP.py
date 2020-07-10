@@ -144,7 +144,7 @@ while end==0:
 						except:
 							pass
 						ws.cell(row=c, column=7).value = cc
-						print ("COMMENT ===")
+						#print ("COMMENT ===")
 						print(cc)
 						#p_c=tp_c.split("(")
 						#print('ici1')
@@ -270,7 +270,7 @@ while end==0:
 					try:
 						the_tr= soup.find('div', attrs = {'class' : '_vd6w38n'})
 						#div2=the_tr.findNextSibling('div')
-						print(the_tr.section.span.div.span.text)
+						#print(the_tr.section.span.div.span.text)
 						ws.cell(row=c, column=17).value = the_tr.section.span.div.span.text
 						#print(div2.text)
 					except:
@@ -299,7 +299,7 @@ while end==0:
 					except:
 						try:
 							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
-							print(tt.text)
+							#print(tt.text)
 							ws.cell(row=c, column=21).value = tt.text
 						except:
 							print('no proprete')
@@ -372,7 +372,7 @@ while end==0:
 					try:
 						the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : '_1q2lt74'})
 						pp=the_tr.text
-						print(pp)
+						#print(pp)
 						sp=pp.split(' ')
 						ws.cell(row=c, column=27).value = sp[-1]
 					except:
@@ -472,8 +472,22 @@ while end==0:
 						sp=pp.split(':')
 						ws.cell(row=c, column=41).value = sp[-1]
 					except:
-						print('no LANGUAGE')	
-					if (c/20).is_integer():
+						print('no LANGUAGE')
+			#IMAGE
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
+						tt=the_tr.['src']
+						ws.cell(row=c, column=42).value = tt
+					except:
+						print('no IMAGE')
+			#IMAGE_HOTE
+					try:
+						the_tr= soup.find('img', attrs={"class": "_6tbg2q"})
+						tt=the_tr.['src']
+						ws.cell(row=c, column=43).value = tt
+					except:
+						print('no IMAGE_HOTE')
+					if (c/200).is_integer():
 						wbx.save(path_RESULT.filename)
 					if (c/1000).is_integer():
 						wbx.save(DIR2+NAMEFile+str(c)+".xlsx")
