@@ -486,7 +486,7 @@ while end==0:
 							tt=the_tr['data-original-uri']
 							ws.cell(row=c, column=42).value = tt
 						except:
-							print('no IMAGE')print('no IMAGE')
+							print('no IMAGE')
 			#IMAGE_HOTE
 					try:
 						the_tr= soup.find('img', attrs={"class": "_6tbg2q"})
