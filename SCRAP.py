@@ -476,7 +476,7 @@ while end==0:
 			#IMAGE
 					try:
 						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
-						print(the_tr)
+						#print(the_tr)
 						tt=the_tr['src']
 						ws.cell(row=c, column=42).value = tt
 					except:
