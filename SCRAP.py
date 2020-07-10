@@ -476,14 +476,14 @@ while end==0:
 			#IMAGE
 					try:
 						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
-						tt=the_tr.['src']
+						tt=the_tr['src']
 						ws.cell(row=c, column=42).value = tt
 					except:
 						print('no IMAGE')
 			#IMAGE_HOTE
 					try:
 						the_tr= soup.find('img', attrs={"class": "_6tbg2q"})
-						tt=the_tr.['src']
+						tt=the_tr['src']
 						ws.cell(row=c, column=43).value = tt
 					except:
 						print('no IMAGE_HOTE')
