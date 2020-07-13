@@ -478,7 +478,6 @@ while end==0:
 						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[0]
 						#print(the_tr)
 						tt=the_tr['src']
-						print(tt)
 						ws.cell(row=c, column=42).value = tt
 					except:
 						try:
@@ -487,13 +486,65 @@ while end==0:
 							tt=the_tr['data-original-uri']
 							ws.cell(row=c, column=42).value = tt
 						except:
-							print('no IMAGE')
+							print('no IMAGE 0')
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
+						#print(the_tr)
+						tt=the_tr['src']
+						ws.cell(row=c, column=44).value = tt
+					except:
+						try:
+							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[1]
+							#print(the_tr)
+							tt=the_tr['data-original-uri']
+							ws.cell(row=c, column=44).value = tt
+						except:
+							print('no IMAGE 1')
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[2]
+						#print(the_tr)
+						tt=the_tr['src']
+						ws.cell(row=c, column=45).value = tt
+					except:
+						try:
+							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[2]
+							#print(the_tr)
+							tt=the_tr['data-original-uri']
+							ws.cell(row=c, column=45).value = tt
+						except:
+							print('no IMAGE 2')
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[3]
+						#print(the_tr)
+						tt=the_tr['src']
+						ws.cell(row=c, column=46).value = tt
+					except:
+						try:
+							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[3]
+							#print(the_tr)
+							tt=the_tr['data-original-uri']
+							ws.cell(row=c, column=46).value = tt
+						except:
+							print('no IMAGE 3')
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[4]
+						#print(the_tr)
+						tt=the_tr['src']
+						print(tt)
+						ws.cell(row=c, column=47).value = tt
+					except:
+						try:
+							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[4]
+							#print(the_tr)
+							tt=the_tr['data-original-uri']
+							ws.cell(row=c, column=47).value = tt
+						except:
+							print('no IMAGE 4')
 			#IMAGE_HOTE
 					try:
 						the_tr= soup.find('div', attrs={"class": "_5kripx"})
 						t= the_tr.find('img', attrs={"class": "_6tbg2q"})
 						tt=t['src']
-						print(tt)
 						ws.cell(row=c, column=43).value = tt
 					except:
 						print('no IMAGE_HOTE')
