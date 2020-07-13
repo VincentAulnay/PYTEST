@@ -475,13 +475,14 @@ while end==0:
 						print('no LANGUAGE')
 			#IMAGE
 					try:
-						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[0]
 						#print(the_tr)
 						tt=the_tr['src']
+						print(tt)
 						ws.cell(row=c, column=42).value = tt
 					except:
 						try:
-							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[1]
+							the_tr= soup.find('img', attrs={"class": "_6tbg2q"})
 							#print(the_tr)
 							tt=the_tr['data-original-uri']
 							ws.cell(row=c, column=42).value = tt
@@ -489,8 +490,10 @@ while end==0:
 							print('no IMAGE')
 			#IMAGE_HOTE
 					try:
-						the_tr= soup.find('img', attrs={"class": "_6tbg2q"})
-						tt=the_tr['src']
+						the_tr= soup.find('div', attrs={"class": "_5kripx"})
+						t= the_tr.find('img', attrs={"class": "_6tbg2q"})
+						tt=t['src']
+						print(tt)
 						ws.cell(row=c, column=43).value = tt
 					except:
 						print('no IMAGE_HOTE')
