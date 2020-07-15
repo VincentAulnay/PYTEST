@@ -292,82 +292,46 @@ while end==0:
 			#/////NOTATION////
 				#PROPRETE
 					try:
-						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[0]
-						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						#print(tt.span.text)
-						ws.cell(row=c, column=21).value = tt.span.text
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
+						#print(tt.text)
+						ws.cell(row=c, column=21).value = tt.text
 					except:
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
-							#print(tt.text)
-							ws.cell(row=c, column=21).value = tt.text
-						except:
-							print('no proprete')
+						print('no proprete')
 				#PRECISION
 					try:
-						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[1]
-						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						#print(tt.span.text)
-						ws.cell(row=c, column=22).value = tt.span.text
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[1]
+						#print(tt.text)
+						ws.cell(row=c, column=22).value = tt.text
 					except:
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[1]
-							#print(tt.text)
-							ws.cell(row=c, column=22).value = tt.text
-						except:
-							print('no Precision')
+						print('no Precision')
 				#COMMUNICATION
 					try:
-						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[2]
-						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						#print(tt.span.text)
-						ws.cell(row=c, column=23).value = tt.span.text
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[2]
+						#print(tt.text)
+						ws.cell(row=c, column=23).value = tt.text
 					except:
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[2]
-							#print(tt.text)
-							ws.cell(row=c, column=23).value = tt.text
-						except:
-							print('no communication')
+						print('no communication')
 				#EMPLACEMENT
 					try:
-						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[3]
-						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						#print(tt.span.text)
-						ws.cell(row=c, column=24).value = tt.span.text
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[3]
+						#print(tt.text)
+						ws.cell(row=c, column=24).value = tt.text
 					except:
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[3]
-							#print(tt.text)
-							ws.cell(row=c, column=24).value = tt.text
-						except:
-							print('no emplacement')
+						print('no emplacement')
 				#ARRIVEE
 					try:
-						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[4]
-						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						#print(tt.span.text)
-						ws.cell(row=c, column=25).value = tt.span.text
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[4]
+						#print(tt.text)
+						ws.cell(row=c, column=25).value = tt.text
 					except:
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[4]
-							#print(tt.text)
-							ws.cell(row=c, column=25).value = tt.text
-						except:
-							print('no arrivee')
+						print('no arrivee')
 				#QUALITY PRICE
 					try:
-						the_tr= soup.findAll('div', attrs={"class": "_1s11ltsf"})[5]
-						tt=the_tr.find('div', attrs={"class": "_7pay"})
-						#print(tt.span.text)
-						ws.cell(row=c, column=26).value = tt.span.text
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[5]
+						#print(tt.text)
+						ws.cell(row=c, column=26).value = tt.text
 					except:
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[5]
-							#print(tt.text)
-							ws.cell(row=c, column=26).value = tt.text
-						except:
-							print('no price quality')
+						print('no price quality')
 			#N° ENREGISTREMENT
 					try:
 						the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : '_1q2lt74'})
