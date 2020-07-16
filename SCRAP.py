@@ -60,7 +60,7 @@ YN_SdB='YES'
 
 #OUVERTURE DES PAGES CHROME
 #driver = webdriver.Chrome(chrome_options=chrome_options)
-driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
+driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 #driver = webdriver.Chrome()
 driver.set_window_size(800, 800)
 time.sleep(2)
