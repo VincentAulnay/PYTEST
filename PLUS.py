@@ -1639,7 +1639,7 @@ while end==0:
 						next_calendar.click()
 						time.sleep(1)
 						next_calendar.click()
-						time.sleep(1)
+						time.sleep(2)
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
 						time.sleep(1)
