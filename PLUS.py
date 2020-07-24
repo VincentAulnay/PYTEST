@@ -1217,6 +1217,7 @@ P2=0
 total_R=0
 total_L=0
 total_P=0
+total_PLUS=0
 while f_mounth==0:
 	h=ws.cell(row=fm, column=2).value
 	print(h)
@@ -1460,6 +1461,7 @@ while end==0:
 			total_R=total_R+R1+R2+R3+R4+R5
 			total_L=total_L+L1+L2+L3+L4+L5
 			total_P=total_P+P1+P2
+			total_PLUS=total_PLUS+PLUS
 			R1=0
 			R2=0
 			R3=0
@@ -1472,6 +1474,7 @@ while end==0:
 			L5=0
 			P1=0
 			P2=0
+			PLUS=0
 			#----START TRAQUING----
 			h=ws.cell(row=j, column=2).value
 			checker=0
@@ -1520,6 +1523,7 @@ while end==0:
 					html = rootdriver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
 					time.sleep(2)
+					PLUS=1
 					try:
 					#-----RECUPERATION CALANDAR MOIS 4--------
 						run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0,des)
@@ -1690,6 +1694,7 @@ while end==0:
 			print('Total R = '+str(total_R))
 			print('Total L = '+str(total_L))
 			print('Total P = '+str(total_P))
+			print('Total PLUS = '+str(total_PLUS))
 		except:
 			print('NO REPORT')
 		try:
