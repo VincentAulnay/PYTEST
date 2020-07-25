@@ -1214,6 +1214,7 @@ L4=0
 L5=0
 P1=0
 P2=0
+PLUS=0
 total_R=0
 total_L=0
 total_P=0
