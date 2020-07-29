@@ -1504,17 +1504,17 @@ while end==0:
 					#b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
 					#b_arrival.click
 					time.sleep(1)
-					print('1')
+					#print('1')
 					run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,0,des)
-					print('2')
+					#print('2')
 					run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0,des)
-					print('3')
+					#print('3')
 					run_resday=A_Statu_day4(m3_write,j,ResAirbnb,m3_newmonth,des)
 					#(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM)
 					#run_PLUS_1=A_Statu_PLUS(date,m1_write,2,j,0,ResAirbnb,m1_newmonth,500,1)
 					#run_PLUS_2=A_Statu_PLUS(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
 					#run_PLUS_3=A_Statu_PLUS2(m3_write,j,ResAirbnb,m3_newmonth,2)
-					print('4')
+					#print('4')
 					next_calendar.click()
 					time.sleep(1)
 					next_calendar.click()
@@ -1535,7 +1535,7 @@ while end==0:
 						run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1,des)
 					except:
 						pass
-					print('6')
+					#print('6')
 					#https://www.airbnb.fr/rooms/plus/21846063
 					try:
 						#//span[@class='_so3dpm2']
