@@ -1699,7 +1699,7 @@ while end==0:
 		except:
 			print('NO REPORT')
 		try:
-			run=email(DIR2,NAMEFile,now)
+			run=email(DIR2,NAMEFile,now,total_R,total_L,total_P,total_PLUS)
 			print('sent email')
 		except:
 			print('rien')
