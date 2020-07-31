@@ -1219,7 +1219,7 @@ total_R=0
 total_L=0
 total_P=0
 total_PLUS=0
-
+i=1
 cACTIVE=0
 while cACTIVE==0:
 	g=ws.cell(row=1, column=i).value
