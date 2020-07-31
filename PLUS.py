@@ -1489,7 +1489,7 @@ while end==0:
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
 			checker=0
 			#print('------'+str(j-1)+'------'+str(h))
-			if vACTIVE=='YES:
+			if vACTIVE=='YES':
 				if h==None:
 					j=j+1
 					print('h=None')
