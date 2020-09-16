@@ -1520,6 +1520,7 @@ def checkmounth(name_mois1,bouton_mois_suivant):
 				previous_calendar.click()
 				time.sleep(1)
 				loop=loop+1
+			time.sleep(1)
 		except:
 			a=1
 
