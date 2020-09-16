@@ -543,7 +543,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	while i<=31:
 		try:
 			if des==0:
-				the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
+				the_tr= month.findAll('td', attrs={"class": "_l9wspk2"})[i]
 				#div=the_tr.span.div.div.div.get_text()
 				div=the_tr.div.get_text()
 				#_1lds9wb
@@ -704,7 +704,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	while i<=31:
 		try:
 			if des==0:
-				the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
+				the_tr= month.findAll('td', attrs={"class": "_l9wspk2"})[i]
 				div=the_tr.span.div.div.div.get_text()
 				#_1lds9wb
 				intdiv=int(div)
@@ -824,7 +824,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 	while i<=31:
 		try:
 			if des==0:
-				the_tr= month.findAll('td', attrs={"class": "_z39f86g"})[i]
+				the_tr= month.findAll('td', attrs={"class": "_l9wspk2"})[i]
 				#div=the_tr.span.div.div.div.get_text()
 				div=the_tr.div.get_text()
 				#_1lds9wb
@@ -1421,9 +1421,9 @@ while f_xpathdate==0:
 	fff=fff+1
 	try:
 		rootdriver.get(h)
-		time.sleep(6)
+		time.sleep(1000)
 		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
+		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_l9wspk2']")))
 		print('date find')
 		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_18hrqvin']")))
 		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
@@ -1797,7 +1797,7 @@ while end==0:
 			h=ws.cell(row=fm, column=2).value
 			fm=fm+1
 			print(h)
-			if fff==8:
+			if fff==5:
 				f_mounth=1
 				f_xpathdate=1
 				end=0
@@ -1805,14 +1805,14 @@ while end==0:
 			fff=fff+1
 			try:
 				rootdriver.get(h)
-				time.sleep(6)
+				time.sleep(8)
 				#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_z39f86g']")))
 				print('date')
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
 				x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
-				#print('x date trouve')
+				print('x date trouve')
 				f_xpathdate=1
 				try:
 					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
