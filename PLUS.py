@@ -78,17 +78,19 @@ def email(DIR2,NAMEFile,now,total_R,total_L,total_P,total_PLUS):
 	sender = 'vincent.aulnay@gmx.fr'
 	sender_password = '@Vincent94'
 	receivers = RECEIVER
-
+	print('ici1')
 	#s = smtplib.SMTP('smtp.gmail.com', 587)
 	s = smtplib.SMTP('mail.gmx.com', 587)
 	s.starttls()
 	s.login(sender, sender_password)
 	msg = MIMEMultipart()
+	print('ici2')
 	msg['From'] = sender
 	msg['To'] = receivers
 	#msg['Subject'] = "Subject of the Mail- image -2"
 	body = "Body_of_the_mail"
 	msg.attach(MIMEText(body, 'plain'))
+	print('ici3')
 	msg['Subject'] = "STOP AIRBNB - "+str(now)+"-R"+str(total_R)+"-L"+str(total_L)+"-P"+str(total_P)+"-PLUS"+str(total_PLUS)
 	# path along with extension of file to be attachmented 
 	filename = DIR2+NAMEFile+str(now)+".xlsx"
@@ -96,6 +98,7 @@ def email(DIR2,NAMEFile,now,total_R,total_L,total_P,total_PLUS):
 	 
 	# instance of MIMEBase and named as p
 	attachment = MIMEBase('application', 'octet-stream')
+	print('ici4')
 	# To change the payload into encoded form
 	attachment.set_payload((attachmentment).read())
 	# encode into base64
@@ -104,6 +107,7 @@ def email(DIR2,NAMEFile,now,total_R,total_L,total_P,total_PLUS):
 	# attachment the instance  to instance 'msg'
 	msg.attach(attachment)
 	text = msg.as_string()
+	print('ici5')
 	s.sendmail(sender, receivers, text)
 	print('*** email sent ***') 
 	time.sleep(10)
