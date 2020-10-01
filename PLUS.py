@@ -80,7 +80,7 @@ def email(DIR2,NAMEFile,now,total_R,total_L,total_P):
 	print('ici1')
 	sender = 'vincent.aulnay@gmx.fr'
 	sender_password = '@Vincent94'
-	receivers = RECEIVER
+	receivers = [RECEIVER, 'vincent.aulnay@gmx.fr']
 	print('ici2')
 
 	#s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -90,7 +90,7 @@ def email(DIR2,NAMEFile,now,total_R,total_L,total_P):
 	print('ici3')
 	msg = MIMEMultipart()
 	msg['From'] = sender
-	msg['To'] = receivers
+	msg['To'] = ", ".join(receivers)
 	#msg['Subject'] = "Subject of the Mail- image -2"
 	body = "Body_of_the_mail"
 	msg.attach(MIMEText(body, 'plain'))
