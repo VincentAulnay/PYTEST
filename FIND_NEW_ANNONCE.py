@@ -23,7 +23,7 @@ import re
 import json
 from urllib.request import urlopen
 import pip
-import pandas as pd
+#import pandas as pd
 import openpyxl
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
@@ -180,7 +180,7 @@ sheet_write=copy_book.get_sheet(0)
 r=2
 nrow=2
 h=1
-
+list_URL=[]
 driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 wait = WebDriverWait(driver, 3)
 time.sleep(5)
@@ -216,7 +216,7 @@ while h < nrow:
 		sheet_write.write(h, 5, 'X')
 		copy_book.save(DIR2+'myFile'+str(now)+'.xls')
 		f_loc=0
-	if f_loc>=300:
+	elif f_loc>=300:
 	#MARQUAGE X SUR URL 300+
 		sheet_write.write(h, 5, "X")
 	#FORMULE POUR DIVISION 4 CELLS
@@ -300,122 +300,10 @@ while h < nrow:
 		copy_book.save(DIR2+'myFile'+str(now)+'.xls')
 		nrow=nrow+4
 		r=r+1
+	else:
+		list_URL.append(URL)
 	h=h+1
-while h < nrow:
 
-	print (h)
-	book_dup = xlrd.open_workbook(DIR2+'myFile'+str(now)+'.xls')
-	sheet_read = book_dup.sheet_by_index(0)
-	URL=sheet_read.cell(h,0).value
-	print (URL)
-	driver.get(URL)
-	time.sleep(5)
-	locations='aucune annonce'
-	try:
-		#locations = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13e0zvs']//div[contains(@style,'margin-top:')]"))).text
-		locations = wait.until(EC.presence_of_element_located((By.XPATH, x_p))).text
-		print (locations)
-		n_loc=locations.split(" ")
-		print (n_loc)
-		#nb_loc=n_loc[4].replace("+","")
-		n_loc.reverse()
-		nb_loc=n_loc[1]
-		f_loc=float(nb_loc)
-		print (nb_loc)
-		sheet_write.write(h, 6, nb_loc)
-		copy_book.save(DIR2+'myFile'+str(now)+'.xls')
-	except:
-		pass
-	print (locations)
-	if locations=='aucune annonce':
-		sheet_write.write(h, 5, 'X')
-		copy_book.save(DIR2+'myFile'+str(now)+'.xls')
-		f_loc=0
-	if f_loc>=300:
-	#MARQUAGE X SUR URL 300+
-		sheet_write.write(h, 5, "X")
-	#FORMULE POUR DIVISION 4 CELLS
-		n_t=sheet_read.cell(h,1).value#3
-		w_t=sheet_read.cell(h,2).value#4
-		s_t=sheet_read.cell(h,3).value#1
-		e_t=sheet_read.cell(h,4).value#2
-		print (n_t)
-		print (e_t)
-		print (s_t)
-		print (w_t)
-		div_lat=(Decimal(n_t)-Decimal(s_t))/2
-		div_long=(Decimal(e_t)-Decimal(w_t))/2
-		print (div_lat)
-		print (div_long)
-	#DIVISION 1
-		n_g1=Decimal(n_t)-(div_lat)
-		e_g1=Decimal(e_t)-(div_long)
-		s_g1=Decimal(s_t)
-		w_g1=Decimal(w_t)
-		n_t1=str(n_g1)
-		e_t1=str(e_g1)
-		s_t1=str(s_g1)
-		w_t1=str(w_g1)
-		sheet_write.write(r, 1, n_t1)
-		sheet_write.write(r, 2, w_t1)
-		sheet_write.write(r, 3, s_t1)
-		sheet_write.write(r, 4, e_t1)
-	#DIVISION 2
-		r=r+1
-		n_g2=Decimal(n_t)
-		e_g2=Decimal(w_t)+(div_long)
-		s_g2=Decimal(s_t)+(div_lat)
-		w_g2=Decimal(w_t)
-		n_t2=str(n_g2)
-		e_t2=str(e_g2)
-		s_t2=str(s_g2)
-		w_t2=str(w_g2)
-		sheet_write.write(r, 1, n_t2)
-		sheet_write.write(r, 2, e_t2)
-		sheet_write.write(r, 3, s_t2)
-		sheet_write.write(r, 4, w_t2)
-	#DIVISION 3
-		r=r+1
-		n_g3=Decimal(n_t)-(div_lat)
-		e_g3=Decimal(e_t)
-		s_g3=Decimal(s_t)
-		w_g3=Decimal(w_t)+(div_long)
-		n_t3=str(n_g3)
-		e_t3=str(e_g3)
-		s_t3=str(s_g3)
-		w_t3=str(w_g3)
-		sheet_write.write(r, 1, n_t3)
-		sheet_write.write(r, 2, e_t3)
-		sheet_write.write(r, 3, s_t3)
-		sheet_write.write(r, 4, w_t3)
-	#DIVISION 4
-		r=r+1
-		n_g4=Decimal(n_t)
-		e_g4=Decimal(e_t)
-		s_g4=Decimal(s_t)+(div_lat)
-		w_g4=Decimal(w_t)+(div_long)
-		n_t4=str(n_g4)
-		e_t4=str(e_g4)
-		s_t4=str(s_g4)
-		w_t4=str(w_g4)
-		sheet_write.write(r, 1, n_t4)
-		sheet_write.write(r, 2, e_t4)
-		sheet_write.write(r, 3, s_t4)
-		sheet_write.write(r, 4, w_t4)
-	#CREATION URL DES DIVISIONS
-		url1='https://www.airbnb.fr/s/toto/homes?refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&sw_lat='+str(s_g1)+'&sw_lng='+str(w_g1)+'&ne_lat='+str(n_g1)+'&ne_lng='+str(e_g1)+'&zoom=14&search_by_map=true&map_toggle=true'
-		url2='https://www.airbnb.fr/s/toto/homes?refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&sw_lat='+str(s_g2)+'&sw_lng='+str(w_g2)+'&ne_lat='+str(n_g2)+'&ne_lng='+str(e_g2)+'&zoom=14&search_by_map=true&map_toggle=true'
-		url3='https://www.airbnb.fr/s/toto/homes?refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&sw_lat='+str(s_g3)+'&sw_lng='+str(w_g3)+'&ne_lat='+str(n_g3)+'&ne_lng='+str(e_g3)+'&zoom=14&search_by_map=true&map_toggle=true'
-		url4='https://www.airbnb.fr/s/toto/homes?refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&sw_lat='+str(s_g4)+'&sw_lng='+str(w_g4)+'&ne_lat='+str(n_g4)+'&ne_lng='+str(e_g4)+'&zoom=14&search_by_map=true&map_toggle=true'
-		sheet_write.write((r-3), 0, url1)
-		sheet_write.write((r-2), 0, url2)
-		sheet_write.write((r-1), 0, url3)
-		sheet_write.write(r, 0, url4)
-	#SAVE EXCEL
-		copy_book.save(DIR2+'myFile'+str(now)+'.xls')
-		nrow=nrow+4
-		r=r+1
-	h=h+1
 	
 print ('_______    ___    ___     ___')
 print ('|      |   |  |   |  \    |  |')
@@ -426,14 +314,14 @@ print ('|  |       |  |   |  | \ \|  |')
 print ('|__|       |__|   |__|  \____|')
 print ('le découpage des zones est terminé, vous pouvez exécuter le .exe N°2 qui va extraire la liste des URL de la totalité des annonces de votre zone.')
 
-xl = pd.ExcelFile(DIR2+'myFile'+str(now)+'.xls')
-df = xl.parse("URL_PAGE")
+#xl = pd.ExcelFile(DIR2+'myFile'+str(now)+'.xls')
+#df = xl.parse("URL_PAGE")
 #SUPPRIME les lignes contenant X dans la colonne F
-df2 = df.loc[df['F'] != 'X']
-list_URL=df2['A'].tolist()
+#df2 = df.loc[df['F'] != 'X']
+#list_URL=df2['A'].tolist()
 #print (list_URL)
 #print (len(list_URL))
-time.sleep(1)
+#time.sleep(1)
 #OUVERTURE DES PAGES CHROME
 #rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 wait = WebDriverWait(driver, 10)
