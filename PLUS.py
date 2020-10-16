@@ -1930,8 +1930,8 @@ except:
 	pass
 print('FIN')
 
-code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/FIND_NEW_ANNONCE.py'
+#code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/FIND_NEW_ANNONCE.py'
 
-response=urllib.request.urlopen(code)
-data=response.read()
-exec(data)
+#response=urllib.request.urlopen(code)
+#data=response.read()
+#exec(data)
