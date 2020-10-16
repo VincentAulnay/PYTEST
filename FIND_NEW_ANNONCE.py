@@ -995,6 +995,7 @@ while end==0:
 		#driver.set_window_size(800, 1500)
 		wb.save(path_RESULT.filename)
 	wb.save(path_RESULT.filename)
+	driver.quit()
 	print ('_______    ___    ___     ___')
 	print ('|      |   |  |   |  \    |  |')
 	print ('|  |__     |  |   |   \   |  |')
