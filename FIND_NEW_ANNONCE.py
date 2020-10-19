@@ -364,7 +364,7 @@ for h in list_URL:
 	while (j<=17):
 		i=0
 		try:
-			while (i<=18):
+			while (i<=20):
 				try:
 					try:
 						#print(c)
