@@ -510,24 +510,34 @@ c=nrow+1
 wait2 = WebDriverWait(driver, 2)
 wait3 = WebDriverWait(driver, 3)	
 
-
+up=0
+k=1
+while up==0:
+	#V_up=sheet_read.cell(0,i).value
+	V_up=ws.cell(row=1, column=k).value
+	if V_up=='ACTIVE_YES/NO':
+		up=1
+		print(k)
+	else:
+		k=k+1
 end=0
 while end==0:
 	try:
-		for h in c_list:
+		for h in list_URL:
 			print (c)
 			print (h)
 			#do=sheet_read.cell(i,0).value
 			do=True
 			if do is True:
 				driver.get(h)
-				time.sleep(4)
+				time.sleep(2)
 				f_ele=0
 				while f_ele<=3:
 					try:
-						ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
+						#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
+						ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
 						driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-						driver.execute_script("window.scrollBy(0,-100);")
+						driver.execute_script("window.scrollBy(0,-700);")
 						#driver.execute_script("window.scrollBy(0,500);")
 						f_ele=6
 						time.sleep(3)
@@ -536,11 +546,13 @@ while end==0:
 						time.sleep(1)
 			#PROFILE
 				html = driver.page_source
-				time.sleep(1)
+				time.sleep(2)
 				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(1)
+				time.sleep(2)
 				try:
 					#GPS
+					#TRUE=in
+					#FALSE=out
 					try:
 						tp_c=soup.find('div', attrs={"class": "gm-style"})
 						tt=tp_c.find('div', attrs={"style": "margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"})
@@ -599,8 +611,8 @@ while end==0:
 							cc=p_c.replace(")","")
 							try:
 								pp=cc.split(' ')
-								cc=pp[1]
-								ws.cell(row=c, column=20).value = pp[0]
+								cc=pp[0]
+								ws.cell(row=c, column=7).value = cc
 							except:
 								pass
 							ws.cell(row=c, column=7).value = cc
@@ -700,30 +712,63 @@ while end==0:
 							ws.cell(row=c, column=16).value = 'X'
 						except:
 							print('no superhote')
-					#AUTONOME
+					#COMMENT PROFIL
 						try:
-							the_tr= soup.find('div', attrs = {'class' : '_vd6w38n'})
+							the_tr= soup.findAll('span', attrs = {'class' : '_pog3hg'})[0]
+							ccc=the_tr.text
+							pp=ccc.split('c')
+							cc=pp[0]
 							#div2=the_tr.findNextSibling('div')
 							#print(the_tr.section.span.div.span.text)
-							ws.cell(row=c, column=17).value = the_tr.section.span.div.span.text
+							if cc=='Identité':
+								cc=0
+							ws.cell(row=c, column=17).value = cc
 							#print(div2.text)
 						except:
-							print('no auto')
-					#CHILDREN
+							print('No Comment profil')
+					#IDENTIFIE CHECK
 						try:
-							the_tr= soup.find('span', text=re.compile(r'\bNe convient pas aux enfants ni aux bébés\b'))
-							ws.cell(row=c, column=18).value = the_tr.text
+							the_tr= soup.find('span', text=re.compile(r"\bIdentité vérifiée\b"))
+							ws.cell(row=c, column=20).value = 'YES'
+							#print(div2.text)
 						except:
-							print('no child')
-					#ANNULATION
+							ws.cell(row=c, column=20).value = 'NO'
+							print('No CHECK ID')
+					#CO HOTE
 						try:
-							the_tr= soup.find('div', text=re.compile(r'\bAnnulation gratuite\b'),attrs = {'class' : '_1qsawv5'})
-							div2=the_tr.findNextSibling('div')
-							ws.cell(row=c, column=19).value = div2.text
+							the_tr= soup.find('ul', attrs = {'class' : '_1omtyzc'})
+							the_tr1= the_tr.findAll('li', attrs = {'class' : '_108byt5'})[0]
+							tt11= the_tr1.find('a', attrs = {'target' : '_blank'})
+							tt12= the_tr1.find('span', attrs = {'class' : '_1kfl0pr'})
+							tt13= the_tr1.find('img', attrs = {'class' : '_6tbg2q'})
+							div1=tt11['href']  #.attrs['href']
+							the_tr2= the_tr.findAll('li', attrs = {'class' : '_108byt5'})[1]
+							tt21= the_tr2.find('a', attrs = {'target' : '_blank'})
+							tt22= the_tr2.find('span', attrs = {'class' : '_1kfl0pr'})
+							tt23= the_tr2.find('img', attrs = {'class' : '_6tbg2q'})
+							div2=tt21['href']  #.attrs['href']
+							ws.cell(row=c, column=50).value = "https://www.airbnb.fr"+str(div1)
+							ws.cell(row=c, column=51).value = tt12.text
+							ws.cell(row=c, column=52).value = tt13['src']
+							ws.cell(row=c, column=53).value = "https://www.airbnb.fr"+str(div2)
+							ws.cell(row=c, column=54).value = tt22.text
+							ws.cell(row=c, column=55).value = tt23['src']
+							ws.cell(row=c, column=18).value = 2
 						except:
-							print('no child')
-
-				#/////NOTATION////
+							try:
+								the_tr= soup.find('ul', attrs = {'class' : '_1omtyzc'})
+								the_tr1= the_tr.find('li', attrs = {'class' : '_108byt5'})
+								tt= the_tr1.find('a', attrs = {'target' : '_blank'})
+								tt2= the_tr1.find('span', attrs = {'class' : '_1kfl0pr'})
+								tt3= the_tr1.find('img', attrs = {'class' : '_6tbg2q'})
+								div1=tt['href']  #.attrs['href']
+								ws.cell(row=c, column=50).value = "https://www.airbnb.fr"+str(div1)
+								ws.cell(row=c, column=51).value = tt2.text
+								ws.cell(row=c, column=52).value = tt3['src']
+								ws.cell(row=c, column=18).value = 1
+							except:
+								ws.cell(row=c, column=18).value = 0
+								print('no co hote')
 					#PROPRETE
 						try:
 							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
@@ -787,7 +832,7 @@ while end==0:
 							ws.cell(row=c, column=28).value = sp[-1]
 						except:
 							print('no taux réponse')
-					#DELAI REPONSE
+				#DELAI REPONSE
 						try:
 							the_tr=soup.find('li', text=re.compile(r'\bDélai\b'))
 							pp=the_tr.text
@@ -796,13 +841,6 @@ while end==0:
 						except:
 							print('no DELAI REPONSE')
 				#DURING SEJOUR
-						try:
-							the_tr=soup.find('div', attrs = {'class' : '_uz1jgk'})
-							tt= the_tr.findAll('div', attrs = {'class' : '_eeq7h0'})[0]
-							ttt=tt.span.text
-							ws.cell(row=c, column=30).value = ttt
-						except:
-							print('no DURING SEJOUR')
 						try:
 							the_tr=soup.findAll('div', attrs={"class": "_1byskwn"})[-1]
 							try:
@@ -859,6 +897,12 @@ while end==0:
 								ws.cell(row=c, column=40).value = tt.text
 							except:
 								print('no detecteur monoxyde')
+							try:
+								tt= the_tr.find('span', text=re.compile(r"\bmatière de distanciation sociale\b"))
+								ws.cell(row=c, column=30).value = 'Y'
+							except:
+								ws.cell(row=c, column=30).value = 'N'
+								print('no distanciation sociale')
 						except:
 							print('no INSIDE RULE')
 				#LANGUE
@@ -948,7 +992,7 @@ while end==0:
 							print('no IMAGE_HOTE')
 						if (c/200).is_integer():
 							wb.save(path_RESULT.filename)
-						ws.cell(row=c, column=49).value = 'YES'
+						ws.cell(row=c, column=k).value = 'YES'
 						c=c+1
 #------------------------
 				except:
@@ -961,8 +1005,8 @@ while end==0:
 						f_xpathdate=0
 						fff=0
 						fm=2
-						driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
-						#driver = webdriver.Chrome()
+						#driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
+						driver = webdriver.Chrome()
 						driver.set_window_size(800, 800)
 						wait3 = WebDriverWait(driver, 3)
 						while f_xpathdate==0:
@@ -986,7 +1030,6 @@ while end==0:
 									driver = webdriver.Chrome()
 									driver.set_window_size(800, 800)
 									wait3 = WebDriverWait(driver, 3)
-
 
 	except:
 		print("END")
