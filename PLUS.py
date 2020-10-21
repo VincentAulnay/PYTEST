@@ -1932,14 +1932,15 @@ print('FIN')
 
 #code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/FIND_NEW_ANNONCE.py'
 
+go=0
+if go==1:
+	try:
+		code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/ADD_COLUMN.py'
 
-try:
-	code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/ADD_COLUMN.py'
-
-	response=urllib.request.urlopen(code)
-	data=response.read()
-	exec(data)
-	run=email(DIR2,NAMEFile,now,total_R,total_L,total_P)
-	print('sent email')
-except:
-	print('rien')
+		response=urllib.request.urlopen(code)
+		data=response.read()
+		exec(data)
+		run=email(DIR2,NAMEFile,now,total_R,total_L,total_P)
+		print('sent email')
+	except:
+		print('rien')
