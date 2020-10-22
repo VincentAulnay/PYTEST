@@ -32,18 +32,6 @@ from shapely.geometry.polygon import Polygon
 import datetime
 import datetime as dt
 
-#--------SELECTION DU FICHIER--------
-path_RESULT = Tk()
-Label1 = Label(path_RESULT, text = "Select File", fg = 'red')
-Label1.pack()
-path_RESULT.filename =  filedialog.askopenfilename(initialdir = "/",title = "Select File",filetypes = (("Excel file","*.xlsx"),("all files","*.*")))
-print (path_RESULT.filename)
-NAMEFile=os.path.splitext(os.path.basename(path_RESULT.filename))[0]
-print(NAMEFile)
-DIR=os.path.dirname(path_RESULT.filename)
-DIR2=DIR+'/'
-print(os.path.dirname(path_RESULT.filename))
-
 #now = str(datetime.date.now())[:19]
 #now = now.replace(":","_")
 now = str(date.today())
@@ -406,7 +394,7 @@ for h in list_URL:
 						link=div['href']
 						#url=link.get_attribute("href")
 						v_url=link.split("?")
-						print (v_url[0])
+						#print (v_url[0])
 						i=i+1
 						
 						#sheet_write2.write(c, 1, 'https://www.airbnb.fr'+str(v_url[0]))
