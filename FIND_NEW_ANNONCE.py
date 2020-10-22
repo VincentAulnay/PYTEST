@@ -1066,4 +1066,8 @@ while end==0:
 	print ('  2- exétuter le .exe N°5 qui lui calcule les nuitées de chaque annonces, à exécuter hebdomadairement')
 	print ('  3- N°6 qui est à utiliser si votre fichier RESULT contient plus de 2000 annonces, il va découper le fichier en lot de moins de 2000 annonces si vous voulez l importer sur GoogleMap')
 	print ('  4- N°7 vous permet de comparer le fichier RESULT avec un autre fichier de liste d annonce que vous possédez déjà, il va alors ajouter dans votre autre fichier les annonces manquante')
-	end=1	
+	end=1
+try:
+	driver.quit()
+except:
+	print('fin')
