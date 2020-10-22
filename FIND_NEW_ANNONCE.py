@@ -610,6 +610,7 @@ while end==0:
 					except:
 						question=True
 						print('NO GPS')
+						ws.cell(row=c, column=70).value = 'NOGPS'
 					if question is True:
 						#sheet.write(c, 12, long_lat[0])
 						#sheet.write(c, 13, long_lat[1])
