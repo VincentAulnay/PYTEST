@@ -58,7 +58,7 @@ sheet_write.write(0, 5, 'F')
 sheet_write.write(1, 5, 'b')
 sheet_write.write(0, 6, 'G')
 
-fromINSEE=1
+fromINSEE=0
 if fromINSEE==1:
 	wb2 = xlrd.open_workbook('INSEE_FRANCE_XML.xls')
 	sheet1 = wb2.sheet_by_index(0)
@@ -128,7 +128,9 @@ else:
 	#olonne
 	#GPS_ORIGIN='{"type": "Polygon", "coordinates": [[[-1.7022587,46.556284], [-1.7022587,46.45638], [-1.8665397,46.45638], [-1.8665397,46.556284]]]}'
 	#angers
-	GPS_ORIGIN='{"type": "Polygon", "coordinates": [[[-0.3343564,47.5825096], [-0.3343564,47.267604], [-0.9328407,47.267604], [-0.9328407,47.5825096]]]}'
+	#GPS_ORIGIN='{"type": "Polygon", "coordinates": [[[-0.3343564,47.5825096], [-0.3343564,47.267604], [-0.9328407,47.267604], [-0.9328407,47.5825096]]]}'
+	GPS_ORIGIN='{"type": "Polygon", "coordinates": [[[5.9192223,50.240395], [5.9192223,48.917916], [3.583670,48.917916], [3.583670,50.240395]]]}'
+	
 	#on supprime les space
 	GPS_sans_space=GPS_ORIGIN.replace(" ","")
 
@@ -210,11 +212,11 @@ while h < nrow:
 	wait = WebDriverWait(driver, 3)
 	locations='aucune annonce'
 	try:
-		print ('ici')
+		#print ('ici')
 		locations = wait.until(EC.presence_of_element_located((By.XPATH, x_p))).text
-		print (locations)
+		#print (locations)
 		n_loc=locations.split(" ")
-		print (n_loc)
+		#print (n_loc)
 		#nb_loc=n_loc[4].replace("+","")
 		n_loc.reverse()
 		nb_loc=n_loc[1]
@@ -224,7 +226,7 @@ while h < nrow:
 		copy_book.save('myFile'+str(now)+'.xls')
 	except:
 		pass
-	print (locations)
+	#print (locations)
 	if locations=='aucune annonce':
 		sheet_write.write(h, 5, 'O')
 		sheet_write.write(h, 6, 0)
@@ -238,14 +240,14 @@ while h < nrow:
 		e_t=sheet_read.cell(h,2).value
 		s_t=sheet_read.cell(h,3).value
 		w_t=sheet_read.cell(h,4).value
-		print (n_t)
-		print (e_t)
-		print (s_t)
-		print (w_t)
+		#print (n_t)
+		#print (e_t)
+		#print (s_t)
+		#print (w_t)
 		div_lat=(Decimal(n_t)-Decimal(s_t))/2
 		div_long=(Decimal(e_t)-Decimal(w_t))/2
-		print (div_lat)
-		print (div_long)
+		#print (div_lat)
+		#print (div_long)
 	#DIVISION 1
 		n_g1=Decimal(n_t)-(div_lat)
 		e_g1=Decimal(e_t)-(div_long)
@@ -509,7 +511,7 @@ print("start extraction details")
 #polygon=Polygon([(2.350834505477619, 48.863344374598334), (2.327877416924118, 48.869863809746434), (2.347826239446091, 48.870630685567946), (2.354114163249875, 48.86927979700135), (2.350834505477619, 48.863344374598334)])
 
 #VERSAILLES
-polygon=Polygon([(2.146395117801802, 48.7908464891847), (2.142014643567137, 48.79233514912969), (2.125014463768882, 48.78083407054695), (2.105472174907891, 48.78074332208332), (2.070251387007021, 48.78981062262139), (2.083161019829898, 48.818952748452425), (2.089120120222795, 48.826337463396264), (2.091738802551524, 48.8238030685563), (2.100586756530543, 48.824139766534394), (2.112676124617275, 48.82851123738547), (2.113987690376982, 48.82187437468609), (2.131007668278255, 48.81486698444451), (2.136072645252615, 48.814939667169654), (2.140437002227598, 48.82446882876733), (2.148475927847977, 48.82849268523683), (2.151465535500457, 48.821408687854955), (2.150744478965478, 48.81884926644504), (2.161274834107939, 48.81278066375281), (2.160154468443745, 48.800324937247375), (2.168168048617256, 48.787870032204715), (2.161929188683613, 48.78223199211193), (2.146395117801802, 48.7908464891847)])
+#polygon=Polygon([(2.146395117801802, 48.7908464891847), (2.142014643567137, 48.79233514912969), (2.125014463768882, 48.78083407054695), (2.105472174907891, 48.78074332208332), (2.070251387007021, 48.78981062262139), (2.083161019829898, 48.818952748452425), (2.089120120222795, 48.826337463396264), (2.091738802551524, 48.8238030685563), (2.100586756530543, 48.824139766534394), (2.112676124617275, 48.82851123738547), (2.113987690376982, 48.82187437468609), (2.131007668278255, 48.81486698444451), (2.136072645252615, 48.814939667169654), (2.140437002227598, 48.82446882876733), (2.148475927847977, 48.82849268523683), (2.151465535500457, 48.821408687854955), (2.150744478965478, 48.81884926644504), (2.161274834107939, 48.81278066375281), (2.160154468443745, 48.800324937247375), (2.168168048617256, 48.787870032204715), (2.161929188683613, 48.78223199211193), (2.146395117801802, 48.7908464891847)])
 
 #MARTILLAC
 #polygon=Polygon([(-0.566461976479953, 44.54605534503501), (-0.601676214501757, 44.55285985236557), (-0.615502791796292, 44.58296692120781), (-0.609008046685042, 44.60364546556298), (-0.619038811778664, 44.61095042862514), (-0.6619057650858861, 44.6087626175587), (-0.694386280213617, 44.64370391840443), (-0.729966737111434, 44.67257549413891), (-0.721742144539515, 44.68114439646803), (-0.65662732785245, 44.68355975040168), (-0.66042725398573, 44.68993207437811), (-0.672078913543385, 44.69481824801064), (-0.64955519919815, 44.72100596663734), (-0.638113761690622, 44.7272407973585), (-0.635703284981555, 44.73024005567959), (-0.645128260959859, 44.73169655392201), (-0.638302988360768, 44.73661663347337), (-0.633985326942008, 44.73593830796983), (-0.632718880232667, 44.74217148515195), (-0.616642192434454, 44.74918679010368), (-0.607622410104385, 44.75723173048317), (-0.590136906201729, 44.76270268236247), (-0.585187455624579, 44.75312966997373), (-0.571356501419781, 44.74405964965744), (-0.562255748275608, 44.74192854372193), (-0.5658157884666259, 44.75200675728984), (-0.540660545025235, 44.76185305655517), (-0.53462259120344, 44.76721886057388), (-0.510893830266989, 44.76909999690599), (-0.5111915025439741, 44.76495405568519), (-0.511578560950593, 44.74583642722698), (-0.501591689732834, 44.73999758637085), (-0.483650238920068, 44.73612976395617), (-0.458048243215631, 44.72667717584467), (-0.448416777206444, 44.72194919998991), (-0.438030215293798, 44.70545692757102), (-0.436840151970893, 44.70417822912138), (-0.433892184161965, 44.70266572453448), (-0.436871442073003, 44.68875876065009), (-0.457059178510567, 44.66861994643612), (-0.441642519281372, 44.65480890650544), (-0.459694058384267, 44.63011315020232), (-0.488561495415893, 44.6269617627626), (-0.488719701862386, 44.61728753564925), (-0.488809427352535, 44.61241855986734), (-0.46708540617104, 44.60544291991868), (-0.481051634606019, 44.59159488660275), (-0.48790043592681, 44.57530270334252), (-0.511297994605287, 44.57001029560205), (-0.54576155958516, 44.56977378565707), (-0.550574420737808, 44.55971544008108), (-0.566461976479953, 44.54605534503501)])
@@ -526,6 +528,7 @@ polygon=Polygon([(2.146395117801802, 48.7908464891847), (2.142014643567137, 48.7
 #polygon=Polygon([(-1.7022587,46.556284), (-1.7022587,46.45638), (-1.8665397,46.45638), (-1.8665397,46.556284)])
 #ANGERS
 #polygon=Polygon([(-0.3343564,47.5825096), (-0.3343564,47.267604), (-0.9328407,47.267604), (-0.9328407,47.5825096)])
+polygon=Polygon([(5.9192223,50.240395), (5.9192223,48.917916), (3.583670,48.917916), (3.583670,50.240395)])
 #-------------------------------------------------------------------------------------------------------------
 #-------------------SCRAP DETAILS
 #-------------------
@@ -553,7 +556,7 @@ while end==0:
 						#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
 						ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
 						driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-						driver.execute_script("window.scrollBy(0,-700);")
+						driver.execute_script("window.scrollBy(0,-800);")
 						#driver.execute_script("window.scrollBy(0,500);")
 						f_ele=6
 						time.sleep(3)
@@ -561,6 +564,7 @@ while end==0:
 						f_ele=f_ele+1
 						time.sleep(1)
 			#PROFILE
+				time.sleep(2)
 				html = driver.page_source
 				time.sleep(2)
 				soup = BeautifulSoup(html, 'html.parser')
@@ -607,14 +611,16 @@ while end==0:
 							div1=soup.find('div', attrs={"class": "_mbmcsn"})
 							ws.cell(row=c, column=1).value = div1.h1.text
 						except:
-							print('NO TITLE')
+							zzzz=1
+							#print('NO TITLE')
 					#URL HOTE
 						try:
 							div=soup.findAll('a', attrs={"class": "_105023be"})[-1]
 							div1=div['href']  #.attrs['href']
 							ws.cell(row=c, column=5).value = "https://www.airbnb.fr"+str(div1)
 						except:
-							print('NO PROFILE')
+							zzzz=1
+							#print('NO PROFILE')
 					#COMMENTAIRE
 						COMMENT='NO COMMENT'
 						#run_price=extract("//span[@class='_wfad8t']",6,COMMENT,c,YN_comment)
@@ -638,7 +644,8 @@ while end==0:
 							#print (table_c)
 							#ws.cell(row=c+1, column=6+1).value = table_c
 						except:
-							print('NOCOMMENT')
+							zzzz=1
+							#print('NOCOMMENT')
 					#VOYAGEUR
 						try:
 							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
@@ -648,7 +655,8 @@ while end==0:
 							p_tp=tt2.split(" ")
 							ws.cell(row=c, column=9).value = p_tp[0]
 						except:
-							print('NO VOYAGER')
+							zzzz=1
+							#print('NO VOYAGER')
 
 					#LITS
 						try:
@@ -659,7 +667,8 @@ while end==0:
 							p_tp=tt2.split(" ")
 							ws.cell(row=c, column=12).value = p_tp[0]
 						except:
-							print('NO LIT')
+							zzzz=1
+							#print('NO LIT')
 					#SdB
 						try:
 							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
@@ -669,7 +678,8 @@ while end==0:
 							p_tp=tt2.split(" ")
 							ws.cell(row=c, column=11).value = p_tp[0]
 						except:
-							print('NO SdB')
+							zzzz=1
+							#print('NO SdB')
 					#CHAMBRE
 						try:
 							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
@@ -679,13 +689,15 @@ while end==0:
 							p_tp=tt2.split(" ")
 							ws.cell(row=c, column=10).value = p_tp[0]
 						except:
-							print('NO CHAMBRE')
+							zzzz=1
+							#print('NO CHAMBRE')
 					#VILLE
 						try:
 							tp_c=soup.find('a', attrs={"class": "_5twioja"}).text
 							ws.cell(row=c, column=13).value = tp_c
 						except:
-							print('NO VILLE')
+							zzzz=1
+							#print('NO VILLE')
 
 
 					#NAME_HOTE
@@ -696,7 +708,8 @@ while end==0:
 							pp=tt1.split('par ')
 							ws.cell(row=c, column=3).value = pp[1]
 						except:
-							print ('NO_NAME')
+							zzzz=1
+							#print ('NO_NAME')
 					#TYPE_HOME
 						try:
 							the_tr= soup.find('div', attrs={"class": "_1b3ij9t"}).text
@@ -708,7 +721,8 @@ while end==0:
 								pp=the_tr.split('.')
 								ws.cell(row=c, column=8).value = pp[0]
 							except:
-								print('NOTYPE')
+								zzzz=1
+								#print('NOTYPE')
 						
 					#ANCIENNETE
 						try:
@@ -717,7 +731,8 @@ while end==0:
 							tt1=tt.div.get_text()
 							ws.cell(row=c, column=4).value = tt1
 						except:
-							print ('NOOLD')
+							zzzz=1
+							#print ('NOOLD')
 
 					#SUPER HOTE
 						try:
@@ -725,7 +740,8 @@ while end==0:
 							tp_c=soup.find('div', attrs={"class": "_1ft6jxp"}).text
 							ws.cell(row=c, column=16).value = 'X'
 						except:
-							print('no superhote')
+							zzzz=1
+							#print('no superhote')
 					#COMMENT PROFIL
 						try:
 							the_tr= soup.findAll('span', attrs = {'class' : '_pog3hg'})[0]
@@ -739,7 +755,8 @@ while end==0:
 							ws.cell(row=c, column=17).value = cc
 							#print(div2.text)
 						except:
-							print('No Comment profil')
+							zzzz=1
+							#print('No Comment profil')
 					#IDENTIFIE CHECK
 						try:
 							the_tr= soup.find('span', text=re.compile(r"\bIdentité vérifiée\b"))
@@ -747,7 +764,7 @@ while end==0:
 							#print(div2.text)
 						except:
 							ws.cell(row=c, column=20).value = 'NO'
-							print('No CHECK ID')
+							#print('No CHECK ID')
 					#CO HOTE
 						try:
 							the_tr= soup.find('ul', attrs = {'class' : '_1omtyzc'})
@@ -782,49 +799,55 @@ while end==0:
 								ws.cell(row=c, column=18).value = 1
 							except:
 								ws.cell(row=c, column=18).value = 0
-								print('no co hote')
+								#print('no co hote')
 					#PROPRETE
 						try:
 							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
 							#print(tt.text)
 							ws.cell(row=c, column=21).value = tt.text
 						except:
-							print('no proprete')
+							zzzz=1
+							#print('no proprete')
 					#PRECISION
 						try:
 							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[1]
 							#print(tt.text)
 							ws.cell(row=c, column=22).value = tt.text
 						except:
-							print('no Precision')
+							zzzz=1
+							#print('no Precision')
 					#COMMUNICATION
 						try:
 							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[2]
 							#print(tt.text)
 							ws.cell(row=c, column=23).value = tt.text
 						except:
-							print('no communication')
+							zzzz=1
+							#print('no communication')
 					#EMPLACEMENT
 						try:
 							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[3]
 							#print(tt.text)
 							ws.cell(row=c, column=24).value = tt.text
 						except:
-							print('no emplacement')
+							zzzz=1
+							#print('no emplacement')
 					#ARRIVEE
 						try:
 							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[4]
 							#print(tt.text)
 							ws.cell(row=c, column=25).value = tt.text
 						except:
-							print('no arrivee')
+							zzzz=1
+							#print('no arrivee')
 					#QUALITY PRICE
 						try:
 							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[5]
 							#print(tt.text)
 							ws.cell(row=c, column=26).value = tt.text
 						except:
-							print('no price quality')
+							zzzz=1
+							#print('no price quality')
 				#N° ENREGISTREMENT
 						try:
 							the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : '_1q2lt74'})
@@ -845,7 +868,8 @@ while end==0:
 							#print(sp[-1])
 							ws.cell(row=c, column=28).value = sp[-1]
 						except:
-							print('no taux réponse')
+							zzzz=1
+							#print('no taux réponse')
 				#DELAI REPONSE
 						try:
 							the_tr=soup.find('li', text=re.compile(r'\bDélai\b'))
@@ -853,7 +877,8 @@ while end==0:
 							sp=pp.split(':')
 							ws.cell(row=c, column=29).value = sp[-1]
 						except:
-							print('no DELAI REPONSE')
+							zzzz=1
+							#print('no DELAI REPONSE')
 				#DURING SEJOUR
 						try:
 							the_tr=soup.findAll('div', attrs={"class": "_1byskwn"})[-1]
@@ -861,27 +886,32 @@ while end==0:
 								tt= the_tr.find('span', text=re.compile(r'\bArrivée\b'))
 								ws.cell(row=c, column=31).value = tt.text
 							except:
-								print('no ARRIVE')
+								zzzz=1
+								#print('no ARRIVE')
 							try:
 								tt= the_tr.find('span', text=re.compile(r'\bDépart\b'))
 								ws.cell(row=c, column=32).value = tt.text
 							except:
-								print('no DEPART')
+								zzzz=1
+								#print('no DEPART')
 							try:
 								tt= the_tr.find('span', text=re.compile(r'\bNon fumeur\b'))
 								ws.cell(row=c, column=33).value = tt.text
 							except:
-								print('no FUMEUR')
+								zzzz=1
+								#print('no FUMEUR')
 							try:
 								tt= the_tr.find('span', text=re.compile(r'\bNe convient pas aux\b'))
 								ws.cell(row=c, column=34).value = tt.text
 							except:
-								print('no CHILD')
+								zzzz=1
+								#print('no CHILD')
 							try:
 								tt= the_tr.find('span', text=re.compile(r"\bArrivée autonome\b"))
 								ws.cell(row=c, column=35).value = tt.text
 							except:
-								print('no AUTOMATIC')
+								zzzz=1
+								#print('no AUTOMATIC')
 							try:
 								tt= the_tr.find('span', text=re.compile(r"\bPas d'animaux\b"))
 								ws.cell(row=c, column=36).value = tt.text
@@ -890,33 +920,38 @@ while end==0:
 									tt= the_tr.find('span', text=re.compile(r"\bAnimaux de compagnie\b"))
 									ws.cell(row=c, column=36).value = tt.text
 								except:
-									print('no ANIMAL')
+									zzzz=1
+									#print('no ANIMAL')
 							try:
 								tt= the_tr.find('span', text=re.compile(r"\bCaution\b"))
 								ws.cell(row=c, column=37).value = tt.text
 							except:
-								print('no Caution')
+								zzzz=1
+								#print('no Caution')
 							try:
 								tt= the_tr.find('span', text=re.compile(r"\bDétecteur de fumée\b"))
 								ws.cell(row=c, column=38).value = tt.text
 							except:
-								print('no detecteur fumee')
+								zzzz=1
+								#print('no detecteur fumee')
 							try:
 								tt= the_tr.find('span', text=re.compile(r"\bDétecteur de monoxyde de carbone\b"))
 								ws.cell(row=c, column=39).value = tt.text
 							except:
-								print('no detecteur monoxyde')
+								zzzz=1
+								#print('no detecteur monoxyde')
 							try:
 								tt= the_tr.find('span', text=re.compile(r"\bPas de fête ni de soirée\b"))
 								ws.cell(row=c, column=40).value = tt.text
 							except:
-								print('no detecteur monoxyde')
+								zzzz=1
+								#print('no detecteur monoxyde')
 							try:
 								tt= the_tr.find('span', text=re.compile(r"\bmatière de distanciation sociale\b"))
 								ws.cell(row=c, column=30).value = 'Y'
 							except:
 								ws.cell(row=c, column=30).value = 'N'
-								print('no distanciation sociale')
+								#print('no distanciation sociale')
 						except:
 							print('no INSIDE RULE')
 				#LANGUE
@@ -928,7 +963,8 @@ while end==0:
 							sp=pp.split(':')
 							ws.cell(row=c, column=41).value = sp[-1]
 						except:
-							print('no LANGUAGE')
+							zzzz=1
+							#print('no LANGUAGE')
 				#IMAGE
 						try:
 							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[0]
@@ -942,7 +978,8 @@ while end==0:
 								tt=the_tr['data-original-uri']
 								ws.cell(row=c, column=42).value = tt
 							except:
-								print('no IMAGE 0')
+								zzzz=1
+								#print('no IMAGE 0')
 						try:
 							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
 							#print(the_tr)
@@ -955,7 +992,8 @@ while end==0:
 								tt=the_tr['data-original-uri']
 								ws.cell(row=c, column=44).value = tt
 							except:
-								print('no IMAGE 1')
+								zzzz=1
+								#print('no IMAGE 1')
 						try:
 							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[2]
 							#print(the_tr)
@@ -968,7 +1006,8 @@ while end==0:
 								tt=the_tr['data-original-uri']
 								ws.cell(row=c, column=45).value = tt
 							except:
-								print('no IMAGE 2')
+								zzzz=1
+								#print('no IMAGE 2')
 						try:
 							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[3]
 							#print(the_tr)
@@ -981,7 +1020,8 @@ while end==0:
 								tt=the_tr['data-original-uri']
 								ws.cell(row=c, column=46).value = tt
 							except:
-								print('no IMAGE 3')
+								zzzz=1
+								#print('no IMAGE 3')
 						try:
 							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[4]
 							#print(the_tr)
@@ -995,7 +1035,8 @@ while end==0:
 								tt=the_tr['data-original-uri']
 								ws.cell(row=c, column=47).value = tt
 							except:
-								print('no IMAGE 4')
+								zzzz=1
+								#print('no IMAGE 4')
 				#IMAGE_HOTE
 						try:
 							the_tr= soup.find('div', attrs={"class": "_5kripx"})
@@ -1003,7 +1044,8 @@ while end==0:
 							tt=t['src']
 							ws.cell(row=c, column=43).value = tt
 						except:
-							print('no IMAGE_HOTE')
+							zzzz=1
+							#print('no IMAGE_HOTE')
 						if (c/200).is_integer():
 							wb.save(path_RESULT.filename)
 						ws.cell(row=c, column=56).value = 'YES'
