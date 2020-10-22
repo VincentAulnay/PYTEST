@@ -539,7 +539,7 @@ wait3 = WebDriverWait(driver, 3)
 end=0
 while end==0:
 	try:
-		for h in list_URL:
+		for h in c_list:
 			print (c)
 			print (h)
 			#do=sheet_read.cell(i,0).value
