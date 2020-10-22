@@ -1855,8 +1855,11 @@ while end==0:
 		print ('FIN')
 		wbx = load_workbook(path_RESULT.filename)
 		ws = wbx.active
-		COMPUTE_M1(name_mois1)
-		COMPUTE_M1(name_mois2)
+		try:
+			COMPUTE_M1(name_mois1)
+			COMPUTE_M1(name_mois2)
+		except:
+			print('no compute')
 		wbx.save(DIR2+NAMEFile+str(now)+".xlsx")
 		try:
 			print('///REPORT///')
