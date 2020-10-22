@@ -32,6 +32,18 @@ from shapely.geometry.polygon import Polygon
 import datetime
 import datetime as dt
 
+#--------SELECTION DU FICHIER AVEC LES NOUVELLES ANNONCES--------
+path_RESULT = Tk()
+Label1 = Label(path_RESULT, text = "Sélectionner le fichier dont les nuitées doivent être calculées", fg = 'red')
+Label1.pack()
+path_RESULT.filename =  filedialog.askopenfilename(initialdir = "/",title = "Sélectionner le fichier dont les nuitées doivent être calculées",filetypes = (("Excel file","*.xlsx"),("all files","*.*")))
+print (path_RESULT.filename)
+NAMEFile=os.path.splitext(os.path.basename(path_RESULT.filename))[0]
+print(NAMEFile)
+DIR=os.path.dirname(path_RESULT.filename)
+DIR2=DIR+'/'
+print(os.path.dirname(path_RESULT.filename))
+
 #now = str(datetime.date.now())[:19]
 #now = now.replace(":","_")
 now = str(date.today())
