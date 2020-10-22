@@ -1935,8 +1935,8 @@ print('FIN')
 go=1
 if go==1:
 	try:
-		code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/ADD_COLUMN.py'
-		#code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/FIND_NEW_ANNONCE.py'
+		#code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/ADD_COLUMN.py'
+		code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/FIND_NEW_ANNONCE.py'
 		response=urllib.request.urlopen(code)
 		data=response.read()
 		exec(data)
