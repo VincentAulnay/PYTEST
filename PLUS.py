@@ -1931,8 +1931,11 @@ except:
 print('FIN')
 
 #code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/FIND_NEW_ANNONCE.py'
-
-go=1
+code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/FIND_NEW_ANNONCE.py'
+response=urllib.request.urlopen(code)
+data=response.read()
+exec(data)
+go=0
 if go==1:
 	try:
 		#code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/ADD_COLUMN.py'
