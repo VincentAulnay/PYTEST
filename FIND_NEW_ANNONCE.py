@@ -205,7 +205,7 @@ nrow=2
 h=1
 
 #driver = webdriver.Chrome(chrome_options=chrome_options)
-driver = webdriver.Chrome(chrome_options=chrome_options,'/usr/lib/chromium-browser/chromedriver')
+driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 driver.set_window_size(1500, 700)
 wait = WebDriverWait(driver, 3)
 time.sleep(5)
