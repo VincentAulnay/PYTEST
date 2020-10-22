@@ -573,6 +573,7 @@ while end==0:
 						f_ele=6
 						time.sleep(3)
 					except:
+						driver.execute_script("window.scrollBy(0,1000);")
 						f_ele=f_ele+1
 						time.sleep(1)
 			#PROFILE
