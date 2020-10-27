@@ -1927,10 +1927,7 @@ while end==0:
 					f_xpathdate=1
 		
 		
-try:
-	rootdriver.quit()
-except:
-	pass
+
 print('FIN')
 
 #code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/FIND_NEW_ANNONCE.py'
@@ -1947,3 +1944,32 @@ if go==1:
 		print('sent email')
 	except:
 		print('rien')
+j=2
+while j<=nrow:
+	#----START TRAQUING----
+	h=ws.cell(row=j, column=2).value
+	rootdriver.get(h)
+	time.sleep(5)
+	while f_ele<6:
+		try:
+			ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+			rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+			f_ele=7
+			ws.cell(row=j, column=cACTIVE).value='YES'
+		except:
+			try:
+				ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+				rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+				f_ele=7
+				ws.cell(row=j, column=cACTIVE).value='YES'
+			except:
+				time.sleep(1)
+		
+		f_ele=f_ele+1
+		if f_ele==6:
+			ws.cell(row=j, column=cACTIVE).value='NO'
+	j=j+1
+try:
+	rootdriver.quit()
+except:
+	pass
