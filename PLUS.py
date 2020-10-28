@@ -1874,8 +1874,8 @@ while end==0:
 			print('sent email')
 		except:
 			print('rien')
-		rootdriver.quit()
-		wbx.close()
+		#rootdriver.quit()
+		#wbx.close()
 	except:
 		print(j)
 		j=j+1
@@ -1969,7 +1969,14 @@ while j<=nrow:
 		if f_ele==6:
 			ws.cell(row=j, column=cACTIVE).value='NO'
 	j=j+1
+wbx = load_workbook(path_RESULT.filename)
+response=urllib.request.urlopen(code)
+data=response.read()
+exec(data)
+run=email(DIR2,NAMEFile,now,total_R,total_L,total_P)
+print('sent email')
 try:
 	rootdriver.quit()
+	wbx.close()
 except:
 	pass
