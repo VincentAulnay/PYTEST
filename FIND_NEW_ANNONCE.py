@@ -1015,7 +1015,8 @@ print(len(c_list))
 print("start extraction details")
 c=nrow+1
 for g in c_list:
-	ws.cell(row=c, column=2).value = g
+	ws.cell(row=c, column=cANNONCE).value = g
+	ws.cell(row=c, column=cNUMERO).value = c
 	c=c+1
 wb.save(path_RESULT.filename)
 nrow2=ws.max_row
@@ -1066,7 +1067,7 @@ while end==0:
 	try:
 		while c<=nrow2:
 			print (str(c-nrow)+'/'+str(c))
-			h=ws.cell(row=c, column=2).value
+			h=ws.cell(row=c, column=cANNONCE).value
 			print (h)
 			if (c/2000).is_integer():
 				driver.quit()
