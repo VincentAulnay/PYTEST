@@ -1122,7 +1122,7 @@ end=0
 while end==0:
 	try:
 		while c<=nrow2:
-			print (str(c-nrow)+'/'+str(c))
+			print (str(c)+'/'+str(nrow2))
 			h=ws.cell(row=c, column=cANNONCE).value
 			print (h)
 			if (c/2000).is_integer():
@@ -1155,7 +1155,7 @@ while end==0:
 					except:
 						#driver.execute_script("window.scrollBy(0,1000);")
 						f_ele=f_ele+1
-						time.sleep(1)
+						time.sleep(2)
 				driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 			#PROFILE
 				html = driver.page_source
