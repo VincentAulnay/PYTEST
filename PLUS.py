@@ -1944,37 +1944,39 @@ if go==1:
 		print('sent email')
 	except:
 		print('rien')
-j=2
-while j<=nrow:
-	#----START TRAQUING----
-	h=ws.cell(row=j, column=2).value
-	rootdriver.get(h)
-	time.sleep(5)
-	while f_ele<6:
-		try:
-			ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
-			rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-			f_ele=7
-			ws.cell(row=j, column=cACTIVE).value='YES'
-		except:
+launch_check=0
+if launche_check==1:
+	j=2
+	while j<=nrow:
+		#----START TRAQUING----
+		h=ws.cell(row=j, column=2).value
+		rootdriver.get(h)
+		time.sleep(5)
+		while f_ele<6:
 			try:
-				ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+				ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 				rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 				f_ele=7
 				ws.cell(row=j, column=cACTIVE).value='YES'
 			except:
-				time.sleep(1)
-		
-		f_ele=f_ele+1
-		if f_ele==6:
-			ws.cell(row=j, column=cACTIVE).value='NO'
-	j=j+1
-wbx = load_workbook(path_RESULT.filename)
-response=urllib.request.urlopen(code)
-data=response.read()
-exec(data)
-run=email(DIR2,NAMEFile,now,total_R,total_L,total_P)
-print('sent email')
+				try:
+					ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+					rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+					f_ele=7
+					ws.cell(row=j, column=cACTIVE).value='YES'
+				except:
+					time.sleep(1)
+
+			f_ele=f_ele+1
+			if f_ele==6:
+				ws.cell(row=j, column=cACTIVE).value='NO'
+		j=j+1
+	wbx = load_workbook(path_RESULT.filename)
+	response=urllib.request.urlopen(code)
+	data=response.read()
+	exec(data)
+	run=email(DIR2,NAMEFile,now,total_R,total_L,total_P)
+	print('sent email')
 try:
 	rootdriver.quit()
 	wbx.close()
