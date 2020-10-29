@@ -503,7 +503,501 @@ except:
 		ws2.cell(row=i, column=2).value = now
 		i=i+1
 		
-
+searchcolumn=1
+if searchcolumn==1:
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='NUMERO':
+				up=1
+			else:
+				i=i+1
+		cNUMERO=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='TITLE':
+				up=1
+			else:
+				i=i+1
+		cTITLE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='ANNONCE':
+				up=1
+			else:
+				i=i+1
+		cANNONCE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='NAME_HOTE':
+				up=1
+			else:
+				i=i+1
+		cNAME_HOTE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='ANCIENNETE':
+				up=1
+			else:
+				i=i+1
+		cANCIENNETE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='HOTE':
+				up=1
+			else:
+				i=i+1
+		cHOTE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='PRICE':
+				up=1
+			else:
+				i=i+1
+		cPRICE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COMMENT':
+				up=1
+			else:
+				i=i+1
+		cCOMMENT=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='TYPE_LOGEMENT':
+				up=1
+			else:
+				i=i+1
+		cTYPE_LOGEMENT=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='VOYAGER':
+				up=1
+			else:
+				i=i+1
+		cVOYAGEUR=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='CHAMBRE':
+				up=1
+			else:
+				i=i+1
+		cCHAMBRE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='SdB':
+				up=1
+			else:
+				i=i+1
+		cSdB=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='LITS':
+				up=1
+			else:
+				i=i+1
+		cLITS=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='VILLE':
+				up=1
+			else:
+				i=i+1
+		cVILLE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='lat':
+				up=1
+			else:
+				i=i+1
+		clat=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='lon':
+				up=1
+			else:
+				i=i+1
+		clon=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='SUPERHOTE':
+				up=1
+			else:
+				i=i+1
+		cSUPERHOTE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COMMENT_PROFIL':
+				up=1
+			else:
+				i=i+1
+		cCOMMENT_PROFIL=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='ID_VERIF':
+				up=1
+			else:
+				i=i+1
+		cID_VERIF=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='NB_ANNONCE':
+				up=1
+			else:
+				i=i+1
+		cNB_ANNONCE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='PROPRETE':
+				up=1
+			else:
+				i=i+1
+		cPROPRETE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='PRECISION':
+				up=1
+			else:
+				i=i+1
+		cPRECISION=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COMMUNICATION':
+				up=1
+			else:
+				i=i+1
+		cCOMMUNICATION=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='EMPLACEMENT':
+				up=1
+			else:
+				i=i+1
+		cEMPLACEMENT=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='ARRIVEE':
+				up=1
+			else:
+				i=i+1
+		cARRIVEE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='QUALITY_PRICE':
+				up=1
+			else:
+				i=i+1
+		cQUALITY_PRICE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='REGISTER':
+				up=1
+			else:
+				i=i+1
+		cREGISTER=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='TAUX_REPONSE':
+				up=1
+			else:
+				i=i+1
+		cTAUX_REPONSE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='DELAI_REPONSE':
+				up=1
+			else:
+				i=i+1
+		cDELAI_REPONSE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='CHECK_IN':
+				up=1
+			else:
+				i=i+1
+		cCHECK_IN=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='CHECK_OUT':
+				up=1
+			else:
+				i=i+1
+		cCHECK_OUT=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='FUMEUR':
+				up=1
+			else:
+				i=i+1
+		cFUMEUR=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='ENFANT':
+				up=1
+			else:
+				i=i+1
+		cENFANT=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='SERRURE':
+				up=1
+			else:
+				i=i+1
+		cSERRURE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='ANIMAUX':
+				up=1
+			else:
+				i=i+1
+		cANIMAUX=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='CAUTION':
+				up=1
+			else:
+				i=i+1
+		cCAUTION=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='FUMEE':
+				up=1
+			else:
+				i=i+1
+		cFUMEE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='MONOXYDE':
+				up=1
+			else:
+				i=i+1
+		cMONOXYDE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='DISTANCIATION_SOCIAL':
+				up=1
+			else:
+				i=i+1
+		cDISTANCIATION_SOCIAL=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='LANGUE':
+				up=1
+			else:
+				i=i+1
+		cLANGUE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='IMAGE_PROFIL':
+				up=1
+			else:
+				i=i+1
+		cIMAGE_PROFIL=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='IMAGE_1':
+				up=1
+			else:
+				i=i+1
+		cIMAGE_1=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='IMAGE_2':
+				up=1
+			else:
+				i=i+1
+		cIMAGE_2=iup=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='IMAGE_3':
+				up=1
+			else:
+				i=i+1
+		cIMAGE_3=iup=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='IMAGE_4':
+				up=1
+			else:
+				i=i+1
+		cIMAGE_4=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='IMAGE_5':
+				up=1
+			else:
+				i=i+1
+		cIMAGE_5=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COHOTE_URL1':
+				up=1
+			else:
+				i=i+1
+		cCOHOTE_URL1=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COHOTE_NAME1':
+				up=1
+			else:
+				i=i+1
+		cCOHOTE_NAME1=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COHOTE_IMAGE1':
+				up=1
+			else:
+				i=i+1
+		cCOHOTE_IMAGE1=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COHOTE_URL2':
+				up=1
+			else:
+				i=i+1
+		cCOHOTE_URL2=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COHOTE_NAME2':
+				up=1
+			else:
+				i=i+1
+		cCOHOTE_NAME2=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='COHOTE_IMAGE2':
+				up=1
+			else:
+				i=i+1
+		cCOHOTE_IMAGE2=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='NB_COHOTE':
+				up=1
+			else:
+				i=i+1
+		cNB_COHOTE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='FETE':
+				up=1
+			else:
+				i=i+1
+		cFETE=i
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='ACTIVE':
+				up=1
+			else:
+				i=i+1
+		cACTIVE=i
 
 
 #list_URL=sheet_read.col_values(1)
