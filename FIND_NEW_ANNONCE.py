@@ -571,7 +571,7 @@ end=0
 while end==0:
 	try:
 		while c<=nrow2:
-			print (c)
+			print (str(c-nrow)+'/'+str(c))
 			h=ws.cell(row=c, column=2).value
 			print (h)
 			if (c/2000).is_integer():
