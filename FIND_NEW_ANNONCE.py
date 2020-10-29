@@ -578,12 +578,12 @@ if searchcolumn==1:
 		i=1
 		while up==0:
 			V_up=ws.cell(row=1, column=i).value
-			if V_up=='COMMENT':
+			if V_up=='COMMENTAIRE':
 				up=1
 			else:
 				i=i+1
 		cCOMMENT=i
-		print('cCOMMENT')
+		print('cCOMMENTAIRE')
 		up=0
 		i=1
 		while up==0:
