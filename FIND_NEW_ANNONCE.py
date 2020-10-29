@@ -519,7 +519,7 @@ if searchcolumn==1:
 		i=1
 		while up==0:
 			V_up=ws.cell(row=1, column=i).value
-			if V_up=='TITLE':
+			if V_up=='TITRE':
 				up=1
 			else:
 				i=i+1
