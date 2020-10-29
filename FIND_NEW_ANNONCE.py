@@ -1148,10 +1148,11 @@ while end==0:
 						ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
 						driver.execute_script("arguments[0].scrollIntoView(true);", ele)
 						#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-						#driver.execute_script("window.scrollBy(0,-800);")
+						time.sleep(2)
+						driver.execute_script("window.scrollBy(0,-800);")
 						#driver.execute_script("window.scrollBy(0,500);")
 						f_ele=6
-						time.sleep(3)
+						time.sleep(2)
 					except:
 						#driver.execute_script("window.scrollBy(0,1000);")
 						f_ele=f_ele+1
@@ -1161,7 +1162,7 @@ while end==0:
 				html = driver.page_source
 				time.sleep(2)
 				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(2)
+				time.sleep(1)
 				try:
 					#GPS
 					try:
