@@ -1080,7 +1080,7 @@ while end==0:
 						if (c/200).is_integer():
 							wb.save(path_RESULT.filename)
 						ws.cell(row=c, column=56).value = 'YES'
-			c=c+1
+
 #------------------------
 				except:
 					try:
@@ -1117,8 +1117,7 @@ while end==0:
 									#driver = webdriver.Chrome()
 									driver.set_window_size(1500, 2000)
 									wait3 = WebDriverWait(driver, 3)
-
-
+			c=c+1
 	except:
 		print("END")
 		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
