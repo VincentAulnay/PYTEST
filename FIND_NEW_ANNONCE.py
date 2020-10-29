@@ -574,6 +574,17 @@ while end==0:
 			print (c)
 			h=ws.cell(row=c, column=2).value
 			print (h)
+			if (c/2000).is_integer():
+				driver.quit()
+				time.sleep(5)
+				driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
+				#driver = webdriver.Chrome()
+				driver.set_window_size(1500, 2000)
+				wait2 = WebDriverWait(driver, 2)
+				wait3 = WebDriverWait(driver, 3)
+				time.sleep(5)
+				driver.get(h)
+				time.sleep(5)
 			#do=sheet_read.cell(i,0).value
 			do=True
 			if do is True:
