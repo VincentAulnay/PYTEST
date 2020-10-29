@@ -598,7 +598,7 @@ if searchcolumn==1:
 		i=1
 		while up==0:
 			V_up=ws.cell(row=1, column=i).value
-			if V_up=='VOYAGER':
+			if V_up=='VOYAGEUR':
 				up=1
 			else:
 				i=i+1
