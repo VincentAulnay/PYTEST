@@ -514,6 +514,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cNUMERO=i
+		print('cNUMERO')
 		up=0
 		i=1
 		while up==0:
@@ -523,6 +524,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cTITLE=i
+		print('cTITLE')
 		up=0
 		i=1
 		while up==0:
@@ -532,6 +534,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cANNONCE=i
+		print('cANNONCE')
 		up=0
 		i=1
 		while up==0:
@@ -550,6 +553,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cANCIENNETE=i
+		print('cANCIENNETE')
 		up=0
 		i=1
 		while up==0:
@@ -559,6 +563,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cHOTE=i
+		print('cHOTE')
 		up=0
 		i=1
 		while up==0:
@@ -568,6 +573,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cPRICE=i
+		print('cPRICE')
 		up=0
 		i=1
 		while up==0:
@@ -577,6 +583,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOMMENT=i
+		print('cCOMMENT')
 		up=0
 		i=1
 		while up==0:
@@ -586,6 +593,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cTYPE_LOGEMENT=i
+		print('cTYPE_LOGEMENT')
 		up=0
 		i=1
 		while up==0:
@@ -595,6 +603,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cVOYAGEUR=i
+		print('cVOYAGEUR')
 		up=0
 		i=1
 		while up==0:
@@ -604,6 +613,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCHAMBRE=i
+		print('cCHAMBRE')
 		up=0
 		i=1
 		while up==0:
@@ -613,6 +623,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cSdB=i
+		print('cSdB')
 		up=0
 		i=1
 		while up==0:
@@ -622,6 +633,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cLITS=i
+		print('cLITS')
 		up=0
 		i=1
 		while up==0:
@@ -631,6 +643,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cVILLE=i
+		print('cVILLE')
 		up=0
 		i=1
 		while up==0:
@@ -640,6 +653,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		clat=i
+		print('clat')
 		up=0
 		i=1
 		while up==0:
@@ -649,6 +663,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		clon=i
+		print('clon')
 		up=0
 		i=1
 		while up==0:
@@ -658,6 +673,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cSUPERHOTE=i
+		print('cSUPERHOTE')
 		up=0
 		i=1
 		while up==0:
@@ -667,6 +683,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOMMENT_PROFIL=i
+		print('cCOMMENT_PROFIL')
 		up=0
 		i=1
 		while up==0:
@@ -676,6 +693,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cID_VERIF=i
+		print('cID_VERIF')
 		up=0
 		i=1
 		while up==0:
@@ -685,6 +703,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cNB_ANNONCE=i
+		print('cNB_ANNONCE')
 		up=0
 		i=1
 		while up==0:
@@ -694,6 +713,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cPROPRETE=i
+		print('cPROPRETE')
 		up=0
 		i=1
 		while up==0:
@@ -703,6 +723,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cPRECISION=i
+		print('cPRECISION')
 		up=0
 		i=1
 		while up==0:
@@ -712,6 +733,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOMMUNICATION=i
+		print('cCOMMUNICATION')
 		up=0
 		i=1
 		while up==0:
@@ -721,6 +743,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cEMPLACEMENT=i
+		print('cEMPLACEMENT')
 		up=0
 		i=1
 		while up==0:
@@ -730,6 +753,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cARRIVEE=i
+		print('cARRIVEE')
 		up=0
 		i=1
 		while up==0:
@@ -739,6 +763,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cQUALITY_PRICE=i
+		print('cQUALITY_PRICE')
 		up=0
 		i=1
 		while up==0:
@@ -748,6 +773,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cREGISTER=i
+		print('cREGISTER')
 		up=0
 		i=1
 		while up==0:
@@ -757,6 +783,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cTAUX_REPONSE=i
+		print('cTAUX_REPONSE')
 		up=0
 		i=1
 		while up==0:
@@ -766,6 +793,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cDELAI_REPONSE=i
+		print('cDELAI_REPONSE')
 		up=0
 		i=1
 		while up==0:
@@ -775,6 +803,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCHECK_IN=i
+		print('cCHECK_IN')
 		up=0
 		i=1
 		while up==0:
@@ -784,6 +813,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCHECK_OUT=i
+		print('cCHECK_OUT')
 		up=0
 		i=1
 		while up==0:
@@ -793,6 +823,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cFUMEUR=i
+		print('cFUMEUR')
 		up=0
 		i=1
 		while up==0:
@@ -802,6 +833,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cENFANT=i
+		print('cENFANT')
 		up=0
 		i=1
 		while up==0:
@@ -811,6 +843,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cSERRURE=i
+		print('cSERRURE')
 		up=0
 		i=1
 		while up==0:
@@ -820,6 +853,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cANIMAUX=i
+		print('cANIMAUX')
 		up=0
 		i=1
 		while up==0:
@@ -829,6 +863,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCAUTION=i
+		print('cCAUTION')
 		up=0
 		i=1
 		while up==0:
@@ -838,6 +873,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cFUMEE=i
+		print('cFUMEE')
 		up=0
 		i=1
 		while up==0:
@@ -847,6 +883,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cMONOXYDE=i
+		print('cMONOXYDE')
 		up=0
 		i=1
 		while up==0:
@@ -856,6 +893,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cDISTANCIATION_SOCIAL=i
+		print('cDISTANCIATION_SOCIAL')
 		up=0
 		i=1
 		while up==0:
@@ -865,6 +903,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cLANGUE=i
+		print('cLANGUE')
 		up=0
 		i=1
 		while up==0:
@@ -874,6 +913,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cIMAGE_PROFIL=i
+		print('cIMAGE_PROFIL')
 		up=0
 		i=1
 		while up==0:
@@ -883,6 +923,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cIMAGE_1=i
+		print('cIMAGE_1')
 		up=0
 		i=1
 		while up==0:
@@ -891,7 +932,9 @@ if searchcolumn==1:
 				up=1
 			else:
 				i=i+1
-		cIMAGE_2=iup=0
+		cIMAGE_2=i
+		print('cIMAGE_2')
+		up=0
 		i=1
 		while up==0:
 			V_up=ws.cell(row=1, column=i).value
@@ -899,7 +942,9 @@ if searchcolumn==1:
 				up=1
 			else:
 				i=i+1
-		cIMAGE_3=iup=0
+		cIMAGE_3=i
+		print('cIMAGE_3')
+		up=0
 		i=1
 		while up==0:
 			V_up=ws.cell(row=1, column=i).value
@@ -908,6 +953,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cIMAGE_4=i
+		print('cIMAGE_4')
 		up=0
 		i=1
 		while up==0:
@@ -917,6 +963,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cIMAGE_5=i
+		print('cIMAGE_5')
 		up=0
 		i=1
 		while up==0:
@@ -926,6 +973,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOHOTE_URL1=i
+		print('cCOHOTE_URL1')
 		up=0
 		i=1
 		while up==0:
@@ -935,6 +983,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOHOTE_NAME1=i
+		print('cCOHOTE_NAME1')
 		up=0
 		i=1
 		while up==0:
@@ -944,6 +993,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOHOTE_IMAGE1=i
+		print('cCOHOTE_IMAGE1')
 		up=0
 		i=1
 		while up==0:
@@ -953,6 +1003,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOHOTE_URL2=i
+		print('cCOHOTE_URL2')
 		up=0
 		i=1
 		while up==0:
@@ -962,6 +1013,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOHOTE_NAME2=i
+		print('cCOHOTE_NAME2')
 		up=0
 		i=1
 		while up==0:
@@ -971,6 +1023,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cCOHOTE_IMAGE2=i
+		print('cCOHOTE_IMAGE2')
 		up=0
 		i=1
 		while up==0:
@@ -980,6 +1033,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cNB_COHOTE=i
+		print('cNB_COHOTE')
 		up=0
 		i=1
 		while up==0:
@@ -989,6 +1043,7 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cFETE=i
+		print('cFETE')
 		up=0
 		i=1
 		while up==0:
@@ -998,11 +1053,12 @@ if searchcolumn==1:
 			else:
 				i=i+1
 		cACTIVE=i
+		print('cACTIVE')
 
 
 #list_URL=sheet_read.col_values(1)
 list_URL=[]
-for col in ws['B']:
+for col in ws['C']:
     list_URL.append(col.value)
 
 
