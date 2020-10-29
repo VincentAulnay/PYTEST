@@ -590,7 +590,7 @@ while end==0:
 			if do is True:
 				driver.get(h)
 				time.sleep(3)
-				f_ele=0
+				f_ele=5
 				while f_ele<=3:
 					try:
 						#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
@@ -604,12 +604,15 @@ while end==0:
 						driver.execute_script("window.scrollBy(0,1000);")
 						f_ele=f_ele+1
 						time.sleep(1)
+				driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+				time.sleep(1)
+				driver.execute_script("window.scrollBy(0,-3500);")
+				time.sleep(3)
 			#PROFILE
-				time.sleep(2)
 				html = driver.page_source
-				time.sleep(2)
+				time.sleep(1)
 				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(2)
+				time.sleep(1)
 				try:
 					#GPS
 					try:
