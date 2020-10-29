@@ -605,11 +605,9 @@ while end==0:
 						f_ele=f_ele+1
 						time.sleep(1)
 				driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-				time.sleep(1)
+				time.sleep(2)
 				driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 				time.sleep(1)
-				driver.execute_script("window.scrollBy(0,-3500);")
-				time.sleep(3)
 			#PROFILE
 				html = driver.page_source
 				time.sleep(1)
