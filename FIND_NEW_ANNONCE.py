@@ -589,7 +589,7 @@ while end==0:
 			do=True
 			if do is True:
 				driver.get(h)
-				time.sleep(3)
+				time.sleep(5)
 				f_ele=5
 				while f_ele<=3:
 					try:
@@ -604,6 +604,8 @@ while end==0:
 						driver.execute_script("window.scrollBy(0,1000);")
 						f_ele=f_ele+1
 						time.sleep(1)
+				driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+				time.sleep(1)
 				driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 				time.sleep(1)
 				driver.execute_script("window.scrollBy(0,-3500);")
