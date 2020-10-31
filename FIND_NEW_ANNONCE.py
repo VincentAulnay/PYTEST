@@ -191,7 +191,7 @@ url_start='https://www.airbnb.fr/s/Olonne~sur~Mer/homes?tab_id=home_tab&search_t
 
 print(url_start)
 
-typ=1
+typ=0
 
 if typ==1:
 	sheet_write.write(1, 0, url_start)
