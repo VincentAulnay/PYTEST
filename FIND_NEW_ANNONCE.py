@@ -70,7 +70,7 @@ sheet_write.write(0, 5, 'F')
 sheet_write.write(1, 5, 'b')
 sheet_write.write(0, 6, 'G')
 
-fromINSEE=2
+fromINSEE=0
 if fromINSEE==1:
 	wb2 = xlrd.open_workbook('INSEE_FRANCE_XML.xls')
 	sheet1 = wb2.sheet_by_index(0)
@@ -191,7 +191,7 @@ url_start='https://www.airbnb.fr/s/Olonne~sur~Mer/homes?tab_id=home_tab&search_t
 
 print(url_start)
 
-typ=0
+typ=1
 
 if typ==1:
 	sheet_write.write(1, 0, url_start)
