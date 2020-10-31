@@ -1945,7 +1945,7 @@ if go==1:
 	except:
 		print('rien')
 launch_check=0
-if launche_check==1:
+if launch_check==1:
 	j=2
 	while j<=nrow:
 		#----START TRAQUING----
