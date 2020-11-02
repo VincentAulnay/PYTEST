@@ -1132,7 +1132,7 @@ while c<=nrow:
 					the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[4]
 					#print(the_tr)
 					tt=the_tr['src']
-					print(tt)
+					#print(tt)
 					ws.cell(row=c, column=cIMAGE_5).value = tt
 				except:
 					try:
