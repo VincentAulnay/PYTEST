@@ -1121,534 +1121,544 @@ wait3 = WebDriverWait(driver, 3)
 
 end=0
 while end==0:
-	try:
-		while c<=nrow2:
-			print (str(c)+'/'+str(nrow2))
-			h=ws.cell(row=c, column=cANNONCE).value
-			print (h)
-			if (c/2000).is_integer():
-				driver.quit()
-				time.sleep(5)
-				driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
-				#driver = webdriver.Chrome()
-				driver.set_window_size(1500, 2000)
-				wait2 = WebDriverWait(driver, 2)
-				wait3 = WebDriverWait(driver, 3)
-				time.sleep(5)
-				driver.get(h)
-				time.sleep(5)
-			#do=sheet_read.cell(i,0).value
-			do=True
-			if do is True:
-				driver.get(h)
-				time.sleep(3)
-				f_ele=0
-				while f_ele<=3:
-					try:
-						#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
-						ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
-						driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-						#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-						time.sleep(2)
-						driver.execute_script("window.scrollBy(0,-800);")
-						#driver.execute_script("window.scrollBy(0,500);")
-						f_ele=6
-						time.sleep(2)
-					except:
-						#driver.execute_script("window.scrollBy(0,1000);")
-						f_ele=f_ele+1
-						time.sleep(2)
-				driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-			#PROFILE
-				html = driver.page_source
-				time.sleep(2)
-				soup = BeautifulSoup(html, 'html.parser')
-				time.sleep(1)
+	while c<=nrow2:
+		print (str(c)+'/'+str(nrow2))
+		h=ws.cell(row=c, column=cANNONCE).value
+		#print (h)
+		if (c/2000).is_integer():
+			driver.quit()
+			time.sleep(5)
+			driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+			driver.set_window_size(1500, 2000)
+			wait = WebDriverWait(driver, 3)
+			wait2 = WebDriverWait(driver, 2)
+			wait3 = WebDriverWait(driver, 3)
+			time.sleep(5)
+			driver.get(h)
+			time.sleep(5)
+		#do=sheet_read.cell(i,0).value
+		do=True
+		if do is True:
+			driver.get(h)
+			time.sleep(3)
+			f_ele=0
+			while f_ele<=3:
 				try:
-					#GPS
+					#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
+					ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
+					driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+					#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+					time.sleep(2)
+					driver.execute_script("window.scrollBy(0,-800);")
+					#driver.execute_script("window.scrollBy(0,500);")
+					f_ele=6
+					time.sleep(2)
+				except:
+					#driver.execute_script("window.scrollBy(0,1000);")
+					f_ele=f_ele+1
+					time.sleep(2)
+			driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+		#PROFILE
+			html = driver.page_source
+			time.sleep(2)
+			soup = BeautifulSoup(html, 'html.parser')
+			time.sleep(1)
+			try:
+				#GPS
+				try:
+					tp_c=soup.find('div', attrs={"class": "gm-style"})
+					tt=tp_c.find('div', attrs={"style": "margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"})
+					tt1=tt.find('a', attrs={"target": "_blank"})
+					tt2=tt1['href']
+					#----------Create translation table----------
+					table = str.maketrans('=&', '++')
+					result_gps = tt2.translate(table)
+					split_gps=result_gps.split("+")
+					#https://www.google.com/maps?ll+46.23657,3.92341+z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
+					#https://maps.google.com/maps?ll=49.19054,-2.11715&z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
+					coor=split_gps[1]
+					long_lat=coor.split(',')
+					#--------------Write results--------------
+					#print(long_lat[0])
+					#print(long_lat[1])
+					point=Point(float(long_lat[1]),float(long_lat[0]))
+					question=polygon.contains(point)
+					#print(question)
+					#sheet.write(c, 12, long_lat[0])
+					#sheet.write(c, 13, long_lat[1])
+					#ws.cell(row=c+1, column=13+1).value = long_lat[0]
+					#ws.cell(row=c+1, column=14+1).value = long_lat[1]
+				except:
+					question=True
+					print('NO GPS')
+				if question is True:
+					#sheet.write(c, 12, long_lat[0])
+					#sheet.write(c, 13, long_lat[1])
 					try:
-						tp_c=soup.find('div', attrs={"class": "gm-style"})
-						tt=tp_c.find('div', attrs={"style": "margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"})
-						tt1=tt.find('a', attrs={"target": "_blank"})
-						tt2=tt1['href']
-						#----------Create translation table----------
-						table = str.maketrans('=&', '++')
-						result_gps = tt2.translate(table)
-						split_gps=result_gps.split("+")
-						#https://www.google.com/maps?ll+46.23657,3.92341+z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
-						#https://maps.google.com/maps?ll=49.19054,-2.11715&z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
-						coor=split_gps[1]
-						long_lat=coor.split(',')
-						#--------------Write results--------------
-						print(long_lat[0])
-						print(long_lat[1])
-						point=Point(float(long_lat[1]),float(long_lat[0]))
-						question=polygon.contains(point)
-						print(question)
-						#sheet.write(c, 12, long_lat[0])
-						#sheet.write(c, 13, long_lat[1])
-						#ws.cell(row=c+1, column=13+1).value = long_lat[0]
-						#ws.cell(row=c+1, column=14+1).value = long_lat[1]
+						ws.cell(row=c, column=cANNONCE).value = h
+						ws.cell(row=c, column=clat).value = long_lat[0]
+						ws.cell(row=c, column=clon).value = long_lat[1]
 					except:
-						question=True
-						print('NO GPS')
-					if question is True:
-						#sheet.write(c, 12, long_lat[0])
-						#sheet.write(c, 13, long_lat[1])
+						ee=1
+				#TITLE
+					try:
+						div1=soup.find('div', attrs={"class": "_mbmcsn"})
+						ws.cell(row=c, column=cTITLE).value = div1.h1.text
+					except:
+						#print('NO TITLE')
+						aaa=1
+				#URL HOTE
+					try:
+						div=soup.findAll('a', attrs={"class": "_105023be"})[-1]
+						div1=div['href']  #.attrs['href']
+						ws.cell(row=c, column=cHOTE).value = "https://www.airbnb.fr"+str(div1)
+					except:
+						#print('NO PROFILE')
+						aaa=1
+				#COMMENTAIRE
+					COMMENT='NO COMMENT'
+					#run_price=extract("//span[@class='_wfad8t']",6,COMMENT,c,YN_comment)
+					try:
+						p_c=[]
+						tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
+						p_c=tp_c.replace("(","")
+						cc=p_c.replace(")","")
 						try:
-							ws.cell(row=c, column=cANNONCE).value = h
-							ws.cell(row=c, column=clat).value = long_lat[0]
-							ws.cell(row=c, column=clon).value = long_lat[1]
-						except:
-							ee=1
-					#TITLE
-						try:
-							div1=soup.find('div', attrs={"class": "_mbmcsn"})
-							ws.cell(row=c, column=cTITLE).value = div1.h1.text
-						except:
-							print('NO TITLE')
-					#URL HOTE
-						try:
-							div=soup.findAll('a', attrs={"class": "_105023be"})[-1]
-							div1=div['href']  #.attrs['href']
-							ws.cell(row=c, column=cHOTE).value = "https://www.airbnb.fr"+str(div1)
-						except:
-							print('NO PROFILE')
-					#COMMENTAIRE
-						COMMENT='NO COMMENT'
-						#run_price=extract("//span[@class='_wfad8t']",6,COMMENT,c,YN_comment)
-						try:
-							p_c=[]
-							tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
-							p_c=tp_c.replace("(","")
-							cc=p_c.replace(")","")
-							try:
-								pp=cc.split(' ')
-								cc=pp[0]
-								ws.cell(row=c, column=cCOMMENT).value = cc
-							except:
-								pass
+							pp=cc.split(' ')
+							cc=pp[0]
 							ws.cell(row=c, column=cCOMMENT).value = cc
-							#print ("COMMENT ===")
-							print(cc)
-							#p_c=tp_c.split("(")
-							#print('ici1')
-							#table_c = p_c[1].replace(")"," ")
-							#print (table_c)
-							#ws.cell(row=c+1, column=6+1).value = table_c
 						except:
-							print('NOCOMMENT')
-					#VOYAGEUR
-						try:
-							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
-							tt=the_tr.find_all('div')[1]
-							tt1=tt.find_all('span')[0]
-							tt2=tt1.text
-							p_tp=tt2.split(" ")
-							ws.cell(row=c, column=cVOYAGEUR).value = p_tp[0]
-						except:
-							print('NO VOYAGER')
+							pass
+						ws.cell(row=c, column=cCOMMENT).value = cc
+						#print ("COMMENT ===")
+						#print(cc)
+						#p_c=tp_c.split("(")
+						#print('ici1')
+						#table_c = p_c[1].replace(")"," ")
+						#print (table_c)
+						#ws.cell(row=c+1, column=6+1).value = table_c
+					except:
+						#print('NOCOMMENT')
+						aaa=1
+				#VOYAGEUR
+					try:
+						the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+						tt=the_tr.find_all('div')[1]
+						tt1=tt.find_all('span')[0]
+						tt2=tt1.text
+						p_tp=tt2.split(" ")
+						ws.cell(row=c, column=cVOYAGEUR).value = p_tp[0]
+					except:
+						#print('NO VOYAGER')
+						aaa=1
 
-					#LITS
-						try:
-							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
-							tt=the_tr.find_all('div')[1]
-							tt1=tt.find_all('span')[4]
-							tt2=tt1.text
-							p_tp=tt2.split(" ")
-							ws.cell(row=c, column=cLITS).value = p_tp[0]
-						except:
-							print('NO LIT')
-					#SdB
-						try:
-							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
-							tt=the_tr.find_all('div')[1]
-							tt1=tt.find_all('span')[6]
-							tt2=tt1.text
-							p_tp=tt2.split(" ")
-							ws.cell(row=c, column=cSdB).value = p_tp[0]
-						except:
-							print('NO SdB')
-					#CHAMBRE
-						try:
-							the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
-							tt=the_tr.find_all('div')[1]
-							tt1=tt.find_all('span')[2]
-							tt2=tt1.text
-							p_tp=tt2.split(" ")
-							ws.cell(row=c, column=cCHAMBRE).value = p_tp[0]
-						except:
-							print('NO CHAMBRE')
-					#VILLE
-						try:
-							tp_c=soup.find('a', attrs={"class": "_5twioja"}).text
-							ws.cell(row=c, column=cVILLE).value = tp_c
-						except:
-							print('NO VILLE')
+				#LITS
+					try:
+						the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+						tt=the_tr.find_all('div')[1]
+						tt1=tt.find_all('span')[4]
+						tt2=tt1.text
+						p_tp=tt2.split(" ")
+						ws.cell(row=c, column=cLITS).value = p_tp[0]
+					except:
+						#print('NO LIT')
+						aaa=1
+				#SdB
+					try:
+						the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+						tt=the_tr.find_all('div')[1]
+						tt1=tt.find_all('span')[6]
+						tt2=tt1.text
+						p_tp=tt2.split(" ")
+						ws.cell(row=c, column=cSdB).value = p_tp[0]
+					except:
+						#print('NO SdB')
+						aaa=1
+				#CHAMBRE
+					try:
+						the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+						tt=the_tr.find_all('div')[1]
+						tt1=tt.find_all('span')[2]
+						tt2=tt1.text
+						p_tp=tt2.split(" ")
+						ws.cell(row=c, column=cCHAMBRE).value = p_tp[0]
+					except:
+						#print('NO CHAMBRE')
+						aaa=1
+				#VILLE
+					try:
+						tp_c=soup.find('a', attrs={"class": "_5twioja"}).text
+						ws.cell(row=c, column=cVILLE).value = tp_c
+					except:
+						#print('NO VILLE')
+						aaa=1
 
 
-					#NAME_HOTE
+				#NAME_HOTE
+					try:
+						tp_c=soup.find('div', attrs={"class": "_f47qa6"})
+						tt=tp_c.find('div', attrs={"class": "_svr7sj"})
+						tt1=tt.h2.get_text()
+						pp=tt1.split('par ')
+						ws.cell(row=c, column=cNAME_HOTE).value = pp[1]
+					except:
+						#print ('NO_NAME')
+						aaa=1
+				#TYPE_HOME
+					try:
+						the_tr= soup.find('div', attrs={"class": "_1b3ij9t"}).text
+						pp=the_tr.split('.')
+						ws.cell(row=c, column=cTYPE_LOGEMENT).value = pp[0]
+					except:
 						try:
-							tp_c=soup.find('div', attrs={"class": "_f47qa6"})
-							tt=tp_c.find('div', attrs={"class": "_svr7sj"})
-							tt1=tt.h2.get_text()
-							pp=tt1.split('par ')
-							ws.cell(row=c, column=cNAME_HOTE).value = pp[1]
-						except:
-							print ('NO_NAME')
-					#TYPE_HOME
-						try:
-							the_tr= soup.find('div', attrs={"class": "_1b3ij9t"}).text
+							the_tr= soup.find('div', attrs={"class": "_xcsyj0"}).text
 							pp=the_tr.split('.')
 							ws.cell(row=c, column=cTYPE_LOGEMENT).value = pp[0]
 						except:
-							try:
-								the_tr= soup.find('div', attrs={"class": "_xcsyj0"}).text
-								pp=the_tr.split('.')
-								ws.cell(row=c, column=cTYPE_LOGEMENT).value = pp[0]
-							except:
-								print('NOTYPE')
-						
-					#ANCIENNETE
-						try:
-							tp_c=soup.find('div', attrs={"class": "_f47qa6"})
-							tt=tp_c.find('div', attrs={"class": "_svr7sj"})
-							tt1=tt.div.get_text()
-							ws.cell(row=c, column=cANCIENNETE).value = tt1
-						except:
-							print ('NOOLD')
+							#print('NOTYPE')
+							aaa=1
 
-					#SUPER HOTE
-						try:
-							#the_tr= soup.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
-							tp_c=soup.find('div', attrs={"class": "_1ft6jxp"}).text
-							ws.cell(row=c, column=cSUPERHOTE).value = 'X'
-						except:
-							print('no superhote')
-					#COMMENT PROFIL
-						try:
-							the_tr= soup.findAll('span', attrs = {'class' : '_pog3hg'})[0]
-							ccc=the_tr.text
-							pp=ccc.split('c')
-							cc=pp[0]
-							#div2=the_tr.findNextSibling('div')
-							#print(the_tr.section.span.div.span.text)
-							if cc=='Identité':
-								cc=0
-							ws.cell(row=c, column=cCOMMENT_PROFIL).value = cc
-							#print(div2.text)
-						except:
-							print('No Comment profil')
-					#IDENTIFIE CHECK
-						try:
-							the_tr= soup.find('span', text=re.compile(r"\bIdentité vérifiée\b"))
-							ws.cell(row=c, column=cID_VERIF).value = 'YES'
-							#print(div2.text)
-						except:
-							ws.cell(row=c, column=cID_VERIF).value = 'NO'
-							print('No CHECK ID')
-					#CO HOTE
+				#ANCIENNETE
+					try:
+						tp_c=soup.find('div', attrs={"class": "_f47qa6"})
+						tt=tp_c.find('div', attrs={"class": "_svr7sj"})
+						tt1=tt.div.get_text()
+						ws.cell(row=c, column=cANCIENNETE).value = tt1
+					except:
+						#print ('NOOLD')
+						aaa=1
+
+				#SUPER HOTE
+					try:
+						#the_tr= soup.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
+						tp_c=soup.find('div', attrs={"class": "_1ft6jxp"}).text
+						ws.cell(row=c, column=cSUPERHOTE).value = 'X'
+					except:
+						#print('no superhote')
+						aaa=1
+				#COMMENT PROFIL
+					try:
+						the_tr= soup.findAll('span', attrs = {'class' : '_pog3hg'})[0]
+						ccc=the_tr.text
+						pp=ccc.split('c')
+						cc=pp[0]
+						#div2=the_tr.findNextSibling('div')
+						#print(the_tr.section.span.div.span.text)
+						if cc=='Identité':
+							cc=0
+						ws.cell(row=c, column=cCOMMENT_PROFIL).value = cc
+						#print(div2.text)
+					except:
+						#print('No Comment profil')
+						aaa=1
+				#IDENTIFIE CHECK
+					try:
+						the_tr= soup.find('span', text=re.compile(r"\bIdentité vérifiée\b"))
+						ws.cell(row=c, column=cID_VERIF).value = 'YES'
+						#print(div2.text)
+					except:
+						ws.cell(row=c, column=cID_VERIF).value = 'NO'
+						#print('No CHECK ID')
+						aaa=1
+				#CO HOTE
+					try:
+						the_tr= soup.find('ul', attrs = {'class' : '_1omtyzc'})
+						the_tr1= the_tr.findAll('li', attrs = {'class' : '_108byt5'})[0]
+						tt11= the_tr1.find('a', attrs = {'target' : '_blank'})
+						tt12= the_tr1.find('span', attrs = {'class' : '_1kfl0pr'})
+						tt13= the_tr1.find('img', attrs = {'class' : '_6tbg2q'})
+						div1=tt11['href']  #.attrs['href']
+						the_tr2= the_tr.findAll('li', attrs = {'class' : '_108byt5'})[1]
+						tt21= the_tr2.find('a', attrs = {'target' : '_blank'})
+						tt22= the_tr2.find('span', attrs = {'class' : '_1kfl0pr'})
+						tt23= the_tr2.find('img', attrs = {'class' : '_6tbg2q'})
+						div2=tt21['href']  #.attrs['href']
+						ws.cell(row=c, column=cCOHOTE_URL1).value = "https://www.airbnb.fr"+str(div1)
+						ws.cell(row=c, column=cCOHOTE_NAME1).value = tt12.text
+						ws.cell(row=c, column=cCOHOTE_IMAGE1).value = tt13['src']
+						ws.cell(row=c, column=cCOHOTE_URL2).value = "https://www.airbnb.fr"+str(div2)
+						ws.cell(row=c, column=cCOHOTE_NAME2).value = tt22.text
+						ws.cell(row=c, column=cCOHOTE_IMAGE2).value = tt23['src']
+						ws.cell(row=c, column=cNB_COHOTE).value = 2
+					except:
 						try:
 							the_tr= soup.find('ul', attrs = {'class' : '_1omtyzc'})
-							the_tr1= the_tr.findAll('li', attrs = {'class' : '_108byt5'})[0]
-							tt11= the_tr1.find('a', attrs = {'target' : '_blank'})
-							tt12= the_tr1.find('span', attrs = {'class' : '_1kfl0pr'})
-							tt13= the_tr1.find('img', attrs = {'class' : '_6tbg2q'})
-							div1=tt11['href']  #.attrs['href']
-							the_tr2= the_tr.findAll('li', attrs = {'class' : '_108byt5'})[1]
-							tt21= the_tr2.find('a', attrs = {'target' : '_blank'})
-							tt22= the_tr2.find('span', attrs = {'class' : '_1kfl0pr'})
-							tt23= the_tr2.find('img', attrs = {'class' : '_6tbg2q'})
-							div2=tt21['href']  #.attrs['href']
+							the_tr1= the_tr.find('li', attrs = {'class' : '_108byt5'})
+							tt= the_tr1.find('a', attrs = {'target' : '_blank'})
+							tt2= the_tr1.find('span', attrs = {'class' : '_1kfl0pr'})
+							tt3= the_tr1.find('img', attrs = {'class' : '_6tbg2q'})
+							div1=tt['href']  #.attrs['href']
 							ws.cell(row=c, column=cCOHOTE_URL1).value = "https://www.airbnb.fr"+str(div1)
-							ws.cell(row=c, column=cCOHOTE_NAME1).value = tt12.text
-							ws.cell(row=c, column=cCOHOTE_IMAGE1).value = tt13['src']
-							ws.cell(row=c, column=cCOHOTE_URL2).value = "https://www.airbnb.fr"+str(div2)
-							ws.cell(row=c, column=cCOHOTE_NAME2).value = tt22.text
-							ws.cell(row=c, column=cCOHOTE_IMAGE2).value = tt23['src']
-							ws.cell(row=c, column=cNB_COHOTE).value = 2
+							ws.cell(row=c, column=cCOHOTE_NAME1).value = tt2.text
+							ws.cell(row=c, column=cCOHOTE_IMAGE1).value = tt3['src']
+							ws.cell(row=c, column=cNB_COHOTE).value = 1
+						except:
+							ws.cell(row=c, column=cNB_COHOTE).value = 0
+							#print('no co hote')
+							aaa=1
+				#PROPRETE
+					try:
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
+						#print(tt.text)
+						ws.cell(row=c, column=cPROPRETE).value = tt.text
+					except:
+						#print('no proprete')
+						aaa=1
+				#PRECISION
+					try:
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[1]
+						#print(tt.text)
+						ws.cell(row=c, column=cPRECISION).value = tt.text
+					except:
+						#print('no Precision')
+						aaa=1
+				#COMMUNICATION
+					try:
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[2]
+						#print(tt.text)
+						ws.cell(row=c, column=cCOMMUNICATION).value = tt.text
+					except:
+						#print('no communication')
+						aaa=1
+				#EMPLACEMENT
+					try:
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[3]
+						#print(tt.text)
+						ws.cell(row=c, column=cEMPLACEMENT).value = tt.text
+					except:
+						#print('no emplacement')
+						aaa=1
+				#ARRIVEE
+					try:
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[4]
+						#print(tt.text)
+						ws.cell(row=c, column=cARRIVEE).value = tt.text
+					except:
+						#print('no arrivee')
+						aaa=1
+				#QUALITY PRICE
+					try:
+						tt= soup.findAll('span', attrs={"class": "_4oybiu"})[5]
+						#print(tt.text)
+						ws.cell(row=c, column=cQUALITY_PRICE).value = tt.text
+					except:
+						#print('no price quality')
+						aaa=1
+			#N° ENREGISTREMENT
+					try:
+						the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : '_1q2lt74'})
+						pp=the_tr.text
+						#print(pp)
+						sp=pp.split(' ')
+						ws.cell(row=c, column=cREGISTER).value = sp[-1]
+					except:
+						a=1
+						#print('no N° enregistrement')
+						aaa=1
+			#TAUX REPONSE
+					try:
+						the_tr=soup.find('li', text=re.compile(r'\bTaux\b'))
+						pp=the_tr.text
+						pp=pp.replace(" ","")
+						#print(pp)
+						sp=pp.split(':')
+						#print(sp[-1])
+						ws.cell(row=c, column=cTAUX_REPONSE).value = sp[-1]
+					except:
+						#print('no taux réponse')
+						aaa=1
+			#DELAI REPONSE
+					try:
+						the_tr=soup.find('li', text=re.compile(r'\bDélai\b'))
+						pp=the_tr.text
+						sp=pp.split(':')
+						ws.cell(row=c, column=cDELAI_REPONSE).value = sp[-1]
+					except:
+						#print('no DELAI REPONSE')
+						aaa=1
+			#DURING SEJOUR
+					try:
+						the_tr=soup.findAll('div', attrs={"class": "_1byskwn"})[-1]
+						try:
+							tt= the_tr.find('span', text=re.compile(r'\bArrivée\b'))
+							ws.cell(row=c, column=cCHECK_IN).value = tt.text
+						except:
+							#print('no ARRIVE')
+							aaa=1
+						try:
+							tt= the_tr.find('span', text=re.compile(r'\bDépart\b'))
+							ws.cell(row=c, column=cCHECK_OUT).value = tt.text
+						except:
+							#print('no DEPART')
+							aaa=1
+						try:
+							tt= the_tr.find('span', text=re.compile(r'\bNon fumeur\b'))
+							ws.cell(row=c, column=cFUMEUR).value = tt.text
+						except:
+							#print('no FUMEUR')
+							aaa=1
+						try:
+							tt= the_tr.find('span', text=re.compile(r'\bNe convient pas aux\b'))
+							ws.cell(row=c, column=cENFANT).value = tt.text
+						except:
+							#print('no CHILD')
+							aaa=1
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bArrivée autonome\b"))
+							ws.cell(row=c, column=cSERRURE).value = tt.text
+						except:
+							#print('no AUTOMATIC')
+							aaa=1
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bPas d'animaux\b"))
+							ws.cell(row=c, column=cANIMAUX).value = tt.text
 						except:
 							try:
-								the_tr= soup.find('ul', attrs = {'class' : '_1omtyzc'})
-								the_tr1= the_tr.find('li', attrs = {'class' : '_108byt5'})
-								tt= the_tr1.find('a', attrs = {'target' : '_blank'})
-								tt2= the_tr1.find('span', attrs = {'class' : '_1kfl0pr'})
-								tt3= the_tr1.find('img', attrs = {'class' : '_6tbg2q'})
-								div1=tt['href']  #.attrs['href']
-								ws.cell(row=c, column=cCOHOTE_URL1).value = "https://www.airbnb.fr"+str(div1)
-								ws.cell(row=c, column=cCOHOTE_NAME1).value = tt2.text
-								ws.cell(row=c, column=cCOHOTE_IMAGE1).value = tt3['src']
-								ws.cell(row=c, column=cNB_COHOTE).value = 1
-							except:
-								ws.cell(row=c, column=cNB_COHOTE).value = 0
-								print('no co hote')
-					#PROPRETE
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
-							#print(tt.text)
-							ws.cell(row=c, column=cPROPRETE).value = tt.text
-						except:
-							print('no proprete')
-					#PRECISION
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[1]
-							#print(tt.text)
-							ws.cell(row=c, column=cPRECISION).value = tt.text
-						except:
-							print('no Precision')
-					#COMMUNICATION
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[2]
-							#print(tt.text)
-							ws.cell(row=c, column=cCOMMUNICATION).value = tt.text
-						except:
-							print('no communication')
-					#EMPLACEMENT
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[3]
-							#print(tt.text)
-							ws.cell(row=c, column=cEMPLACEMENT).value = tt.text
-						except:
-							print('no emplacement')
-					#ARRIVEE
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[4]
-							#print(tt.text)
-							ws.cell(row=c, column=cARRIVEE).value = tt.text
-						except:
-							print('no arrivee')
-					#QUALITY PRICE
-						try:
-							tt= soup.findAll('span', attrs={"class": "_4oybiu"})[5]
-							#print(tt.text)
-							ws.cell(row=c, column=cQUALITY_PRICE).value = tt.text
-						except:
-							print('no price quality')
-				#N° ENREGISTREMENT
-						try:
-							the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : '_1q2lt74'})
-							pp=the_tr.text
-							#print(pp)
-							sp=pp.split(' ')
-							ws.cell(row=c, column=cREGISTER).value = sp[-1]
-						except:
-							a=1
-							#print('no N° enregistrement')				
-				#TAUX REPONSE
-						try:
-							the_tr=soup.find('li', text=re.compile(r'\bTaux\b'))
-							pp=the_tr.text
-							pp=pp.replace(" ","")
-							#print(pp)
-							sp=pp.split(':')
-							#print(sp[-1])
-							ws.cell(row=c, column=cTAUX_REPONSE).value = sp[-1]
-						except:
-							print('no taux réponse')
-				#DELAI REPONSE
-						try:
-							the_tr=soup.find('li', text=re.compile(r'\bDélai\b'))
-							pp=the_tr.text
-							sp=pp.split(':')
-							ws.cell(row=c, column=cDELAI_REPONSE).value = sp[-1]
-						except:
-							print('no DELAI REPONSE')
-				#DURING SEJOUR
-						try:
-							the_tr=soup.findAll('div', attrs={"class": "_1byskwn"})[-1]
-							try:
-								tt= the_tr.find('span', text=re.compile(r'\bArrivée\b'))
-								ws.cell(row=c, column=cCHECK_IN).value = tt.text
-							except:
-								print('no ARRIVE')
-							try:
-								tt= the_tr.find('span', text=re.compile(r'\bDépart\b'))
-								ws.cell(row=c, column=cCHECK_OUT).value = tt.text
-							except:
-								print('no DEPART')
-							try:
-								tt= the_tr.find('span', text=re.compile(r'\bNon fumeur\b'))
-								ws.cell(row=c, column=cFUMEUR).value = tt.text
-							except:
-								print('no FUMEUR')
-							try:
-								tt= the_tr.find('span', text=re.compile(r'\bNe convient pas aux\b'))
-								ws.cell(row=c, column=cENFANT).value = tt.text
-							except:
-								print('no CHILD')
-							try:
-								tt= the_tr.find('span', text=re.compile(r"\bArrivée autonome\b"))
-								ws.cell(row=c, column=cSERRURE).value = tt.text
-							except:
-								print('no AUTOMATIC')
-							try:
-								tt= the_tr.find('span', text=re.compile(r"\bPas d'animaux\b"))
+								tt= the_tr.find('span', text=re.compile(r"\bAnimaux de compagnie\b"))
 								ws.cell(row=c, column=cANIMAUX).value = tt.text
 							except:
-								try:
-									tt= the_tr.find('span', text=re.compile(r"\bAnimaux de compagnie\b"))
-									ws.cell(row=c, column=cANIMAUX).value = tt.text
-								except:
-									print('no ANIMAL')
-							try:
-								tt= the_tr.find('span', text=re.compile(r"\bCaution\b"))
-								ws.cell(row=c, column=cCAUTION).value = tt.text
-							except:
-								print('no Caution')
-							try:
-								tt= the_tr.find('span', text=re.compile(r"\bDétecteur de fumée\b"))
-								ws.cell(row=c, column=cFUMEE).value = tt.text
-							except:
-								print('no detecteur fumee')
-							try:
-								tt= the_tr.find('span', text=re.compile(r"\bDétecteur de monoxyde de carbone\b"))
-								ws.cell(row=c, column=cMONOXYDE).value = tt.text
-							except:
-								print('no detecteur monoxyde')
-							try:
-								tt= the_tr.find('span', text=re.compile(r"\bPas de fête ni de soirée\b"))
-								ws.cell(row=c, column=cFETE).value = tt.text
-							except:
-								print('no detecteur monoxyde')
-							try:
-								tt= the_tr.find('span', text=re.compile(r"\bmatière de distanciation sociale\b"))
-								ws.cell(row=c, column=cDISTANCIATION_SOCIAL).value = 'Y'
-							except:
-								ws.cell(row=c, column=cDISTANCIATION_SOCIAL).value = 'N'
-								print('no distanciation sociale')
-						except:
-							print('no INSIDE RULE')
-				#LANGUE
+								#print('no ANIMAL')
+								aaa=1
 						try:
-							the_tr= soup.find('li', text=re.compile(r'\bLangues\b'))
-							#print(the_tr)
-							pp=the_tr.text
-							#print(pp)
-							sp=pp.split(':')
-							ws.cell(row=c, column=cLANGUE).value = sp[-1]
+							tt= the_tr.find('span', text=re.compile(r"\bCaution\b"))
+							ws.cell(row=c, column=cCAUTION).value = tt.text
 						except:
-							print('no LANGUAGE')
-				#IMAGE
+							#print('no Caution')
+							aaa=1
 						try:
-							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[0]
+							tt= the_tr.find('span', text=re.compile(r"\bDétecteur de fumée\b"))
+							ws.cell(row=c, column=cFUMEE).value = tt.text
+						except:
+							#print('no detecteur fumee')
+							aaa=1
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bDétecteur de monoxyde de carbone\b"))
+							ws.cell(row=c, column=cMONOXYDE).value = tt.text
+						except:
+							#print('no detecteur monoxyde')
+							aaa=1
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bPas de fête ni de soirée\b"))
+							ws.cell(row=c, column=cFETE).value = tt.text
+						except:
+							#print('no detecteur monoxyde')
+							aaa=1
+						try:
+							tt= the_tr.find('span', text=re.compile(r"\bmatière de distanciation sociale\b"))
+							ws.cell(row=c, column=cDISTANCIATION_SOCIAL).value = 'Y'
+						except:
+							ws.cell(row=c, column=cDISTANCIATION_SOCIAL).value = 'N'
+							#print('no distanciation sociale')
+					except:
+						#print('no INSIDE RULE')
+						aaa=1
+			#LANGUE
+					try:
+						the_tr= soup.find('li', text=re.compile(r'\bLangues\b'))
+						#print(the_tr)
+						pp=the_tr.text
+						#print(pp)
+						sp=pp.split(':')
+						ws.cell(row=c, column=cLANGUE).value = sp[-1]
+					except:
+						#print('no LANGUAGE')
+						aaa=1
+			#IMAGE
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[0]
+						#print(the_tr)
+						tt=the_tr['src']
+						ws.cell(row=c, column=cIMAGE_1).value = tt
+					except:
+						try:
+							the_tr= soup.find('img', attrs={"class": "_6tbg2q"})
 							#print(the_tr)
-							tt=the_tr['src']
+							tt=the_tr['data-original-uri']
 							ws.cell(row=c, column=cIMAGE_1).value = tt
 						except:
-							try:
-								the_tr= soup.find('img', attrs={"class": "_6tbg2q"})
-								#print(the_tr)
-								tt=the_tr['data-original-uri']
-								ws.cell(row=c, column=cIMAGE_1).value = tt
-							except:
-								print('no IMAGE 0')
+							#print('no IMAGE 0')
+							aaa=1
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
+						#print(the_tr)
+						tt=the_tr['src']
+						ws.cell(row=c, column=cIMAGE_2).value = tt
+					except:
 						try:
-							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
+							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[1]
 							#print(the_tr)
-							tt=the_tr['src']
+							tt=the_tr['data-original-uri']
 							ws.cell(row=c, column=cIMAGE_2).value = tt
 						except:
-							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[1]
-								#print(the_tr)
-								tt=the_tr['data-original-uri']
-								ws.cell(row=c, column=cIMAGE_2).value = tt
-							except:
-								print('no IMAGE 1')
+							#print('no IMAGE 1')
+							aaa=1
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[2]
+						#print(the_tr)
+						tt=the_tr['src']
+						ws.cell(row=c, column=cIMAGE_3).value = tt
+					except:
 						try:
-							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[2]
+							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[2]
 							#print(the_tr)
-							tt=the_tr['src']
+							tt=the_tr['data-original-uri']
 							ws.cell(row=c, column=cIMAGE_3).value = tt
 						except:
-							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[2]
-								#print(the_tr)
-								tt=the_tr['data-original-uri']
-								ws.cell(row=c, column=cIMAGE_3).value = tt
-							except:
-								print('no IMAGE 2')
+							#print('no IMAGE 2')
+							aaa=1
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[3]
+						#print(the_tr)
+						tt=the_tr['src']
+						ws.cell(row=c, column=cIMAGE_4).value = tt
+					except:
 						try:
-							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[3]
+							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[3]
 							#print(the_tr)
-							tt=the_tr['src']
+							tt=the_tr['data-original-uri']
 							ws.cell(row=c, column=cIMAGE_4).value = tt
 						except:
-							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[3]
-								#print(the_tr)
-								tt=the_tr['data-original-uri']
-								ws.cell(row=c, column=cIMAGE_4).value = tt
-							except:
-								print('no IMAGE 3')
+							#print('no IMAGE 3')
+							aaa=1
+					try:
+						the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[4]
+						#print(the_tr)
+						tt=the_tr['src']
+						print(tt)
+						ws.cell(row=c, column=cIMAGE_5).value = tt
+					except:
 						try:
-							the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[4]
+							the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[4]
 							#print(the_tr)
-							tt=the_tr['src']
-							print(tt)
+							tt=the_tr['data-original-uri']
 							ws.cell(row=c, column=cIMAGE_5).value = tt
 						except:
-							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[4]
-								#print(the_tr)
-								tt=the_tr['data-original-uri']
-								ws.cell(row=c, column=cIMAGE_5).value = tt
-							except:
-								print('no IMAGE 4')
-				#IMAGE_HOTE
-						try:
-							the_tr= soup.find('div', attrs={"class": "_5kripx"})
-							t= the_tr.find('img', attrs={"class": "_6tbg2q"})
-							tt=t['src']
-							ws.cell(row=c, column=cIMAGE_PROFIL).value = tt
-						except:
-							print('no IMAGE_HOTE')
-						if (c/200).is_integer():
-							wb.save(path_RESULT.filename)
-						ws.cell(row=c, column=cACTIVE).value = 'YES'
-#------------------------
-				except:
+							#print('no IMAGE 4')
+							aaa=1
+			#IMAGE_HOTE
 					try:
-						#page sans annonce, je dois trouver quelque soit le type
-						wait3.until(EC.presence_of_element_located((By.XPATH, "//h3[@class='_jmmm34f']")))
+						the_tr= soup.find('div', attrs={"class": "_5kripx"})
+						t= the_tr.find('img', attrs={"class": "_6tbg2q"})
+						tt=t['src']
+						ws.cell(row=c, column=cIMAGE_PROFIL).value = tt
 					except:
-						# rien tourvé précédent, donc c'est que je suis sur mauvais design, clos et reopen chrome
-						driver.quit()
-						f_xpathdate=0
-						fff=0
-						fm=2
-						driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
-						#driver = webdriver.Chrome()
-						driver.set_window_size(1500, 2000)
-						wait3 = WebDriverWait(driver, 3)
-						while f_xpathdate==0:
-							h=ws.cell(row=fm, column=2).value
-							print(h)
-							if fff==10:
-								f_mounth=1
-								f_xpathdate=1
-								end=0
-							fff=fff+1
-							try:
-								driver.get(h)
-								time.sleep(4)
-								x_date = wait3.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-								print("x date trouve")
-								f_xpathdate=1
-							except:
-								if fff!=10:
-									driver.quit()
-									driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
-									#driver = webdriver.Chrome()
-									driver.set_window_size(1500, 2000)
-									wait3 = WebDriverWait(driver, 3)
-			c=c+1
-	except:
-		print("END")
-		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
-		#driver = webdriver.Chrome()
-		#driver.set_window_size(800, 1500)
-		wb.save(path_RESULT.filename)
+						#print('no IMAGE_HOTE')
+						aaa=1
+					ws.cell(row=c, column=cACTIVE).value = 'YES'
+					if (c/200).is_integer():
+						wb.save(path_RESULT.filename)
+						time.sleep(5)
+	#------------------------
+			except:
+				try:
+					driver.quit()
+					time.sleep(5)
+				except:
+					time.sleep(5)
+				driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+				driver.set_window_size(1500, 2000)
+				wait = WebDriverWait(driver, 3)
+		c=c+1
 	wb.save(path_RESULT.filename)
 	print ('_______    ___    ___     ___')
 	print ('|      |   |  |   |  \    |  |')
