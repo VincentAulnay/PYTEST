@@ -617,8 +617,8 @@ if searchcolumn==1:
 		cACTIVE=i
 		print('cACTIVE')
 
-#driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-driver = webdriver.Chrome(chrome_options=chrome_options)
+driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+#driver = webdriver.Chrome(chrome_options=chrome_options)
 driver.set_window_size(1500, 2000)
 
 #c = ligne 2 du xls resultant
@@ -630,12 +630,13 @@ wait3 = WebDriverWait(driver, 3)
 while c<=nrow:
 	print (str(c)+'/'+str(nrow))
 	h=ws.cell(row=c, column=cANNONCE).value
+	numero=ws.cell(row=c, column=1).value
 	#print (h)
 	if (c/2000).is_integer():
 		driver.quit()
 		time.sleep(5)
-		#driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-		driver = webdriver.Chrome(chrome_options=chrome_options)
+		driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+		#driver = webdriver.Chrome(chrome_options=chrome_options)
 		driver.set_window_size(1500, 2000)
 		wait = WebDriverWait(driver, 3)
 		wait2 = WebDriverWait(driver, 2)
@@ -644,8 +645,7 @@ while c<=nrow:
 		driver.get(h)
 		time.sleep(5)
 	#do=sheet_read.cell(i,0).value
-	do=True
-	if do is True:
+	if numero is not None:
 		driver.get(h)
 		time.sleep(3)
 		f_ele=0
@@ -1163,8 +1163,8 @@ while c<=nrow:
 				time.sleep(5)
 			except:
 				time.sleep(5)
-			#driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-			driver = webdriver.Chrome(chrome_options=chrome_options)
+			driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+			#driver = webdriver.Chrome(chrome_options=chrome_options)
 			driver.set_window_size(1500, 2000)
 			wait = WebDriverWait(driver, 3)
 	c=c+1
