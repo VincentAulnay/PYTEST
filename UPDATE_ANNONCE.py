@@ -645,7 +645,7 @@ while c<=nrow:
 		driver.get(h)
 		time.sleep(5)
 	#do=sheet_read.cell(i,0).value
-	if numero is not None:
+	if numero is None:
 		driver.get(h)
 		time.sleep(3)
 		f_ele=0
