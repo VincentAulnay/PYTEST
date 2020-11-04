@@ -632,18 +632,6 @@ while c<=nrow:
 	h=ws.cell(row=c, column=cANNONCE).value
 	numero=ws.cell(row=c, column=1).value
 	#print (h)
-	if (c/2000).is_integer():
-		driver.quit()
-		time.sleep(5)
-		driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-		#driver = webdriver.Chrome(chrome_options=chrome_options)
-		driver.set_window_size(1500, 2000)
-		wait = WebDriverWait(driver, 3)
-		wait2 = WebDriverWait(driver, 2)
-		wait3 = WebDriverWait(driver, 3)
-		time.sleep(5)
-		driver.get(h)
-		time.sleep(5)
 	#do=sheet_read.cell(i,0).value
 	if numero is None:
 		driver.get(h)
@@ -1155,6 +1143,18 @@ while c<=nrow:
 				ws.cell(row=c, column=cACTIVE).value = 'YES'
 				if (c/200).is_integer():
 					wb.save(path_RESULT.filename)
+					time.sleep(5)
+				if (c/2000).is_integer():
+					driver.quit()
+					time.sleep(5)
+					driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+					#driver = webdriver.Chrome(chrome_options=chrome_options)
+					driver.set_window_size(1500, 2000)
+					wait = WebDriverWait(driver, 3)
+					wait2 = WebDriverWait(driver, 2)
+					wait3 = WebDriverWait(driver, 3)
+					time.sleep(5)
+					driver.get(h)
 					time.sleep(5)
 #------------------------
 		except:
