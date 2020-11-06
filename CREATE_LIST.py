@@ -270,7 +270,7 @@ if typ==1:
 	sheet_write.write(1, 4, min(l_min))#2 W
 	url_start='https://www.airbnb.fr/s/Olonne~sur~Mer/homes?tab_id=home_tab&search_type=unknown&ne_lat='+str(max(l_max))+'&ne_lng='+str(max(l_min))+'& sw_lat='+str(min(l_max))+'&sw_lng=-'+str(min(l_min))+'&zoom=17&search_by_map=true'
 
-elif typ=2:
+elif typ==2:
 	url_start='https://www.airbnb.fr/s/Olonne~sur~Mer/homes?tab_id=home_tab&search_type=unknown&ne_lat='+str(max(l_max))+'&ne_lng='+str(min(l_min))+'& sw_lat='+str(min(l_max))+'&sw_lng=-'+str(max(l_min))+'&zoom=17&search_by_map=true'
 	sheet_write.write(1, 0, url_start)
 	sheet_write.write(1, 1, max(l_max))#3 N
