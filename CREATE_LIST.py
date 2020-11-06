@@ -258,7 +258,7 @@ else:
 #https://www.airbnb.fr/s/toto/homes?refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&sw_lat=47.54160887370493&sw_lng=1.355879995800566&ne_lat=47.620619985628096&ne_lng=1.254120619005437&zoom=14&search_by_map=true&map_toggle=true
 #url_start='https://www.airbnb.fr/s/toto/homes?refinement_paths%5B%5D=%2Fhomes&current_tab_id=home_tab&selected_tab_id=home_tab&allow_override%5B%5D=&sw_lat='+str(min(l_max))+'&sw_lng='+str(min(l_min))+'&ne_lat='+str(max(l_max))+'&ne_lng='+str(max(l_min))
 #url_start='https://www.airbnb.fr/s/Olonne~sur~Mer/homes?refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&sw_lat='+str(min(l_max))+'&sw_lng='+str(min(l_min))+'&ne_lat='+str(max(l_max))+'&ne_lng='+str(max(l_min))+'&zoom=14&search_by_map=true&map_toggle=true'
-
+#ttt
 typ=3
 
 if typ==1:
