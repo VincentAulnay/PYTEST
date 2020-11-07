@@ -624,6 +624,31 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	t_add='vide'
 	t_rem='vide'
 	t_wri='vide'
+	#COMMENTAIRE
+	#print('comment')
+	ONC=ONCOM
+	write_c=0
+	if ONC==1:
+		try:
+			olcc=ws.cell(row=j, column=c_write+2).value
+			tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
+			#print(tp_c)
+			p_c=tp_c.replace("(","")
+			cc=p_c.replace(")","")
+			try:
+				pp=cc.split(' ')
+				#print(pp)
+				cc=pp[1]
+			except:
+				pass
+			ws.cell(row=j, column=c_write+2).value=cc
+			if oldcc!=cc:
+				write_c=1
+				t_com='/C'+toto
+			#print(cc)
+		except:
+			pass
+	
 	if len(c_added)>0:
 		R=1
 		if len(c_added)==1:
@@ -662,8 +687,12 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 		else:
 			if t_rem!='vide':
 				t_wri=str(t_rem)
+		if write_c==1:
+			t_wri=t_wri+';    '+str(t_com)
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
+
+	
 	if t_wri!='vide':
 		#print(t_wri)
 		ws.cell(row=j, column=c_write).value=t_wri
@@ -675,25 +704,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 		R2=R
 		L2=L
 		P2=P
-	#COMMENTAIRE
-	#print('comment')
-	ONC=ONCOM
-	if ONC==1:
-		try:
-			tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
-			#print(tp_c)
-			p_c=tp_c.replace("(","")
-			cc=p_c.replace(")","")
-			try:
-				pp=cc.split(' ')
-				#print(pp)
-				cc=pp[1]
-			except:
-				pass
-			ws.cell(row=j, column=c_write+2).value=cc
-			#print(cc)
-		except:
-			pass
+
 
 def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	global R3
