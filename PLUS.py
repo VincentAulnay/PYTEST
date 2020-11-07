@@ -1558,17 +1558,34 @@ def checkmounth(name_mois1,bouton_mois_suivant):
 		nmount=11
 	elif name_mois1=='décembre 2020':
 		nmount=12
-	elif name_mois1=='janvier 2020':
+	elif name_mois1=='janvier 2021':
 		nmount=1
-	elif name_mois1=='février 2020':
+	elif name_mois1=='février 2021':
 		nmount=2
-	elif name_mois1=='mars 2020':
+	elif name_mois1=='mars 2021':
 		nmount=3
-	elif name_mois1=='avril 2020':
+	elif name_mois1=='avril 2021':
 		nmount=4
+	elif name_mois1=='mai 2021':
+		nmount=5
+	elif name_mois1=='juin 2021':
+		nmount=6
+	elif name_mois1=='juillet 2021':
+		nmount=7
+	elif name_mois1=='août 2021':
+		nmount=8
+	elif name_mois1=='septembre 2021':
+		nmount=9
+	elif name_mois1=='octobre 2021':
+		nmount=10
+	elif name_mois1=='novembre 2021':
+		nmount=11
+	elif name_mois1=='decembre 2021':
+		nmount=12
 
 		
 	if which_mount!=name_mois1:
+		print('check on')
 		if which_mount=='septembre 2020':
 			goback=9
 		elif which_mount=='octobre 2020':
@@ -1591,6 +1608,16 @@ def checkmounth(name_mois1,bouton_mois_suivant):
 			goback=6
 		elif which_mount=='juillet 2021':
 			goback=7
+		elif which_mount=='août 2021':
+			goback=8
+		elif which_mount=='septembre 2021':
+			goback=9
+		elif which_mount=='octobre 2021':
+			goback=10
+		elif which_mount=='novembre 2021':
+			goback=11
+		elif which_mount=='decembre 2021':
+			goback=12
 		
 		if goback<nmount:
 			backnumber=12-nmount+goback
