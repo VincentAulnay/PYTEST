@@ -244,8 +244,8 @@ else:
 		l_min=[-0.1394017, -2.1716267]
 #-0.1394017	50.262211	-2.1716267	49.269973
 	elif zone =='AUTRE':
-		l_max=[50.806257, 50.250767]
-		l_min=[1.8620113, 0.8687483]
+		l_max=[47.855419, 46.864254]
+		l_min=[-0.8813367, -2.6259787]
 	
 	
 	print(max(l_max)) #ne_lat N
@@ -303,7 +303,8 @@ driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_option
 driver.set_window_size(1500, 2000)
 wait = WebDriverWait(driver, 3)
 time.sleep(5)
-x_p="//div[@class='_1h559tl']"
+#x_p="//div[@class='_1h559tl']"
+x_p="//div[@class='_1snxcqc']"
 while h < nrow:
 
 	print (h)
@@ -330,7 +331,7 @@ while h < nrow:
 		copy_book.save('myFile'+str(now)+'.xls')
 	except:
 		pass
-	#print (locations)
+	print (locations)
 	if locations=='aucune annonce':
 		sheet_write.write(h, 5, 'O')
 		sheet_write.write(h, 6, 0)
