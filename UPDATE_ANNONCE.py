@@ -1156,6 +1156,7 @@ while c<=nrow:
 					time.sleep(5)
 					driver.get(h)
 					time.sleep(5)
+					wb.save(DIR2+NAMEFile+str(c)+".xlsx")
 #------------------------
 		except:
 			try:
