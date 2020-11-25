@@ -375,7 +375,7 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
-	toto=str(date)+'-'+str(month)
+	toto=str(date).zfill(2)+'-'+str(month).zfill(2)
 	t_add='vide'
 	t_rem='vide'
 	t_wri='vide'
@@ -494,7 +494,7 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
-	toto=str(date)+'-'+str(month)
+	toto=str(date).zfill(2)+'-'+str(month).zfill(2)
 	t_add='vide'
 	t_rem='vide'
 	t_wri='vide'
@@ -620,7 +620,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
-	toto=str(date)+'-'+str(month)
+	toto=str(date).zfill(2)+'-'+str(month).zfill(2)
 	t_add='vide'
 	t_rem='vide'
 	t_wri='vide'
@@ -785,7 +785,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
-	toto=str(date)+'-'+str(month)
+	toto=str(date).zfill(2)+'-'+str(month).zfill(2)
 	t_add='vide'
 	t_rem='vide'
 	t_wri='vide'
@@ -907,7 +907,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 	#print(c_remove)
 	date = int(datetime.datetime.now().day)
 	month = int(datetime.datetime.now().month)
-	toto=str(date)+'-'+str(month)
+	toto=str(date).zfill(2)+'-'+str(month).zfill(2)
 	t_add='vide'
 	t_rem='vide'
 	t_wri='vide'
