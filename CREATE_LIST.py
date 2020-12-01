@@ -246,6 +246,9 @@ else:
 	elif zone =='AUTRE':
 		l_max=[47.855419, 46.864254]
 		l_min=[-0.8813367, -2.6259787]
+	elif zone=='AGDE':
+		l_max=[43.588776, 43.22632]
+		l_min=[3.5491293, 3.2760803]
 	
 	
 	print(max(l_max)) #ne_lat N
