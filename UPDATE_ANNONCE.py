@@ -616,6 +616,26 @@ if searchcolumn==1:
 				i=i+1
 		cACTIVE=i
 		print('cACTIVE')
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='ENTREPRISE':
+				up=1
+			else:
+				i=i+1
+		cENTREPRISE=i
+		print('cENTREPRISE')
+		up=0
+		i=1
+		while up==0:
+			V_up=ws.cell(row=1, column=i).value
+			if V_up=='SOCIALWASHING':
+				up=1
+			else:
+				i=i+1
+		cSOCIALWASHING=i
+		print('cSOCIALWASHING')
 
 driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 #driver = webdriver.Chrome(chrome_options=chrome_options)
@@ -1140,6 +1160,53 @@ while c<=nrow:
 				except:
 					#print('no IMAGE_HOTE')
 					aaa=1
+		#ENTREPRISE
+				try:
+					the_tr= soup.find('span', attrs={"class": "_2a0n9q"})
+					t= the_tr.find('span', attrs={"class": "_3hmsj"})
+					if "informations" in t.text:
+						ws.cell(row=c, column=cENTREPRISE).value = 'YES'
+					else:
+						ws.cell(row=c, column=cENTREPRISE).value = 'NO'
+				except:
+					#print('no IMAGE_HOTE')
+					ws.cell(row=c, column=cENTREPRISE).value = 'NO'
+					aaa=1
+		#SOCIALWASHING
+				try:
+					t0=[]
+					t1=[]
+					t2=[]
+					try:
+						t0= soup.findAll('span', attrs = {'class' : '_pog3hg'})[0]
+					except:
+						pass
+					try:
+						t1= soup.findAll('span', attrs = {'class' : '_pog3hg'})[1]
+					except:
+						pass
+					try:
+						t2= soup.findAll('span', attrs = {'class' : '_pog3hg'})[2]
+					except:
+						pass
+					try:
+						t3= soup.findAll('span', attrs = {'class' : '_pog3hg'})[3]
+					except:
+						pass
+					if "Soutien" in t0.text:
+						ws.cell(row=c, column=cSOCIALWASHING).value = 'YES'
+					elif "Soutien" in t1.text:
+						ws.cell(row=c, column=cSOCIALWASHING).value = 'YES'
+					elif "Soutien" in t2.text:
+						ws.cell(row=c, column=cSOCIALWASHING).value = 'YES'
+					elif "Soutien" in t3.text:
+						ws.cell(row=c, column=cSOCIALWASHING).value = 'YES'
+					else:
+						ws.cell(row=c, column=cSOCIALWASHING).value = 'NO'
+				except:
+					ws.cell(row=c, column=cSOCIALWASHING).value = 'NO'
+					aaa=1	
+				
 				ws.cell(row=c, column=cACTIVE).value = 'YES'
 				if (c/200).is_integer():
 					wb.save(path_RESULT.filename)
