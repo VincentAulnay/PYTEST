@@ -1177,6 +1177,7 @@ while c<=nrow:
 					t0=[]
 					t1=[]
 					t2=[]
+					t3=[]
 					try:
 						t0= soup.findAll('span', attrs = {'class' : '_pog3hg'})[0]
 					except:
