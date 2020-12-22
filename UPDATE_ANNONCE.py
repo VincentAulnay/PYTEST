@@ -882,12 +882,12 @@ while c<=nrow:
 					the_tr1= the_tr.findAll('li', attrs = {'class' : '_108byt5'})[0]
 					tt11= the_tr1.find('a', attrs = {'target' : '_blank'})
 					tt12= the_tr1.find('span', attrs = {'class' : '_1kfl0pr'})
-					tt13= the_tr1.find('img', attrs = {'class' : '_6tbg2q'})
+					tt13= the_tr1.find('img', attrs = {'class' : '_9ofhsl'})
 					div1=tt11['href']  #.attrs['href']
 					the_tr2= the_tr.findAll('li', attrs = {'class' : '_108byt5'})[1]
 					tt21= the_tr2.find('a', attrs = {'target' : '_blank'})
 					tt22= the_tr2.find('span', attrs = {'class' : '_1kfl0pr'})
-					tt23= the_tr2.find('img', attrs = {'class' : '_6tbg2q'})
+					tt23= the_tr2.find('img', attrs = {'class' : '_9ofhsl'})
 					div2=tt21['href']  #.attrs['href']
 					ws.cell(row=c, column=cCOHOTE_URL1).value = "https://www.airbnb.fr"+str(div1)
 					ws.cell(row=c, column=cCOHOTE_NAME1).value = tt12.text
@@ -1154,7 +1154,7 @@ while c<=nrow:
 		#IMAGE_HOTE
 				try:
 					the_tr= soup.find('div', attrs={"class": "_5kripx"})
-					t= the_tr.find('img', attrs={"class": "_6tbg2q"})
+					t= the_tr.find('img', attrs={"class": "_9ofhsl"})
 					tt=t['src']
 					ws.cell(row=c, column=cIMAGE_PROFIL).value = tt
 				except:
