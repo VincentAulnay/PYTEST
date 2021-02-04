@@ -669,16 +669,16 @@ while c<=nrow:
 			if scrap_ok==1:
 				try:
 					f_ele=0
-					while f_ele<=3:
+					while f_ele<=4:
 						try:
 							#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
 							ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
 							driver.execute_script("arguments[0].scrollIntoView(true);", ele)
 							#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-							time.sleep(1)
+							time.sleep(3)
 							driver.execute_script("window.scrollBy(0,-800);")
 							#driver.execute_script("window.scrollBy(0,500);")
-							f_ele=6
+							f_ele=8
 							time.sleep(1)
 						except:
 							#driver.execute_script("window.scrollBy(0,1000);")
@@ -686,7 +686,7 @@ while c<=nrow:
 							time.sleep(2)
 					#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 				#PROFILE
-					time.sleep(1)
+					time.sleep(2)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
 					try:
