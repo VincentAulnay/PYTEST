@@ -640,7 +640,7 @@ if searchcolumn==1:
 		print('cSOCIALWASHING')
 
 #driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-driver = webdriver.Chrome(chrome_options=chrome_options)
+driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 driver.set_window_size(1500, 2000)
 
 #c = ligne 2 du xls resultant
@@ -1244,8 +1244,8 @@ while c<=nrow:
 							time.sleep(5)
 						except:
 							time.sleep(5)
-						#driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-						driver = webdriver.Chrome(chrome_options=chrome_options)
+						driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+						#driver = webdriver.Chrome(chrome_options=chrome_options)
 						driver.set_window_size(1500, 2000)
 						wait = WebDriverWait(driver, 3)
 				except:
@@ -1257,7 +1257,7 @@ while c<=nrow:
 		if timer==61:
 			driver.quit()
 			time.sleep(5)
-			driver = webdriver.Chrome(chrome_options=chrome_options)
+			driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 			driver.set_window_size(1500, 2000)
 			wait = WebDriverWait(driver, 3)
 			time.sleep(3)
