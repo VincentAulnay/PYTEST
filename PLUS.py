@@ -1326,7 +1326,7 @@ while cACTIVE==0:
 	i=i+1
 	
 while f_mounth==0:
-	h=ws.cell(row=fm, column=2).value
+	h=ws.cell(row=fm, column=3).value
 	print(h)
 	#if fff==2:
 	#	f_mounth=1
@@ -1508,7 +1508,7 @@ while c_month==0:
 	c_month=1
 
 while f_xpathdate==0:
-	h=ws.cell(row=fm, column=2).value
+	h=ws.cell(row=fm, column=3).value
 	fm=fm+1
 	print(h)
 	if fff==5:
@@ -1671,7 +1671,7 @@ while end==0:
 			P2=0
 			PLUS=0
 			#----START TRAQUING----
-			h=ws.cell(row=j, column=2).value
+			h=ws.cell(row=j, column=3).value
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
 			checker=0
 			#print('------'+str(j-1)+'------'+str(h))
