@@ -611,7 +611,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	except:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
-	#print(str(li))
+	print(str(li))
 	c_added=[]
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
@@ -878,7 +878,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			break
 		i=i+1
 	li.sort()
-	#print (li)
+	print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	try:
 		if back_li!=[]:
