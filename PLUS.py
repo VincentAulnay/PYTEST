@@ -1520,7 +1520,7 @@ while f_xpathdate==0:
 	h=ws.cell(row=fm, column=cANNONCE).value
 	fm=fm+1
 	print(h)
-	if fff==5:
+	if fff==8:
 		f_mounth=1
 		f_xpathdate=1
 		end=0
@@ -1948,7 +1948,7 @@ while end==0:
 			h=ws.cell(row=fm, column=cANNONCE).value
 			fm=fm+1
 			print(h)
-			if fff==5:
+			if fff==8:
 				f_mounth=1
 				f_xpathdate=1
 				end=0
