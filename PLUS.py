@@ -1521,12 +1521,19 @@ while f_xpathdate==0:
 		rootdriver.get(h)
 		time.sleep(8)
 		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_l9wspk2']")))
+		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_l9wspk2']")))
+		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[contains(@aria-label,'non')]")))
 		print('date find')
 		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_18hrqvin']")))
 		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
 		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
 		print('title trouve')
+		ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+		rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+		rootdriver.execute_script("window.scrollBy(0,-200);")
+		next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
+		next_calendar.click()
+		print('next find')
 		f_xpathdate=1
 		try:
 			b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
