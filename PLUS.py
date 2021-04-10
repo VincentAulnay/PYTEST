@@ -1513,7 +1513,7 @@ while c_month==0:
 	time.sleep(5)
 	c_month=1
 
-def check_page():
+def check_page(rootdriver):
 	f_xpathdate=0
 	fm=1
 	fff=0
