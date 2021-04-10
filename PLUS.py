@@ -1324,9 +1324,15 @@ while cACTIVE==0:
 	if g=='ACTIVE_YES/NO':
 		cACTIVE=i
 	i=i+1
-	
+i=1
+cANNONCE=0
+while cANNONCE==0:
+	g=ws.cell(row=1, column=i).value
+	if g=='ANNONCE':
+		cANNONCE=i
+	i=i+1	
 while f_mounth==0:
-	h=ws.cell(row=fm, column=3).value
+	h=ws.cell(row=fm, column=cANNONCE).value
 	print(h)
 	#if fff==2:
 	#	f_mounth=1
@@ -1507,46 +1513,49 @@ while c_month==0:
 	time.sleep(5)
 	c_month=1
 
-while f_xpathdate==0:
-	h=ws.cell(row=fm, column=3).value
-	fm=fm+1
-	print(h)
-	if fff==5:
-		f_mounth=1
-		f_xpathdate=1
-		end=0
-		#run=emailfalde2()
-	fff=fff+1
-	try:
-		rootdriver.get(h)
-		time.sleep(8)
-		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_l9wspk2']")))
-		x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[contains(@aria-label,'non')]")))
-		print('date find')
-		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_18hrqvin']")))
-		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
-		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
-		print('title trouve')
-		ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
-		rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-		rootdriver.execute_script("window.scrollBy(0,-200);")
-		next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
-		next_calendar.click()
-		print('next find')
-		f_xpathdate=1
+def check_page():
+	f_xpathdate=0
+	fm=1
+	while f_xpathdate==0:
+		h=ws.cell(row=fm, column=cANNONCE).value
+		fm=fm+1
+		print(h)
+		if fff==5:
+			f_mounth=1
+			f_xpathdate=1
+			end=0
+			#run=emailfalde2()
+		fff=fff+1
 		try:
-			b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-			b_cookie.click()
+			rootdriver.get(h)
+			time.sleep(8)
+			#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
+			#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_l9wspk2']")))
+			x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[contains(@aria-label,'non')]")))
+			print('date find')
+			#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_18hrqvin']")))
+			#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
+			x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
+			print('title trouve')
+			ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+			rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
+			rootdriver.execute_script("window.scrollBy(0,-200);")
+			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
+			next_calendar.click()
+			print('next find')
+			f_xpathdate=1
+			try:
+				b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
+				b_cookie.click()
+			except:
+				pass
 		except:
-			pass
-	except:
-		if fff!=5:
-			rootdriver.quit()
-			rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-			#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-			rootdriver.set_window_size(2000, 1000)
-			wait = WebDriverWait(rootdriver, 5)
+			if fff!=5:
+				rootdriver.quit()
+				rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+				#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+				rootdriver.set_window_size(2000, 1000)
+				wait = WebDriverWait(rootdriver, 5)
 def f1(a):
 	global des
 	try:
@@ -1678,7 +1687,7 @@ while end==0:
 			P2=0
 			PLUS=0
 			#----START TRAQUING----
-			h=ws.cell(row=j, column=3).value
+			h=ws.cell(row=j, column=cANNONCE).value
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
 			checker=0
 			#print('------'+str(j-1)+'------'+str(h))
@@ -1933,43 +1942,8 @@ while end==0:
 		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 		rootdriver.set_window_size(2000, 1000)
 		wait = WebDriverWait(rootdriver, 5)
-		f_xpathdate=0
-		fff=0
-		while f_xpathdate==0:
-			h=ws.cell(row=fm, column=2).value
-			fm=fm+1
-			print(h)
-			if fff==5:
-				f_mounth=1
-				f_xpathdate=1
-				end=0
-				#run=emailfalde2()
-			fff=fff+1
-			try:
-				rootdriver.get(h)
-				time.sleep(8)
-				#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
-				x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_l9wspk2']")))
-				print('date')
-				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
-				#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
-				x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
-				print('x date trouve')
-				f_xpathdate=1
-				try:
-					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
-					b_cookie.click()
-				except:
-					f_xpathdate=1
-			except:
-				if fff!=8:
-					rootdriver.quit()
-					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-					rootdriver.set_window_size(2000, 1000)
-					wait = WebDriverWait(rootdriver, 5)
-				else:
-					f_xpathdate=1
+		run_check=check_page()
+
 		
 		
 
@@ -1994,7 +1968,7 @@ if launch_check==1:
 	j=2
 	while j<=nrow:
 		#----START TRAQUING----
-		h=ws.cell(row=j, column=2).value
+		h=ws.cell(row=j, column=cANNONCE).value
 		rootdriver.get(h)
 		time.sleep(5)
 		while f_ele<6:
