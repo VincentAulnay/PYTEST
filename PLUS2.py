@@ -1522,7 +1522,8 @@ while f_xpathdate==0:
 		time.sleep(8)
 		rootdriver.execute_script("window.scrollBy(0,400);")
 		time.sleep(1)
-		button = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_1ot1we5p']")))
+		#button = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_1ot1we5p']")))
+		button = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1acx77b']")))
 		button.click()
 		time.sleep(1)
 		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
@@ -1563,12 +1564,14 @@ def f2(bouton_mois_suivant):
 		else:
 			#next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13ah4vr']//div[@class='_qz9x4fc']/button")))
+			print('next_calendar found')
 	except:
 		a=1
 
 def checkmounth(name_mois1,bouton_mois_suivant):
 	#which_mount = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1lds9wb'][1]//h1[@class='_14i3z6h']"))).text
 	which_mount = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1lds9wb'][1]//h3[@class='_14i3z6h']"))).text
+	print(which_mount)
 	if name_mois1=='septembre 2020':
 		nmount=9
 	elif name_mois1=='octobre 2020':
@@ -1800,10 +1803,11 @@ while end==0:
 
 						f_ele=f_ele+1
 					#time.sleep(1)
-					rootdriver.execute_script("window.scrollBy(0,400);")
-					time.sleep(1)
+					rootdriver.execute_script("window.scrollBy(0,800);")
+					time.sleep(2)
 					try:
-						button = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_1ot1we5p']")))
+						#button = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_1ot1we5p']")))
+						button = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1acx77b']")))
 						button.click()
 					except:
 						pass
