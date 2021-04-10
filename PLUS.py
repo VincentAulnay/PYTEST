@@ -1664,7 +1664,6 @@ def checkmounth(name_mois1,bouton_mois_suivant):
 			time.sleep(1)
 		except:
 			a=1
-run_check=check_page()
 while end==0:
 	try:
 		while j<=nrow:
