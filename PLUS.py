@@ -1516,6 +1516,7 @@ while c_month==0:
 def check_page():
 	f_xpathdate=0
 	fm=1
+	fff=0
 	while f_xpathdate==0:
 		h=ws.cell(row=fm, column=cANNONCE).value
 		fm=fm+1
