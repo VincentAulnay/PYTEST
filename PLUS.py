@@ -629,7 +629,10 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	if ONC==1:
 		try:
 			oldcc=ws.cell(row=j, column=c_write+2).value
-			tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
+			try:
+				tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
+			except:
+				tp_c=soup.find('span', attrs={"class": "_142pbzop"}).text
 			#print(tp_c)
 			p_c=tp_c.replace("(","")
 			cc=p_c.replace(")","")
@@ -1576,7 +1579,10 @@ def f2(bouton_mois_suivant):
 		a=1
 
 def checkmounth(name_mois1,bouton_mois_suivant):
-	which_mount = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1lds9wb'][1]//h1[@class='_14i3z6h']"))).text
+	try:
+		which_mount = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1lds9wb'][1]//h1[@class='_14i3z6h']"))).text
+	except:
+		which_mount = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1lds9wb'][1]//h3[@class='_14i3z6h']"))).text
 	if name_mois1=='septembre 2020':
 		nmount=9
 	elif name_mois1=='octobre 2020':
