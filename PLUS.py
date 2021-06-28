@@ -538,6 +538,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	P=0
 	R=0
 	L=0
+	C=0
 	int_timeday=int(date)
 	month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
@@ -644,6 +645,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 				pass
 			ws.cell(row=j, column=c_write+2).value=cc
 			if oldcc!=cc:
+				C=1
 				write_c=1
 				v_com=int(cc)-int(oldcc)
 				t_com='/C'+toto+':'+str(v_com)
@@ -1316,10 +1318,12 @@ L5=0
 P1=0
 P2=0
 PLUS=0
+C=0
 total_R=0
 total_L=0
 total_P=0
 total_PLUS=0
+total_C=0
 i=1
 cACTIVE=0
 while cACTIVE==0:
@@ -1678,6 +1682,7 @@ while end==0:
 			total_L=total_L+L1+L2+L3+L4+L5
 			total_P=total_P+P1+P2
 			total_PLUS=total_PLUS+PLUS
+			total_C=total_C+C
 			R1=0
 			R2=0
 			R3=0
@@ -1691,6 +1696,7 @@ while end==0:
 			P1=0
 			P2=0
 			PLUS=0
+			C=0
 			#----START TRAQUING----
 			h=ws.cell(row=j, column=cANNONCE).value
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
@@ -1926,6 +1932,7 @@ while end==0:
 			print('Total L = '+str(total_L))
 			print('Total P = '+str(total_P))
 			print('Total PLUS = '+str(total_PLUS))
+			print('Total C = '+str(total_C))
 		except:
 			print('NO REPORT')
 		try:
