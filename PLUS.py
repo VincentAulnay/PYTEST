@@ -72,7 +72,7 @@ Hr=dt.datetime.now().hour
 
 #------RECUP INFO CALANDAR------
 
-def email(DIR2,NAMEFile,now,total_R,total_L,total_P):
+def email(DIR2,NAMEFile,now,total_R,total_L,total_P,total_C):
 	sender = ADRESS_GMAIL
 	sender_password = PSW_GMAIL
 	#sender = 'stopbnb33650@gmail.com'
@@ -94,7 +94,7 @@ def email(DIR2,NAMEFile,now,total_R,total_L,total_P):
 	#msg['Subject'] = "Subject of the Mail- image -2"
 	body = "Body_of_the_mail"
 	msg.attach(MIMEText(body, 'plain'))
-	msg['Subject'] = "STOP AIRBNB - "+str(now)+"-R"+str(total_R)+"-L"+str(total_L)+"-P"+str(total_P)
+	msg['Subject'] = "STOP AIRBNB - "+str(now)+"-R"+str(total_R)+"-L"+str(total_L)+"-P"+str(total_P)+"-C"+str(total_C)
 	# path along with extension of file to be attachmented 
 	filename = DIR2+NAMEFile+str(now)+".xlsx"
 	attachmentment = open(filename, "rb")
@@ -1950,7 +1950,7 @@ while end==0:
 		except:
 			print('NO REPORT')
 		try:
-			run=email(DIR2,NAMEFile,now,total_R,total_L,total_P)
+			run=email(DIR2,NAMEFile,now,total_R,total_L,total_P,total_C)
 			print('sent email')
 		except:
 			print('rien')
