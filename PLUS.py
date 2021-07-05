@@ -1533,7 +1533,7 @@ while c_month==0:
 	c_month=1
 
 f_xpathdate=0
-fm=1
+fm=2
 fff=0
 while f_xpathdate==0:
 	h=ws.cell(row=fm, column=cANNONCE).value
@@ -1968,7 +1968,7 @@ while end==0:
 		rootdriver.set_window_size(2000, 1000)
 		wait = WebDriverWait(rootdriver, 5)
 		f_xpathdate=0
-		fm=1
+		fm=2
 		fff=0
 		while f_xpathdate==0:
 			h=ws.cell(row=fm, column=cANNONCE).value
