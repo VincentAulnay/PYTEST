@@ -535,7 +535,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	global L2
 	global P1
 	global P2
-	global C
+	global C1
 	P=0
 	R=0
 	L=0
@@ -656,7 +656,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 				pass
 			ws.cell(row=j, column=c_write+2).value=cc
 			if oldcc!=cc:
-				C=1
+				C1=1
 				write_c=1
 				v_com=int(cc)-int(oldcc)
 				t_com='/C'+toto+':'+str(v_com)
@@ -706,6 +706,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 				t_wri=str(t_com)
 			else:
 				t_wri=t_wri+';    '+str(t_com)
+			C1=1
 		if t_wri!='vide':
 			t_wri=str(ca)+';    '+t_wri
 
@@ -1693,7 +1694,7 @@ while end==0:
 			total_L=total_L+L1+L2+L3+L4+L5
 			total_P=total_P+P1+P2
 			total_PLUS=total_PLUS+PLUS
-			total_C=total_C+C
+			total_C=total_C+C1
 			R1=0
 			R2=0
 			R3=0
@@ -1707,7 +1708,7 @@ while end==0:
 			P1=0
 			P2=0
 			PLUS=0
-			C=0
+			C1=0
 			#----START TRAQUING----
 			h=ws.cell(row=j, column=cANNONCE).value
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
