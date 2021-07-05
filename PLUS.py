@@ -1547,6 +1547,7 @@ while f_xpathdate==0:
 	fff=fff+1
 	try:
 		rootdriver.get(h)
+		print('test1')
 		time.sleep(8)
 		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13m7kz7i']"))).text
 		#x_date = wait.until(EC.presence_of_element_located((By.XPATH, "//td[@class='_l9wspk2']")))
@@ -1568,7 +1569,7 @@ while f_xpathdate==0:
 			b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
 			b_cookie.click()
 		except:
-			pass
+			aaa=1
 	except:
 		if fff!=5:
 			rootdriver.quit()
@@ -1971,6 +1972,7 @@ while end==0:
 		fm=2
 		fff=0
 		while f_xpathdate==0:
+			print('test2')
 			h=ws.cell(row=fm, column=cANNONCE).value
 			fm=fm+1
 			print(h)
@@ -2002,7 +2004,7 @@ while end==0:
 					b_cookie = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='optanon-allow-all accept-cookies-button']")))
 					b_cookie.click()
 				except:
-					pass
+					aaa=1
 			except:
 				if fff!=5:
 					rootdriver.quit()
