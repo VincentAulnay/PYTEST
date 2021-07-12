@@ -592,6 +592,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			break
 		i=i+1
 	li.sort()
+	print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	#print(back_li)
 	try:
