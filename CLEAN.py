@@ -79,13 +79,10 @@ def Clean(testmois):
 			#print (newlist)
 			ws.cell(row=c, column=mois).value=newlist
 		c=c+1
-
-
-
-
 run_mars=Clean('août 2021')
 run_mars=Clean('juillet 2021')
 run_mars=Clean('septembre 2021')
 run_mars=Clean('octobre 2021')
 run_mars=Clean('novembre 2021')
 wb.save(path_RESULT.filename)
+
