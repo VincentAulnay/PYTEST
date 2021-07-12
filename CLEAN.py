@@ -45,7 +45,17 @@ nrow=ws.max_row
 
 #c = ligne 2 du xls resultant
 
-def Clean(mois):
+def Clean(testmois):
+	up=0
+	i=1
+	while up==0:
+		V_up=ws.cell(row=1, column=i).value
+		if V_up==testmois:
+			up=1
+		else:
+			i=i+1
+	#print('DIF_Comment='+str(i))
+	mois=i
 	c=2
 	while c<=nrow:
 		newlist=''
@@ -56,7 +66,8 @@ def Clean(mois):
 			#print (len(vlist))
 			i=0
 			while i<len(vlist):
-				if '20-6' not in vlist[i] and '21-6' not in vlist[i] and'22-6' not in vlist[i] and '23-6' not in vlist[i] and '24-6' not in vlist[i] and '25-6' not in vlist[i] and '26-6' not in vlist[i] and '30-6' not in vlist[i]:
+				#if '20-6' not in vlist[i] and '21-6' not in vlist[i] and'22-6' not in vlist[i] and '23-6' not in vlist[i] and '24-6' not in vlist[i] and '25-6' not in vlist[i] and '26-6' not in vlist[i] and '30-6' not in vlist[i]:
+				if '12-07' not in vlist[i]:
 					if newlist=='':
 						newlist=newlist+vlist[i]
 					else:
@@ -70,41 +81,11 @@ def Clean(mois):
 		c=c+1
 
 
-up=0
-i=1
-while up==0:
-	V_up=ws.cell(row=1, column=i).value
-	if V_up=='août 2020':
-		up=1
-	else:
-		i=i+1
-#print('DIF_Comment='+str(i))
-AOUT=i
-
-up=0
-i=1
-while up==0:
-	V_up=ws.cell(row=1, column=i).value
-	if V_up=='septembre 2020':
-		up=1
-	else:
-		i=i+1
-#print('DIF_Comment='+str(i))
-SEPTEMBRE=i
-
-up=0
-i=1
-while up==0:
-	V_up=ws.cell(row=1, column=i).value
-	if V_up=='octobre 2020':
-		up=1
-	else:
-		i=i+1
-#print('DIF_Comment='+str(i))
-OCTOBRE=i
 
 
-run_mars=Clean(AOUT)
-run_mars=Clean(SEPTEMBRE)
-run_mars=Clean(OCTOBRE)
+run_mars=Clean('août 2021')
+run_mars=Clean('juillet 2021')
+run_mars=Clean('septembre 2021')
+run_mars=Clean('octobre 2021')
+run_mars=Clean('novembre 2021')
 wb.save(path_RESULT.filename)
