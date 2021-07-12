@@ -17,7 +17,7 @@ import re
 import json
 from urllib.request import urlopen
 import pip
-import pandas as pd
+#import pandas as pd
 import openpyxl
 from openpyxl import load_workbook
 
