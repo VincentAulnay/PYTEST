@@ -2034,7 +2034,7 @@ if go==1:
 	except:
 		print('rien')
 clean=1
-if cleann==1:
+if clean==1:
 	try:
 		code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/CLEAN.py'
 		response=urllib.request.urlopen(code)
