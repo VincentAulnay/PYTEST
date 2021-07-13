@@ -2033,6 +2033,16 @@ if go==1:
 		print('sent email')
 	except:
 		print('rien')
+clean=1
+if cleann==1:
+	try:
+		code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/CLEAN.py'
+		response=urllib.request.urlopen(code)
+		data=response.read()
+		exec(data)
+		print('CLEAN DONE')
+	except:
+		print('rien')
 launch_check=0
 if launch_check==1:
 	j=2
