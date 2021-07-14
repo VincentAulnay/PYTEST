@@ -22,18 +22,6 @@ import openpyxl
 from openpyxl import load_workbook
 
 
-#--------SELECTION DU FICHIER--------
-path_RESULT = Tk()
-Label1 = Label(path_RESULT, text = "Select File", fg = 'red')
-Label1.pack()
-path_RESULT.filename =  filedialog.askopenfilename(initialdir = "/",title = "Select File",filetypes = (("Excel file","*.xlsx"),("all files","*.*")))
-print (path_RESULT.filename)
-NAMEFile=os.path.splitext(os.path.basename(path_RESULT.filename))[0]
-print(NAMEFile)
-DIR=os.path.dirname(path_RESULT.filename)
-DIR2=DIR+'/'
-print(os.path.dirname(path_RESULT.filename))
-
 wb = load_workbook(path_RESULT.filename)
 ws=wb.active
 nrow=ws.max_row
