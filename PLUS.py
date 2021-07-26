@@ -1716,7 +1716,7 @@ while end==0:
 			h=ws.cell(row=j, column=cANNONCE).value
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
 			checker=0
-			#print('------'+str(j-1)+'------'+str(h))
+			print('------'+str(j-1)+'------'+str(h))
 			if vACTIVE=='YES':
 				if h==None:
 					j=j+1
@@ -1963,7 +1963,7 @@ while end==0:
 		try:
 			rootdriver.quit()
 		except:
-			pass
+			aaa=1
 		# EXCEPT si Chrome se ferme tout seul, ici il va le réouvrir et relancer la boucle d'extraction
 		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
