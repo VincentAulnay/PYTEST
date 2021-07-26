@@ -594,7 +594,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	li.sort()
 	#print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
-	#print(back_li)
+	print(back_li)
 	try:
 		if back_li!=[]:
 			back_li=back_li.replace("[","")
@@ -776,6 +776,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 		i=i+1
 	li.sort()
 	back_li=ws.cell(row=j, column=c_write+1).value
+	print(back_li)
 	try:
 		if back_li!=[]:
 			back_li=back_li.replace("[","")
@@ -898,6 +899,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 	li.sort()
 	#print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
+	print(back_li)
 	try:
 		if back_li!=[]:
 			back_li=back_li.replace("[","")
@@ -1862,19 +1864,19 @@ while end==0:
 					#	pass
 					try:
 					#-----RECUPERATION CALANDAR MOIS 1--------
-						#print('le mois N est '+name_mois1)
+						print('le mois N est '+name_mois1)
 						run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1,des)
 					except:
 						pass
 					try:
 					#-----RECUPERATION CALANDAR MOIS 2--------
-						#print('le mois N+1 est '+name_mois2)
+						print('le mois N+1 est '+name_mois2)
 						run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0,des)
 					except:
 						pass
 					try:
 					#-----RECUPERATION CALANDAR MOIS 3--------
-						#print('le mois N+2 est '+name_mois3)
+						print('le mois N+2 est '+name_mois3)
 						RA4=ResAirbnb
 						if v_m=='X' and date==1:
 							RA4='/D'
@@ -1896,13 +1898,13 @@ while end==0:
 							time.sleep(1)
 							try:
 							#-----RECUPERATION CALANDAR MOIS 4--------
-								#print('le mois N est '+name_mois4)
+								print('le mois N est '+name_mois4)
 								run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0,des)
 							except:
 								pass
 						#-----RECUPERATION CALANDAR MOIS 5--------
 							try:
-								#print('le mois N+1 est '+name_mois5)
+								print('le mois N+1 est '+name_mois5)
 								run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1,des)
 								#run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth,des)
 							except:
