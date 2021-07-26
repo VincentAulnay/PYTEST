@@ -2045,7 +2045,7 @@ if clean==1:
 		print('CLEAN DONE')
 	except:
 		print('rien')
-active=1
+active=0
 if active==1:
 	try:
 		code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/ACTIVE_YESNO.py'
