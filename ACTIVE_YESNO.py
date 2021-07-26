@@ -10,9 +10,6 @@ from xlutils.copy import copy
 from decimal import Decimal
 from decimal import *
 import decimal
-#import xlwings as xw
-#from xlwings.constants import DeleteShiftDirection
-from xlrd import open_workbook,XL_CELL_TEXT
 import datetime
 from datetime import date
 import datetime as dt
@@ -23,12 +20,9 @@ import re
 import json
 from urllib.request import urlopen
 import pip
-import pandas as pd
 import openpyxl
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
-from shapely.geometry import Point
-from shapely.geometry.polygon import Polygon
 import datetime
 import datetime as dt
 import threading
@@ -763,18 +757,12 @@ if searchcolumn==1:
 		print('cEQU_NONINCLUS')
 
 		
-#driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-driver = webdriver.Chrome(chrome_options=chrome_options)
+driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+#driver = webdriver.Chrome(chrome_options=chrome_options)
 driver.set_window_size(1500, 2000)
 
-#c = ligne 2 du xls resultant
+
 c=2
-
-
-fm=2
-fff=0
-
-
 while c<=nrow:
 	print (str(c)+'/'+str(nrow))
 	h=ws.cell(row=c, column=cANNONCE).value
