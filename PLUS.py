@@ -2035,7 +2035,7 @@ if go==1:
 		print('sent email')
 	except:
 		print('rien')
-clean=0
+clean=1
 if clean==1:
 	try:
 		code='https://raw.githubusercontent.com/VincentAulnay/PYTEST/master/CLEAN.py'
