@@ -55,7 +55,7 @@ def Clean(testmois):
 			i=0
 			while i<len(vlist):
 				#if '20-6' not in vlist[i] and '21-6' not in vlist[i] and'22-6' not in vlist[i] and '23-6' not in vlist[i] and '24-6' not in vlist[i] and '25-6' not in vlist[i] and '26-6' not in vlist[i] and '30-6' not in vlist[i]:
-				if 'R12-07' not in vlist[i]:
+				if 'R21-08' not in vlist[i] and 'L21-08' not in vlist[i] and 'C21-08' not in vlist[i]:
 					if newlist=='':
 						newlist=newlist+vlist[i]
 					else:
