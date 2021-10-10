@@ -1919,6 +1919,16 @@ while end==0:
 						wbx.save(path_RESULT.filename)
 						#if checker==1:
 						#	x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
+					if (j/500).is_integer():
+						rootdriver.quit()
+						time.sleep(5)
+						rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+						rootdriver.set_window_size(2000, 1000)
+						wait = WebDriverWait(rootdriver, 5)
+						time.sleep(5)
+						rootdriver.get(h)
+						time.sleep(5)
+						
 					C_mois=1
 					j=j+1
 				elif 'abritel' in h:
