@@ -1535,7 +1535,7 @@ while c_month==0:
 	time.sleep(5)
 	c_month=1
 
-f_xpathdate=0
+f_xpathdate=1
 fm=2
 fff=0
 while f_xpathdate==0:
@@ -1971,7 +1971,7 @@ while end==0:
 		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 		rootdriver.set_window_size(2000, 1000)
 		wait = WebDriverWait(rootdriver, 5)
-		f_xpathdate=0
+		f_xpathdate=1
 		fm=2
 		fff=0
 		while f_xpathdate==0:
