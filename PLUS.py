@@ -1691,10 +1691,17 @@ def checkmounth(name_mois1,bouton_mois_suivant):
 			time.sleep(1)
 		except:
 			a=1
+
+def getdrive(h):
+	global v_get
+	rootdriver.get(h)
+	v_get=1
+
 while end==0:
 	try:
 		while j<=nrow:
 			#----COMPUTE REPORT----
+			v_get=0
 			total_R=total_R+R1+R2+R3+R4+R5
 			total_L=total_L+L1+L2+L3+L4+L5
 			total_P=total_P+P1+P2
@@ -1725,7 +1732,20 @@ while end==0:
 					print('h=None')
 				elif 'plus' in h:
 					ResAirbnb=''
-					rootdriver.get(h)
+					run_getdrive=getdrive(h)
+					gettimer=0
+					while gettimer<=70:
+						gettimer=gettimer+1
+						time.sleep(1)
+						if v_get=1
+							gettimer=100
+						elif gettimer==60:
+							rootdriver.quit()
+							rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+							#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+							rootdriver.set_window_size(2000, 1000)
+							wait = WebDriverWait(rootdriver, 5)
+					#rootdriver.get(h)
 					time.sleep(5)
 					des=1
 					try:
@@ -1801,7 +1821,20 @@ while end==0:
 						wbx.save(path_RESULT.filename)
 					j=j+1
 				elif 'airbnb' in h:
-					rootdriver.get(h)
+					run_getdrive=getdrive(h)
+					gettimer=0
+					while gettimer<=70:
+						gettimer=gettimer+1
+						time.sleep(1)
+						if v_get=1
+							gettimer=100
+						elif gettimer==60:
+							rootdriver.quit()
+							rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+							#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
+							rootdriver.set_window_size(2000, 1000)
+							wait = WebDriverWait(rootdriver, 5)
+					#rootdriver.get(h)
 					time.sleep(2)
 					#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 					#threading.Thread(target=scroll, args=(1,)).start()
