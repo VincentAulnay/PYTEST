@@ -1737,7 +1737,7 @@ while end==0:
 					while gettimer<=70:
 						gettimer=gettimer+1
 						time.sleep(1)
-						if v_get=1
+						if v_get==1:
 							gettimer=100
 						elif gettimer==60:
 							rootdriver.quit()
@@ -1826,7 +1826,7 @@ while end==0:
 					while gettimer<=70:
 						gettimer=gettimer+1
 						time.sleep(1)
-						if v_get=1
+						if v_get==1:
 							gettimer=100
 						elif gettimer==60:
 							rootdriver.quit()
