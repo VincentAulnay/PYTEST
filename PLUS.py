@@ -641,7 +641,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 				tp_c=soup.find('span', attrs={"class": "_142pbzop"}).text
 			except:
 				try:
-					tp_c=soup.find('span', attrs={"class": "_2qpirtt"}).text
+					tp_c=soup.findAll('span', attrs={"class": "_2qpirtt"})[1].text
 				except:
 					try:
 						tp_c=soup.find('span', attrs={"class": "_1qx9l5ba"}).text
