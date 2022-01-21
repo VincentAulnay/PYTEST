@@ -1873,7 +1873,7 @@ while end==0:
 							#print('DOWN KO')
 
 						f_ele=f_ele+1
-					#time.sleep(1)
+					#time.sleep(3)
 					if b_scrolldown==1:
 						threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 						try:
