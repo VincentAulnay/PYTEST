@@ -1882,7 +1882,7 @@ while end==0:
 								#v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//div[last()]")))
 								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//div[last()]")
 								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//tr[2]/td[2]/div").text
-								vv=wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//table//div[last()]")))
+								vv=wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//table//tr[last()]/td[last()]/div[last()]")))
 								v_td=vv.get_attribute("textContent")
 								print(v_td)
 								if v_td>=28:
