@@ -1885,8 +1885,8 @@ while end==0:
 									td28=28
 							except:
 								aaa=1
-							
-							td28=td28+7
+							time.sleep(1)
+							td28=td28+3.5
 						threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 						try:
 							run_checkmounth=checkmounth(name_mois1,bouton_mois_suivant)
