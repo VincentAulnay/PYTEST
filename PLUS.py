@@ -1877,13 +1877,14 @@ while end==0:
 					if b_scrolldown==1:
 						td28=0
 						while td28<28:
-							print("try td V3")
+							print("try td V4")
 							try:
 								#v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//div[last()]")))
 								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//div[last()]")
 								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//tr[2]/td[2]/div").text
 								v_td=wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//tr[2]/td[2]/div")))
-								print(v_td)
+								vv=v_td.get_attribute("textContent")
+								print(vv)
 								if v_td>=28:
 									td28=28
 							except:
