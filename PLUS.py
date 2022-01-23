@@ -1728,7 +1728,7 @@ while end==0:
 			h=ws.cell(row=j, column=cANNONCE).value
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
 			checker=0
-			print('------'+str(j-1)+'------'+str(h)+'-----'+str(vACTIVE))
+			#print('------'+str(j-1)+'------'+str(h)+'-----'+str(vACTIVE))
 			if vACTIVE=='YES':
 				if h==None:
 					j=j+1
@@ -1877,14 +1877,14 @@ while end==0:
 					if b_scrolldown==1:
 						td28=0
 						while td28<28:
-							print("try td V4")
+							#print("try td V4")
 							try:
 								#v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//div[last()]")))
 								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//div[last()]")
 								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//tr[2]/td[2]/div").text
 								vv=wait.until(EC.presence_of_element_located((By.XPATH, "(//div[@class='_kuxo8ai']//table//tr//div)[last()]")))
 								v_td=int(vv.get_attribute("textContent"))
-								print(v_td)
+								#print(v_td)
 								if v_td>=28:
 									td28=28
 							except:
