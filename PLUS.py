@@ -1876,7 +1876,7 @@ while end==0:
 					#time.sleep(3)
 					if b_scrolldown==1:
 						td28=0
-						while td28>=28:
+						while td28<28:
 							print("try td")
 							try:
 								v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//td[-1]/div"))).text
