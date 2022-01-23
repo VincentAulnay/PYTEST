@@ -1883,14 +1883,14 @@ while end==0:
 								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//div[last()]")
 								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//tr[2]/td[2]/div").text
 								vv=wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//table//tr[last()]//div[last()]")))
-								v_td=vv.get_attribute("textContent")
+								v_td=int(vv.get_attribute("textContent"))
 								print(v_td)
 								if v_td>=28:
 									td28=28
 							except:
 								aaa=1
 							time.sleep(1)
-							td28=td28+3.5
+							td28=td28+7
 						threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 						try:
 							run_checkmounth=checkmounth(name_mois1,bouton_mois_suivant)
