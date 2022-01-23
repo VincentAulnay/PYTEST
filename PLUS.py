@@ -1728,7 +1728,7 @@ while end==0:
 			h=ws.cell(row=j, column=cANNONCE).value
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
 			checker=0
-			#print('------'+str(j-1)+'------'+str(h)+'-----'+str(vACTIVE))
+			print('------'+str(j-1)+'------'+str(h)+'-----'+str(vACTIVE))
 			if vACTIVE=='YES':
 				if h==None:
 					j=j+1
