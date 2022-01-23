@@ -1875,6 +1875,16 @@ while end==0:
 						f_ele=f_ele+1
 					#time.sleep(3)
 					if b_scrolldown==1:
+						td28=0
+						while td28>=28:
+							try:
+								v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//td[-1]/div"))).text
+								print(v_td)
+							except:
+								aaa=1
+							if v_td>=28:
+								td28=28
+							td28=td28+7
 						threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 						try:
 							run_checkmounth=checkmounth(name_mois1,bouton_mois_suivant)
