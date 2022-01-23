@@ -1879,7 +1879,7 @@ while end==0:
 						while td28<28:
 							print("try td")
 							try:
-								v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//tr[last()]/td[last()]/div"))).text
+								v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//td[last()]/div"))).text
 								print(v_td)
 								if v_td>=28:
 									td28=28
