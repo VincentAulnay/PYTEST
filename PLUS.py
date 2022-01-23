@@ -1879,12 +1879,13 @@ while end==0:
 						while td28<28:
 							print("try td")
 							try:
-								v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//td[-1]/div"))).text
+								v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//tr[-1]//td[-1]/div"))).text
 								print(v_td)
+								if v_td>=28:
+									td28=28
 							except:
 								aaa=1
-							if v_td>=28:
-								td28=28
+							
 							td28=td28+7
 						threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 						try:
