@@ -1899,87 +1899,78 @@ while end==0:
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
 						time.sleep(1)
-						testfirstTD1=soup.find('div', attrs={"class":u"_fdp53bg"})
-						testfirstTD2= testfirstTD1.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[1]
-						if testfirstTD2 is not None:
-							ResAirbnb=''
-							#V_up=ws.cell(row=j, column=k).value
-							v_m='8'
+						ResAirbnb=''
+						#V_up=ws.cell(row=j, column=k).value
+						v_m='8'
 
-							#try:
-							#	script=soup.find('script', attrs={"data-state":u"true"}).text
-							#	p1=script.split("calendar_last")
-							#	p2=p1[1].split("guest_controls")
-							#	p3=p2[0].replace('_updated_at":"', '')
-							#	p4=p3.replace('","', '')
-								#print (p4)
-							#	if p4==V_up:
-									#ResAirbnb='/A'
-							#		ResAirbnb=''
-							#	else:
-									#ws.cell(row=j, column=k).value=p4
-							#		ResAirbnb=''
-							#except:
-							#	pass
+						#try:
+						#	script=soup.find('script', attrs={"data-state":u"true"}).text
+						#	p1=script.split("calendar_last")
+						#	p2=p1[1].split("guest_controls")
+						#	p3=p2[0].replace('_updated_at":"', '')
+						#	p4=p3.replace('","', '')
+							#print (p4)
+						#	if p4==V_up:
+								#ResAirbnb='/A'
+						#		ResAirbnb=''
+						#	else:
+								#ws.cell(row=j, column=k).value=p4
+						#		ResAirbnb=''
+						#except:
+						#	pass
+						try:
+						#-----RECUPERATION CALANDAR MOIS 1--------
+							#print('le mois N est '+name_mois1)
+							run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1,des)
+						except:
+							pass
+						try:
+						#-----RECUPERATION CALANDAR MOIS 2--------
+							#print('le mois N+1 est '+name_mois2)
+							run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0,des)
+						except:
+							pass
+						try:
+						#-----RECUPERATION CALANDAR MOIS 3--------
+							#print('le mois N+2 est '+name_mois3)
+							RA4=ResAirbnb
+							if v_m=='X' and date==1:
+								RA4='/D'
+							run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth,des)
+						except:
+							#print('PAS DE MOIS 3')
+							pass
+					#-----MOIS 4-5 -----
+						if v_m!='z':
 							try:
-							#-----RECUPERATION CALANDAR MOIS 1--------
-								#print('le mois N est '+name_mois1)
-								run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,1,des)
-							except:
-								pass
-							try:
-							#-----RECUPERATION CALANDAR MOIS 2--------
-								#print('le mois N+1 est '+name_mois2)
-								run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0,des)
-							except:
-								pass
-							try:
-							#-----RECUPERATION CALANDAR MOIS 3--------
-								#print('le mois N+2 est '+name_mois3)
-								RA4=ResAirbnb
-								if v_m=='X' and date==1:
-									RA4='/D'
-								run_resday=A_Statu_day4(m3_write,j,RA4,m3_newmonth,des)
-							except:
-								#print('PAS DE MOIS 3')
-								pass
-						#-----MOIS 4-5 -----
-							if v_m!='z':
+								next_calendar.click()
+								time.sleep(1)
+								next_calendar.click()
+								time.sleep(1)
+								next_calendar.click()
+								time.sleep(2)
+								html = rootdriver.page_source
+								soup = BeautifulSoup(html, 'html.parser')
+								time.sleep(1)
 								try:
-									next_calendar.click()
-									time.sleep(1)
-									next_calendar.click()
-									time.sleep(1)
-									next_calendar.click()
-									time.sleep(2)
-									html = rootdriver.page_source
-									soup = BeautifulSoup(html, 'html.parser')
-									time.sleep(1)
-									try:
-									#-----RECUPERATION CALANDAR MOIS 4--------
-										#print('le mois N est '+name_mois4)
-										run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0,des)
-									except:
-										pass
-								#-----RECUPERATION CALANDAR MOIS 5--------
-									try:
-										#print('le mois N+1 est '+name_mois5)
-										run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1,des)
-										#run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth,des)
-									except:
-										pass
+								#-----RECUPERATION CALANDAR MOIS 4--------
+									#print('le mois N est '+name_mois4)
+									run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0,des)
 								except:
-									#print('----click KO')
-									zzz=1
 									pass
-								C_mois5=1
-								checker=1
-						else:
-							rootdriver.quit()
-							#rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-							rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-							rootdriver.set_window_size(2000, 1000)
-							wait = WebDriverWait(rootdriver, 5)
+							#-----RECUPERATION CALANDAR MOIS 5--------
+								try:
+									#print('le mois N+1 est '+name_mois5)
+									run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1,des)
+									#run_resday=A_Statu_day4(m5_write,j,RA4,m5_newmonth,des)
+								except:
+									pass
+							except:
+								#print('----click KO')
+								zzz=1
+								pass
+							C_mois5=1
+							checker=1
 					if (j/100).is_integer():
 						wbx.save(path_RESULT.filename)
 						#if checker==1:
