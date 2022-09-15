@@ -261,10 +261,10 @@ def A_Colonne_mois(name_mois,c):
 #4- si condition alors c_write=c pour définir la colonne où écrire
 	global c_write
 	global new_month
-	book_mois = xlrd.open_workbook(path_RESULT.filename, on_demand = True)
-	sheet_mois = book_mois.sheet_by_index(0)
-	nc=sheet_mois.ncols
-	book_mois.release_resources()
+	#book_mois = xlrd.open_workbook(path_RESULT.filename, on_demand = True)
+	#sheet_mois = book_mois.sheet_by_index(0)
+	#nc=sheet_mois.ncols
+	#book_mois.release_resources()
 	del book_mois
 	
 	new_month=0
