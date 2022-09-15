@@ -265,7 +265,7 @@ def A_Colonne_mois(name_mois,c):
 	#sheet_mois = book_mois.sheet_by_index(0)
 	#nc=sheet_mois.ncols
 	#book_mois.release_resources()
-	del book_mois
+	#del book_mois
 	
 	new_month=0
 	
