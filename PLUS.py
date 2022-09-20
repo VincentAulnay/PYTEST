@@ -333,7 +333,7 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			except:
 				z=0
 			try:
-				the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
+				the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
 		#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 				#div=the_tr.span.div.div.div.get_text()
 				div=the_tr.div.get_text()
@@ -456,7 +456,7 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 			except:
 				z=0
 			try:
-				the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
+				the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
 		#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 				#div=the_tr.span.div.div.div.get_text()
 				div=the_tr.div.get_text()
@@ -570,7 +570,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 				except:
 					z=0
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
 			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
@@ -758,7 +758,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 				except:
 					z=0
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
 			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
@@ -880,7 +880,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 				except:
 					z=0
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bnon\b')})[i]
+					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
 			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
