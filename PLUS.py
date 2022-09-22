@@ -1303,6 +1303,9 @@ def COMPUTE_M1(name_mois1):
 rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 #rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 #rootdriver.set_page_load_timeout(2)
+time.sleep(5)
+rootdriver.set_window_size(100, 100)
+time.sleep(5)
 rootdriver.set_window_size(2000, 1000)
 wait = WebDriverWait(rootdriver, 5)
 nrow=ws.max_row
