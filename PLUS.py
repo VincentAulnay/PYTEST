@@ -1304,9 +1304,12 @@ rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_op
 #rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 #rootdriver.set_page_load_timeout(2)
 time.sleep(5)
+print("test1////////")
 rootdriver.set_window_size(100, 100)
 time.sleep(5)
+print("side1")
 rootdriver.set_window_size(2000, 1000)
+print("side2")
 wait = WebDriverWait(rootdriver, 5)
 nrow=ws.max_row
 print('NROW'+str(nrow))
