@@ -1305,6 +1305,7 @@ rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_op
 #rootdriver.set_page_load_timeout(2)
 time.sleep(5)
 print("test1////////")
+rootdriver.set_window_position(20, 20)
 rootdriver.set_window_size(100, 100)
 time.sleep(5)
 print("side1")
