@@ -1847,7 +1847,7 @@ while end==0:
 							rootdriver.set_window_size(2000, 1000)
 							wait = WebDriverWait(rootdriver, 5)
 					#rootdriver.get(h)
-					time.sleep(2)
+					time.sleep(5)
 					#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
 					#threading.Thread(target=scroll, args=(1,)).start()
 					#try:
@@ -1861,6 +1861,7 @@ while end==0:
 					b_scrolldown=0
 					while f_ele<=3:
 						try:
+							print("try ele")
 							ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 							rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 							rootdriver.execute_script("window.scrollBy(0,-150);")
@@ -1877,13 +1878,13 @@ while end==0:
 								b_scrolldown=1
 							except:
 								#print('DOWN KO')
-								time.sleep(1)
+								time.sleep(2)
 							#rootdriver.execute_script("window.scrollBy(0,2000);")
 							#print('DOWN KO')
 
 						f_ele=f_ele+1
 					#time.sleep(3)
-					threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
+					#threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 					if b_scrolldown==1:
 						td28=0
 						while td28<28:
