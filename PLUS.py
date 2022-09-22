@@ -1859,6 +1859,7 @@ while end==0:
 					#threading.Thread(target=f1, args=(h,)).start()
 					des=1
 					b_scrolldown=0
+					rootdriver.execute_script("window.scrollBy(0,2000);")
 					while f_ele<=3:
 						try:
 							print("try ele")
