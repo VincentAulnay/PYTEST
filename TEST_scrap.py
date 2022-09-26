@@ -33,7 +33,7 @@ print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
 
 wbx = load_workbook(path_RESULT.filename)
 ws = wbx.active
-h=ws.cell(row=2, column=cANNONCE).value
+h=ws.cell(row=2, column=3).value
 rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 rootdriver.set_window_size(2000, 1000)
 rootdriver.get(h)
