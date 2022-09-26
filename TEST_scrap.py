@@ -31,12 +31,11 @@ chrome_options.add_argument("window-size=2000,1000")
 #chrome_options.add_argument("-disable-gpu")
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
 
-wbx = load_workbook(path_RESULT.filename)
-ws = wbx.active
-h=ws.cell(row=2, column=3).value
 rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+time.sleep(5)
 rootdriver.set_window_size(2000, 1000)
-rootdriver.get(h)
+time.sleep(5)
+rootdriver.get('https://www.airbnb.fr/rooms/718608557683071399')
 time.sleep(5)
 try:
   ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
