@@ -46,7 +46,7 @@ except:
 try:  
   html = rootdriver.page_source
   soup = BeautifulSoup(html, 'html.parser')
-  month=soup.find('div', attrs={"class":u"_kuxo8ai"})
-  print('ok2')
+  month=soup.find('h1', attrs={"class":"_fecoyn4"}).text
+  print('month')
 except:
   print('falde')
