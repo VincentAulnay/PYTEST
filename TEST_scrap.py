@@ -36,7 +36,7 @@ time.sleep(5)
 rootdriver.set_window_size(2000, 1000)
 time.sleep(5)
 rootdriver.get('https://www.airbnb.fr/rooms/718608557683071399')
-time.sleep(5)
+time.sleep(10)
 try:
   ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
   rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
@@ -45,7 +45,9 @@ except:
   print("falde")
 try:  
   html = rootdriver.page_source
+  time.sleep(1)
   soup = BeautifulSoup(html, 'html.parser')
+  time.sleep(1)
   month=soup.find('h1', attrs={"class":"_fecoyn4"}).text
   print('month')
 except:
