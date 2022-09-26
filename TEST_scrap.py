@@ -33,6 +33,7 @@ print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
 
 rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 time.sleep(5)
+rootdriver.set_window_size(200, 100)
 rootdriver.set_window_position(500, 50)
 time.sleep(5)
 rootdriver.set_window_size(2000, 1000)
