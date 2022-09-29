@@ -39,12 +39,16 @@ rootdriver.get('https://www.google.com/')
 rootdriver.get('chrome://settings/')
 rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
 rootdriver.implicitly_wait(10)
+wait = WebDriverWait(rootdriver, 5)
 time.sleep(5)
 rootdriver.get('https://www.airbnb.fr/rooms/718608557683071399')
 time.sleep(10)
 try:
+  
+  print('version 1')
   #ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
-  ele=rootdriver.find_element_by_xpath("//div[@class='_qz9x4fc']/button")
+  #ele=rootdriver.find_element_by_xpath("//div[@class='_qz9x4fc']/button")
+  ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
   rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
   rootdriver.execute_script("window.scrollBy(0,-150);")
 except:
