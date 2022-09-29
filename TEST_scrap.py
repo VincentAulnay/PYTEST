@@ -51,6 +51,12 @@ try:
   ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
   rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
   rootdriver.execute_script("window.scrollBy(0,-150);")
+  time.sleep(1)
+  ele.click()
+  time.sleep(1)
+  ele.click()
+  time.sleep(1)
+  ele.click()
 except:
   print("falde")
 try:  
