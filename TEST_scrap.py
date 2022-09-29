@@ -61,15 +61,15 @@ except:
   print("falde")
 try:  
   html = rootdriver.page_source
-  time.sleep(1)
+  time.sleep(4)
   soup = BeautifulSoup(html, 'html.parser')
-  time.sleep(1)
+  time.sleep(4)
   month=soup.find('h1', attrs={"class":"_fecoyn4"}).text
   print('month')
 except:
   print('falde')
 try:
-  month=soup.find('div', attrs={"class":u"_1lds9wb"})
+  month=soup.find('div', attrs={"class":"_1lds9wb"})
   the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
   #div=the_tr.span.div.div.div.get_text()
   div=the_tr.div.get_text()
