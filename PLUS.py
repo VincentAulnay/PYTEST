@@ -1307,7 +1307,7 @@ rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_op
 rootdriver.set_window_size(2000, 1000)
 rootdriver.get('https://www.google.com/')
 rootdriver.get('chrome://settings/')
-rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
+rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.67);')
 rootdriver.implicitly_wait(10)
 wait = WebDriverWait(rootdriver, 5)
 nrow=ws.max_row
