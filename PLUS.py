@@ -486,7 +486,7 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 	else:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
-	#print(li)
+	print(li)
 	c_added=[]
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
@@ -593,7 +593,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			break
 		i=i+1
 	li.sort()
-	#print(li)
+	print(li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	#print(back_li)
 	try:
@@ -799,7 +799,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	except:
 		back_li=[]
 	ws.cell(row=j, column=c_write+1).value = str(li)
-	#print(li)
+	print(li)
 	c_added=[]
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
@@ -901,7 +901,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			break
 		i=i+1
 	li.sort()
-	#print (li)
+	print (li)
 	back_li=ws.cell(row=j, column=c_write+1).value
 	#print(back_li)
 	try:
@@ -1733,7 +1733,7 @@ while end==0:
 			h=ws.cell(row=j, column=cANNONCE).value
 			vACTIVE=ws.cell(row=j, column=cACTIVE).value
 			checker=0
-			#print('------'+str(j-1)+'------'+str(h)+'-----'+str(vACTIVE))
+			print('------'+str(j-1)+'------'+str(h)+'-----'+str(vACTIVE))
 			if vACTIVE=='YES':
 				if h==None:
 					j=j+1
@@ -1859,11 +1859,12 @@ while end==0:
 					rootdriver.execute_script("window.scrollBy(0,2000);")
 					while f_ele<=3:
 						try:
-							print("try ele")
+							#print("try ele")
 							#ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
 							ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 							rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 							rootdriver.execute_script("window.scrollBy(0,-150);")
+							print("try ele")
 							f_ele=6
 							bouton_mois_suivant=0
 							b_scrolldown=1
@@ -1958,6 +1959,7 @@ while end==0:
 								time.sleep(1)
 								ele.click()
 								time.sleep(2)
+								print("try click")
 								html = rootdriver.page_source
 								soup = BeautifulSoup(html, 'html.parser')
 								time.sleep(1)
