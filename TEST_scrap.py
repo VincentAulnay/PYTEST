@@ -61,9 +61,9 @@ except:
   print("falde")
 try:  
   html = rootdriver.page_source
-  time.sleep(4)
+  time.sleep(15)
   soup = BeautifulSoup(html, 'html.parser')
-  time.sleep(4)
+  time.sleep(15)
   month=soup.find('h1', attrs={"class":"_fecoyn4"}).text
   print('month')
 except:
