@@ -69,6 +69,7 @@ try:
 except:
   print('falde')
 try:
+  month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[0]
   the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
   #div=the_tr.span.div.div.div.get_text()
   div=the_tr.div.get_text()
