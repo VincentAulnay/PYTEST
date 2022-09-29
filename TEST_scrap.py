@@ -68,3 +68,18 @@ try:
   print('month')
 except:
   print('falde')
+try:
+  the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
+  #div=the_tr.span.div.div.div.get_text()
+  div=the_tr.div.get_text()
+  print(div)
+except:
+  aaaa=1
+  print('falde div')
+try:
+  #div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+  intdiv=int(div)
+  print(intdiv)
+except:
+  print('falde intdiv')
+  aaaa=1
