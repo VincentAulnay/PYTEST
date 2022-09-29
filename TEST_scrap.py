@@ -42,7 +42,8 @@ time.sleep(5)
 rootdriver.get('https://www.airbnb.fr/rooms/718608557683071399')
 time.sleep(10)
 try:
-  ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+  #ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+  ele=rootdriver.find_element_by_xpath("//div[@class='_qz9x4fc']/button")
   rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
   rootdriver.execute_script("window.scrollBy(0,-150);")
 except:
