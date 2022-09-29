@@ -1952,11 +1952,11 @@ while end==0:
 					#-----MOIS 4-5 -----
 						if v_m!='z':
 							try:
-								next_calendar.click()
+								ele.click()
 								time.sleep(1)
-								next_calendar.click()
+								ele.click()
 								time.sleep(1)
-								next_calendar.click()
+								ele.click()
 								time.sleep(2)
 								html = rootdriver.page_source
 								soup = BeautifulSoup(html, 'html.parser')
