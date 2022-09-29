@@ -572,7 +572,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 					z=0
 				try:
 					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
-			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+					#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
 					intdiv=int(div)
@@ -760,7 +760,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 					z=0
 				try:
 					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
-			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+					#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
 					intdiv=int(div)
@@ -884,7 +884,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
-			#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
+					#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					intdiv=int(div)
 					li.append(intdiv)
 				except:
@@ -1907,8 +1907,9 @@ while end==0:
 						#except:
 					#		zzzz=1
 						html = rootdriver.page_source
+						time.sleep(2)
 						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(1)
+						time.sleep(2)
 						ResAirbnb=''
 						#V_up=ws.cell(row=j, column=k).value
 						v_m='8'
