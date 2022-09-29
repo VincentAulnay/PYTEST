@@ -1308,7 +1308,7 @@ rootdriver.set_window_size(2000, 1000)
 rootdriver.get('https://www.google.com/')
 rootdriver.get('chrome://settings/')
 rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
-print("side2")
+rootdriver.implicitly_wait(10)
 wait = WebDriverWait(rootdriver, 5)
 nrow=ws.max_row
 print('NROW'+str(nrow))
@@ -1758,7 +1758,8 @@ while end==0:
 					des=1
 					try:
 						#print('search ele')
-						ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+						#ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
+						ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 						rootdriver.execute_script("window.scrollBy(0,-200);")
 						time.sleep(2)
@@ -1859,7 +1860,8 @@ while end==0:
 					while f_ele<=3:
 						try:
 							print("try ele")
-							ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+							#ele=rootdriver.find_element_by_xpath("//div[@aria-label='Avancez pour passer au mois suivant.']")
+							ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 							rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
 							rootdriver.execute_script("window.scrollBy(0,-150);")
 							f_ele=6
