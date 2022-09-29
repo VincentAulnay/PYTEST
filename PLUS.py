@@ -1907,9 +1907,9 @@ while end==0:
 						#except:
 					#		zzzz=1
 						html = rootdriver.page_source
-						time.sleep(2)
+						time.sleep(5)
 						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(2)
+						time.sleep(5)
 						ResAirbnb=''
 						#V_up=ws.cell(row=j, column=k).value
 						v_m='8'
