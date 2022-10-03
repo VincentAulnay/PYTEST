@@ -62,7 +62,8 @@ except:
 try:  
   html = rootdriver.page_source
   time.sleep(15)
-  soup = BeautifulSoup(html, 'html.parser')
+  #soup = BeautifulSoup(html, 'html.parser')
+  soup = BeautifulSoup(html, 'lxml')
   time.sleep(15)
   month=soup.find('h1', attrs={"class":"_fecoyn4"}).text
   print('month')
