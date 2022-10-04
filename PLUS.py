@@ -1314,7 +1314,7 @@ rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_op
 rootdriver.set_window_size(2000, 1000)
 rootdriver.get('https://www.google.com/')
 rootdriver.get('chrome://settings/')
-rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.67);')
+rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
 rootdriver.implicitly_wait(10)
 wait = WebDriverWait(rootdriver, 5)
 nrow=ws.max_row
@@ -1999,6 +1999,10 @@ while end==0:
 						time.sleep(5)
 						rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 						rootdriver.set_window_size(2000, 1000)
+						rootdriver.get('https://www.google.com/')
+						rootdriver.get('chrome://settings/')
+						rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
+						rootdriver.implicitly_wait(10)
 						wait = WebDriverWait(rootdriver, 5)
 						time.sleep(5)
 						rootdriver.get(h)
@@ -2055,6 +2059,11 @@ while end==0:
 		rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 		#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 		rootdriver.set_window_size(2000, 1000)
+		rootdriver.set_window_size(2000, 1000)
+		rootdriver.get('https://www.google.com/')
+		rootdriver.get('chrome://settings/')
+		rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
+		rootdriver.implicitly_wait(10)
 		wait = WebDriverWait(rootdriver, 5)
 		f_xpathdate=1
 		fm=2
@@ -2099,6 +2108,11 @@ while end==0:
 					rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 					#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 					rootdriver.set_window_size(2000, 1000)
+					rootdriver.set_window_size(2000, 1000)
+					rootdriver.get('https://www.google.com/')
+					rootdriver.get('chrome://settings/')
+					rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
+					rootdriver.implicitly_wait(10)
 					wait = WebDriverWait(rootdriver, 5)
 
 		
