@@ -45,7 +45,7 @@ rootdriver.get('https://www.airbnb.fr/rooms/718608557683071399')
 time.sleep(10)
 try:
   
-  print('version 5')
+  print('version 6')
   #ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
   #ele=rootdriver.find_element_by_xpath("//div[@class='_qz9x4fc']/button")
   ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
@@ -77,7 +77,7 @@ try:
   print('1')
   print(month)
   the_tr= month.find_all('td', attrs={"aria-label":"Non"})
-  print('liste'+len(the_tr))
+  print(the_tr)
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile('Non')})[1]
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
   #div=the_tr.span.div.div.div.get_text()
