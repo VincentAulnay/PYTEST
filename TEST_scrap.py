@@ -22,6 +22,7 @@ from email import encoders
 from openpyxl import load_workbook
 import threading
 import sys
+import re
 
 chrome_options = webdriver.ChromeOptions()
 prefs = {"profile.managed_default_content_settings.images": 2}
@@ -45,7 +46,7 @@ rootdriver.get('https://www.airbnb.fr/rooms/718608557683071399')
 time.sleep(10)
 try:
   
-  print('version 7')
+  print('version 8')
   #ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
   #ele=rootdriver.find_element_by_xpath("//div[@class='_qz9x4fc']/button")
   ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
@@ -76,7 +77,7 @@ try:
   month=soup.find('div', attrs={"class":"_1lds9wb"})
   print('1')
   print(month)
-  the_tr= month.find_all('td', aria-label_="Non")
+  the_tr= month.find_all(aria-label=re.compile("Non"))
   print(the_tr)
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile('Non')})[1]
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
