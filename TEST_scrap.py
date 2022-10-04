@@ -36,8 +36,8 @@ time.sleep(5)
 #rootdriver.manage().window().setSize(1024, 768)
 rootdriver.set_window_size(2000, 1000)
 rootdriver.get('https://www.google.com/')
-#rootdriver.get('chrome://settings/')
-#rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
+rootdriver.get('chrome://settings/')
+rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
 rootdriver.implicitly_wait(10)
 wait = WebDriverWait(rootdriver, 5)
 time.sleep(5)
@@ -60,19 +60,24 @@ try:
 except:
   print("falde")
 try:  
+  time.sleep(5)
   html = rootdriver.page_source
-  time.sleep(15)
+  print('html')
+  time.sleep(5)
   #soup = BeautifulSoup(html, 'html.parser')
   soup = BeautifulSoup(html, 'lxml')
-  time.sleep(15)
+  print('soup')
+  time.sleep(5)
   month=soup.find('h1', attrs={"class":"_fecoyn4"}).text
-  print('month')
+  print(month)
 except:
   print('falde')
 try:
   month=soup.find('div', attrs={"class":"_1lds9wb"})
+  print('1')
   the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
   #div=the_tr.span.div.div.div.get_text()
+  print('2')
   div=the_tr.div.get_text()
   print(div)
 except:
