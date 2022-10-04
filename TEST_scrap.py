@@ -74,7 +74,8 @@ try:
 except:
   print('falde')
 try:
-  month=soup.find('div', attrs={"class":"_1lds9wb"})
+  #month=soup.find('div', attrs={"class":"_1lds9wb"})
+  month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[1]
   print('1')
   print(month)
   the_tr= month.find_all(attrs={'aria-label':re.compile('Non')})[1]
