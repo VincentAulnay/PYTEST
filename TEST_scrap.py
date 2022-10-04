@@ -77,6 +77,7 @@ try:
   print('1')
   print(month)
   the_tr= month.find_all('td', attrs={"aria-label":"Non"})
+  print('liste'+len(the_tr))
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile('Non')})[1]
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
   #div=the_tr.span.div.div.div.get_text()
