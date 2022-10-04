@@ -77,7 +77,7 @@ try:
   month=soup.find('div', attrs={"class":"_1lds9wb"})
   print('1')
   print(month)
-  the_tr= month.find_all(attrs={'aria-label':re.compile('Non'))
+  the_tr= month.find_all(attrs={'aria-label':re.compile('Non')})
   print(the_tr)
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile('Non')})[1]
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
