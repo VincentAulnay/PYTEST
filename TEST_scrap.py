@@ -65,8 +65,8 @@ try:
   html = rootdriver.page_source
   print('html')
   time.sleep(5)
-  #soup = BeautifulSoup(html, 'html.parser')
-  soup = BeautifulSoup(html, 'lxml')
+  soup = BeautifulSoup(html, 'html.parser')
+  #soup = BeautifulSoup(html, 'lxml')
   print('soup')
   time.sleep(5)
   month=soup.find('h1', attrs={"class":"_fecoyn4"}).text
@@ -77,7 +77,7 @@ try:
   month=soup.find('div', attrs={"class":"_1lds9wb"})
   print('1')
   print(month)
-  the_tr= month.find_all(attrs={'aria-label':re.compile('Non')})
+  the_tr= month.find_all(attrs={'aria-label':re.compile('Non')})[1]
   print(the_tr)
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile('Non')})[1]
   #the_tr= month.find_all('td', attrs={'aria-label':re.compile(r'\bNon\b')})[1]
