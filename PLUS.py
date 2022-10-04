@@ -22,6 +22,7 @@ from email import encoders
 from openpyxl import load_workbook
 import threading
 import sys
+import re
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -561,7 +562,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 					li.append(intdiv)
 			if des==1:
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+					#the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+					the_tr= month.find_all(attrs={'aria-label':re.compile('uniquement')})[i]
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
 					#_1lds9wb
@@ -571,7 +573,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 				except:
 					z=0
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
+					#the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
+					the_tr= month.find_all(attrs={'aria-label':re.compile('Non')})[i]
 					#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
@@ -581,7 +584,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 				except:
 					z=0
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
+					#the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
+					the_tr= month.find_all(attrs={'aria-label':re.compile('pas')})[i]
 					div=the_tr.div.get_text()
 					intdiv=int(div)
 					if intdiv>=int_timeday:
@@ -750,7 +754,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 				li.append(intdiv)
 			if des==1:
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+					#the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\buniquement\b')})[i]
+					the_tr= month.find_all(attrs={'aria-label':re.compile('uniquement')})[i]
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
 					#_1lds9wb
@@ -759,7 +764,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 				except:
 					z=0
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
+					#the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\bNon\b')})[i]
+					the_tr= month.find_all(attrs={'aria-label':re.compile('Non')})[i]
 					#div=the_tr.find('div', attrs={"class": "_13m7kz7i"}).text
 					#div=the_tr.span.div.div.div.get_text()
 					div=the_tr.div.get_text()
@@ -768,7 +774,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 				except:
 					z=0
 				try:
-					the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
+					#the_tr= month.findAll('td', attrs={'aria-label':re.compile(r'\pas\b')})[i]
+					the_tr= month.find_all(attrs={'aria-label':re.compile('pas')})[i]
 					div=the_tr.div.get_text()
 					intdiv=int(div)
 					#if intdiv>=int_timeday:
