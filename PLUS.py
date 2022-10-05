@@ -75,14 +75,14 @@ Hr=dt.datetime.now().hour
 #------RECUP INFO CALANDAR------
 
 def email(DIR2,NAMEFile,now,total_R,total_L,total_P,total_C):
-	sender = ADRESS_GMAIL
-	sender_password = PSW_GMAIL
+	#sender = ADRESS_GMAIL
+	#sender_password = PSW_GMAIL
 	#sender = 'stopbnb33650@gmail.com'
 	#sender_password = '@stop$n$33650'
 	print('ici1')
 	sender = 'vincent.aulnay@gmx.fr'
 	sender_password = '@Vincent94'
-	receivers = [RECEIVER, 'vincent.aulnay@gmx.fr']
+	receivers = ['vincent.aulnay@gmail.com', 'vincent.aulnay@gmx.fr']
 	print('ici2')
 
 	#s = smtplib.SMTP('smtp.gmail.com', 587)
