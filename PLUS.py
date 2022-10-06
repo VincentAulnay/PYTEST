@@ -46,17 +46,17 @@ print(now)
 #wbx = load_workbook(path_RESULT.filename)
 #ws = wbx.active
 
-client = pygsheets.authorize(service_account_file='compact-env-336008-984276d2c062.json')
+client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/optical-hangar-364712-2470015c5ddb.json')
 
-spreadsheet_url = "https://docs.google.com/spreadsheets/d/1CjfNTlCRVXJ90kX0XY-q2aU2-_xPDflD8VxPaxz6vzg/edit?usp=sharing"
+spreadsheet_url = "https://docs.google.com/spreadsheets/d/1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c/edit?usp=sharing"
+time.sleep(20)
 
-
-sheet_data = client.sheet.get('1CjfNTlCRVXJ90kX0XY-q2aU2-_xPDflD8VxPaxz6vzg')
-
-sheet = client.open('TESTGOOGLESHEET')
-
-ws = sheet.worksheet_by_title('DATA')
-
+sheet_data = client.sheet.get('1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c')
+time.sleep(20)
+sheet = client.open('MARTIGNAC')
+time.sleep(20)
+ws = sheet.worksheet_by_title('Sheet1')
+time.sleep(20)
 #-------FIND COLUMN UPDATE------
 up=0
 k=1
