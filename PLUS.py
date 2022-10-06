@@ -1473,7 +1473,8 @@ while cANNONCE==0:
 		cANNONCE=i
 	i=i+1	
 while f_mounth==0:
-	h=ws.cell(row=fm, column=cANNONCE).value
+	#h=ws.cell(row=fm, column=cANNONCE).value
+	h=ws.cell((fl, cANNONCE)).value
 	print(h)
 	#if fff==2:
 	#	f_mounth=1
@@ -1841,8 +1842,10 @@ while end==0:
 			PLUS=0
 			C1=0
 			#----START TRAQUING----
-			h=ws.cell(row=j, column=cANNONCE).value
-			vACTIVE=ws.cell(row=j, column=cACTIVE).value
+			#h=ws.cell(row=j, column=cANNONCE).value
+			#vACTIVE=ws.cell(row=j, column=cACTIVE).value
+			h=ws.cell((j, cANNONCE)).value
+			vACTIVE=ws.cell((j, cACTIVE)).value
 			checker=0
 			print('------'+str(j-1)+'------'+str(h)+'-----'+str(vACTIVE))
 			if vACTIVE=='YES':
@@ -1932,13 +1935,14 @@ while end==0:
 							Tcomment=Lcomment[1].replace(")","")
 							Icomment=int(Tcomment)
 							print(Icomment)
-							ws.cell(row=j, column=c_write+2).value=Icomment
+							#ws.cell(row=j, column=c_write+2).value=Icomment
+							ws.update_value((j,c_write+2), Icomment)
 						except:
 							pass
 					except:
 						print('ECHEC PLUS')
-					if (j/20).is_integer():
-						wbx.save(path_RESULT.filename)
+					#if (j/20).is_integer():
+					#	wbx.save(path_RESULT.filename)
 					j=j+1
 				elif 'airbnb' in h:
 					run_getdrive=getdrive(h)
@@ -2094,8 +2098,8 @@ while end==0:
 								pass
 							C_mois5=1
 							checker=1
-					if (j/100).is_integer():
-						wbx.save(path_RESULT.filename)
+					#if (j/100).is_integer():
+					#	wbx.save(path_RESULT.filename)
 						#if checker==1:
 						#	x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1b3ij9t']")))
 					if (j/500).is_integer():
@@ -2121,21 +2125,21 @@ while end==0:
 			else:
 				j=j+1
 		
-		wbx.save(path_RESULT.filename)
+		#wbx.save(path_RESULT.filename)
 		end=1
 		now = str(datetime.datetime.now())[:19]
 		now = now.replace(":","_")
 		print(now)
 		Tr=date
 		print ('FIN')
-		wbx = load_workbook(path_RESULT.filename)
-		ws = wbx.active
+		#wbx = load_workbook(path_RESULT.filename)
+		#ws = wbx.active
 		try:
 			COMPUTE_M1(name_mois1)
 			COMPUTE_M1(name_mois2)
 		except:
 			print('no compute')
-		wbx.save(DIR2+NAMEFile+str(now)+".xlsx")
+		#wbx.save(DIR2+NAMEFile+str(now)+".xlsx")
 		try:
 			print('///REPORT///')
 			print('Total R = '+str(total_R))
@@ -2174,7 +2178,8 @@ while end==0:
 		fff=0
 		while f_xpathdate==0:
 			print('test2')
-			h=ws.cell(row=fm, column=cANNONCE).value
+			#h=ws.cell(row=fm, column=cANNONCE).value
+			h=ws.cell((fm, cANNONCE)).value
 			fm=fm+1
 			print(h)
 			if fff==8:
