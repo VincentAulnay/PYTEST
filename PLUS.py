@@ -511,7 +511,8 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 		except:
 			break
 	li.sort()
-	back_li=ws.cell(row=j, column=c_write+1).value
+	#back_li=ws.cell(row=j, column=c_write+1).value
+	back_li=ws.cell((j, c_write+1)).value
 	if back_li!=None:
 		back_li=back_li.replace("[","")
 		back_li=back_li.replace("]","")
@@ -526,7 +527,8 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 		#print ("back_li="+str(back_li))
 	else:
 		back_li=[]
-	ws.cell(row=j, column=c_write+1).value = str(li)
+	#ws.cell(row=j, column=c_write+1).value = str(li)
+	ws.update_value((j,c_write+1), str(li))
 	print(li)
 	c_added=[]
 	c_remove=[]
@@ -551,7 +553,8 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 			t_rem=t_rem.replace("[","")
 			t_rem=t_rem.replace("]","")
 			#print(t_rem)
-	ca=ws.cell(row=j, column=c_write).value
+	#ca=ws.cell(row=j, column=c_write).value
+	ca=ws.cell((j, c_write)).value
 	if ca==None:
 		if t_add!='vide':
 			t_wri=str(t_add)
@@ -568,7 +571,8 @@ def A_Statu_PLUS2(c_write,j,ResAirbnb,new_mo,page):
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
 		#print(t_wri)
-		ws.cell(row=j, column=c_write).value=t_wri
+		#ws.cell(row=j, column=c_write).value=t_wri
+		ws.update_value((j,c_write+2), t_wri)
 			
 def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):	
 	global R1
@@ -637,8 +641,9 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			break
 		i=i+1
 	li.sort()
-	print(li)
-	back_li=ws.cell(row=j, column=c_write+1).value
+	#print(li)
+	#back_li=ws.cell(row=j, column=c_write+1).value
+	back_li=ws.cell((j, c_write+1)).value
 	#print(back_li)
 	try:
 		if back_li!=[]:
@@ -658,7 +663,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			back_li=[]
 	except:
 		back_li=[]
-	ws.cell(row=j, column=c_write+1).value = str(li)
+	#ws.cell(row=j, column=c_write+1).value = str(li)
+	ws.update_value((j,c_write+1), str(li))
 	#print(str(li))
 	c_added=[]
 	c_remove=[]
@@ -676,7 +682,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	write_c=0
 	if ONC==1:
 		try:
-			oldcc=ws.cell(row=j, column=c_write+2).value
+			#oldcc=ws.cell(row=j, column=c_write+2).value
+			oldcc=ws.cell((j, c_write+2)).value
 			#try:
 			#	tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
 			#except:
@@ -703,7 +710,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 				cc=pp[0]
 			except:
 				pass
-			ws.cell(row=j, column=c_write+2).value=cc
+			#ws.cell(row=j, column=c_write+2).value=cc
+			ws.update_value((j,c_write+2), cc)
 			if oldcc!=cc:
 				C1=1
 				write_c=1
@@ -737,7 +745,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			t_rem=t_rem.replace("]","")
 			L=1
 			#print(t_rem)
-	ca=ws.cell(row=j, column=c_write).value
+	#ca=ws.cell(row=j, column=c_write).value
+	ca=ws.cell((j, c_write)).value
 	if ca==None:
 		if t_add!='vide':
 			t_wri=str(t_add)
@@ -761,7 +770,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 
 	
 	if t_wri!='vide':
-		ws.cell(row=j, column=c_write).value=t_wri
+		#ws.cell(row=j, column=c_write).value=t_wri
+		ws.update_value((j,c_write), t_wri)
 	if g==0:
 		R1=R
 		L1=L
