@@ -23,6 +23,11 @@ from openpyxl import load_workbook
 import threading
 import sys
 import re
+import json
+import csv
+from google.oauth2 import service_account
+import pygsheets
+import pandas as pd
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -38,15 +43,27 @@ now = now.replace(":","_")
 print(now)
 #-----EXCEL RESULT OPEN AND READ-----
 
-wbx = load_workbook(path_RESULT.filename)
-ws = wbx.active
+#wbx = load_workbook(path_RESULT.filename)
+#ws = wbx.active
+
+client = pygsheets.authorize(service_account_file='compact-env-336008-984276d2c062.json')
+
+spreadsheet_url = "https://docs.google.com/spreadsheets/d/1CjfNTlCRVXJ90kX0XY-q2aU2-_xPDflD8VxPaxz6vzg/edit?usp=sharing"
+
+
+sheet_data = client.sheet.get('1CjfNTlCRVXJ90kX0XY-q2aU2-_xPDflD8VxPaxz6vzg')
+
+sheet = client.open('TESTGOOGLESHEET')
+
+ws = sheet.worksheet_by_title('DATA')
 
 #-------FIND COLUMN UPDATE------
 up=0
 k=1
 while up==0:
 	#V_up=sheet_read.cell(0,i).value
-	V_up=ws.cell(row=1, column=k).value
+	#V_up=ws.cell(row=1, column=k).value
+	V_up=ws.cell((1, k)).value
 	if V_up=='ACTIVE_YES/NO':
 		up=1
 	else:
@@ -273,37 +290,55 @@ def A_Colonne_mois(name_mois,c):
 	
 	find_month=0
 	while find_month==0:
-		this_month=ws.cell(row=1, column=c+1).value
+		#this_month=ws.cell(row=1, column=c+1).value
+		this_month=ws.cell((1, c+1)).value
 		if this_month==name_mois:
 			c_write=c+1
 			c_stat='rien'
-			c_stat=ws.cell(row=1, column=c+2).value
+			#c_stat=ws.cell(row=1, column=c+2).value
+			c_stat=ws.cell((1, c+2)).value
 			if c_stat!="STATE":
 				ws.insert_cols(c+2)
-				ws.cell(row=1, column=c+2).value = 'STATE'
-				wbx.save(path_RESULT.filename)
+				#ws.cell(row=1, column=c+2).value = 'STATE'
+				ws.update_value((1,c+2), 'STATE')
+				#wbx.save(path_RESULT.filename)
 			break
 		elif this_month==None:
-			ws.cell(row=1, column=c+1).value = name_mois
-			ws.cell(row=1, column=c+2).value = 'STATE'
-			ws.cell(row=1, column=c+3).value = 'NB_COMMENT'
-			ws.cell(row=1, column=c+4).value = 'DIF_COMMENT'
-			ws.cell(row=1, column=c+5).value = 'Sum_Nuitee'
-			ws.cell(row=1, column=c+6).value = 'Nuitee_bloquee'
-			ws.cell(row=1, column=c+7).value = 'R5_ACT'
-			ws.cell(row=1, column=c+8).value = 'R15_ACT'
-			ws.cell(row=1, column=c+9).value = 'R30_ACT'
-			ws.cell(row=1, column=c+10).value = 'R5_Jours'
-			ws.cell(row=1, column=c+11).value = 'R15_Jours'
-			ws.cell(row=1, column=c+12).value = 'R30_Jours'
-			ws.cell(row=1, column=c+13).value = 'L_ACT'
-			ws.cell(row=1, column=c+14).value = 'P_NB'
-			ws.cell(row=1, column=c+15).value = 'D_Jours'
+			ws.add_cols(1)
+			ws.update_value((1,c+1), name_mois)
+			ws.add_cols(1)
+			ws.update_value((1,c+2), 'STATE')
+			ws.add_cols(1)
+			ws.update_value((1,c+3), 'NB_COMMENT')
+			ws.add_cols(1)
+			ws.update_value((1,c+4), 'DIF_COMMENT')
+			ws.add_cols(1)
+			ws.update_value((1,c+5), 'Sum_Nuitee')
+			ws.add_cols(1)
+			ws.update_value((1,c+6), 'Nuitee_bloquee')
+			ws.add_cols(1)
+			ws.update_value((1,c+7), 'R5_ACT')
+			ws.add_cols(1)
+			ws.update_value((1,c+8), 'R15_ACT')
+			ws.add_cols(1)
+			ws.update_value((1,c+9), 'R30_ACT')
+			ws.add_cols(1)
+			ws.update_value((1,c+10), 'R5_Jours')
+			ws.add_cols(1)
+			ws.update_value((1,c+11), 'R15_Jours')
+			ws.add_cols(1)
+			ws.update_value((1,c+12), 'R30_Jours')
+			ws.add_cols(1)
+			ws.update_value((1,c+13), 'L_ACT')
+			ws.add_cols(1)
+			ws.update_value((1,c+14), 'P_NB')
+			ws.add_cols(1)
+			ws.update_value((1,c+15), 'D_Jours')
+			ws.add_cols(1)
 			c_write=c+1
 			find_month=1
 			new_month=1
 			print ('plus une colonne')
-			wbx.save(path_RESULT.filename)
 			break
 		else:
 			c=c+1
@@ -348,7 +383,8 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 		except:
 			break
 	li.sort()
-	back_li=ws.cell(row=j, column=c_write+1).value
+	#back_li=ws.cell(row=j, column=c_write+1).value
+	back_li=ws.cell((j, c_write+1)).value
 	try:
 		if back_li!='[]':
 			back_li=back_li.replace("[","")
@@ -367,7 +403,8 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			back_li=[]
 	except:
 		back_li=[]
-	ws.cell(row=j, column=c_write+1).value = str(li)
+	#ws.cell(row=j, column=c_write+1).value = str(li)
+	ws.update_value((j,c_write+1), str(li))
 	#print(li)
 	c_added=[]
 	c_remove=[]
@@ -400,7 +437,8 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			t_rem=t_rem.replace("[","")
 			t_rem=t_rem.replace("]","")
 			#print(t_rem)
-	ca=ws.cell(row=j, column=c_write).value
+	#ca=ws.cell(row=j, column=c_write).value
+	ca=ws.cell((j, c_write)).value
 	if ca==None:
 		if t_add!='vide':
 			t_wri=str(t_add)
@@ -417,7 +455,8 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
 		print(t_wri)
-		ws.cell(row=j, column=c_write).value=t_wri
+		#ws.cell(row=j, column=c_write).value=t_wri
+		ws.update_value((j,c_write), t_wri)
 	#COMMENTAIRE
 	ONC=ONCOM
 	if ONC==1:
@@ -431,7 +470,8 @@ def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):
 			Lcomment=Scomment.split("(")
 			Tcomment=Lcomment[1].replace(")","")
 			Icomment=int(Tcomment)
-			ws.cell(row=j, column=c_write+2).value=Icomment
+			#ws.cell(row=j, column=c_write+2).value=Icomment
+			ws.update_value((j,c_write+2), Icomment)
 		except:
 			pass
 
