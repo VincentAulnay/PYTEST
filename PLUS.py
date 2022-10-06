@@ -962,8 +962,9 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			break
 		i=i+1
 	li.sort()
-	print (li)
-	back_li=ws.cell(row=j, column=c_write+1).value
+	#print (li)
+	#back_li=ws.cell(row=j, column=c_write+1).value
+	back_li=ws.cell((j, c_write+1)).value
 	#print(back_li)
 	try:
 		if back_li!=[]:
@@ -982,7 +983,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			back_li=[]
 	except:
 		back_li=[]
-	ws.cell(row=j, column=c_write+1).value = str(li)
+	#ws.cell(row=j, column=c_write+1).value = str(li)
+	ws.update_value((j,c_write+1), str(li))
 	#print(li)
 	c_added=[]
 	c_remove=[]
@@ -1013,7 +1015,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			t_rem=t_rem.replace("[","")
 			t_rem=t_rem.replace("]","")
 			#print(t_rem)
-	ca=ws.cell(row=j, column=c_write).value
+	#ca=ws.cell(row=j, column=c_write).value
+	ca=ws.cell((j, c_write)).value
 	if ca==None:
 		if t_add!='vide':
 			t_wri=str(t_add)
@@ -1030,7 +1033,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
 		#print(t_wri)
-		ws.cell(row=j, column=c_write).value=t_wri
+		#ws.cell(row=j, column=c_write).value=t_wri
+		ws.update_value((j,c_write), t_wri)
 	if g==0:
 		R4=R
 		L4=L
@@ -1045,7 +1049,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=1
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up==name_mois1:
 				up=1
 			else:
@@ -1055,7 +1060,8 @@ def COMPUTE_M1(name_mois1):
 
 		up=0
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='NB_COMMENT':
 				up=1
 			else:
@@ -1066,7 +1072,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='DIF_COMMENT':
 				up=1
 			else:
@@ -1077,7 +1084,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='Sum_Nuitee':
 				up=1
 			else:
@@ -1087,7 +1095,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='Sum_Nuitee':
 				up=1
 			else:
@@ -1097,7 +1106,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='Nuitee_bloquee':
 				up=1
 			else:
@@ -1107,7 +1117,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='R5_ACT':
 				up=1
 			else:
@@ -1117,7 +1128,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='R15_ACT':
 				up=1
 			else:
@@ -1127,7 +1139,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='R30_ACT':
 				up=1
 			else:
@@ -1137,7 +1150,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='R5_Jours':
 				up=1
 			else:
@@ -1148,7 +1162,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='R15_Jours':
 				up=1
 			else:
@@ -1158,7 +1173,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='R30_Jours':
 				up=1
 			else:
@@ -1168,7 +1184,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='L_ACT':
 				up=1
 			else:
@@ -1178,7 +1195,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='P_NB':
 				up=1
 			else:
@@ -1188,7 +1206,8 @@ def COMPUTE_M1(name_mois1):
 		up=0
 		i=Cmois
 		while up==0:
-			V_up=ws.cell(row=1, column=i).value
+			#V_up=ws.cell(row=1, column=i).value
+			V_up=ws.cell((1, i)).value
 			if V_up=='D_Jours':
 				up=1
 			else:
@@ -1199,7 +1218,8 @@ def COMPUTE_M1(name_mois1):
 		i=Cmois
 		try:
 			while up==0:
-				V_up=ws.cell(row=1, column=i).value
+				#V_up=ws.cell(row=1, column=i).value
+				V_up=ws.cell((1, i)).value
 				if V_up=='NB_COMMENT':
 					up=1
 				else:
@@ -1213,41 +1233,59 @@ def COMPUTE_M1(name_mois1):
 	c=2
 	while c<=nrow:
 		if NOC2==0:
-			V1=ws.cell(row=c, column=Ccomment1).value
-			V2=ws.cell(row=c, column=Ccomment2).value
+			#V1=ws.cell(row=c, column=Ccomment1).value
+			#V2=ws.cell(row=c, column=Ccomment2).value
+			V1=ws.cell((c, Ccomment1)).value
+			V2=ws.cell((c, Ccomment2)).value
 			try:
 				DIF=int(V1)-int(V2)
 				#print('ANNONCE:'+str(c)+('   DIF:')+str(DIF))
-				ws.cell(row=c, column=DIF_Comment).value=DIF
+				#ws.cell(row=c, column=DIF_Comment).value=DIF
+				ws.update_value((c,DIF_Comment), DIF)
 			except:
 				pass
 	#--------COUNT NB/A and NB NO/A---------
-		STR_NBA=ws.cell(row=c, column=Cmois).value
+		#STR_NBA=ws.cell(row=c, column=Cmois).value
+		STR_NBA=ws.cell((c, Cmois)).value
 		#if STR_NBA==None:
 		#	STR_NBA="/X1-7:3"
 		continu=1
 		if STR_NBA==None:
 			continu=0
-			ws.cell(row=c, column=C_L).value=0
-			ws.cell(row=c, column=C_P).value=0
-			ws.cell(row=c, column=C_D).value=0
-			ws.cell(row=c, column=C_R5A).value=0
-			ws.cell(row=c, column=C_R15A).value=0
-			ws.cell(row=c, column=C_R30A).value=0
-			ws.cell(row=c, column=C_R5J).value=0
-			ws.cell(row=c, column=C_R15J).value=0
-			ws.cell(row=c, column=C_R30J).value=0
-			ws.cell(row=c, column=C_NuitBloquee).value=0
-			N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
+			#ws.cell(row=c, column=C_L).value=0
+			#ws.cell(row=c, column=C_P).value=0
+			#ws.cell(row=c, column=C_D).value=0
+			#ws.cell(row=c, column=C_R5A).value=0
+			#ws.cell(row=c, column=C_R15A).value=0
+			#ws.cell(row=c, column=C_R30A).value=0
+			#ws.cell(row=c, column=C_R5J).value=0
+			#ws.cell(row=c, column=C_R15J).value=0
+			#ws.cell(row=c, column=C_R30J).value=0
+			#ws.cell(row=c, column=C_NuitBloquee).value=0
+			ws.update_value((c,C_L), 0)
+			ws.update_value((c,C_P), 0)
+			ws.update_value((c,C_D), 0)
+			ws.update_value((c,C_R5A), 0)
+			ws.update_value((c,C_R15A), 0)
+			ws.update_value((c,C_R30A), 0)
+			ws.update_value((c,C_R5J), 0)
+			ws.update_value((c,C_R15J), 0)
+			ws.update_value((c,C_R30J), 0)
+			ws.update_value((c,C_NuitBloquee), 0)
+			#N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
+			N1nuit=ws.cell((c, C_N1SumNuitee)).value
 			if N1nuit is None:
 				N1nuit=0
-			ws.cell(row=c, column=C_SumNuitee).value=N1nuit
+			#ws.cell(row=c, column=C_SumNuitee).value=N1nuit
+			ws.update_value((c,C_SumNuitee), N1nuit)
 		if continu==1:
 			count_R=STR_NBA.count('/R')
 			count_L=STR_NBA.count('/L')
 			count_P=STR_NBA.count('/P')
-			ws.cell(row=c, column=C_L).value=count_L
-			ws.cell(row=c, column=C_P).value=count_P
+			#ws.cell(row=c, column=C_L).value=count_L
+			#ws.cell(row=c, column=C_P).value=count_P
+			ws.update_value((c,C_L), count_L)
+			ws.update_value((c,C_P), count_P)
 					#---------COUNT nJ ---------
 			list=STR_NBA.split(';')
 			B=['/P', '/D', '/R', '/L', '/X']
@@ -1265,7 +1303,8 @@ def COMPUTE_M1(name_mois1):
 				pld=pnlD[0].split(',')
 				nbD=nbD+len(pld)
 				rd=rd+1
-			ws.cell(row=c, column=C_D).value=nbD
+			#ws.cell(row=c, column=C_D).value=nbD
+			ws.update_value((c,C_D), nbD)
 			#[x for x in list if not x.startswith('/A/P') and not x.startswith('/D') and not x.startswith('/P')]
 			#[x for x in list if not any(bad in x for bad in B)]
 			#-----/A--------
@@ -1292,9 +1331,12 @@ def COMPUTE_M1(name_mois1):
 						R30=R30+1
 					nbA=nbA+len(pla)
 					rr=rr+1
-				ws.cell(row=c, column=C_R5A).value=R5
-				ws.cell(row=c, column=C_R15A).value=R15
-				ws.cell(row=c, column=C_R30A).value=R30
+				#ws.cell(row=c, column=C_R5A).value=R5
+				#ws.cell(row=c, column=C_R15A).value=R15
+				#ws.cell(row=c, column=C_R30A).value=R30
+				ws.update_value((c,C_R5A), R5)
+				ws.update_value((c,C_R15A), R15)
+				ws.update_value((c,C_R30A), R530
 			except:
 				pass
 				
@@ -1347,16 +1389,22 @@ def COMPUTE_M1(name_mois1):
 						ffloat=ffloat+1
 					listL.extend(sp3)
 				s=s+1
-			ws.cell(row=c, column=C_R5J).value=NR5
-			ws.cell(row=c, column=C_R15J).value=NR15
-			ws.cell(row=c, column=C_R30J).value=NR30
-			ws.cell(row=c, column=C_NuitBloquee).value=NR30+NR15+NR5
-			N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
+			#ws.cell(row=c, column=C_R5J).value=NR5
+			#ws.cell(row=c, column=C_R15J).value=NR15
+			#ws.cell(row=c, column=C_R30J).value=NR30
+			#ws.cell(row=c, column=C_NuitBloquee).value=NR30+NR15+NR5
+			ws.update_value((c,C_R5J), NR5)
+			ws.update_value((c,C_R15J), NR15)
+			ws.update_value((c,C_30J), NR30)
+			ws.update_value((c,C_NuitBloquee), NR30+NR15+NR5)
+			#N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
+			N1nuit=ws.cell((c, C_N1SumNuitee)).value
 			if N1nuit is None:
 				N1nuit=0
-			ws.cell(row=c, column=C_SumNuitee).value=N1nuit+NR30+NR15+NR5
+			#ws.cell(row=c, column=C_SumNuitee).value=N1nuit+NR30+NR15+NR5
+			ws.update_value((c,C_SumNuitee), N1nuit+NR30+NR15+NR5)
 		c=c+1
-	wbx.save(path_RESULT.filename)
+	#wbx.save(path_RESULT.filename)
 	time.sleep(5)
 
 		
@@ -1411,14 +1459,16 @@ total_C=0
 i=1
 cACTIVE=0
 while cACTIVE==0:
-	g=ws.cell(row=1, column=i).value
+	#g=ws.cell(row=1, column=i).value
+	g=ws.cell((1, i)).value
 	if g=='ACTIVE_YES/NO':
 		cACTIVE=i
 	i=i+1
 i=1
 cANNONCE=0
 while cANNONCE==0:
-	g=ws.cell(row=1, column=i).value
+	#g=ws.cell(row=1, column=i).value
+	g=ws.cell((1, i)).value
 	if g=='ANNONCE':
 		cANNONCE=i
 	i=i+1	
