@@ -836,7 +836,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			break
 		i=i+1
 	li.sort()
-	back_li=ws.cell(row=j, column=c_write+1).value
+	#back_li=ws.cell(row=j, column=c_write+1).value
+	back_li=ws.cell((j, c_write+2)).value
 	#print(back_li)
 	try:
 		if back_li!=[]:
@@ -855,8 +856,9 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			back_li=[]
 	except:
 		back_li=[]
-	ws.cell(row=j, column=c_write+1).value = str(li)
-	print(li)
+	#ws.cell(row=j, column=c_write+1).value = str(li)
+	ws.update_value((j,c_write+1), str(li))
+	#print(li)
 	c_added=[]
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
@@ -886,7 +888,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			t_rem=t_rem.replace("[","")
 			t_rem=t_rem.replace("]","")
 			#print(t_rem)
-	ca=ws.cell(row=j, column=c_write).value
+	#ca=ws.cell(row=j, column=c_write).value
+	ca=ws.cell((j, c_write)).value
 	if ca==None:
 		if t_add!='vide':
 			t_wri=str(t_add)
@@ -903,7 +906,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			t_wri=str(ca)+';    '+t_wri
 	if t_wri!='vide':
 		#print(t_wri)
-		ws.cell(row=j, column=c_write).value=t_wri
+		#ws.cell(row=j, column=c_write).value=t_wri
+		ws.update_value((j,c_write), t_wri)
 		
 def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):	
 	global R4
