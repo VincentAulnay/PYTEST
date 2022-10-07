@@ -49,12 +49,13 @@ print(now)
 client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/optical-hangar-364712-2470015c5ddb.json')
 
 #spreadsheet_url = "https://docs.google.com/spreadsheets/d/1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c/edit?usp=sharing"
-spreadsheet_url = "https://docs.google.com/spreadsheets/d/14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs/edit#gid=0"
+spreadsheet_url = "https://docs.google.com/spreadsheets/d/14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs/edit?usp=sharing"
 	
 
 sheet_data = client.sheet.get('14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs')
 sheet = client.open('testoct')
 ws = sheet.worksheet_by_title('Sheet1')
+print('sheet')
 print(ws)
 #-------FIND COLUMN UPDATE------
 up=0
