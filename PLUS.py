@@ -1331,15 +1331,11 @@ def COMPUTE_M1(name_mois1):
 						R30=R30+1
 					nbA=nbA+len(pla)
 					rr=rr+1
-				#ws.cell(row=c, column=C_R5A).value=R5
-				#ws.cell(row=c, column=C_R15A).value=R15
-				#ws.cell(row=c, column=C_R30A).value=R30
 				ws.update_value((c,C_R5A), R5)
 				ws.update_value((c,C_R15A), R15)
-				ws.update_value((c,C_R30A), R530
+				ws.update_value((c,C_R30A), R30)
 			except:
 				pass
-				
 			list.reverse()
 			s=0
 			listL=[]
