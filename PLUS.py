@@ -41,6 +41,7 @@ print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
 now = str(datetime.datetime.now())[:19]
 now = now.replace(":","_")
 print(now)
+print('tes')
 #-----EXCEL RESULT OPEN AND READ-----
 
 #wbx = load_workbook(path_RESULT.filename)
