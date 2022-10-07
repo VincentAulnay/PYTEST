@@ -48,15 +48,14 @@ print(now)
 
 client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/optical-hangar-364712-2470015c5ddb.json')
 
-spreadsheet_url = "https://docs.google.com/spreadsheets/d/1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c/edit?usp=sharing"
-time.sleep(20)
+#spreadsheet_url = "https://docs.google.com/spreadsheets/d/1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c/edit?usp=sharing"
+spreadsheet_url = "https://docs.google.com/spreadsheets/d/14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs/edit#gid=0"
+	
 
-sheet_data = client.sheet.get('1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c')
-time.sleep(20)
-sheet = client.open('MARTIGNAC')
-time.sleep(20)
+sheet_data = client.sheet.get('14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs')
+sheet = client.open('testoct')
 ws = sheet.worksheet_by_title('Sheet1')
-time.sleep(20)
+print(ws)
 #-------FIND COLUMN UPDATE------
 up=0
 k=1
@@ -64,6 +63,7 @@ while up==0:
 	#V_up=sheet_read.cell(0,i).value
 	#V_up=ws.cell(row=1, column=k).value
 	V_up=ws.cell((1, k)).value
+	print(V_up)
 	if V_up=='ACTIVE_YES/NO':
 		up=1
 	else:
