@@ -23,12 +23,7 @@ from email import encoders
 from openpyxl import load_workbook
 import threading
 import sys
-import re
-import json
-import csv
-from google.oauth2 import service_account
-import pygsheets
-import pandas as pd
+
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -44,6 +39,13 @@ now = now.replace(":","_")
 print(now)
 print('tes')
 #-----EXCEL RESULT OPEN AND READ-----
+
+import re
+import json
+import csv
+from google.oauth2 import service_account
+import pygsheets
+import pandas as pd
 
 #wbx = load_workbook(path_RESULT.filename)
 #ws = wbx.active
