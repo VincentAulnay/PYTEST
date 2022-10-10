@@ -1422,7 +1422,7 @@ rootdriver.get('chrome://settings/')
 rootdriver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
 rootdriver.implicitly_wait(10)
 wait = WebDriverWait(rootdriver, 5)
-nrow=ws.max_row
+nrow=ws.rows
 print('NROW'+str(nrow))
 j=2
 z=0
