@@ -897,6 +897,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 			#print(t_rem)
 	#ca=ws.cell(row=j, column=c_write).value
 	ca=ws.cell((j, c_write)).value
+	print(ca)
 	if ca==None:
 		if t_add!='vide':
 			t_wri=str(t_add)
@@ -2025,9 +2026,9 @@ while end==0:
 						#except:
 					#		zzzz=1
 						html = rootdriver.page_source
-						time.sleep(5)
+						time.sleep(2)
 						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(5)
+						time.sleep(2)
 						ResAirbnb=''
 						#V_up=ws.cell(row=j, column=k).value
 						v_m='8'
@@ -2138,8 +2139,9 @@ while end==0:
 		#wbx = load_workbook(path_RESULT.filename)
 		#ws = wbx.active
 		try:
-			COMPUTE_M1(name_mois1)
-			COMPUTE_M1(name_mois2)
+			print("compute")
+			#COMPUTE_M1(name_mois1)
+			#COMPUTE_M1(name_mois2)
 		except:
 			print('no compute')
 		#wbx.save(DIR2+NAMEFile+str(now)+".xlsx")
