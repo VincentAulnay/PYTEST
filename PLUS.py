@@ -754,7 +754,7 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			#print(t_rem)
 	#ca=ws.cell(row=j, column=c_write).value
 	ca=ws.cell((j, c_write)).value
-	if ca==None:
+	if ca=='':
 		if t_add!='vide':
 			t_wri=str(t_add)
 	else:
@@ -898,7 +898,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	#ca=ws.cell(row=j, column=c_write).value
 	ca=ws.cell((j, c_write)).value
 	print(ca)
-	if ca==None:
+	if ca=='':
 		if t_add!='vide':
 			t_wri=str(t_add)
 	else:
@@ -1025,7 +1025,7 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 			#print(t_rem)
 	#ca=ws.cell(row=j, column=c_write).value
 	ca=ws.cell((j, c_write)).value
-	if ca==None:
+	if ca=='':
 		if t_add!='vide':
 			t_wri=str(t_add)
 	else:
