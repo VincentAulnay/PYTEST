@@ -844,7 +844,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 		i=i+1
 	li.sort()
 	#back_li=ws.cell(row=j, column=c_write+1).value
-	back_li=ws.cell((j, c_write+2)).value
+	back_li=ws.cell((j, c_write+1)).value
 	#print(back_li)
 	try:
 		if back_li!=[]:
