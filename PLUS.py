@@ -62,7 +62,7 @@ sheet = client.open('testoct')
 print('ici4')
 ws = sheet.worksheet_by_title('Sheet1')
 print('sheet')
-print(ws)
+#print(ws)
 #-------FIND COLUMN UPDATE------
 up=0
 k=1
