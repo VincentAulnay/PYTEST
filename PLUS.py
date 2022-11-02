@@ -290,6 +290,7 @@ def A_Colonne_mois(name_mois,c):
 #4- si condition alors c_write=c pour définir la colonne où écrire
 	global c_write
 	global new_month
+	global k
 	#book_mois = xlrd.open_workbook(path_RESULT.filename, on_demand = True)
 	#sheet_mois = book_mois.sheet_by_index(0)
 	#nc=sheet_mois.ncols
@@ -300,20 +301,32 @@ def A_Colonne_mois(name_mois,c):
 	
 	find_month=0
 	while find_month==0:
-		#this_month=ws.cell(row=1, column=c+1).value
 		this_month=ws.cell((1, c+1)).value
+		print("le mois dans GS est : "+str(this_month))
 		if this_month==name_mois:
+			print('EQUAL MOUNTH')
 			c_write=c+1
 			c_stat='rien'
-			#c_stat=ws.cell(row=1, column=c+2).value
 			c_stat=ws.cell((1, c+2)).value
 			if c_stat!="STATE":
 				ws.insert_cols(c+2)
-				#ws.cell(row=1, column=c+2).value = 'STATE'
-				ws.update_value((1,c+2), 'STATE')
-				#wbx.save(path_RESULT.filename)
+				ws.cell(row=1, column=c+2).value = 'STATE'
 			break
-		elif this_month==None:
+		#this_month=ws.cell(row=1, column=c+1).value
+		#this_month=ws.cell((1, c+1)).value
+		#if this_month==name_mois:
+		#	c_write=c+1
+		#	c_stat='rien'
+		#	#c_stat=ws.cell(row=1, column=c+2).value
+		#	c_stat=ws.cell((1, c+2)).value
+		#	if c_stat!="STATE":
+		#		ws.insert_cols(c+2)
+				#ws.cell(row=1, column=c+2).value = 'STATE'
+		#		ws.update_value((1,c+2), 'STATE')
+				#wbx.save(path_RESULT.filename)
+		#	break
+		elif this_month=='':
+			c_write=c+1
 			ws.add_cols(1)
 			ws.update_value((1,c+1), name_mois)
 			ws.add_cols(1)
@@ -345,13 +358,14 @@ def A_Colonne_mois(name_mois,c):
 			ws.add_cols(1)
 			ws.update_value((1,c+15), 'D_Jours')
 			ws.add_cols(1)
-			c_write=c+1
+			#c_write=c+1
 			find_month=1
 			new_month=1
 			print ('plus une colonne')
 			break
 		else:
 			c=c+1
+	k=c
 
 def A_Statu_PLUS(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM):	
 	int_timeday=int(date)
@@ -1609,6 +1623,7 @@ while w_month==0:
 	w_month=1
 
 while c_month==0:
+	k=k+10
 #--mois1--
 	print(name_mois1)
 	Mname1=name_mois1.split(' ')
