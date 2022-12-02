@@ -239,12 +239,12 @@ def whatmounth():
 		name_mois5='janvier 2024'
 	elif month==10:
 		name_mois1='octobre 2023'
-		name_mois2='novembre 2023
-		name_mois3='décembre 2023
-		name_mois4='janvier 2024
-		name_mois5='février 2024
+		name_mois2='novembre 2023'
+		name_mois3='décembre 2023'
+		name_mois4='janvier 2024'
+		name_mois5='février 2024'
 	elif month==11:
-		name_mois1='novembre 2022
+		name_mois1='novembre 2022'
 		name_mois2='décembre 2022'
 		name_mois3='janvier 2023'
 		name_mois4='février 2023'
