@@ -162,7 +162,7 @@ while c<=nrow:
 	print (str(c)+'/'+str(nrow))
 	h=ws.cell((c, cANNONCE)).value
 	numero=None
-	#print (h)
+	print (h)
 	#do=sheet_read.cell(i,0).value
 	if numero is None:
 		threading.Thread(target=scrap, args=(h,)).start()
@@ -197,6 +197,7 @@ while c<=nrow:
 					time.sleep(1)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
+					print('start bs4')
 					try:
 						#GPS
 						try:
@@ -233,7 +234,9 @@ while c<=nrow:
 							try:
 								#ws.cell((c, cANNONCE)).value = h
 								#ws.cell((c, clat)).value = long_lat[0]
+								print('try threading')
 								threading.Thread(target=GSwrite, args=(c, clat, long_lat[0],)).start()
+								print('done')
 								#ws.cell((c, clon)).value = long_lat[1]
 								threading.Thread(target=GSwrite, args=(c, clon, long_lat[0],)).start()
 							except:
