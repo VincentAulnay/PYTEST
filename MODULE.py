@@ -235,17 +235,17 @@ while c<=nrow:
 								#ws.cell((c, cANNONCE)).value = h
 								#ws.cell((c, clat)).value = long_lat[0]
 								print('try threading')
-								threading.Thread(target=GSwrite, args=(c, clat, long_lat[0],)).start()
+								threading.Thread(target=GSwrite, args=(c,clat,long_lat[0],)).start()
 								print('done')
 								#ws.cell((c, clon)).value = long_lat[1]
-								threading.Thread(target=GSwrite, args=(c, clon, long_lat[0],)).start()
+								threading.Thread(target=GSwrite, args=(c,clon,long_lat[1],)).start()
 							except:
 								ee=1
 						#TITLE
 							try:
 								div1=soup.find('h1', attrs={"class": "_fecoyn4"})
 								#ws.cell((c, cTITLE)).value = div1.text
-								threading.Thread(target=GSwrite, args=(c, cTITLE, div1.text,)).start()
+								threading.Thread(target=GSwrite, args=(c,cTITLE,div1.text,)).start()
 								#print(div1.text)
 							except:
 								#print('NO TITLE')
