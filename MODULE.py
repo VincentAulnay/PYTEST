@@ -139,7 +139,7 @@ wait = WebDriverWait(driver, 5)
 c=2
 wait2 = WebDriverWait(driver, 5)
 wait3 = WebDriverWait(driver, 5)
-wait = WebDriverWait(driver, 5)
+wait = WebDriverWait(driver, 2)
 
 def scrap(h):
 	global scrap_ok
@@ -147,6 +147,11 @@ def scrap(h):
 	time.sleep(2)
 	scrap_ok=1
 
+def GSwrite(c, clevel, valeur):
+	ws.cell((c, clevel)).value = valeur
+	
+#threading.Thread(target=GSwrite, args=(c, clevel, valeur,)).start()
+	
 fm=2
 fff=0
 
@@ -160,7 +165,7 @@ while c<=nrow:
 	#print (h)
 	#do=sheet_read.cell(i,0).value
 	if numero is None:
-		threading.Thread(target=scrap, args=(h,)).start()
+		#threading.Thread(target=scrap, args=(h,)).start()
 		timer=1
 		while timer<=60:
 			if scrap_ok==1:
@@ -226,15 +231,18 @@ while c<=nrow:
 							#sheet.write(c, 12, long_lat[0])
 							#sheet.write(c, 13, long_lat[1])
 							try:
-								ws.cell((c, cANNONCE)).value = h
-								ws.cell((c, clat)).value = long_lat[0]
-								ws.cell((c, clon)).value = long_lat[1]
+								#ws.cell((c, cANNONCE)).value = h
+								#ws.cell((c, clat)).value = long_lat[0]
+								threading.Thread(target=GSwrite, args=(c, clat, long_lat[0],)).start()
+								#ws.cell((c, clon)).value = long_lat[1]
+								threading.Thread(target=GSwrite, args=(c, clon, long_lat[0],)).start()
 							except:
 								ee=1
 						#TITLE
 							try:
 								div1=soup.find('h1', attrs={"class": "_fecoyn4"})
-								ws.cell((c, cTITLE)).value = div1.text
+								#ws.cell((c, cTITLE)).value = div1.text
+								threading.Thread(target=GSwrite, args=(c, cTITLE, div1.text,)).start()
 								#print(div1.text)
 							except:
 								#print('NO TITLE')
