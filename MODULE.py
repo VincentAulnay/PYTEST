@@ -247,7 +247,7 @@ while c<=nrow:
 							def gsTITLE(c):	
 								try:
 									div1=soup.find('h1', attrs={"class": "_fecoyn4"})
-									#ws.cell((c, cTITLE)).value = div1.text
+									ws.cell((c, 2)).value = div1.text
 									#threading.Thread(target=scrap, args=(h,)).start()
 									#threading.Thread(target=GSwrite, args=(c,cTITLE,div1.text,)).start()
 									#run_write=GSWrite(c,cTITLE,div1.text)
