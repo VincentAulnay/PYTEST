@@ -165,7 +165,7 @@ while c<=nrow:
 	#print (h)
 	#do=sheet_read.cell(i,0).value
 	if numero is None:
-		#threading.Thread(target=scrap, args=(h,)).start()
+		threading.Thread(target=scrap, args=(h,)).start()
 		timer=1
 		while timer<=60:
 			if scrap_ok==1:
