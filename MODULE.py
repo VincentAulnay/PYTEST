@@ -110,7 +110,7 @@ if searchcolumn==1:
 				i=i+1
 		cNAME_HOTE=i
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='ANCIENNETE':
@@ -120,7 +120,7 @@ if searchcolumn==1:
 		cANCIENNETE=i
 		print('cANCIENNETE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='HOTE':
@@ -130,7 +130,7 @@ if searchcolumn==1:
 		cHOTE=i
 		print('cHOTE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='PRICE':
@@ -140,7 +140,7 @@ if searchcolumn==1:
 		cPRICE=i
 		print('cPRICE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COMMENTAIRE':
@@ -150,7 +150,7 @@ if searchcolumn==1:
 		cCOMMENT=i
 		print('cCOMMENTAIRE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='TYPE_LOGEMENT':
@@ -160,7 +160,7 @@ if searchcolumn==1:
 		cTYPE_LOGEMENT=i
 		print('cTYPE_LOGEMENT')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='VOYAGEUR':
@@ -170,7 +170,7 @@ if searchcolumn==1:
 		cVOYAGEUR=i
 		print('cVOYAGEUR')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='CHAMBRE':
@@ -180,7 +180,7 @@ if searchcolumn==1:
 		cCHAMBRE=i
 		print('cCHAMBRE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='SdB':
@@ -190,7 +190,7 @@ if searchcolumn==1:
 		cSdB=i
 		print('cSdB')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='LITS':
@@ -200,7 +200,7 @@ if searchcolumn==1:
 		cLITS=i
 		print('cLITS')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='VILLE':
@@ -210,7 +210,7 @@ if searchcolumn==1:
 		cVILLE=i
 		print('cVILLE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='lat':
@@ -220,7 +220,7 @@ if searchcolumn==1:
 		clat=i
 		print('clat')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='lon':
@@ -230,7 +230,7 @@ if searchcolumn==1:
 		clon=i
 		print('clon')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='SUPERHOTE':
@@ -240,7 +240,7 @@ if searchcolumn==1:
 		cSUPERHOTE=i
 		print('cSUPERHOTE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COMMENT_PROFIL':
@@ -250,7 +250,7 @@ if searchcolumn==1:
 		cCOMMENT_PROFIL=i
 		print('cCOMMENT_PROFIL')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='ID_VERIF':
@@ -260,7 +260,7 @@ if searchcolumn==1:
 		cID_VERIF=i
 		print('cID_VERIF')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='NB_ANNONCE':
@@ -270,7 +270,7 @@ if searchcolumn==1:
 		cNB_ANNONCE=i
 		print('cNB_ANNONCE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='PROPRETE':
@@ -280,7 +280,7 @@ if searchcolumn==1:
 		cPROPRETE=i
 		print('cPROPRETE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='PRECISION':
@@ -290,7 +290,7 @@ if searchcolumn==1:
 		cPRECISION=i
 		print('cPRECISION')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COMMUNICATION':
@@ -300,7 +300,7 @@ if searchcolumn==1:
 		cCOMMUNICATION=i
 		print('cCOMMUNICATION')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='EMPLACEMENT':
@@ -310,7 +310,7 @@ if searchcolumn==1:
 		cEMPLACEMENT=i
 		print('cEMPLACEMENT')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='ARRIVEE':
@@ -320,7 +320,7 @@ if searchcolumn==1:
 		cARRIVEE=i
 		print('cARRIVEE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='QUALITY_PRICE':
@@ -330,7 +330,7 @@ if searchcolumn==1:
 		cQUALITY_PRICE=i
 		print('cQUALITY_PRICE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='REGISTER':
@@ -340,7 +340,7 @@ if searchcolumn==1:
 		cREGISTER=i
 		print('cREGISTER')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='TAUX_REPONSE':
@@ -350,7 +350,7 @@ if searchcolumn==1:
 		cTAUX_REPONSE=i
 		print('cTAUX_REPONSE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='DELAI_REPONSE':
@@ -360,7 +360,7 @@ if searchcolumn==1:
 		cDELAI_REPONSE=i
 		print('cDELAI_REPONSE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='CHECK_IN':
@@ -370,7 +370,7 @@ if searchcolumn==1:
 		cCHECK_IN=i
 		print('cCHECK_IN')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='CHECK_OUT':
@@ -380,7 +380,7 @@ if searchcolumn==1:
 		cCHECK_OUT=i
 		print('cCHECK_OUT')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='FUMEUR':
@@ -390,7 +390,7 @@ if searchcolumn==1:
 		cFUMEUR=i
 		print('cFUMEUR')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='ENFANT':
@@ -400,7 +400,7 @@ if searchcolumn==1:
 		cENFANT=i
 		print('cENFANT')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='SERRURE':
@@ -410,7 +410,7 @@ if searchcolumn==1:
 		cSERRURE=i
 		print('cSERRURE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='ANIMAUX':
@@ -420,7 +420,7 @@ if searchcolumn==1:
 		cANIMAUX=i
 		print('cANIMAUX')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='CAUTION':
@@ -430,7 +430,7 @@ if searchcolumn==1:
 		cCAUTION=i
 		print('cCAUTION')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='FUMEE':
@@ -440,7 +440,7 @@ if searchcolumn==1:
 		cFUMEE=i
 		print('cFUMEE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='MONOXYDE':
@@ -450,7 +450,7 @@ if searchcolumn==1:
 		cMONOXYDE=i
 		print('cMONOXYDE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='DISTANCIATION_SOCIAL':
@@ -460,7 +460,7 @@ if searchcolumn==1:
 		cDISTANCIATION_SOCIAL=i
 		print('cDISTANCIATION_SOCIAL')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='LANGUE':
@@ -470,7 +470,7 @@ if searchcolumn==1:
 		cLANGUE=i
 		print('cLANGUE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='IMAGE_PROFIL':
@@ -480,7 +480,7 @@ if searchcolumn==1:
 		cIMAGE_PROFIL=i
 		print('cIMAGE_PROFIL')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='IMAGE_1':
@@ -490,7 +490,7 @@ if searchcolumn==1:
 		cIMAGE_1=i
 		print('cIMAGE_1')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='IMAGE_2':
@@ -500,7 +500,7 @@ if searchcolumn==1:
 		cIMAGE_2=i
 		print('cIMAGE_2')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='IMAGE_3':
@@ -510,7 +510,7 @@ if searchcolumn==1:
 		cIMAGE_3=i
 		print('cIMAGE_3')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='IMAGE_4':
@@ -520,7 +520,7 @@ if searchcolumn==1:
 		cIMAGE_4=i
 		print('cIMAGE_4')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='IMAGE_5':
@@ -530,7 +530,7 @@ if searchcolumn==1:
 		cIMAGE_5=i
 		print('cIMAGE_5')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COHOTE_URL1':
@@ -540,7 +540,7 @@ if searchcolumn==1:
 		cCOHOTE_URL1=i
 		print('cCOHOTE_URL1')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COHOTE_NAME1':
@@ -550,7 +550,7 @@ if searchcolumn==1:
 		cCOHOTE_NAME1=i
 		print('cCOHOTE_NAME1')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COHOTE_IMAGE1':
@@ -560,7 +560,7 @@ if searchcolumn==1:
 		cCOHOTE_IMAGE1=i
 		print('cCOHOTE_IMAGE1')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COHOTE_URL2':
@@ -570,7 +570,7 @@ if searchcolumn==1:
 		cCOHOTE_URL2=i
 		print('cCOHOTE_URL2')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COHOTE_NAME2':
@@ -580,7 +580,7 @@ if searchcolumn==1:
 		cCOHOTE_NAME2=i
 		print('cCOHOTE_NAME2')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='COHOTE_IMAGE2':
@@ -590,7 +590,7 @@ if searchcolumn==1:
 		cCOHOTE_IMAGE2=i
 		print('cCOHOTE_IMAGE2')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='NB_COHOTE':
@@ -600,7 +600,7 @@ if searchcolumn==1:
 		cNB_COHOTE=i
 		print('cNB_COHOTE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='FETE':
@@ -610,7 +610,7 @@ if searchcolumn==1:
 		cFETE=i
 		print('cFETE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='ACTIVE_YES/NO':
@@ -620,7 +620,7 @@ if searchcolumn==1:
 		cACTIVE=i
 		print('cACTIVE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='ENTREPRISE':
@@ -630,7 +630,7 @@ if searchcolumn==1:
 		cENTREPRISE=i
 		print('cENTREPRISE')
 		up=0
-		i=1
+		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
 			if V_up=='SOCIALWASHING':
