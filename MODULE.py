@@ -233,22 +233,22 @@ while c<=nrow:
 							#sheet.write(c, 13, long_lat[1])
 							try:
 								#ws.cell((c, cANNONCE)).value = h
-								#ws.cell((c, clat)).value = long_lat[0]
+								ws.cell((c, clat)).value = long_lat[0]
 								print('try threading')
 								#threading.Thread(target=GSwrite, args=(c,clat,long_lat[0],)).start()
-								run_write=GSWrite(c,clat,long_lat[0])
+								#run_write=GSWrite(c,clat,long_lat[0])
 								print('done')
-								#ws.cell((c, clon)).value = long_lat[1]
+								ws.cell((c, clon)).value = long_lat[1]
 								#threading.Thread(target=GSwrite, args=(c,clon,long_lat[1],)).start()
-								run_write=GSWrite(c,clon,long_lat[1])
+								#run_write=GSWrite(c,clon,long_lat[1])
 							except:
 								ee=1
 						#TITLE
 							try:
 								div1=soup.find('h1', attrs={"class": "_fecoyn4"})
-								#ws.cell((c, cTITLE)).value = div1.text
+								ws.cell((c, cTITLE)).value = div1.text
 								#threading.Thread(target=GSwrite, args=(c,cTITLE,div1.text,)).start()
-								run_write=GSWrite(c,cTITLE,div1.text)
+								#run_write=GSWrite(c,cTITLE,div1.text)
 								#print(div1.text)
 							except:
 								#print('NO TITLE')
@@ -486,15 +486,6 @@ while c<=nrow:
 								except:
 									#print('No Comment profil')
 									aaa=1
-						#IDENTIFIE CHECK
-							try:
-								the_tr= soup.find('span', text=re.compile(r"\bIdentité vérifiée\b"))
-								ws.cell((c, cID_VERIF)).value = 'YES'
-								#print(div2.text)
-							except:
-								ws.cell((c, cID_VERIF)).value = 'NO'
-								#print('No CHECK ID')
-								aaa=1
 						#CO HOTE
 							ifcohote=0
 
@@ -651,54 +642,6 @@ while c<=nrow:
 									ws.cell((c, cCOHOTE_IMAGE2)).value = tt23['src']
 								except:
 									aaa=1
-						#PROPRETE
-							try:
-								tt= soup.findAll('span', attrs={"class": "_4oybiu"})[0]
-								#print(tt.text)
-								ws.cell((c, cPROPRETE)).value = tt.text
-							except:
-								#print('no proprete')
-								aaa=1
-						#PRECISION
-							try:
-								tt= soup.findAll('span', attrs={"class": "_4oybiu"})[1]
-								#print(tt.text)
-								ws.cell((c, cPRECISION)).value = tt.text
-							except:
-								#print('no Precision')
-								aaa=1
-						#COMMUNICATION
-							try:
-								tt= soup.findAll('span', attrs={"class": "_4oybiu"})[2]
-								#print(tt.text)
-								ws.cell((c, cCOMMUNICATION)).value = tt.text
-							except:
-								#print('no communication')
-								aaa=1
-						#EMPLACEMENT
-							try:
-								tt= soup.findAll('span', attrs={"class": "_4oybiu"})[3]
-								#print(tt.text)
-								ws.cell((c, cEMPLACEMENT)).value = tt.text
-							except:
-								#print('no emplacement')
-								aaa=1
-						#ARRIVEE
-							try:
-								tt= soup.findAll('span', attrs={"class": "_4oybiu"})[4]
-								#print(tt.text)
-								ws.cell((c, cARRIVEE)).value = tt.text
-							except:
-								#print('no arrivee')
-								aaa=1
-						#QUALITY PRICE
-							try:
-								tt= soup.findAll('span', attrs={"class": "_4oybiu"})[5]
-								#print(tt.text)
-								ws.cell((c, cQUALITY_PRICE)).value = tt.text
-							except:
-								#print('no price quality')
-								aaa=1
 					#N° ENREGISTREMENT
 							try:
 								the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : '_1q2lt74'})
@@ -724,27 +667,7 @@ while c<=nrow:
 										ws.cell((c, cREGISTER)).value = sp[-1]
 									except:
 										aaa=1
-					#TAUX REPONSE
-							try:
-								the_tr=soup.find('li', text=re.compile(r'\bTaux\b'))
-								pp=the_tr.text
-								pp=pp.replace(" ","")
-								#print(pp)
-								sp=pp.split(':')
-								#print(sp[-1])
-								ws.cell((c, cTAUX_REPONSE)).value = sp[-1]
-							except:
-								#print('no taux réponse')
-								aaa=1
-					#DELAI REPONSE
-							try:
-								the_tr=soup.find('li', text=re.compile(r'\bDélai\b'))
-								pp=the_tr.text
-								sp=pp.split(':')
-								ws.cell((c, cDELAI_REPONSE)).value = sp[-1]
-							except:
-								#print('no DELAI REPONSE')
-								aaa=1
+
 					#DURING SEJOUR
 							try:
 								the_tr=soup.findAll('div', attrs={"class": "ciubx2o dir dir-ltr"})[-1]
@@ -797,12 +720,6 @@ while c<=nrow:
 									#print('no ANIMAL')
 									aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r"\bCaution\b"))
-								ws.cell((c, cCAUTION)).value = tt.text
-							except:
-								#print('no Caution')
-								aaa=1
-							try:
 								tt= the_tr.find('span', text=re.compile(r"\bDétecteur de fumée\b"))
 								ws.cell((c, cFUMEE)).value = tt.text
 							except:
@@ -819,23 +736,6 @@ while c<=nrow:
 								ws.cell((c, cFETE)).value = tt.text
 							except:
 								#print('no detecteur monoxyde')
-								aaa=1
-							try:
-								tt= the_tr.find('span', text=re.compile(r"\bmatière de distanciation sociale\b"))
-								ws.cell((c, cDISTANCIATION_SOCIAL)).value = 'Y'
-							except:
-								ws.cell((c, cDISTANCIATION_SOCIAL)).value = 'N'
-								#print('no distanciation sociale')
-					#LANGUE
-							try:
-								the_tr= soup.find('li', text=re.compile(r'\bLangues\b'))
-								#print(the_tr)
-								pp=the_tr.text
-								#print(pp)
-								sp=pp.split(':')
-								ws.cell((c, cLANGUE)).value = sp[-1]
-							except:
-								#print('no LANGUAGE')
 								aaa=1
 					#IMAGE
 							try:
@@ -931,49 +831,6 @@ while c<=nrow:
 								#print('no IMAGE_HOTE')
 								ws.cell((c, cENTREPRISE)).value = 'NO'
 								aaa=1
-					#SOCIALWASHING
-							try:
-								t0=[]
-								t1=[]
-								t2=[]
-								try:
-									t0= soup.findAll('span', attrs = {'class' : '_pog3hg'})[0]
-								except:
-									pass
-								try:
-									t1= soup.findAll('span', attrs = {'class' : '_pog3hg'})[1]
-								except:
-									pass
-								try:
-									t2= soup.findAll('span', attrs = {'class' : '_pog3hg'})[2]
-								except:
-									pass
-								try:
-									t3= soup.findAll('span', attrs = {'class' : '_pog3hg'})[3]
-								except:
-									pass
-								if "Soutien" in t0.text:
-									ws.cell((c, cSOCIALWASHING)).value = 'YES'
-								elif "Soutien" in t1.text:
-									ws.cell((c, cSOCIALWASHING)).value = 'YES'
-								elif "Soutien" in t2.text:
-									ws.cell((c, cSOCIALWASHING)).value = 'YES'
-								elif "Soutien" in t3.text:
-									ws.cell((c, cSOCIALWASHING)).value = 'YES'
-								else:
-									ws.cell((c, cSOCIALWASHING)).value = 'NO'
-							except:
-								ws.cell((c, cSOCIALWASHING)).value = 'NO'
-								aaa=1
-					#ADRESSE
-							try:
-								t= soup.find('div', attrs={"data-plugin-in-point-id": "LOCATION_DEFAULT"})								
-								tt= t.find('div', attrs={"class": "_152qbzi"})
-								ws.cell((c, cADRESS)).value = tt
-								#print(tt)
-							except:
-								aaa=1
-							ws.cell((c, cACTIVE)).value = 'YES'
 			#------------------------
 					except:
 						pass
