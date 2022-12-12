@@ -563,12 +563,12 @@ if searchcolumn==1:
 		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
-			if V_up=='COHOTE_URL2':
+			if V_up=='COHOTE_URL1':
 				up=1
 			else:
 				i=i+1
-		cCOHOTE_URL2=i
-		print('cCOHOTE_URL2')
+		cCOHOTE_URL1=i
+		print('cCOHOTE_URL1')
 		up=0
 		i=i
 		while up==0:
@@ -599,6 +599,16 @@ if searchcolumn==1:
 				i=i+1
 		cCOHOTE_IMAGE2=i
 		print('cCOHOTE_IMAGE2')
+		up=0
+		i=i
+		while up==0:
+			V_up=ws.cell((1, i)).value
+			if V_up=='COHOTE_URL2':
+				up=1
+			else:
+				i=i+1
+		cCOHOTE_URL2=i
+		print('cCOHOTE_URL2')
 		up=0
 		i=i
 		while up==0:
