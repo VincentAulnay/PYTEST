@@ -573,6 +573,16 @@ if searchcolumn==1:
 		i=i
 		while up==0:
 			V_up=ws.cell((1, i)).value
+			if V_up=='NB_COHOTE':
+				up=1
+			else:
+				i=i+1
+		cNB_COHOTE=i
+		print('cNB_COHOTE')
+		up=0
+		i=i
+		while up==0:
+			V_up=ws.cell((1, i)).value
 			if V_up=='COHOTE_NAME2':
 				up=1
 			else:
@@ -589,16 +599,6 @@ if searchcolumn==1:
 				i=i+1
 		cCOHOTE_IMAGE2=i
 		print('cCOHOTE_IMAGE2')
-		up=0
-		i=i
-		while up==0:
-			V_up=ws.cell((1, i)).value
-			if V_up=='NB_COHOTE':
-				up=1
-			else:
-				i=i+1
-		cNB_COHOTE=i
-		print('cNB_COHOTE')
 		up=0
 		i=i
 		while up==0:
