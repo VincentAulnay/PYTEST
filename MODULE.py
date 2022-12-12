@@ -244,15 +244,18 @@ while c<=nrow:
 							except:
 								ee=1
 						#TITLE
-							try:
-								div1=soup.find('h1', attrs={"class": "_fecoyn4"})
-								ws.cell((c, cTITLE)).value = div1.text
-								#threading.Thread(target=GSwrite, args=(c,cTITLE,div1.text,)).start()
-								#run_write=GSWrite(c,cTITLE,div1.text)
-								#print(div1.text)
-							except:
-								#print('NO TITLE')
-								aaa=1
+							def gsTITLE(c):	
+								try:
+									div1=soup.find('h1', attrs={"class": "_fecoyn4"})
+									#ws.cell((c, cTITLE)).value = div1.text
+									#threading.Thread(target=scrap, args=(h,)).start()
+									#threading.Thread(target=GSwrite, args=(c,cTITLE,div1.text,)).start()
+									#run_write=GSWrite(c,cTITLE,div1.text)
+									#print(div1.text)
+								except:
+									#print('NO TITLE')
+									aaa=1
+							threading.Thread(target=gsTITLE, args=(c,)).start()
 						#URL HOTE
 							try:
 								div=soup.find('div', attrs={"class": "c6y5den dir dir-ltr"})
