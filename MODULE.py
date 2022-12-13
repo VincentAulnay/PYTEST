@@ -201,6 +201,9 @@ while c<=nrow:
 					time.sleep(1)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
+					Flogement = soup.find('div', attrs={"class": "_tqmy57"})
+					FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
+					FPolicies = soup.find('div', attrs={"data-plugin-in-point-id": "POLICIES_DEFAULT"})
 					print('start bs4')
 					try:
 						#GPS
@@ -260,7 +263,7 @@ while c<=nrow:
 								aaa=1
 						#URL HOTE
 							try:
-								div=soup.find('div', attrs={"class": "c6y5den dir dir-ltr"})
+								div=FProfile.find('div', attrs={"class": "c6y5den dir dir-ltr"})
 								div2=div.find('a')
 								div1=div2['href']  #.attrs['href']
 								ws.cell((c, cHOTE)).value = "https://www.airbnb.fr"+str(div1)
@@ -321,8 +324,8 @@ while c<=nrow:
 								aaa=1
 						#VOYAGEUR
 							try:
-								the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
-								tt=the_tr.find_all('li')[0]
+								#the_tr= Flogement.find('div', attrs = {'class' : '_tqmy57'})
+								tt=Flogement.find_all('li')[0]
 								tt1=tt.find_all('span')[0]
 								tt2=tt1.text
 								p_tp=tt2.split(" ")
@@ -334,8 +337,8 @@ while c<=nrow:
 
 						#LITS
 							try:
-								the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
-								tt=the_tr.find_all('li')[2]
+								#the_tr= Flogement.find('div', attrs = {'class' : '_tqmy57'})
+								tt=Flogement.find_all('li')[2]
 								tt1=tt.find_all('span')[2]
 								tt2=tt1.text
 								p_tp=tt2.split(" ")
@@ -346,8 +349,8 @@ while c<=nrow:
 								aaa=1
 						#SdB
 							try:
-								the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
-								tt=the_tr.find_all('li')[3]
+								#the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+								tt=Flogement.find_all('li')[3]
 								tt1=tt.find_all('span')[-1]
 								tt2=tt1.text
 								p_tp=tt2.split(" ")
@@ -358,8 +361,8 @@ while c<=nrow:
 								aaa=1
 						#CHAMBRE
 							try:
-								the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
-								tt=the_tr.find_all('li')[1]
+								#the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
+								tt=Flogement.find_all('li')[1]
 								tt1=tt.find_all('span')[2]
 								tt2=tt1.text
 								p_tp=tt2.split(" ")
@@ -401,7 +404,7 @@ while c<=nrow:
 							#print(tt)
 						#NAME_HOTE
 							try:
-								tp_c=soup.find_all('div', attrs={"class": "hnwb2pb dir dir-ltr"})[0].text
+								tp_c=FProfile.find_all('div', attrs={"class": "hnwb2pb dir dir-ltr"})[0].text
 								#print("schema 2")
 								pp=tt_c.split('par ')
 								ws.cell((c, cNAME_HOTE)).value = pp[1]
@@ -416,7 +419,7 @@ while c<=nrow:
 									#print(pp[1])
 								except:
 									try:
-										#tp_c=soup.find_all('h2', attrs={"class": "hnwb2pb dir dir-ltr"})[1].text
+										#tp_c=FProfile.find_all('h2', attrs={"class": "hnwb2pb dir dir-ltr"})[1].text
 										tp_c= soup.find('h2', text=re.compile(r"\bProposé\b")).text
 										#print("schema 3")
 										pp=tp_c.split('par ')
@@ -427,7 +430,7 @@ while c<=nrow:
 								#print ('NO_NAME')
 						#TYPE_HOME
 							try:
-								the_tr= soup.find('div', attrs={"class": "_cv5qq4"})
+								the_tr= Flogement.find('div', attrs={"class": "_cv5qq4"})
 								ttt=the_tr.h2.text
 								pp=ttt.split('⸱')
 								print(pp)
@@ -443,7 +446,7 @@ while c<=nrow:
 
 						#ANCIENNETE
 							try:
-								tp_c=soup.find('div', attrs={"class": "s9fngse dir dir-ltr"}).text
+								tp_c=soup.FProfile('div', attrs={"class": "s9fngse dir dir-ltr"}).text
 								pp=tp_c.split("depuis")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
 								#print(tp_c)
@@ -457,7 +460,7 @@ while c<=nrow:
 									aaa=1
 						#SUPER HOTE
 							try:
-								#the_tr= soup.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
+								#the_tr= FProfile.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
 								#tp_c=soup.find('span', attrs={"class": "_63km3vu"}, text=re.compile(r'\bSuper\b'))
 								tp_c=soup.find('span', attrs={"class": "_1mhorg9"})
 								if tp_c is not None:
@@ -466,123 +469,88 @@ while c<=nrow:
 							except:
 								aaa=1
 						#COMMENT PROFIL
+
 							try:
-								the_tr= soup.findAll('li', attrs = {'class' : '_1belslp'})[0]
-								the_li= the_tr.find('span', attrs = {'class' : '_pog3hg'})
-								ccc=the_li.text
-								pp=ccc.split('c')
+								tp_c=FProfile.find('ul', attrs={"class": "tq6hspd h1aqtv1m dir dir-ltr"})
+								sp=tp_c.find('span', text=re.compile(r'\bcommentaires\b')).text
+								#sp=tp_c.findAll('span', attrs={"class": "l1dfad8f dir dir-ltr"})[0]
+								pp=sp.split('c')
 								cc=pp[0]
-								#div2=the_tr.findNextSibling('div')
-								#print(the_tr.section.span.div.span.text)
 								if cc=='Identité vérifiée':
 									cc=0
 								ws.cell((c, cCOMMENT_PROFIL)).value = cc
-								#print(div2.text)
 							except:
-								try:
-									tp_c=soup.find('ul', attrs={"class": "tq6hspd h1aqtv1m dir dir-ltr"})
-									sp=tp_c.find('span', text=re.compile(r'\bcommentaires\b')).text
-									#sp=tp_c.findAll('span', attrs={"class": "l1dfad8f dir dir-ltr"})[0]
-									pp=sp.split('c')
-									cc=pp[0]
-									if cc=='Identité vérifiée':
-										cc=0
-									ws.cell((c, cCOMMENT_PROFIL)).value = cc
-								except:
-									#print('No Comment profil')
-									aaa=1
+								#print('No Comment profil')
+								aaa=1
 
 					#N° ENREGISTREMENT
 							try:
-								the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : '_1q2lt74'})
-								pp=the_tr.text
-								print("1-"+str(pp))
-								sp=pp.split(' ')
-								ws.cell((c, cREGISTER)).value = sp[-1]
+								the_tr= FProfile.find('ul', attrs = {'class' : 'fhhmddr dir dir-ltr'})
+								#pp= the_tr.find('li', text=re.compile(r'\bNuméro\b'))
+								pp= the_tr.findAll('li')[0]
+								if "Numéro" in pp.text:
+									txt=pp.span.text
+									ws.cell((c, cREGISTER)).value = txt
+									print("2-"+str(txt))
 							except:
-								try:
-									the_tr= soup.find('ul', attrs = {'class' : 'fhhmddr dir dir-ltr'})
-									#pp= the_tr.find('li', text=re.compile(r'\bNuméro\b'))
-									pp= the_tr.findAll('li')[0]
-									if "Numéro" in pp.text:
-										txt=pp.span.text
-										ws.cell((c, cREGISTER)).value = txt
-										print("2-"+str(txt))
-								except:
-									try:
-										the_tr= soup.find('li', text=re.compile(r'\bNuméro\b'), attrs = {'class' : 'f19phm7j dir dir-ltr'})
-										pp=the_tr.text
-										print("3-"+str(pp))
-										sp=pp.split(' ')
-										ws.cell((c, cREGISTER)).value = sp[-1]
-									except:
-										aaa=1
+								aaa=1
 
 					#DURING SEJOUR
 							try:
-								the_tr=soup.findAll('div', attrs={"class": "ciubx2o dir dir-ltr"})[-1]
-							except:
-								try:
-									the_tr=soup.findAll('div', attrs={"class": "_1byskwn"})[-1]
-								except:
-									aaa=1
-								aaa=1
-
-							try:
-								tt= the_tr.find('span', text=re.compile(r'\bArrivée\b'))
+								tt= FPolicies.find('span', text=re.compile(r'\bArrivée\b'))
 								ws.cell((c, cCHECK_IN)).value = tt.text
 								#print(tt.text)
 							except:
 								#print('no ARRIVE')
 								aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r'\bDépart\b'))
+								tt= FPolicies.find('span', text=re.compile(r'\bDépart\b'))
 								ws.cell((c, cCHECK_OUT)).value = tt.text
 							except:
 								#print('no DEPART')
 								aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r'\bNon fumeur\b'))
+								tt= FPolicies.find('span', text=re.compile(r'\bNon fumeur\b'))
 								ws.cell((c, cFUMEUR)).value = tt.text
 							except:
 								#print('no FUMEUR')
 								aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r'\bNe convient pas aux\b'))
+								tt= FPolicies.find('span', text=re.compile(r'\bNe convient pas aux\b'))
 								ws.cell((c, cENFANT)).value = tt.text
 							except:
 								#print('no CHILD')
 								aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r"\bArrivée autonome\b"))
+								tt= FPolicies.find('span', text=re.compile(r"\bArrivée autonome\b"))
 								ws.cell((c, cSERRURE)).value = tt.text
 							except:
 								#print('no AUTOMATIC')
 								aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r"\bPas d'animaux\b"))
+								tt= FPolicies.find('span', text=re.compile(r"\bPas d'animaux\b"))
 								ws.cell((c, cANIMAUX)).value = tt.text
 							except:
 								try:
-									tt= the_tr.find('span', text=re.compile(r"\bAnimaux de compagnie\b"))
+									tt= FPolicies.find('span', text=re.compile(r"\bAnimaux de compagnie\b"))
 									ws.cell((c, cANIMAUX)).value = tt.text
 								except:
 									#print('no ANIMAL')
 									aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r"\bDétecteur de fumée\b"))
+								tt= FPolicies.find('span', text=re.compile(r"\bDétecteur de fumée\b"))
 								ws.cell((c, cFUMEE)).value = tt.text
 							except:
 								#print('no detecteur fumee')
 								aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r"\bDétecteur de monoxyde de carbone\b"))
+								tt= FPolicies.find('span', text=re.compile(r"\bDétecteur de monoxyde de carbone\b"))
 								ws.cell((c, cMONOXYDE)).value = tt.text
 							except:
 								#print('no detecteur monoxyde')
 								aaa=1
 							try:
-								tt= the_tr.find('span', text=re.compile(r"\bPas de fête ni de soirée\b"))
+								tt= FPolicies.find('span', text=re.compile(r"\bPas de fête ni de soirée\b"))
 								ws.cell((c, cFETE)).value = tt.text
 							except:
 								#print('no detecteur monoxyde')
