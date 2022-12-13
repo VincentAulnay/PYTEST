@@ -162,6 +162,7 @@ while c<=nrow:
 	print (str(c)+'/'+str(nrow))
 	h=ws.cell((c, cANNONCE)).value
 	driver.get(h)
+	time.sleep(5)
 	numero=None
 	print (h)
 	#do=sheet_read.cell(i,0).value
