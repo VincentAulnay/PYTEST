@@ -180,9 +180,10 @@ fff=0
 nrow=100000
 h=ws.cell((c, cANNONCE)).value
 threading.Thread(target=scrap, args=(h,)).start()
+scrap_ok=1
 time.sleep(8)
 while c<=nrow:
-	scrap_ok=0
+	#scrap_ok=0
 	print (str(c)+'/'+str(nrow))
 	#h=ws.cell((c, cANNONCE)).value
 	#driver.get(h)
@@ -197,7 +198,7 @@ while c<=nrow:
 			if scrap_ok==1:
 				try:
 					f_ele=0
-					if fm=3:
+					if fm==3:
 						try:
 							button_fermer = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 							button_fermer.click()
