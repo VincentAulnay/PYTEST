@@ -148,7 +148,9 @@ def scrap(h):
 	scrap_ok=1
 
 def GSwrite(c):
+	print('=======test écriture title')
 	ws.cell((c, 2)).value = 'test'
+	print('=======print ok')
 	
 #threading.Thread(target=GSwrite, args=(c, clevel, valeur,)).start()
 	
