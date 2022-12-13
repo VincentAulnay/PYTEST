@@ -152,18 +152,12 @@ def scrap(h):
 	except:
 		pass
 	try:
-		#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
-		#ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
 		driver.execute_script("window.scrollBy(0,3000);")
 		ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
 		driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-		#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-		#time.sleep(1)
 		driver.execute_script("window.scrollBy(0,-400);")
-		#driver.execute_script("window.scrollBy(0,500);")
 		f_ele=6
 	except:
-		#driver.execute_script("window.scrollBy(0,1000);")
 		f_ele=f_ele+1
 		time.sleep(2)
 
@@ -198,7 +192,7 @@ while c<=nrow:
 			if scrap_ok==1:
 				try:
 					f_ele=0
-					if fm==3:
+					if fm==2:
 						try:
 							button_fermer = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 							button_fermer.click()
