@@ -252,7 +252,7 @@ while c<=nrow:
 								#div1=soup.find('h1', attrs={"class": "_fecoyn4"})
 								#ws.cell((c, cTITLE)).value = div1.text
 								#threading.Thread(target=scrap, args=(h,)).start()
-								threading.Thread(target=GSwrite, args=(c)).start()
+								threading.Thread(target=GSwrite, args=(c,)).start()
 								#run_write=GSWrite(c,cTITLE,div1.text)
 								#print(div1.text)
 							except:
