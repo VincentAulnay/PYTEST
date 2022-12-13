@@ -161,13 +161,13 @@ while c<=nrow:
 	scrap_ok=0
 	print (str(c)+'/'+str(nrow))
 	h=ws.cell((c, cANNONCE)).value
-	driver.get(h)
-	time.sleep(5)
+	#driver.get(h)
+	#time.sleep(5)
 	numero=None
 	print (h)
 	#do=sheet_read.cell(i,0).value
 	if numero is None:
-		#threading.Thread(target=scrap, args=(h,)).start()
+		threading.Thread(target=scrap, args=(h,)).start()
 		timer=1
 		while timer<=60:
 			if scrap_ok==1:
