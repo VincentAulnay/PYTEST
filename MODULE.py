@@ -276,7 +276,7 @@ while c<=nrow:
 								div2=div.find('a')
 								div1=div2['href']  #.attrs['href']
 								ws.cell((c, cHOTE)).value = "https://www.airbnb.fr"+str(div1)
-								print("URLHOT1"+str(div1))
+								#print("URLHOT1"+str(div1))
 							except:
 								try:
 									div=soup.find('div', attrs={"class": "_dbynel"})
@@ -332,7 +332,7 @@ while c<=nrow:
 								tt2=tt1.text
 								p_tp=tt2.split(" ")
 								ws.cell((c, cLITS)).value = p_tp[0]
-								print("L="+str(p_tp[0]))
+								#print("L="+str(p_tp[0]))
 							except:
 								#print('NO LIT')
 								aaa=1
@@ -356,7 +356,7 @@ while c<=nrow:
 								tt2=tt1.text
 								p_tp=tt2.split(" ")
 								ws.cell((c, cCHAMBRE)).value = p_tp[0]
-								print("C="+str(p_tp[0]))
+								#print("C="+str(p_tp[0]))
 							except:
 								#print('NO CHAMBRE')
 								aaa=1
