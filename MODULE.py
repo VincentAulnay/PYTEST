@@ -201,9 +201,11 @@ while c<=nrow:
 					time.sleep(1)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
-					Flogement = soup.find('div', attrs={"class": "_tqmy57"})
+					FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
+					Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT"})
 					FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
 					FPolicies = soup.find('div', attrs={"data-plugin-in-point-id": "POLICIES_DEFAULT"})
+					FHero = soup.find('div', attrs={"data-plugin-in-point-id": "HERO_DEFAULT"})
 					print('start bs4')
 					try:
 						#GPS
@@ -252,10 +254,10 @@ while c<=nrow:
 								ee=1
 						#TITLE
 							try:
-								#div1=soup.find('h1', attrs={"class": "_fecoyn4"})
-								#ws.cell((c, cTITLE)).value = div1.text
+								div1=FTitle.find('h1', attrs={"class": "_fecoyn4"})
+								ws.cell((c, cTITLE)).value = div1.text
 								#threading.Thread(target=scrap, args=(h,)).start()
-								threading.Thread(target=GSwrite, args=(c,)).start()
+								#threading.Thread(target=GSwrite, args=(c,)).start()
 								#run_write=GSWrite(c,cTITLE,div1.text)
 								#print(div1.text)
 							except:
@@ -284,25 +286,12 @@ while c<=nrow:
 							try:
 								p_c=[]
 								try:
-									tp_c=soup.find('span', attrs={"class": "_142pbzop"}).text
+									tp_c=FTitle.find('span', attrs={"class": "_s65ijh7"}).text
 									print(tp_c)
 									#print('type1')
 
 								except:
-									try:
-										tp_c=soup.findAll('span', attrs={"class": "_2qpirtt"})[1].text
-										print(tp_c)
-									except:
-										try:
-											tp_c=soup.find('span', attrs={"class": "_1qx9l5ba"}).text
-											print(tp_c)
-										except:
-											try:
-												tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
-												print(tp_c)
-											except:
-												#print('type2')
-												aaa=1
+									aaa=1
 								p_c=tp_c.replace("(","")
 								cc=p_c.replace(")","")
 								try:
@@ -312,13 +301,6 @@ while c<=nrow:
 								except:
 									pass
 								ws.cell((c, cCOMMENT)).value = cc
-								#print ("COMMENT ===")
-								#print(cc)
-								#p_c=tp_c.split("(")
-								#print('ici1')
-								#table_c = p_c[1].replace(")"," ")
-								#print (table_c)
-								#ws.cell(row=c+1, column=6+1).value = table_c
 							except:
 								#print('NOCOMMENT')
 								aaa=1
@@ -373,33 +355,12 @@ while c<=nrow:
 								aaa=1
 						#VILLE
 							try:
-								tt=soup.find('span', attrs={"class": "_pbq7fmm"}).text
-								ws.cell((c, cVILLE)).value = tt
-								print(tt)
+								tp_c=FTitle.find('span', attrs={"class": "_9xiloll"}).text
+								ws.cell((c, cVILLE)).value = tp_c
+								print(tp_c)
 							except:
-								try:
-									tt=soup.find_all('a', attrs={"class": "_5twioja"})[-1].text
-									ws.cell((c, cVILLE)).value = tt
-									print(tt)
-								except:
-									try:
-										tp_c=soup.find('div', attrs={"class": "_9ns6hl"})
-										tt=tp_c.find('h3').text
-										ws.cell((c, cVILLE)).value = tt
-										print(tt)
-									except:
-										try:
-											tp_c=soup.find('span', attrs={"class": "_8vvkqm3"}).text
-											ws.cell((c, cVILLE)).value = tp_c
-											print(tp_c)
-										except:
-											try:
-												tp_c=soup.find('span', attrs={"class": "_9xiloll"}).text
-												ws.cell((c, cVILLE)).value = tp_c
-												print(tp_c)
-											except:
-												print('NO VILLE')
-												aaa=1
+								print('NO VILLE')
+								aaa=1
 
 							#print(tt)
 						#NAME_HOTE
@@ -446,13 +407,13 @@ while c<=nrow:
 
 						#ANCIENNETE
 							try:
-								tp_c=soup.FProfile('div', attrs={"class": "s9fngse dir dir-ltr"}).text
+								tp_c=FProfile.FProfile('div', attrs={"class": "s9fngse dir dir-ltr"}).text
 								pp=tp_c.split("depuis")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
 								#print(tp_c)
 							except:
 								try:
-									tp_c=soup.find('div', attrs={"class": "_f47qa6"})
+									tp_c=FProfile.find('div', attrs={"class": "_f47qa6"})
 									tt=tp_c.find('div', attrs={"class": "_svr7sj"})
 									tt1=tt.div.get_text()
 									ws.cell((c, cANCIENNETE)).value = tt1
@@ -462,7 +423,7 @@ while c<=nrow:
 							try:
 								#the_tr= FProfile.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
 								#tp_c=soup.find('span', attrs={"class": "_63km3vu"}, text=re.compile(r'\bSuper\b'))
-								tp_c=soup.find('span', attrs={"class": "_1mhorg9"})
+								tp_c=FTitle.find('span', attrs={"class": "_1mhorg9"})
 								if tp_c is not None:
 									ws.cell((c, cSUPERHOTE)).value = 'X'
 									print (tp_c)
@@ -557,80 +518,45 @@ while c<=nrow:
 								aaa=1
 					#IMAGE
 							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[0]
+								the_tr= FHero.findAll('img', attrs={"class": "_6tbg2q"})[0]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_1)).value = tt
 							except:
-								try:
-									the_tr= soup.find('img', attrs={"class": "_9ofhsl"})
-									#print(the_tr)
-									tt=the_tr['data-original-uri']
-									ws.cell((c, cIMAGE_1)).value = tt
-								except:
-									#print('no IMAGE 0')
-									aaa=1
+								aaa=1
 							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[1]
+								the_tr= FHero.findAll('img', attrs={"class": "_6tbg2q"})[1]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_2)).value = tt
 							except:
-								try:
-									the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[1]
-									#print(the_tr)
-									tt=the_tr['data-original-uri']
-									ws.cell((c, cIMAGE_2)).value = tt
-								except:
-									#print('no IMAGE 1')
-									aaa=1
+								aaa=1
 							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[2]
+								the_tr= FHero.findAll('img', attrs={"class": "_6tbg2q"})[2]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_3)).value = tt
 							except:
-								try:
-									the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[2]
-									#print(the_tr)
-									tt=the_tr['data-original-uri']
-									ws.cell((c, cIMAGE_3)).value = tt
-								except:
-									#print('no IMAGE 2')
-									aaa=1
+								aaa=1
 							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[3]
+								the_tr= FHero.findAll('img', attrs={"class": "_6tbg2q"})[3]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_4)).value = tt
 							except:
-								try:
-									the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[3]
-									#print(the_tr)
-									tt=the_tr['data-original-uri']
-									ws.cell((c, cIMAGE_4)).value = tt
-								except:
-									#print('no IMAGE 3')
-									aaa=1
+								aaa=1
 							try:
-								the_tr= soup.findAll('img', attrs={"class": "_6tbg2q"})[4]
+								the_tr= FHero.findAll('img', attrs={"class": "_6tbg2q"})[4]
 								#print(the_tr)
 								tt=the_tr['src']
 								#print(tt)
 								ws.cell((c, cIMAGE_5)).value = tt
 							except:
-								try:
-									the_tr= soup.findAll('img', attrs={"class": "_9ofhsl"})[4]
-									#print(the_tr)
-									tt=the_tr['data-original-uri']
-									ws.cell((c, cIMAGE_5)).value = tt
-								except:
-									#print('no IMAGE 4')
-									aaa=1
+								aaa=1
 					#IMAGE_HOTE
 							try:
-								the_tr= soup.find('div', attrs={"class": "_5kripx"})
-								t= the_tr.find('img', attrs={"class": "_9ofhsl"})
+								#the_tr= soup.find('div', attrs={"class": "_5kripx"})
+								t= Flogement.find('img', attrs={"class": "_9ofhsl"})
 								tt=t['src']
 								ws.cell((c, cIMAGE_PROFIL)).value = tt
 							except:
@@ -638,7 +564,7 @@ while c<=nrow:
 								aaa=1
 					#ENTREPRISE
 							try:
-								the_tr= soup.findAll('ol', attrs={"class": "lgx66tx dir dir-ltr"})[-1]
+								the_tr= FProfile.findAll('ol', attrs={"class": "lgx66tx dir dir-ltr"})[-1]
 								t= the_tr.find('button')
 								if "Professionnel" in t.text:
 									ws.cell((c, cENTREPRISE)).value = 'YES'
