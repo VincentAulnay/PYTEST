@@ -146,6 +146,26 @@ def scrap(h):
 	driver.get(h)
 	time.sleep(2)
 	scrap_ok=1
+	try:
+		button_fermer = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+		button_fermer.click()
+	except:
+		pass
+	try:
+		#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
+		#ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
+		driver.execute_script("window.scrollBy(0,3000);")
+		ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
+		driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+		#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+		#time.sleep(1)
+		driver.execute_script("window.scrollBy(0,-400);")
+		#driver.execute_script("window.scrollBy(0,500);")
+		f_ele=6
+	except:
+		#driver.execute_script("window.scrollBy(0,1000);")
+		f_ele=f_ele+1
+		time.sleep(2)
 
 def GSwrite(c):
 	print('=======test écriture title')
@@ -158,54 +178,60 @@ fm=2
 fff=0
 
 nrow=100000
-
+h=ws.cell((c, cANNONCE)).value
+threading.Thread(target=scrap, args=(h,)).start()
+time.sleep(8)
 while c<=nrow:
 	scrap_ok=0
 	print (str(c)+'/'+str(nrow))
-	h=ws.cell((c, cANNONCE)).value
+	#h=ws.cell((c, cANNONCE)).value
 	#driver.get(h)
 	#time.sleep(5)
 	numero=None
 	print (h)
 	#do=sheet_read.cell(i,0).value
 	if numero is None:
-		threading.Thread(target=scrap, args=(h,)).start()
+		#threading.Thread(target=scrap, args=(h,)).start()
 		timer=1
 		while timer<=60:
 			if scrap_ok==1:
 				try:
 					f_ele=0
-					try:
-						button_fermer = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
-						button_fermer.click()
-					except:
-						pass
-					while f_ele<=3:
+					if fm=3:
 						try:
-							#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
-							#ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
-							driver.execute_script("window.scrollBy(0,3000);")
-							ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
-							driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-							#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-							#time.sleep(1)
-							driver.execute_script("window.scrollBy(0,-400);")
-							#driver.execute_script("window.scrollBy(0,500);")
-							f_ele=6
+							button_fermer = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+							button_fermer.click()
 						except:
-							#driver.execute_script("window.scrollBy(0,1000);")
-							f_ele=f_ele+1
-							time.sleep(2)
+							pass
+						while f_ele<=3:
+							try:
+								#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
+								#ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
+								driver.execute_script("window.scrollBy(0,3000);")
+								ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
+								driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+								#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+								#time.sleep(1)
+								driver.execute_script("window.scrollBy(0,-400);")
+								#driver.execute_script("window.scrollBy(0,500);")
+								f_ele=6
+							except:
+								#driver.execute_script("window.scrollBy(0,1000);")
+								f_ele=f_ele+1
+								time.sleep(2)
 					#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 				#PROFILE
 					time.sleep(1)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
+					h=ws.cell((c+1, cANNONCE)).value
 					FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
 					Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT"})
 					FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
 					FPolicies = soup.find('div', attrs={"data-plugin-in-point-id": "POLICIES_DEFAULT"})
 					FHero = soup.find('div', attrs={"data-plugin-in-point-id": "HERO_DEFAULT"})
+					h=ws.cell((c+1, cANNONCE)).value
+					threading.Thread(target=scrap, args=(h,)).start()
 					print('start bs4')
 					try:
 						#GPS
@@ -407,7 +433,7 @@ while c<=nrow:
 
 						#ANCIENNETE
 							try:
-								tp_c=FProfile.FProfile('div', attrs={"class": "s9fngse dir dir-ltr"}).text
+								tp_c=FProfile.find('div', attrs={"class": "s9fngse dir dir-ltr"}).text
 								pp=tp_c.split("depuis")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
 								#print(tp_c)
