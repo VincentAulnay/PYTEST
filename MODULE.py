@@ -164,12 +164,12 @@ scrap_ok=1
 time.sleep(8)
 while c<=nrow:
 	#scrap_ok=0
-	print (str(c)+'/'+str(nrow))
+	print (c)
 	#h=ws.cell((c, cANNONCE)).value
 	#driver.get(h)
 	#time.sleep(5)
 	numero=None
-	print (h)
+	#print (h)
 	#do=sheet_read.cell(i,0).value
 	if numero is None:
 		#threading.Thread(target=scrap, args=(h,)).start()
@@ -213,7 +213,7 @@ while c<=nrow:
 					FHero = soup.find('div', attrs={"data-plugin-in-point-id": "HERO_DEFAULT"})
 					h=ws.cell((c+1, cANNONCE)).value
 					threading.Thread(target=scrap, args=(h,)).start()
-					print('start bs4')
+					#print('start bs4')
 					try:
 						#GPS
 						try:
@@ -250,10 +250,10 @@ while c<=nrow:
 							try:
 								#ws.cell((c, cANNONCE)).value = h
 								ws.cell((c, clat)).value = long_lat[0]
-								print('try threading')
+								#print('try threading')
 								#threading.Thread(target=GSwrite, args=(c,clat,long_lat[0],)).start()
 								#run_write=GSWrite(c,clat,long_lat[0])
-								print('done')
+								#print('done')
 								ws.cell((c, clon)).value = long_lat[1]
 								#threading.Thread(target=GSwrite, args=(c,clon,long_lat[1],)).start()
 								#run_write=GSWrite(c,clon,long_lat[1])
@@ -294,7 +294,7 @@ while c<=nrow:
 								p_c=[]
 								try:
 									tp_c=FTitle.find('span', attrs={"class": "_s65ijh7"}).text
-									print(tp_c)
+									#print(tp_c)
 									#print('type1')
 
 								except:
@@ -364,7 +364,7 @@ while c<=nrow:
 							try:
 								tp_c=FTitle.find('span', attrs={"class": "_9xiloll"}).text
 								ws.cell((c, cVILLE)).value = tp_c
-								print(tp_c)
+								#print(tp_c)
 							except:
 								print('NO VILLE')
 								aaa=1
@@ -401,7 +401,7 @@ while c<=nrow:
 								the_tr= Flogement.find('div', attrs={"class": "_cv5qq4"})
 								ttt=the_tr.h2.text
 								pp=ttt.split('⸱')
-								print(pp)
+								#print(pp)
 								ws.cell((c, cTYPE_LOGEMENT)).value = pp[0]
 							except:
 								try:
@@ -433,7 +433,7 @@ while c<=nrow:
 								tp_c=FTitle.find('span', attrs={"class": "_1mhorg9"})
 								if tp_c is not None:
 									ws.cell((c, cSUPERHOTE)).value = 'X'
-									print (tp_c)
+									#print (tp_c)
 							except:
 								aaa=1
 						#COMMENT PROFIL
