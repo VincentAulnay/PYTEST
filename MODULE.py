@@ -147,8 +147,8 @@ def scrap(h):
 	time.sleep(2)
 	scrap_ok=1
 
-def GSwrite(c, clevel, valeur):
-	ws.cell((c, clevel)).value = valeur
+def GSwrite(c):
+	ws.cell((c, 2)).value = 'test'
 	
 #threading.Thread(target=GSwrite, args=(c, clevel, valeur,)).start()
 	
@@ -161,11 +161,12 @@ while c<=nrow:
 	scrap_ok=0
 	print (str(c)+'/'+str(nrow))
 	h=ws.cell((c, cANNONCE)).value
+	driver.get(h)
 	numero=None
 	print (h)
 	#do=sheet_read.cell(i,0).value
 	if numero is None:
-		threading.Thread(target=scrap, args=(h,)).start()
+		#threading.Thread(target=scrap, args=(h,)).start()
 		timer=1
 		while timer<=60:
 			if scrap_ok==1:
@@ -245,10 +246,10 @@ while c<=nrow:
 								ee=1
 						#TITLE
 							try:
-								div1=soup.find('h1', attrs={"class": "_fecoyn4"})
-								ws.cell((c, cTITLE)).value = div1.text
+								#div1=soup.find('h1', attrs={"class": "_fecoyn4"})
+								#ws.cell((c, cTITLE)).value = div1.text
 								#threading.Thread(target=scrap, args=(h,)).start()
-								#threading.Thread(target=GSwrite, args=(c,cTITLE,div1.text,)).start()
+								threading.Thread(target=GSwrite, args=(c)).start()
 								#run_write=GSWrite(c,cTITLE,div1.text)
 								#print(div1.text)
 							except:
