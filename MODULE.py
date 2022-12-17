@@ -165,6 +165,21 @@ time.sleep(8)
 while c<=nrow:
 	#scrap_ok=0
 	print (c)
+	if (c/1000).is_integer():
+		driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+		driver.set_window_size(2000, 1000)
+		driver.get('https://www.google.com/')
+		driver.get('chrome://settings/')
+		driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
+		driver.implicitly_wait(10)
+		wait = WebDriverWait(driver, 5)
+		wait2 = WebDriverWait(driver, 5)
+		wait3 = WebDriverWait(driver, 5)
+		wait = WebDriverWait(driver, 2)
+		time.sleep(2)
+		driver.get(h)
+		time.sleep(2)
+		scrap_ok=1
 	#h=ws.cell((c, cANNONCE)).value
 	#driver.get(h)
 	#time.sleep(5)
@@ -594,6 +609,20 @@ while c<=nrow:
 				timer=timer+1
 		if timer==61:
 			driver.quit()
+			driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
+			driver.set_window_size(2000, 1000)
+			driver.get('https://www.google.com/')
+			driver.get('chrome://settings/')
+			driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
+			driver.implicitly_wait(10)
+			wait = WebDriverWait(driver, 5)
+			wait2 = WebDriverWait(driver, 5)
+			wait3 = WebDriverWait(driver, 5)
+			wait = WebDriverWait(driver, 2)
+			time.sleep(2)
+			driver.get(h)
+			time.sleep(2)
+			scrap_ok=1
 
 
 	c=c+1
