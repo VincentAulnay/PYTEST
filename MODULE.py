@@ -59,6 +59,7 @@ print('ici1')
 spreadsheet_url = "https://docs.google.com/spreadsheets/d/1ACSlRUHdqn9ExIM2M-18VGHBoo8RaxAfxkbvKCd1ylw/edit?usp=sharing"
 print('ici2')	
 
+
 sheet_data = client.sheet.get('1ACSlRUHdqn9ExIM2M-18VGHBoo8RaxAfxkbvKCd1ylw')
 print('ici3')
 sheet = client.open('ZG')
