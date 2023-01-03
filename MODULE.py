@@ -383,7 +383,7 @@ while c<=nrow:
 						#NAME_HOTE
 							try:
 								tp_c=FProfile.find('h2', attrs={'class': 'hnwb2pb dir dir-ltr'}).text
-								pp=tt_c.split('par ')
+								pp=tp_c.split('par ')
 								ws.cell((c, cNAME_HOTE)).value = pp[1]
 								print(pp[1])
 							except:
@@ -406,9 +406,8 @@ while c<=nrow:
 
 						#ANCIENNETE
 							try:
-								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
-								li=tp_c.find_All('li')[0].text
-								pp=li.split("depuis")
+								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'}).div[0].text
+								pp=tp_c.split("depuis")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
 								print(pp[1])
 							except:
@@ -566,9 +565,14 @@ while c<=nrow:
 								else:
 									ws.cell((c, cENTREPRISE)).value = 'NO'
 							except:
-								#print('no IMAGE_HOTE')
-								ws.cell((c, cENTREPRISE)).value = 'NO'
-								aaa=1
+								try:
+									tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'}).div[1].text
+									if 'Professionnel' in tp_c:
+										ws.cell((c, cENTREPRISE)).value = 'YES'
+									else:
+										ws.cell((c, cENTREPRISE)).value = 'NO'
+								except:
+									print('falde entreprise')
 			#------------------------
 					except:
 						pass
