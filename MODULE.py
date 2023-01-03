@@ -294,7 +294,7 @@ while c<=nrow:
 								div2=div.find('a')
 								div1=div2['href']  #.attrs['href']
 								ws.cell((c, cHOTE)).value = "https://www.airbnb.fr"+str(div1)
-								print("URLHOT1"+str(div1))
+								#print("URLHOT1"+str(div1))
 							except:
 								print('NO PROFILE')
 						#COMMENTAIRE
@@ -385,7 +385,6 @@ while c<=nrow:
 								tp_c=FProfile.find('h2', attrs={'class': 'hnwb2pb dir dir-ltr'}).text
 								pp=tp_c.split('par ')
 								ws.cell((c, cNAME_HOTE)).value = pp[1]
-								print(pp[1])
 							except:
 								print ('NO_NAME')
 						#TYPE_HOME
@@ -407,18 +406,13 @@ while c<=nrow:
 						#ANCIENNETE
 							try:
 								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
-								print(tp_c)
 								try:
 									tt=tp_c.findAll('li', attrs={'class': 'l7n4lsf dir dir-ltr'})
-									print(tt)
-									tx=tt[0].text
-									print(tx)
+									tx=tt[0].text)
 								except:
 									tt=tp_c.div[0].text
-									print(tt)
-								pp=tx.split("depuis")
+								pp=tx.split("depuis ")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
-								print(pp[1])
 							except:
 								print('no anciennete')
 						#SUPER HOTE
