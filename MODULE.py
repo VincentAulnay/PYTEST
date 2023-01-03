@@ -288,21 +288,13 @@ while c<=nrow:
 								aaa=1
 						#URL HOTE
 							try:
-								div=FProfile.find('div', attrs={"class": "c6y5den dir dir-ltr"})
+								div=FProfile.find('div', attrs={'class': 'c6y5den dir dir-ltr'})
 								div2=div.find('a')
 								div1=div2['href']  #.attrs['href']
 								ws.cell((c, cHOTE)).value = "https://www.airbnb.fr"+str(div1)
-								#print("URLHOT1"+str(div1))
+								print("URLHOT1"+str(div1))
 							except:
-								try:
-									div=soup.find('div', attrs={"class": "_dbynel"})
-									div2=div.find('a')
-									div1=div2['href']  #.attrs['href']
-									ws.cell((c, cHOTE)).value = "https://www.airbnb.fr"+str(div1)
-									#print("URLHOT2"+str(div1))
-								except:
-									#print('NO PROFILE')
-									aaa=1
+								print('NO PROFILE')
 						#COMMENTAIRE
 							COMMENT='NO COMMENT'
 							#run_price=extract("//span[@class='_wfad8t']",6,COMMENT,c,YN_comment)
@@ -388,30 +380,12 @@ while c<=nrow:
 							#print(tt)
 						#NAME_HOTE
 							try:
-								tp_c=FProfile.find_all('div', attrs={"class": "hnwb2pb dir dir-ltr"})[0].text
-								#print("schema 2")
+								tp_c=FProfile.find('h2', attrs={'class': 'hnwb2pb dir dir-ltr'}).text
 								pp=tt_c.split('par ')
 								ws.cell((c, cNAME_HOTE)).value = pp[1]
-								#print(pp[1])
+								print(pp[1])
 							except:
-								try:
-									tp_c=soup.find('div', attrs={"class": "_f47qa6"})
-									tt=tp_c.find('div', attrs={"class": "_svr7sj"})
-									tt1=tt.h2.get_text()
-									pp=tt1.split('par ')
-									ws.cell((c, cNAME_HOTE)).value = pp[1]
-									#print(pp[1])
-								except:
-									try:
-										#tp_c=FProfile.find_all('h2', attrs={"class": "hnwb2pb dir dir-ltr"})[1].text
-										tp_c= soup.find('h2', text=re.compile(r"\bProposé\b")).text
-										#print("schema 3")
-										pp=tp_c.split('par ')
-										ws.cell((c, cNAME_HOTE)).value = pp[1]
-										#print(pp[1])
-									except:
-										aaa=1
-								#print ('NO_NAME')
+								print ('NO_NAME')
 						#TYPE_HOME
 							try:
 								the_tr= Flogement.find('div', attrs={"class": "_cv5qq4"})
@@ -430,18 +404,13 @@ while c<=nrow:
 
 						#ANCIENNETE
 							try:
-								tp_c=FProfile.find('div', attrs={"class": "s9fngse dir dir-ltr"}).text
-								pp=tp_c.split("depuis")
+								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
+								li=tp_c.find_All('li')[0].text
+								pp=li.split("depuis")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
-								#print(tp_c)
+								print(pp[1])
 							except:
-								try:
-									tp_c=FProfile.find('div', attrs={"class": "_f47qa6"})
-									tt=tp_c.find('div', attrs={"class": "_svr7sj"})
-									tt1=tt.div.get_text()
-									ws.cell((c, cANCIENNETE)).value = tt1
-								except:
-									aaa=1
+								print('no anciennete')
 						#SUPER HOTE
 							try:
 								#the_tr= FProfile.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
