@@ -575,6 +575,10 @@ while c<=nrow:
 										tt=tp_c.div[1].text
 									except:
 										tt=tp_c.find_All('l1', attrs={'class': 'l7n4lsf dir dir-ltr'})[-1].text
+										try:
+											tt=tp_c.find('button').text
+										except:
+											print('falde entreprise2')
 									if 'Professionnel' in tt:
 										ws.cell((c, cENTREPRISE)).value = 'YES'
 									else:
