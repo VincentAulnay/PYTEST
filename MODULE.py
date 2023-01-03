@@ -407,7 +407,11 @@ while c<=nrow:
 						#ANCIENNETE
 							try:
 								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'}).div[0].text
-								pp=tp_c.split("depuis")
+								try:
+									tt=tp_c.div[0].text
+								except:
+									tt=tp_c.find_All('li', attrs={'class': 'l7n4lsf dir dir-ltr'})[0].text
+								pp=tt.split("depuis")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
 								print(pp[1])
 							except:
@@ -566,8 +570,12 @@ while c<=nrow:
 									ws.cell((c, cENTREPRISE)).value = 'NO'
 							except:
 								try:
-									tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'}).div[1].text
-									if 'Professionnel' in tp_c:
+									tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
+									try:
+										tt=tp_c.div[1].text
+									except:
+										tt=tp_c.find_All('l1', attrs={'class': 'l7n4lsf dir dir-ltr'})[-1].text
+									if 'Professionnel' in tt:
 										ws.cell((c, cENTREPRISE)).value = 'YES'
 									else:
 										ws.cell((c, cENTREPRISE)).value = 'NO'
