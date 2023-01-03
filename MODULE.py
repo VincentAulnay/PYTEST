@@ -409,12 +409,14 @@ while c<=nrow:
 								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
 								print(tp_c)
 								try:
+									tt=tp_c.find_All('li', attrs={'class': 'l7n4lsf dir dir-ltr'})
+									print(tt)
+									tx=tt[0].text
+									print(tx)
+								except:
 									tt=tp_c.div[0].text
 									print(tt)
-								except:
-									tt=tp_c.ol.li[0].text
-									print(tt)
-								pp=tt.split("depuis")
+								pp=tx.split("depuis")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
 								print(pp[1])
 							except:
