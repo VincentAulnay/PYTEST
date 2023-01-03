@@ -412,7 +412,7 @@ while c<=nrow:
 									tt=tp_c.div[0].text
 									print(tt)
 								except:
-									tt=tp_c.find_All('li', attrs={'class': 'l7n4lsf dir dir-ltr'})[1].text
+									tt=tp_c.ol.li[0].text
 									print(tt)
 								pp=tt.split("depuis")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
@@ -575,10 +575,10 @@ while c<=nrow:
 								try:
 									tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
 									try:
-										tt=tp_c.div[1].text
+										tt=tp_c.div[-1].text
 									except:
 										try:
-											tt=tp_c.find_All('l1', attrs={'class': 'l7n4lsf dir dir-ltr'})[-1].text
+											tt=tp_c.find_All('li', attrs={'class': 'l7n4lsf dir dir-ltr'})[-1].text
 										except:
 											try:
 												tt=tp_c.find('button').text
