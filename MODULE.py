@@ -124,7 +124,7 @@ cCOHOTE_NAME2=52
 cCOHOTE_IMAGE2=53
 cFETE=54
 cACTIVE=55
-cENTREPRISE=56
+cENTREPRISE=60
 cSOCIALWASHING=57
 
 
@@ -406,7 +406,7 @@ while c<=nrow:
 
 						#ANCIENNETE
 							try:
-								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'}).div[0].text
+								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
 								try:
 									tt=tp_c.div[0].text
 								except:
