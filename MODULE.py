@@ -408,7 +408,7 @@ while c<=nrow:
 								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
 								try:
 									tt=tp_c.findAll('li', attrs={'class': 'l7n4lsf dir dir-ltr'})
-									tx=tt[0].text)
+									tx=tt[0].text
 								except:
 									tt=tp_c.div[0].text
 								pp=tx.split("depuis ")
