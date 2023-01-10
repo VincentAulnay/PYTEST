@@ -57,14 +57,23 @@ except:
 print('ici1')
 #spreadsheet_url = "https://docs.google.com/spreadsheets/d/1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c/edit?usp=sharing"
 #spreadsheet_url = "https://docs.google.com/spreadsheets/d/1ACSlRUHdqn9ExIM2M-18VGHBoo8RaxAfxkbvKCd1ylw/edit?usp=sharing"
-spreadsheet_url = "https://docs.google.com/spreadsheets/d/1QJS5Vl_V6b-Tah8BpuWoUttKd1xRh-MLk8306qbXjJg/edit?usp=sharing"
+#spreadsheet_url = "https://docs.google.com/spreadsheets/d/1QJS5Vl_V6b-Tah8BpuWoUttKd1xRh-MLk8306qbXjJg/edit?usp=sharing"
+
+#1foRAOdxPydwyz5ju4nGsPw-L9196j8MwnFzisDgZJmo
+#1D9V6zS87cjcMJUFDVqFi1IktqbOR7NyEV2q3a0DtFYM
+#1kAYBZN4NNASkL24DBaAEav-21xo1ii3o0CSchS6qN0s
+
+spreadsheet_url = url_rpi
 
 print('ici2')	
 
 
-sheet_data = client.sheet.get('1QJS5Vl_V6b-Tah8BpuWoUttKd1xRh-MLk8306qbXjJg')
+#sheet_data = client.sheet.get('1QJS5Vl_V6b-Tah8BpuWoUttKd1xRh-MLk8306qbXjJg')
+sheet_data = client.sheet.get(id_rpi)
+
 print('ici3')
-sheet = client.open('MODULE')
+#sheet = client.open('MODULE')
+sheet = client.open(name_rpi)
 print('ici4')
 ws = sheet.worksheet_by_title('Sheet1')
 print('sheet')
@@ -112,8 +121,6 @@ cENTREPRISE=40
 cACTIVE=41
 
 
-		
-#driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 driver.set_window_size(2000, 1000)
 driver.get('https://www.google.com/')
@@ -122,7 +129,6 @@ driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
 driver.implicitly_wait(10)
 wait = WebDriverWait(driver, 5)
 
-#c = ligne 2 du xls resultant
 c=2
 wait2 = WebDriverWait(driver, 5)
 wait3 = WebDriverWait(driver, 5)
@@ -167,14 +173,8 @@ while c<=nrow:
 		driver.get(h)
 		time.sleep(2)
 		scrap_ok=1
-	#h=ws.cell((c, cANNONCE)).value
-	#driver.get(h)
-	#time.sleep(5)
 	numero=None
-	#print (h)
-	#do=sheet_read.cell(i,0).value
 	if numero is None:
-		#threading.Thread(target=scrap, args=(h,)).start()
 		timer=1
 		while timer<=60:
 			if scrap_ok==1:
@@ -188,21 +188,14 @@ while c<=nrow:
 							pass
 						while f_ele<=3:
 							try:
-								#ele=driver.find_element_by_xpath("//div[@class='_1cvivhm']")
-								#ele=driver.find_element_by_xpath("//div[@class='_cg8a3u']")
 								driver.execute_script("window.scrollBy(0,3000);")
 								ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
 								driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-								#time.sleep(1)
 								driver.execute_script("window.scrollBy(0,-400);")
-								#driver.execute_script("window.scrollBy(0,500);")
 								f_ele=6
 							except:
-								#driver.execute_script("window.scrollBy(0,1000);")
 								f_ele=f_ele+1
 								time.sleep(2)
-					#driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 				#PROFILE
 					time.sleep(1)
 					html = driver.page_source
@@ -227,48 +220,22 @@ while c<=nrow:
 							table = str.maketrans('=&', '++')
 							result_gps = tt2.translate(table)
 							split_gps=result_gps.split("+")
-							#https://www.google.com/maps?ll+46.23657,3.92341+z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
-							#https://maps.google.com/maps?ll=49.19054,-2.11715&z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
-							#https://www.google.com/maps?ll=48.6472,-2.0054&z=14&t=m&hl=fr&gl=FR&mapclient=apiv3
 							coor=split_gps[1]
 							long_lat=coor.split(',')
-							#--------------Write results--------------
-							#print(long_lat[0])
-							#print(long_lat[1])
-							#point=Point(float(long_lat[1]),float(long_lat[0]))
-							#question=polygon.contains(point)
 							question=True
-							#print(question)
-							#sheet.write(c, 12, long_lat[0])
-							#sheet.write(c, 13, long_lat[1])
-							#ws.cell(row=c+1, column=13+1).value = long_lat[0]
-							#ws.cell(row=c+1, column=14+1).value = long_lat[1]
 						except:
 							question=False
 							print('NO GPS')
 						if question is True:
-							#sheet.write(c, 12, long_lat[0])
-							#sheet.write(c, 13, long_lat[1])
 							try:
-								#ws.cell((c, cANNONCE)).value = h
 								ws.cell((c, clat)).value = long_lat[0]
-								#print('try threading')
-								#threading.Thread(target=GSwrite, args=(c,clat,long_lat[0],)).start()
-								#run_write=GSWrite(c,clat,long_lat[0])
-								#print('done')
 								ws.cell((c, clon)).value = long_lat[1]
-								#threading.Thread(target=GSwrite, args=(c,clon,long_lat[1],)).start()
-								#run_write=GSWrite(c,clon,long_lat[1])
 							except:
 								ee=1
 						#TITLE
 							try:
 								div1=FTitle.find('h1', attrs={"class": "_fecoyn4"})
 								ws.cell((c, cTITLE)).value = div1.text
-								#threading.Thread(target=scrap, args=(h,)).start()
-								#threading.Thread(target=GSwrite, args=(c,)).start()
-								#run_write=GSWrite(c,cTITLE,div1.text)
-								#print(div1.text)
 							except:
 								#print('NO TITLE')
 								aaa=1
@@ -307,7 +274,6 @@ while c<=nrow:
 								aaa=1
 						#VOYAGEUR
 							try:
-								#the_tr= Flogement.find('div', attrs = {'class' : '_tqmy57'})
 								tt=Flogement.find_all('li')[0]
 								tt1=tt.find_all('span')[0]
 								tt2=tt1.text
@@ -320,7 +286,6 @@ while c<=nrow:
 
 						#LITS
 							try:
-								#the_tr= Flogement.find('div', attrs = {'class' : '_tqmy57'})
 								tt=Flogement.find_all('li')[2]
 								tt1=tt.find_all('span')[2]
 								tt2=tt1.text
@@ -332,7 +297,6 @@ while c<=nrow:
 								aaa=1
 						#SdB
 							try:
-								#the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
 								tt=Flogement.find_all('li')[3]
 								tt1=tt.find_all('span')[-1]
 								tt2=tt1.text
@@ -344,7 +308,6 @@ while c<=nrow:
 								aaa=1
 						#CHAMBRE
 							try:
-								#the_tr= soup.find('div', attrs = {'class' : '_tqmy57'})
 								tt=Flogement.find_all('li')[1]
 								tt1=tt.find_all('span')[2]
 								tt2=tt1.text
@@ -362,8 +325,6 @@ while c<=nrow:
 							except:
 								print('NO VILLE')
 								aaa=1
-
-							#print(tt)
 						#NAME_HOTE
 							try:
 								tp_c=FProfile.find('h2', attrs={'class': 'hnwb2pb dir dir-ltr'}).text
@@ -401,8 +362,6 @@ while c<=nrow:
 								print('no anciennete')
 						#SUPER HOTE
 							try:
-								#the_tr= FProfile.find('span', text=re.compile(r'\bSuperhost\b'),attrs = {'aria-hidden' : 'false'})
-								#tp_c=soup.find('span', attrs={"class": "_63km3vu"}, text=re.compile(r'\bSuper\b'))
 								tp_c=FTitle.find('span', attrs={"class": "_1mhorg9"})
 								if tp_c is not None:
 									ws.cell((c, cSUPERHOTE)).value = 'X'
@@ -414,7 +373,6 @@ while c<=nrow:
 							try:
 								tp_c=FProfile.find('ul', attrs={"class": "tq6hspd h1aqtv1m dir dir-ltr"})
 								sp=tp_c.find('span', text=re.compile(r'\bcommentaires\b')).text
-								#sp=tp_c.findAll('span', attrs={"class": "l1dfad8f dir dir-ltr"})[0]
 								pp=sp.split('c')
 								cc=pp[0]
 								if cc=='Identité vérifiée':
@@ -427,7 +385,6 @@ while c<=nrow:
 					#N° ENREGISTREMENT
 							try:
 								the_tr= FProfile.find('ul', attrs = {'class' : 'fhhmddr dir dir-ltr'})
-								#pp= the_tr.find('li', text=re.compile(r'\bNuméro\b'))
 								pp= the_tr.findAll('li')[0]
 								if "Numéro" in pp.text:
 									txt=pp.span.text
