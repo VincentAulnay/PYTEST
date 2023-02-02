@@ -527,6 +527,39 @@ while c<=nrow:
 										ws.cell((c, cENTREPRISE)).value = 'NO'
 								except:
 									print('falde entreprise')
+						#CO HOTE
+							try:
+								FCohote = soup.find('div', attrs={'class': '_pawvzww'})
+								try:
+									url_cohote = FCohote.find('a', attrs={'class': '_9bezani'})
+									nam_cohote = FCohote.find('span', attrs={'class': 'a7xbq6p dir dir-ltr'})
+									img_cohote = FCohote.find('img', attrs={'class': '_9ofhsl'})
+									print(url_cohote)
+									print(nam_cohote.text)
+									print(img_cohote['src'])
+									ws.cell((c, cCOHOTE_URL1)).value = "https://www.airbnb.fr"+str(url_cohote['href'])
+									ws.cell((c, cCOHOTE_NAME1)).value = nam_cohote.text
+									ws.cell((c, cCOHOTE_IMAGE1)).value = img_cohote['src']
+									ws.cell((c, cNB_COHOTE)).value = 1
+								except:
+									url_cohote1 = FCohote.findAll('a')[0]
+									url_cohote2 = FCohote.findAll('a')[1]
+									url_cohote1 = FCohote.find('a')
+									nam_cohote1 = FCohote.find('span')
+									img_cohote1 = FCohote.find('img')
+									ws.cell((c, cCOHOTE_URL1)).value = "https://www.airbnb.fr"+str(url_cohote1['href'])
+									ws.cell((c, cCOHOTE_NAME1)).value = nam_cohote1.text
+									ws.cell((c, cCOHOTE_IMAGE1)).value = img_cohote1['src']
+									ws.cell((c, cNB_COHOTE)).value = 1
+									url_cohote2 = FCohote.find('a')
+									nam_cohote2 = FCohote.find('span')
+									img_cohote2 = FCohote.find('img')
+									ws.cell((c, cCOHOTE_URL2)).value = "https://www.airbnb.fr"+str(url_cohote2['href'])
+									ws.cell((c, cCOHOTE_NAME2)).value = nam_cohote2.text
+									ws.cell((c, cCOHOTE_IMAGE2)).value = img_cohote2['src']
+									ws.cell((c, cNB_COHOTE)).value = 2
+							except:
+								aaa=1
 			#------------------------
 					except:
 						pass
