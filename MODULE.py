@@ -63,6 +63,10 @@ print('ici1')
 #1D9V6zS87cjcMJUFDVqFi1IktqbOR7NyEV2q3a0DtFYM
 #1kAYBZN4NNASkL24DBaAEav-21xo1ii3o0CSchS6qN0s
 
+url_rpi="https://docs.google.com/spreadsheets/d/14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs/edit?usp=sharing"
+id_rpi="14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs"
+name_rpi="testoct"
+
 spreadsheet_url = url_rpi
 
 print('ici2')	
