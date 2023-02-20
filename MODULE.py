@@ -50,7 +50,7 @@ import pandas as pd
 #wbx = load_workbook(path_RESULT.filename)
 #ws = wbx.active
 print('ici1')
-if name_rpi='Rpi3':
+if name_rpi=='Rpi3':
 	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378418-06f4d82571c9.json')
 #try:
 #	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/raspbian-364809-be26e1ee6573.json')
