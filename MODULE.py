@@ -201,7 +201,7 @@ while c<=nrow:
 								driver.execute_script("window.scrollBy(0,3000);")
 								ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
 								driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								driver.execute_script("window.scrollBy(0,-400);")
+								driver.execute_script("window.scrollBy(0,-100);")
 								f_ele=6
 							except:
 								f_ele=f_ele+1
