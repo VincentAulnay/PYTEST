@@ -207,7 +207,7 @@ while c<=nrow:
 								f_ele=f_ele+1
 								time.sleep(2)
 				#PROFILE
-					if f_ele=!6:
+					if f_ele!=6:
 						print(bbbb)
 					time.sleep(1)
 					html = driver.page_source
