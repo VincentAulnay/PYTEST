@@ -207,6 +207,8 @@ while c<=nrow:
 								f_ele=f_ele+1
 								time.sleep(2)
 				#PROFILE
+					if f_ele=!6:
+						print(bbbb)
 					time.sleep(1)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
@@ -399,7 +401,7 @@ while c<=nrow:
 								if "Numéro" in pp.text:
 									txt=pp.span.text
 									ws.cell((c, cREGISTER)).value = txt
-									print("2-"+str(txt))
+									#print("2-"+str(txt))
 							except:
 								aaa=1
 
@@ -556,8 +558,8 @@ while c<=nrow:
 								except:
 									url_cohote = FCohote.find('a', attrs={'class': '_9bezani'})
 									nam_cohote = FCohote.find('span', attrs={'class': 'a7xbq6p dir dir-ltr'})
-									print(url_cohote)
-									print(nam_cohote.text)
+									#print(url_cohote)
+									#print(nam_cohote.text)
 									ws.cell((c, cCOHOTE_URL1)).value = "https://www.airbnb.fr"+str(url_cohote['href'])
 									ws.cell((c, cCOHOTE_NAME1)).value = nam_cohote.text
 									ws.cell((c, cNB_COHOTE)).value = 1
