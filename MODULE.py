@@ -52,6 +52,8 @@ import pandas as pd
 print('ici1')
 if name_rpi=='Rpi3':
 	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378418-06f4d82571c9.json')
+elif name_rpi=='Rpi1':
+	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378709-ede595e84cf3.json')
 #try:
 #	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/raspbian-364809-be26e1ee6573.json')
 #except:
@@ -65,6 +67,7 @@ print('ici1')
 #1D9V6zS87cjcMJUFDVqFi1IktqbOR7NyEV2q3a0DtFYM
 #1kAYBZN4NNASkL24DBaAEav-21xo1ii3o0CSchS6qN0s
 #1GauTmUNmCiv3B-psbn8oZvn23A6rh5GNB6L600VM3rA
+#1si2nENFfVIx73f-o00E0rrv0t4dyrn92fKoikutyOIo
 
 #url_rpi="https://docs.google.com/spreadsheets/d/14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs/edit?usp=sharing"
 #id_rpi="14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs"
