@@ -1264,6 +1264,7 @@ def COMPUTE_M1(name_mois1):
 		print('start 01')
 		#STR_NBA=ws.cell(row=c, column=Cmois).value
 		STR_NBA=ws.cell((c, Cmois)).value
+		print(STR_NBA)
 		#if STR_NBA==None:
 		#	STR_NBA="/X1-7:3"
 		continu=1
@@ -1615,7 +1616,7 @@ while f_mounth==0:
 		fm=fm+1
 
 
-
+w_month=1
 while w_month==0:
 	run_month=whatmounth()
 	print (name_mois1)
