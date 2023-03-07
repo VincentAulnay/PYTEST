@@ -1425,10 +1425,14 @@ def COMPUTE_M1(name_mois1):
 			#ws.cell(row=c, column=C_R30J).value=NR30
 			#ws.cell(row=c, column=C_NuitBloquee).value=NR30+NR15+NR5
 			print('start 071')
-			ws.update_value((c,C_R5J), NR5)
-			ws.update_value((c,C_R15J), NR15)
-			ws.update_value((c,C_30J), NR30)
-			ws.update_value((c,C_NuitBloquee), NR30+NR15+NR5)
+			#ws.update_value((c,C_R5J), NR5)
+			ws.cell((c, C_R5J)).value = NR5
+			#ws.update_value((c,C_R15J), NR15)
+			ws.cell((c, C_R15J)).value = NR15
+			#ws.update_value((c,C_30J), NR30)
+			ws.cell((c, C_R30J)).value = NR30
+			#ws.update_value((c,C_NuitBloquee), NR30+NR15+NR5)
+			ws.cell((c, C_NuitBloquee)).value = NR30+NR15+NR5
 			#N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
 			print('start 072')
 			N1nuit=ws.cell((c, C_N1SumNuitee)).value
@@ -1437,7 +1441,8 @@ def COMPUTE_M1(name_mois1):
 			if N1nuit == '':
 				N1nuit=0
 			#ws.cell(row=c, column=C_SumNuitee).value=N1nuit+NR30+NR15+NR5
-			ws.update_value((c,C_SumNuitee), N1nuit+NR30+NR15+NR5)
+			#ws.update_value((c,C_SumNuitee), N1nuit+NR30+NR15+NR5)
+			ws.cell((c, C_SumNuitee)).value = N1nuit+NR30+NR15+NR5
 			print('start 09')
 		c=c+1
 	#wbx.save(path_RESULT.filename)
