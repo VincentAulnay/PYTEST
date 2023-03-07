@@ -1438,7 +1438,7 @@ def COMPUTE_M1(name_mois1):
 			N1nuit=ws.cell((c, C_N1SumNuitee)).value
 			print(N1nuit)
 			print('start 08')
-			if N1nuit == '':
+			if N1nuit is None:
 				N1nuit=0
 			print('start 081')
 			#ws.cell(row=c, column=C_SumNuitee).value=N1nuit+NR30+NR15+NR5
