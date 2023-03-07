@@ -1832,6 +1832,7 @@ def getdrive(h):
 
 while end==0:
 	try:
+		j=nrow
 		while j<=nrow:
 			#----COMPUTE REPORT----
 			v_get=0
@@ -2149,7 +2150,7 @@ while end==0:
 		#ws = wbx.active
 		try:
 			print("compute")
-			#COMPUTE_M1(name_mois1)
+			COMPUTE_M1('octobre 2023')
 			#COMPUTE_M1(name_mois2)
 		except:
 			print('no compute')
