@@ -2150,7 +2150,7 @@ while end==0:
 		#ws = wbx.active
 		try:
 			print("compute")
-			COMPUTE_M1('octobre 2023')
+			COMPUTE_M1('octobre 2022')
 			#COMPUTE_M1(name_mois2)
 		except:
 			print('no compute')
