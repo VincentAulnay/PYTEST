@@ -1268,7 +1268,7 @@ def COMPUTE_M1(name_mois1):
 		#if STR_NBA==None:
 		#	STR_NBA="/X1-7:3"
 		continu=1
-		if STR_NBA==None:
+		if STR_NBA=='':
 			continu=0
 			#ws.cell(row=c, column=C_L).value=0
 			#ws.cell(row=c, column=C_P).value=0
@@ -1424,7 +1424,7 @@ def COMPUTE_M1(name_mois1):
 			ws.update_value((c,C_NuitBloquee), NR30+NR15+NR5)
 			#N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
 			N1nuit=ws.cell((c, C_N1SumNuitee)).value
-			if N1nuit is None:
+			if N1nuit == '':
 				N1nuit=0
 			#ws.cell(row=c, column=C_SumNuitee).value=N1nuit+NR30+NR15+NR5
 			ws.update_value((c,C_SumNuitee), N1nuit+NR30+NR15+NR5)
