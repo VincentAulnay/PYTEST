@@ -1082,7 +1082,7 @@ def COMPUTE_M1(name_mois1):
 				up=1
 			else:
 				i=i+1
-		#print('Ccomment1='+str(i))
+		print('Ccomment1='+str(i))
 		Ccomment1=i
 
 		up=0
@@ -1094,7 +1094,7 @@ def COMPUTE_M1(name_mois1):
 				up=1
 			else:
 				i=i+1
-		#print('DIF_Comment='+str(i))
+		print('DIF_Comment='+str(i))
 		DIF_Comment=i
 		
 		up=0
@@ -1172,7 +1172,7 @@ def COMPUTE_M1(name_mois1):
 				up=1
 			else:
 				i=i+1
-		#print('SUM_nJ='+str(i))
+		print('SUM_nJ='+str(i))
 		C_R5J=i
 
 		up=0
@@ -1240,7 +1240,7 @@ def COMPUTE_M1(name_mois1):
 					up=1
 				else:
 					i=i-1
-			#print('Ccommont2='+str(i))
+			print('Ccommont2='+str(i))
 			Ccomment2=i
 			NOC2=0
 		except:
@@ -1261,6 +1261,7 @@ def COMPUTE_M1(name_mois1):
 			except:
 				pass
 	#--------COUNT NB/A and NB NO/A---------
+		print('start 01')
 		#STR_NBA=ws.cell(row=c, column=Cmois).value
 		STR_NBA=ws.cell((c, Cmois)).value
 		#if STR_NBA==None:
@@ -1278,23 +1279,34 @@ def COMPUTE_M1(name_mois1):
 			#ws.cell(row=c, column=C_R15J).value=0
 			#ws.cell(row=c, column=C_R30J).value=0
 			#ws.cell(row=c, column=C_NuitBloquee).value=0
-			ws.update_value((c,C_L), 0)
-			ws.update_value((c,C_P), 0)
-			ws.update_value((c,C_D), 0)
-			ws.update_value((c,C_R5A), 0)
-			ws.update_value((c,C_R15A), 0)
-			ws.update_value((c,C_R30A), 0)
-			ws.update_value((c,C_R5J), 0)
-			ws.update_value((c,C_R15J), 0)
-			ws.update_value((c,C_R30J), 0)
+			#ws.update_value((c,C_L), 0)
+			ws.cell((c, C_L)).value = 0
+			#ws.update_value((c,C_P), 0)
+			ws.cell((c, C_P)).value = 0
+			#ws.update_value((c,C_D), 0)
+			ws.cell((c, C_D)).value = 0
+			#ws.update_value((c,C_R5A), 0)
+			ws.cell((c, C_R5A)).value = 0
+			#ws.update_value((c,C_R15A), 0)
+			ws.cell((c, C_R15A)).value = 0
+			#ws.update_value((c,C_R30A), 0)
+			ws.cell((c, C_R30A)).value = 0
+			#ws.update_value((c,C_R5J), 0)
+			ws.cell((c, C_R5J)).value = 0
+			#ws.update_value((c,C_R15J), 0)
+			ws.cell((c, C_R15J)).value = 0
+			#ws.update_value((c,C_R30J), 0)
+			ws.cell((c, C_R30J)).value = 0
 			ws.update_value((c,C_NuitBloquee), 0)
 			#N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
 			N1nuit=ws.cell((c, C_N1SumNuitee)).value
 			if N1nuit is None:
 				N1nuit=0
 			#ws.cell(row=c, column=C_SumNuitee).value=N1nuit
-			ws.update_value((c,C_SumNuitee), N1nuit)
+			#ws.update_value((c,C_SumNuitee), N1nuit)
+			ws.cell((c, C_SumNuitee)).value = N1nuit
 		if continu==1:
+			print('start 02')
 			count_R=STR_NBA.count('/R')
 			count_L=STR_NBA.count('/L')
 			count_P=STR_NBA.count('/P')
