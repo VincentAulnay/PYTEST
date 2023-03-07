@@ -714,18 +714,9 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			#	tp_c=soup.find('span', attrs={"class": "_142pbzop"}).text
 			#print(tp_c)
 			try:
-				tp_c=soup.find('span', attrs={"class": "_142pbzop"}).text
+				tp_c=soup.find('span', attrs={"class": "_s65ijh7"}).text
 			except:
-				try:
-					tp_c=soup.findAll('span', attrs={"class": "_2qpirtt"})[1].text
-				except:
-					try:
-						tp_c=soup.find('span', attrs={"class": "_1qx9l5ba"}).text
-					except:
-						try:
-							tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
-						except:
-							aaa=1
+				aaa=1
 			p_c=tp_c.replace("(","")
 			cc=p_c.replace(")","")
 			try:
