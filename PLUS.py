@@ -1316,6 +1316,7 @@ def COMPUTE_M1(name_mois1):
 			ws.update_value((c,C_L), count_L)
 			ws.update_value((c,C_P), count_P)
 					#---------COUNT nJ ---------
+			print('start 03')
 			list=STR_NBA.split(';')
 			B=['/P', '/D', '/R', '/L', '/X']
 			blacklist = re.compile('|'.join([re.escape(word) for word in B]))
@@ -1326,6 +1327,7 @@ def COMPUTE_M1(name_mois1):
 			rd=0
 			lenD=len(newLforD)
 			nbD=0
+			print('start 04')
 			while rd<lenD:
 				pnlD=newLforD[rd].split(':')
 				del pnlD[0]
@@ -1337,6 +1339,7 @@ def COMPUTE_M1(name_mois1):
 			#[x for x in list if not x.startswith('/A/P') and not x.startswith('/D') and not x.startswith('/P')]
 			#[x for x in list if not any(bad in x for bad in B)]
 			#-----/A--------
+			print('start 05')
 			BA=['/R']
 			blacklistA = re.compile('|'.join([re.escape(wordA) for wordA in BA]))
 			newLforA=[wordA for wordA in list if blacklistA.search(wordA)] #-------Creation list AVEC que les lot /R
@@ -1347,6 +1350,7 @@ def COMPUTE_M1(name_mois1):
 			R5=0
 			R15=0
 			R30=0
+			print('start 06')
 			try: #---Recuperation nJ dans les lot /R
 				while rr<nAlen:
 					pnlA=newLforA[rr].split(':')
@@ -1365,6 +1369,7 @@ def COMPUTE_M1(name_mois1):
 				ws.update_value((c,C_R30A), R30)
 			except:
 				pass
+			print('start 07')
 			list.reverse()
 			s=0
 			listL=[]
@@ -1424,10 +1429,13 @@ def COMPUTE_M1(name_mois1):
 			ws.update_value((c,C_NuitBloquee), NR30+NR15+NR5)
 			#N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
 			N1nuit=ws.cell((c, C_N1SumNuitee)).value
+			print(N1nuit)
+			print('start 08')
 			if N1nuit == '':
 				N1nuit=0
 			#ws.cell(row=c, column=C_SumNuitee).value=N1nuit+NR30+NR15+NR5
 			ws.update_value((c,C_SumNuitee), N1nuit+NR30+NR15+NR5)
+			print('start 09')
 		c=c+1
 	#wbx.save(path_RESULT.filename)
 	time.sleep(5)
