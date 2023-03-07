@@ -1616,7 +1616,7 @@ while f_mounth==0:
 		fm=fm+1
 
 
-w_month=1
+
 while w_month==0:
 	run_month=whatmounth()
 	print (name_mois1)
