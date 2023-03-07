@@ -1371,6 +1371,7 @@ def COMPUTE_M1(name_mois1):
 				pass
 			print('start 07')
 			list.reverse()
+			print(list)
 			s=0
 			listL=[]
 			listR=[]
@@ -1423,11 +1424,13 @@ def COMPUTE_M1(name_mois1):
 			#ws.cell(row=c, column=C_R15J).value=NR15
 			#ws.cell(row=c, column=C_R30J).value=NR30
 			#ws.cell(row=c, column=C_NuitBloquee).value=NR30+NR15+NR5
+			print('start 071')
 			ws.update_value((c,C_R5J), NR5)
 			ws.update_value((c,C_R15J), NR15)
 			ws.update_value((c,C_30J), NR30)
 			ws.update_value((c,C_NuitBloquee), NR30+NR15+NR5)
 			#N1nuit=ws.cell(row=c, column=C_N1SumNuitee).value
+			print('start 072')
 			N1nuit=ws.cell((c, C_N1SumNuitee)).value
 			print(N1nuit)
 			print('start 08')
