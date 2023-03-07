@@ -1071,7 +1071,7 @@ def COMPUTE_M1(name_mois1):
 				up=1
 			else:
 				i=i+1
-		#print('Cmois='+str(i))
+		print('Cmois='+str(i))
 		Cmois=i
 
 		up=0
@@ -1245,7 +1245,7 @@ def COMPUTE_M1(name_mois1):
 			NOC2=0
 		except:
 			NOC2=1
-			#print ('NOC2=====1')
+			print ('NOC2=====1')
 	c=2
 	while c<=nrow:
 		if NOC2==0:
@@ -1255,7 +1255,7 @@ def COMPUTE_M1(name_mois1):
 			V2=ws.cell((c, Ccomment2)).value
 			try:
 				DIF=int(V1)-int(V2)
-				#print('ANNONCE:'+str(c)+('   DIF:')+str(DIF))
+				print('ANNONCE:'+str(c)+('   DIF:')+str(DIF))
 				#ws.cell(row=c, column=DIF_Comment).value=DIF
 				ws.update_value((c,DIF_Comment), DIF)
 			except:
