@@ -1438,12 +1438,12 @@ def COMPUTE_M1(name_mois1):
 			N1nuit=ws.cell((c, C_N1SumNuitee)).value
 			print(N1nuit)
 			print('start 08')
-			if N1nuit is None:
+			if N1nuit == '':
 				N1nuit=0
 			print('start 081')
 			#ws.cell(row=c, column=C_SumNuitee).value=N1nuit+NR30+NR15+NR5
 			#ws.update_value((c,C_SumNuitee), N1nuit+NR30+NR15+NR5)
-			ws.cell((c, C_SumNuitee)).value = N1nuit+NR30+NR15+NR5
+			ws.cell((c, C_SumNuitee)).value = int(N1nuit)+NR30+NR15+NR5
 			print('start 09')
 		c=c+1
 	#wbx.save(path_RESULT.filename)
