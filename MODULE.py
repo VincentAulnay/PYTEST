@@ -54,6 +54,8 @@ if name_rpi=='Rpi3':
 	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378418-06f4d82571c9.json')
 elif name_rpi=='Rpi1':
 	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378709-ede595e84cf3.json')
+elif name_rpi=='Rpi2':
+	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/raspbian-364809-be26e1ee6573.json')
 #try:
 #	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/raspbian-364809-be26e1ee6573.json')
 #except:
