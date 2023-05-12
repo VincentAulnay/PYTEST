@@ -201,9 +201,13 @@ while c<=nrow:
 						while f_ele<=3:
 							try:
 								driver.execute_script("window.scrollBy(0,2000);")
-								ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
+								#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
+								#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+								ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='POLICIES_DEFAULT']")
 								driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								driver.execute_script("window.scrollBy(0,50);")
+								driver.execute_script("window.scrollBy(0,-500);")
+								driver.execute_script("window.scrollBy(0,-500);")
+								#driver.execute_script("window.scrollBy(0,50);")
 								f_ele=6
 							except:
 								f_ele=f_ele+1
@@ -216,7 +220,15 @@ while c<=nrow:
 					FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
 					Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT"})
 					FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
-					FPolicies = soup.find('div', attrs={"data-plugin-in-point-id": "POLICIES_DEFAULT"})
+					try:
+						FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
+						Vprofil=1
+					except:
+						try:
+							FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "MEET_YOUR_HOST"})
+							Vprofil=2
+						except:
+							aaa=1
 					FHero = soup.find('div', attrs={"data-plugin-in-point-id": "HERO_DEFAULT"})
 					h=ws.cell((c+1, cANNONCE)).value
 					threading.Thread(target=scrap, args=(h,)).start()
@@ -253,7 +265,10 @@ while c<=nrow:
 								aaa=1
 						#URL HOTE
 							try:
-								div=FProfile.find('div', attrs={'class': 'c6y5den dir dir-ltr'})
+								if Vprofil==1:
+									div=FProfile.find('div', attrs={'class': 'c6y5den dir dir-ltr'})
+								elif Vprofil==2:
+									div=FProfile.find('div', attrs={'class': 'c1u4hpjh dir dir-ltr'})
 								div2=div.find('a')
 								div1=div2['href']  #.attrs['href']
 								ws.cell((c, cHOTE)).value = "https://www.airbnb.fr"+str(div1)
@@ -339,7 +354,10 @@ while c<=nrow:
 								aaa=1
 						#NAME_HOTE
 							try:
-								tp_c=FProfile.find('h2', attrs={'class': 'hnwb2pb dir dir-ltr'}).text
+								if Vprofil==1:
+									tp_c=FProfile.find('h2', attrs={'class': 'hnwb2pb dir dir-ltr'}).text
+								elif Vprofil==2:
+									tp_c=FProfile.find('span', attrs={'class': 't1gpcl1t dir dir-ltr'}).text
 								pp=tp_c.split('par ')
 								ws.cell((c, cNAME_HOTE)).value = pp[1]
 							except:
@@ -505,7 +523,7 @@ while c<=nrow:
 					#IMAGE_HOTE
 							try:
 								#the_tr= soup.findAll('div', attrs={"class": "_5kripx"})[0]
-								t= Flogement.find('img', attrs={"class": "i1o0kbi8 i1mla2as i1cqnm0r dir dir-ltr"})
+								t= Flogement.find('img', attrs={"class": "irqavcc i1mla2as i1cqnm0r dir dir-ltr"})
 								tt=t['src']
 								ws.cell((c, cIMAGE_PROFIL)).value = tt
 							except:
