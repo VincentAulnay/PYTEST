@@ -221,6 +221,10 @@ while c<=nrow:
 					Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT"})
 					FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
 					try:
+						FPolicies = soup.find('div', attrs={"data-plugin-in-point-id": "POLICIES_DEFAULT"})
+					except:
+						aaa=1
+					try:
 						FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
 						Vprofil=1
 					except:
