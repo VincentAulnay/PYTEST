@@ -262,7 +262,7 @@ while c<=nrow:
 								ee=1
 						#TITLE
 							try:
-								div1=FTitle.find('h1', attrs={"class": "hghzvl1 i1wofiac dir dir-ltr"})
+								div1=FTitle.find('h1', attrs={"class": "hpipapi i1pmzyw7 dir dir-ltr"})
 								ws.cell((c, cTITLE)).value = div1.text
 							except:
 								#print('NO TITLE')
@@ -489,35 +489,35 @@ while c<=nrow:
 								aaa=1
 					#IMAGE
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "i1o0kbi8 i1mla2as i1cqnm0r dir dir-ltr"})[0]
+								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[0]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_1)).value = tt
 							except:
 								aaa=1
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "i1o0kbi8 i1mla2as i1cqnm0r dir dir-ltr"})[1]
+								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[1]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_2)).value = tt
 							except:
 								aaa=1
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "i1o0kbi8 i1mla2as i1cqnm0r dir dir-ltr"})[2]
+								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[2]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_3)).value = tt
 							except:
 								aaa=1
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "i1o0kbi8 i1mla2as i1cqnm0r dir dir-ltr"})[3]
+								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[3]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_4)).value = tt
 							except:
 								aaa=1
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "i1o0kbi8 i1mla2as i1cqnm0r dir dir-ltr"})[4]
+								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[4]
 								#print(the_tr)
 								tt=the_tr['src']
 								#print(tt)
@@ -527,7 +527,7 @@ while c<=nrow:
 					#IMAGE_HOTE
 							try:
 								#the_tr= soup.findAll('div', attrs={"class": "_5kripx"})[0]
-								t= Flogement.find('img', attrs={"class": "irqavcc i1mla2as i1cqnm0r dir dir-ltr"})
+								t= Flogement.find('img', attrs={"class": "i9if2t0 i1mla2as i1cqnm0r dir dir-ltr"})
 								tt=t['src']
 								ws.cell((c, cIMAGE_PROFIL)).value = tt
 							except:
