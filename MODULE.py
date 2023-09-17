@@ -267,6 +267,22 @@ while c<=nrow:
 							except:
 								#print('NO TITLE')
 								aaa=1
+						#TYPE_HOME
+							try:
+								the_tr= Flogement.find('div', attrs={"class": "_8lgpy8"})
+								ttt=the_tr.h2.text
+								type_home=ttt.split('⸱')
+								#print(pp)
+								ws.cell((c, cTYPE_LOGEMENT)).value=type_home[0]
+							except:
+								try:
+									the_tr= soup.find('div', attrs={"class": "tq51prx dir dir-ltr"})
+									ttt=the_tr.find('h2').text
+									type_home=ttt.split('⸱')
+									ws.cell((c, cTYPE_LOGEMENT)).value=type_home[0]
+								except:
+									#print('NOTYPE')
+									aaa=1
 						#URL HOTE
 							try:
 								if Vprofil==1:
@@ -279,6 +295,14 @@ while c<=nrow:
 								#print("URLHOT1"+str(div1))
 							except:
 								print('NO PROFILE')
+							if "Chambre" in type_home[0]:
+								try:
+									div=soup.find('div', attrs={'class': 'c1u4hpjh dir dir-ltr'})
+									div2=div.find('a')
+									div1=div2['href']
+									ws.cell((c, cHOTE)).value = "https://www.airbnb.fr"+str(div1)
+								except:
+									aaa=1
 						#COMMENTAIRE
 							COMMENT='NO COMMENT'
 							#run_price=extract("//span[@class='_wfad8t']",6,COMMENT,c,YN_comment)
@@ -365,22 +389,13 @@ while c<=nrow:
 								ws.cell((c, cNAME_HOTE)).value = pp[1]
 							except:
 								print ('NO_NAME')
-						#TYPE_HOME
-							try:
-								the_tr= Flogement.find('div', attrs={"class": "_8lgpy8"})
-								ttt=the_tr.h2.text
-								pp=ttt.split('⸱')
-								#print(pp)
-								ws.cell((c, cTYPE_LOGEMENT)).value = pp[0]
-							except:
+							if "Chambre" in type_home[0]:
 								try:
-									the_tr= soup.find('div', attrs={"class": "_xcsyj0"}).text
-									pp=the_tr.split('.')
-									ws.cell((c, cTYPE_LOGEMENT)).value = pp[0]
+									div=soup.find('button', attrs={'class': '_1j5azqwp l1ovpqvx dir dir-ltr'})
+									div1=div['aria-label']
+									ws.cell((c, cNAME_HOTE)).value =div1
 								except:
-									#print('NOTYPE')
 									aaa=1
-
 						#ANCIENNETE
 							try:
 								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
