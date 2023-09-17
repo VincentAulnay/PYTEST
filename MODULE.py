@@ -285,14 +285,13 @@ while c<=nrow:
 							try:
 								p_c=[]
 								try:
-									tp_c=FTitle.find('span', attrs={"class": "_s65ijh7"}).text
+									tp_c=FTitle.find('span', attrs={"class": "_16gtkbii"})
+									cc=tp_c.button.text
 									#print(tp_c)
 									#print('type1')
 
 								except:
 									aaa=1
-								p_c=tp_c.replace("(","")
-								cc=p_c.replace(")","")
 								try:
 									pp=cc.split(' ')
 									cc=pp[0]
@@ -350,7 +349,7 @@ while c<=nrow:
 								aaa=1
 						#VILLE
 							try:
-								tp_c=FTitle.find('span', attrs={"class": "_9xiloll"}).text
+								tp_c=FTitle.find('span', attrs={"class": "_8x4fjw"}).text
 								ws.cell((c, cVILLE)).value = tp_c
 								#print(tp_c)
 							except:
@@ -368,7 +367,7 @@ while c<=nrow:
 								print ('NO_NAME')
 						#TYPE_HOME
 							try:
-								the_tr= Flogement.find('div', attrs={"class": "_cv5qq4"})
+								the_tr= Flogement.find('div', attrs={"class": "_8lgpy8"})
 								ttt=the_tr.h2.text
 								pp=ttt.split('⸱')
 								#print(pp)
@@ -396,7 +395,7 @@ while c<=nrow:
 								print('no anciennete')
 						#SUPER HOTE
 							try:
-								tp_c=FTitle.find('span', attrs={"class": "_1mhorg9"})
+								tp_c=FTitle.find('span', attrs={"class": "_1x93jmy"})
 								if tp_c is not None:
 									ws.cell((c, cSUPERHOTE)).value = 'X'
 									#print (tp_c)
