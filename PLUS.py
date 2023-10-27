@@ -712,9 +712,9 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 			#	tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
 			#except:
 			#	tp_c=soup.find('span', attrs={"class": "_142pbzop"}).text
-			#print(tp_c)
+			#print(tp_c) _s65ijh7
 			try:
-				tp_c=soup.find('span', attrs={"class": "_s65ijh7"}).text
+				tp_c=soup.find('span', attrs={"class": "_bq6krt"}).text
 			except:
 				aaa=1
 			p_c=tp_c.replace("(","")
