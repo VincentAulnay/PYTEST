@@ -216,7 +216,7 @@ while c<=nrow:
 					time.sleep(1)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
-					h=ws.cell((c+1, cANNONCE)).value
+					#h=ws.cell((c+1, cANNONCE)).value
 					FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
 					Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT"})
 					FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
@@ -383,10 +383,12 @@ while c<=nrow:
 							try:
 								if Vprofil==1:
 									tp_c=FProfile.find('h2', attrs={'class': 'hnwb2pb dir dir-ltr'}).text
+									pp=tp_c.split('par ')
+									ws.cell((c, cNAME_HOTE)).value = pp[1]
 								elif Vprofil==2:
 									tp_c=FProfile.find('span', attrs={'class': 't1gpcl1t dir dir-ltr'}).text
-								pp=tp_c.split('par ')
-								ws.cell((c, cNAME_HOTE)).value = pp[1]
+									pp=tp_c
+									ws.cell((c, cNAME_HOTE)).value = pp
 							except:
 								print ('NO_NAME')
 							if "Chambre" in type_home[0]:
@@ -439,7 +441,16 @@ while c<=nrow:
 									ws.cell((c, cREGISTER)).value = txt
 									#print("2-"+str(txt))
 							except:
-								aaa=1
+								try:
+									the_tr= FProfile.find('div', attrs = {'class' : 'c2a9hgn dir dir-ltr'})
+									pp= the_tr.span
+									if "Numéro" in pp.text:
+										txt=pp.text
+										ws.cell((c, cREGISTER)).value = txt
+										#print("2-"+str(txt))
+									
+								except:
+									aaa=1
 
 					#DURING SEJOUR
 							try:
