@@ -220,7 +220,7 @@ while c<=nrow:
 					soup = BeautifulSoup(html, 'html.parser')
 					#h=ws.cell((c+1, cANNONCE)).value
 					FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
-					Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT"})
+					Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT_V2"})
 					FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
 					try:
 						FPolicies = soup.find('div', attrs={"data-plugin-in-point-id": "POLICIES_DEFAULT"})
@@ -278,8 +278,8 @@ while c<=nrow:
 								ws.cell((c, cTYPE_LOGEMENT)).value=type_home[0]
 							except:
 								try:
-									the_tr= soup.find('div', attrs={"class": "tq51prx dir dir-ltr"})
-									ttt=the_tr.find('h2').text
+									the_tr= soup.find('div', attrs={"class": "toieuka dir dir-ltr"})
+									ttt=the_tr.find('h1').text
 									type_home=ttt.split('⸱')
 									ws.cell((c, cTYPE_LOGEMENT)).value=type_home[0]
 								except:
@@ -331,8 +331,8 @@ while c<=nrow:
 						#VOYAGEUR
 							try:
 								tt=Flogement.find_all('li')[0]
-								tt1=tt.find_all('span')[0]
-								tt2=tt1.text
+								#tt1=tt.find_all('span')[0]
+								tt2=tt.text
 								p_tp=tt2.split(" ")
 								ws.cell((c, cVOYAGEUR)).value = p_tp[0]
 								#print("V="+str(p_tp[0]))
@@ -343,8 +343,8 @@ while c<=nrow:
 						#LITS
 							try:
 								tt=Flogement.find_all('li')[2]
-								tt1=tt.find_all('span')[2]
-								tt2=tt1.text
+								#tt1=tt.find_all('span')[2]
+								tt2=tt.text
 								p_tp=tt2.split(" ")
 								ws.cell((c, cLITS)).value = p_tp[0]
 								#print("L="+str(p_tp[0]))
@@ -354,8 +354,8 @@ while c<=nrow:
 						#SdB
 							try:
 								tt=Flogement.find_all('li')[3]
-								tt1=tt.find_all('span')[-1]
-								tt2=tt1.text
+								#tt1=tt.find_all('span')[-1]
+								tt2=tt.text
 								p_tp=tt2.split(" ")
 								ws.cell((c, cSdB)).value = p_tp[0]
 								#print("B="+str(p_tp[0]))
@@ -365,8 +365,8 @@ while c<=nrow:
 						#CHAMBRE
 							try:
 								tt=Flogement.find_all('li')[1]
-								tt1=tt.find_all('span')[2]
-								tt2=tt1.text
+								#tt1=tt.find_all('span')[2]
+								tt2=tt.text
 								p_tp=tt2.split(" ")
 								ws.cell((c, cCHAMBRE)).value = p_tp[0]
 								#print("C="+str(p_tp[0]))
@@ -379,8 +379,13 @@ while c<=nrow:
 								ws.cell((c, cVILLE)).value = tp_c
 								#print(tp_c)
 							except:
-								print('NO VILLE')
-								aaa=1
+								try:
+									tp_c=soup.find('span', attrs={"class": "_152qbzi"}).text
+									ws.cell((c, cVILLE)).value = tp_c
+									#print(tp_c)
+								except:
+									print('NO VILLE')
+									aaa=1
 						#NAME_HOTE
 							try:
 								if Vprofil==1:
