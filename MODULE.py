@@ -344,7 +344,7 @@ while c<=nrow:
 							try:
 								tt=Flogement.find_all('li')[2].text
 								#tt1=tt.find_all('span')[2]
-								print(tt)
+								#print(tt)
 								#tt2=tt.find("span", class_="pen26si dir dir-ltr").find_next(text=True)
 								p_tp=tt.split(" ")
 								ws.cell((c, cLITS)).value = p_tp[2]
