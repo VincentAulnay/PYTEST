@@ -344,6 +344,7 @@ while c<=nrow:
 							try:
 								tt=Flogement.find_all('li')[2]
 								#tt1=tt.find_all('span')[2]
+								print(tt)
 								tt2=tt.text
 								p_tp=tt2.split(" ")
 								ws.cell((c, cLITS)).value = p_tp[0]
@@ -380,7 +381,7 @@ while c<=nrow:
 								#print(tp_c)
 							except:
 								try:
-									tp_c=soup.find('span', attrs={"class": "_152qbzi"}).text
+									tp_c=soup.find('div', attrs={"class": "_152qbzi"}).text
 									ws.cell((c, cVILLE)).value = tp_c
 									#print(tp_c)
 								except:
@@ -559,7 +560,7 @@ while c<=nrow:
 					#IMAGE_HOTE
 							try:
 								#the_tr= soup.findAll('div', attrs={"class": "_5kripx"})[0]
-								t= Flogement.find('img', attrs={"class": "i9if2t0 i1mla2as i1cqnm0r dir dir-ltr"})
+								t= FProfile.find('img', attrs={"class": "i9if2t0 i1mla2as i1cqnm0r dir dir-ltr"})
 								tt=t['src']
 								ws.cell((c, cIMAGE_PROFIL)).value = tt
 							except:
