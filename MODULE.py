@@ -342,7 +342,7 @@ while c<=nrow:
 
 						#LITS
 							try:
-								tt=Flogement.find_all('li')[2]
+								tt=Flogement.find_all('li')[2].find_next(text=True)
 								#tt1=tt.find_all('span')[2]
 								print(tt)
 								tt2=tt.find("span", class_="pen26si dir dir-ltr").find_next(text=True)
