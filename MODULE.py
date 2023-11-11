@@ -346,9 +346,7 @@ while c<=nrow:
 								#tt1=tt.find_all('span')[2]
 								print(tt)
 								#tt2=tt.find("span", class_="pen26si dir dir-ltr").find_next(text=True)
-								#tt2=tt.text
-								print(tt2)
-								p_tp=tt2.split(" ")
+								p_tp=tt.split(" ")
 								ws.cell((c, cLITS)).value = p_tp[0]
 								#print("L="+str(p_tp[0]))
 							except:
@@ -356,10 +354,8 @@ while c<=nrow:
 								aaa=1
 						#SdB
 							try:
-								tt=Flogement.find_all('li')[3]
-								#tt1=tt.find_all('span')[-1]
-								tt2=tt.text
-								p_tp=tt2.split(" ")
+								tt=Flogement.find_all('li')[3].text
+								p_tp=tt.split(" ")
 								ws.cell((c, cSdB)).value = p_tp[0]
 								#print("B="+str(p_tp[0]))
 							except:
@@ -367,10 +363,8 @@ while c<=nrow:
 								aaa=1
 						#CHAMBRE
 							try:
-								tt=Flogement.find_all('li')[1]
-								#tt1=tt.find_all('span')[2]
-								tt2=tt.text
-								p_tp=tt2.split(" ")
+								tt=Flogement.find_all('li')[1].text
+								p_tp=tt.split(" ")
 								ws.cell((c, cCHAMBRE)).value = p_tp[0]
 								#print("C="+str(p_tp[0]))
 							except:
