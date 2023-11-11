@@ -342,17 +342,17 @@ while c<=nrow:
 
 						#LITS
 							try:
-								tt=Flogement.find_all('li')[2].find_next(text=True)
+								tt=Flogement.find_all('li')[2].text
 								#tt1=tt.find_all('span')[2]
 								print(tt)
-								tt2=tt.find("span", class_="pen26si dir dir-ltr").find_next(text=True)
+								#tt2=tt.find("span", class_="pen26si dir dir-ltr").find_next(text=True)
 								#tt2=tt.text
 								print(tt2)
 								p_tp=tt2.split(" ")
 								ws.cell((c, cLITS)).value = p_tp[0]
 								#print("L="+str(p_tp[0]))
 							except:
-								#print('NO LIT')
+								print('NO LIT')
 								aaa=1
 						#SdB
 							try:
@@ -387,8 +387,12 @@ while c<=nrow:
 									ws.cell((c, cVILLE)).value = tp_c
 									#print(tp_c)
 								except:
-									print('NO VILLE')
-									aaa=1
+									try:
+										tp_c = soup.find('div', attrs={"data-plugin-in-point-id": "LOCATION_DEFAULT"}).h3.text
+										ws.cell((c, cVILLE)).value = tp_c
+									except:
+										print('NO VILLE')
+										aaa=1
 						#NAME_HOTE
 							try:
 								if Vprofil==1:
@@ -422,7 +426,7 @@ while c<=nrow:
 								print('no anciennete')
 						#SUPER HOTE
 							try:
-								tp_c=FTitle.find('span', attrs={"class": "_1x93jmy"})
+								tp_c=Flogement.find('div', attrs={"class": "bkwpcc1 dir dir-ltr"})
 								if tp_c is not None:
 									ws.cell((c, cSUPERHOTE)).value = 'X'
 									#print (tp_c)
