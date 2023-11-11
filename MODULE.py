@@ -347,7 +347,7 @@ while c<=nrow:
 								print(tt)
 								#tt2=tt.find("span", class_="pen26si dir dir-ltr").find_next(text=True)
 								p_tp=tt.split(" ")
-								ws.cell((c, cLITS)).value = p_tp[1]
+								ws.cell((c, cLITS)).value = p_tp[2]
 								#print("L="+str(p_tp[0]))
 							except:
 								print('NO LIT')
@@ -356,7 +356,7 @@ while c<=nrow:
 							try:
 								tt=Flogement.find_all('li')[3].text
 								p_tp=tt.split(" ")
-								ws.cell((c, cSdB)).value = p_tp[1]
+								ws.cell((c, cSdB)).value = p_tp[2]
 								#print("B="+str(p_tp[0]))
 							except:
 								#print('NO SdB')
@@ -365,7 +365,7 @@ while c<=nrow:
 							try:
 								tt=Flogement.find_all('li')[1].text
 								p_tp=tt.split(" ")
-								ws.cell((c, cCHAMBRE)).value = p_tp[1]
+								ws.cell((c, cCHAMBRE)).value = p_tp[2]
 								#print("C="+str(p_tp[0]))
 							except:
 								#print('NO CHAMBRE')
@@ -420,7 +420,7 @@ while c<=nrow:
 								print('no anciennete')
 						#SUPER HOTE
 							try:
-								tp_c=Flogement.find('div', attrs={"class": "bkwpcc1 dir dir-ltr"})
+								tp_c=soup.find('div', attrs={"class": "bkwpcc1 dir dir-ltr"})
 								if tp_c is not None:
 									ws.cell((c, cSUPERHOTE)).value = 'X'
 									#print (tp_c)
