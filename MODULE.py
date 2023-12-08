@@ -310,21 +310,9 @@ while c<=nrow:
 							COMMENT='NO COMMENT'
 							#run_price=extract("//span[@class='_wfad8t']",6,COMMENT,c,YN_comment)
 							try:
-								p_c=[]
-								try:
-									tp_c=FTitle.find('span', attrs={"class": "_16gtkbii"})
-									cc=tp_c.button.text
-									#print(tp_c)
-									#print('type1')
-
-								except:
-									aaa=1
-								try:
-									pp=cc.split(' ')
-									cc=pp[0]
-									ws.cell((c, cCOMMENT)).value = cc
-								except:
-									pass
+								tp_c=Flogement.find('a')
+								pp=tp_c.split(' ')
+								cc=pp[0]
 								ws.cell((c, cCOMMENT)).value = cc
 							except:
 								#print('NOCOMMENT')
@@ -409,19 +397,15 @@ while c<=nrow:
 									aaa=1
 						#ANCIENNETE
 							try:
-								tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
-								try:
-									tt=tp_c.findAll('li', attrs={'class': 'l7n4lsf dir dir-ltr'})
-									tx=tt[0].text
-								except:
-									tt=tp_c.div[0].text
+								tt=FProfile.findAll('li', attrs={'class': 'l7n4lsf atm_9s_1o8liyq_keqd55 dir dir-ltr'})
+								tx=tt[0].text
 								pp=tx.split("depuis ")
 								ws.cell((c, cANCIENNETE)).value = pp[1]
 							except:
 								print('no anciennete')
 						#SUPER HOTE
 							try:
-								tp_c=soup.find('div', attrs={"class": "bkwpcc1 dir dir-ltr"})
+								tp_c=soup.find('div', attrs={"class": "bkwpcc1 atm_mk_stnw88 atm_6i_12gsa0d atm_n3_myb0kj dir dir-ltr"})
 								if tp_c is not None:
 									ws.cell((c, cSUPERHOTE)).value = 'X'
 									#print (tp_c)
@@ -443,23 +427,11 @@ while c<=nrow:
 
 					#N° ENREGISTREMENT
 							try:
-								the_tr= FProfile.find('ul', attrs = {'class' : 'fhhmddr dir dir-ltr'})
-								pp= the_tr.findAll('li')[0]
-								if "Numéro" in pp.text:
-									txt=pp.span.text
-									ws.cell((c, cREGISTER)).value = txt
-									#print("2-"+str(txt))
+								the_tr= FProfile.find('span', text=re.compile(r'\bNuméro d'enregistrement\b'))
+								pp= the_tr.find('span')
+								ws.cell((c, cREGISTER)).value = pp
 							except:
-								try:
-									the_tr= FProfile.find('div', attrs = {'class' : 'c2a9hgn dir dir-ltr'})
-									pp= the_tr.span
-									if "Numéro" in pp.text:
-										txt=pp.text
-										ws.cell((c, cREGISTER)).value = txt
-										#print("2-"+str(txt))
-									
-								except:
-									aaa=1
+								aaa=1
 
 					#DURING SEJOUR
 							try:
@@ -523,35 +495,35 @@ while c<=nrow:
 								aaa=1
 					#IMAGE
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[0]
+								the_tr= FHero.findAll('img')[0]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_1)).value = tt
 							except:
 								aaa=1
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[1]
+								the_tr= FHero.findAll('img')[1]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_2)).value = tt
 							except:
 								aaa=1
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[2]
+								the_tr= FHero.findAll('img')[2]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_3)).value = tt
 							except:
 								aaa=1
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[3]
+								the_tr= FHero.findAll('img')[3]
 								#print(the_tr)
 								tt=the_tr['src']
 								ws.cell((c, cIMAGE_4)).value = tt
 							except:
 								aaa=1
 							try:
-								the_tr= FHero.findAll('img', attrs={"class": "itu7ddv i1mla2as i1cqnm0r dir dir-ltr"})[4]
+								the_tr= FHero.findAll('img')[4]
 								#print(the_tr)
 								tt=the_tr['src']
 								#print(tt)
@@ -561,7 +533,7 @@ while c<=nrow:
 					#IMAGE_HOTE
 							try:
 								#the_tr= soup.findAll('div', attrs={"class": "_5kripx"})[0]
-								t= FProfile.find('img', attrs={"class": "i9if2t0 i1mla2as i1cqnm0r dir dir-ltr"})
+								t= FProfile.find('img')
 								tt=t['src']
 								ws.cell((c, cIMAGE_PROFIL)).value = tt
 							except:
@@ -569,35 +541,14 @@ while c<=nrow:
 								aaa=1
 					#ENTREPRISE
 							try:
-								the_tr= FProfile.findAll('ol', attrs={"class": "lgx66tx dir dir-ltr"})[-1]
-								t= the_tr.find('button')
-								if "Professionnel" in t.text:
-									ws.cell((c, cENTREPRISE)).value = 'YES'
-									#print('ENTREPRISE YES')
-								else:
-									ws.cell((c, cENTREPRISE)).value = 'NO'
+								the_tr= soup.find('span', attrs={"class": "t1ywdbc3 atm_7l_18pqv07 atm_7l_i-1kw7nm4_1h4oqgk dir dir-ltr"})
+								ws.cell((c, cENTREPRISE)).value = 'YES'
 							except:
-								try:
-									tp_c=FProfile.find('div', attrs={'class': 's9fngse dir dir-ltr'})
-									try:
-										tt=tp_c.div[-1].text
-									except:
-										try:
-											tt=tp_c.findAll('li', attrs={'class': 'l7n4lsf dir dir-ltr'})[-1].text
-										except:
-											try:
-												tt=tp_c.find('button').text
-											except:
-												print('falde entreprise2')
-									if 'Professionnel' in tt:
-										ws.cell((c, cENTREPRISE)).value = 'YES'
-									else:
-										ws.cell((c, cENTREPRISE)).value = 'NO'
-								except:
-									print('falde entreprise')
+								ws.cell((c, cENTREPRISE)).value = 'NO'
+
 						#CO HOTE
 							try:
-								FCohote = soup.find('div', attrs={'class': 'akkoq77 dir dir-ltr'})
+								FCohote = soup.find('div', attrs={'class': 'c5sywrk c1074t4z atm_gq_logulu dir dir-ltrr'})
 								try:
 									url_cohote1 = FCohote.findAll('a')[0]
 									url_cohote2 = FCohote.findAll('a')[1]
@@ -612,8 +563,8 @@ while c<=nrow:
 									ws.cell((c, cCOHOTE_NAME2)).value = nam_cohote2.text
 									ws.cell((c, cNB_COHOTE)).value = 2
 								except:
-									url_cohote = FCohote.find('a', attrs={'class': '_9bezani l1j9v1wn dir dir-ltr'})
-									nam_cohote = FCohote.find('span', attrs={'class': 'a7xbq6p dir dir-ltr'})
+									url_cohote = FCohote.find('a')
+									nam_cohote = FCohote.find('span')
 									#print(url_cohote)
 									#print(nam_cohote.text)
 									ws.cell((c, cCOHOTE_URL1)).value = "https://www.airbnb.fr"+str(url_cohote['href'])
