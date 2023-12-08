@@ -381,7 +381,7 @@ while c<=nrow:
 						#NAME_HOTE
 							try:
 								if Vprofil==1:
-									tp_c=FProfile.find('h2', attrs={'class': 'hnwb2pb dir dir-ltr'}).text
+									tp_c=FProfile.find('h2').text
 									pp=tp_c.split('par ')
 									ws.cell((c, cNAME_HOTE)).value = pp[1]
 								elif Vprofil==2:
@@ -429,7 +429,7 @@ while c<=nrow:
 
 					#N° ENREGISTREMENT
 							try:
-								the_tr= FProfile.find('span', text=re.compile(r'\benregistrement\b'))
+								the_tr= FProfile.find('li', text=re.compile(r'\benregistrement\b'))
 								pp= the_tr.find('span')
 								ws.cell((c, cREGISTER)).value = pp
 							except:
