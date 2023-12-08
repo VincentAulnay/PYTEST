@@ -264,23 +264,23 @@ while c<=nrow:
 								ee=1
 						#TITLE
 							try:
-								div1=FTitle.find('h1', attrs={"class": "hpipapi i1pmzyw7 dir dir-ltr"})
-								ws.cell((c, cTITLE)).value = div1.text
+								div1=FTitle.find('span', attrs={"_1xxgv6l"})
+								ws.cell((c, cTITLE)).value = div1.h1.text
 							except:
 								#print('NO TITLE')
 								aaa=1
 						#TYPE_HOME
 							try:
-								the_tr= Flogement.find('div', attrs={"class": "_8lgpy8"})
-								ttt=the_tr.h2.text
-								type_home=ttt.split('⸱')
+								the_tr= Flogement.find('h1')
+								ttt=the_tr.text
+								type_home=ttt.split(' - ')
 								#print(pp)
 								ws.cell((c, cTYPE_LOGEMENT)).value=type_home[0]
 							except:
 								try:
 									the_tr= soup.find('div', attrs={"class": "toieuka dir dir-ltr"})
 									ttt=the_tr.find('h1').text
-									type_home=ttt.split('⸱')
+									type_home=ttt.split(' - ')
 									ws.cell((c, cTYPE_LOGEMENT)).value=type_home[0]
 								except:
 									#print('NOTYPE')
@@ -288,11 +288,12 @@ while c<=nrow:
 						#URL HOTE
 							try:
 								if Vprofil==1:
-									div=FProfile.find('div', attrs={'class': 'c6y5den dir dir-ltr'})
+									div=FProfile.find('a')
+									div1=div['href']
 								elif Vprofil==2:
-									div=FProfile.find('div', attrs={'class': 'c1u4hpjh dir dir-ltr'})
-								div2=div.find('a')
-								div1=div2['href']  #.attrs['href']
+									div=FProfile.find_all('a')[0]
+									div1=div['href']
+								#div2=div.find('a')
 								ws.cell((c, cHOTE)).value = "https://www.airbnb.fr"+str(div1)
 								#print("URLHOT1"+str(div1))
 							except:
