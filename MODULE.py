@@ -210,6 +210,8 @@ while c<=nrow:
 								driver.execute_script("window.scrollBy(0,-500);")
 								driver.execute_script("window.scrollBy(0,-500);")
 								#driver.execute_script("window.scrollBy(0,50);")
+								ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='LOCATION_DEFAULT']")
+								driver.execute_script("arguments[0].scrollIntoView(true);", ele)
 								f_ele=6
 							except:
 								f_ele=f_ele+1
