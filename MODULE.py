@@ -429,10 +429,12 @@ while c<=nrow:
 
 					#N° ENREGISTREMENT
 							try:
-								the_tr= FProfile.find('li', text=re.compile(r'\benregistrement\b'))
-								print(the_tr)
-								pp= the_tr.find('span').text
-								ws.cell((c, cREGISTER)).value = pp
+								#the_tr= FProfile.find('li', text=re.compile(r'\benregistrement\b'))
+								tp_c=FProfile.findAll('span', attrs={"class": "ll4r2nl atm_kd_pg2kvz_1bqn0at dir dir-ltr"})[0].text
+								print(tp_c)
+								if len(tp_c)==13:
+									#pp= the_tr.find('span').text
+									ws.cell((c, cREGISTER)).value = tp_c
 							except:
 								aaa=1
 
@@ -544,10 +546,15 @@ while c<=nrow:
 								aaa=1
 					#ENTREPRISE
 							try:
-								the_tr= FProfile.find(text=re.compile(r"\bProfessionnel\b"))
+								the_tr= FProfile.find('button', text=re.compile(r"\bProfessionnel\b"))
 								ws.cell((c, cENTREPRISE)).value = 'YES'
 							except:
-								ws.cell((c, cENTREPRISE)).value = 'NO'
+								try:
+									the_tr= FProfile.find('li', text=re.compile(r"\bProfessionnel\b"))
+									ws.cell((c, cENTREPRISE)).value = 'YES'
+								except:
+									
+									ws.cell((c, cENTREPRISE)).value = 'NO'
 
 					#CO HOTE
 							try:
