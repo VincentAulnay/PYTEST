@@ -427,7 +427,7 @@ while c<=nrow:
 
 					#N° ENREGISTREMENT
 							try:
-								the_tr= FProfile.find('span', text=re.compile(r'\bNuméro d'enregistrement\b'))
+								the_tr= FProfile.find('span', text=re.compile(r'\benregistrement\b'))
 								pp= the_tr.find('span')
 								ws.cell((c, cREGISTER)).value = pp
 							except:
