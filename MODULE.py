@@ -416,8 +416,8 @@ while c<=nrow:
 						#COMMENT PROFIL
 
 							try:
-								tp_c=FProfile.find('ul', attrs={"class": "tq6hspd h1aqtv1m dir dir-ltr"})
-								sp=tp_c.find('span', text=re.compile(r'\bcommentaires\b')).text
+								#tp_c=FProfile.find('ul', attrs={"class": "tq6hspd h1aqtv1m dir dir-ltr"})
+								sp=FProfile.find('span', text=re.compile(r'\bcommentaires\b')).text
 								pp=sp.split('c')
 								cc=pp[0]
 								if cc=='Identité vérifiée':
@@ -430,7 +430,8 @@ while c<=nrow:
 					#N° ENREGISTREMENT
 							try:
 								the_tr= FProfile.find('li', text=re.compile(r'\benregistrement\b'))
-								pp= the_tr.find('span')
+								print(the_tr)
+								pp= the_tr.find('span').text
 								ws.cell((c, cREGISTER)).value = pp
 							except:
 								aaa=1
@@ -543,12 +544,12 @@ while c<=nrow:
 								aaa=1
 					#ENTREPRISE
 							try:
-								the_tr= soup.find('span', attrs={"class": "t1ywdbc3 atm_7l_18pqv07 atm_7l_i-1kw7nm4_1h4oqgk dir dir-ltr"})
+								the_tr= FProfile.find(text=re.compile(r"\bProfessionnel\b"))
 								ws.cell((c, cENTREPRISE)).value = 'YES'
 							except:
 								ws.cell((c, cENTREPRISE)).value = 'NO'
 
-						#CO HOTE
+					#CO HOTE
 							try:
 								FCohote = soup.find('div', attrs={'class': 'c5sywrk c1074t4z atm_gq_logulu dir dir-ltrr'})
 								try:
