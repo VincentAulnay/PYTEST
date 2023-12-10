@@ -312,7 +312,7 @@ while c<=nrow:
 							COMMENT='NO COMMENT'
 							#run_price=extract("//span[@class='_wfad8t']",6,COMMENT,c,YN_comment)
 							try:
-								tp_c=Flogement.find('a')
+								tp_c=Flogement.find('a').text
 								pp=tp_c.split(' ')
 								cc=pp[0]
 								ws.cell((c, cCOMMENT)).value = cc
