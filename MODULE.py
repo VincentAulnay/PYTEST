@@ -432,9 +432,10 @@ while c<=nrow:
 								#the_tr= FProfile.find('li', text=re.compile(r'\benregistrement\b'))
 								tp_c=FProfile.findAll('span', attrs={"class": "ll4r2nl atm_kd_pg2kvz_1bqn0at dir dir-ltr"})[0].text
 								print(tp_c)
-								if len(tp_c)==13:
-									#pp= the_tr.find('span').text
-									ws.cell((c, cREGISTER)).value = tp_c
+								if "ç" not in tp_c:
+									if "%" not in tp_c:
+										#pp= the_tr.find('span').text
+										ws.cell((c, cREGISTER)).value = tp_c
 							except:
 								aaa=1
 
