@@ -538,7 +538,7 @@ while c<=nrow:
 								aaa=1
 					#IMAGE_HOTE
 							try:
-								#the_tr= soup.findAll('div', attrs={"class": "_5kripx"})[0]
+								#the_tr= soup.findAll('div', attrs={"class": ""})[0]
 								t= FProfile.find('img')
 								tt=t['src']
 								ws.cell((c, cIMAGE_PROFIL)).value = tt
