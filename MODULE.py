@@ -431,7 +431,7 @@ while c<=nrow:
 							try:
 								#the_tr= FProfile.find('li', text=re.compile(r'\benregistrement\b'))
 								tp_c=FProfile.findAll('li', attrs={"class": "f19phm7j atm_gq_logulu atm_gq_exct8b__qky54b dir dir-ltr"})[0].span.text
-								print(tp_c)
+								#print(tp_c)
 								if "ç" not in tp_c:
 									if "%" not in tp_c:
 										#pp= the_tr.find('span').text
@@ -548,13 +548,13 @@ while c<=nrow:
 					#ENTREPRISE
 							try:
 								the_tr= FProfile.find('button', text=re.compile(r"\bProfessionnel\b"))
-								print(the_tr)
+								#print(the_tr)
 								if the_tr is not None:
 									ws.cell((c, cENTREPRISE)).value = 'YES'
 							except:
 								try:
 									the_tr= FProfile.find('li', text=re.compile(r"\bProfessionnel\b"))
-									print(the_tr)
+									#print(the_tr)
 									if the_tr is not None:
 										ws.cell((c, cENTREPRISE)).value = 'YES'
 								except:
