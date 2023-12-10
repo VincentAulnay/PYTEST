@@ -562,17 +562,17 @@ while c<=nrow:
 
 					#CO HOTE
 							try:
-								FCohote = soup.find('div', attrs={'class': 'c5sywrk c1074t4z atm_gq_logulu dir dir-ltrr'})
+								FCohote = FProfile.find('div', attrs={'class': 'akkoq77 atm_gq_xvenqj dir dir-ltr'})
 								try:
 									url_cohote1 = FCohote.findAll('a')[0]
 									url_cohote2 = FCohote.findAll('a')[1]
-									url_cohote1 = FCohote.find('a')
-									nam_cohote1 = FCohote.find('span')
+									#url_cohote1 = FCohote.find('a')
+									nam_cohote1 = FCohote.findAll('span')[0]
 									ws.cell((c, cCOHOTE_URL1)).value = "https://www.airbnb.fr"+str(url_cohote1['href'])
 									ws.cell((c, cCOHOTE_NAME1)).value = nam_cohote1.text
 									ws.cell((c, cNB_COHOTE)).value = 1
-									url_cohote2 = FCohote.find('a')
-									nam_cohote2 = FCohote.find('span')
+									#url_cohote2 = FCohote.find('a')
+									nam_cohote2 = FCohote.findAll('span')[1]
 									ws.cell((c, cCOHOTE_URL2)).value = "https://www.airbnb.fr"+str(url_cohote2['href'])
 									ws.cell((c, cCOHOTE_NAME2)).value = nam_cohote2.text
 									ws.cell((c, cNB_COHOTE)).value = 2
