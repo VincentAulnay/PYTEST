@@ -548,11 +548,13 @@ while c<=nrow:
 					#ENTREPRISE
 							try:
 								the_tr= FProfile.find('button', text=re.compile(r"\bProfessionnel\b"))
+								print(the_tr)
 								if the_tr is not None:
 									ws.cell((c, cENTREPRISE)).value = 'YES'
 							except:
 								try:
 									the_tr= FProfile.find('li', text=re.compile(r"\bProfessionnel\b"))
+									print(the_tr)
 									if the_tr is not None:
 										ws.cell((c, cENTREPRISE)).value = 'YES'
 								except:
