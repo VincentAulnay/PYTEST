@@ -558,7 +558,6 @@ while c<=nrow:
 									if the_tr is not None:
 										ws.cell((c, cENTREPRISE)).value = 'YES'
 								except:
-									
 									ws.cell((c, cENTREPRISE)).value = 'NO'
 
 					#CO HOTE
