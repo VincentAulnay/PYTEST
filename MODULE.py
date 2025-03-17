@@ -203,13 +203,13 @@ while c<=nrow:
 					if fm==2:
 						while f_ele<=3:
 							try:
-								time.sleep(4)
+								time.sleep(5)
 								driver.execute_script("window.scrollBy(0,2000);")
-								time.sleep(3)
-								driver.execute_script("window.scrollBy(0,1000);")
-								time.sleep(3)
-								driver.execute_script("window.scrollBy(0,1000);")
-								time.sleep(3)
+								time.sleep(4)
+								driver.execute_script("window.scrollBy(0,1100);")
+								time.sleep(4)
+								driver.execute_script("window.scrollBy(0,1100);")
+								time.sleep(4)
 								driver.execute_script("window.scrollBy(0,2000);")
 								#driver.execute_script("window.scrollBy(0,2000);")
 								#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
@@ -227,7 +227,7 @@ while c<=nrow:
 								driver.get(h)
 								time.sleep(2)
 				#PROFILE
-					time.sleep(1)
+					time.sleep(2)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
 					#h=ws.cell((c+1, cANNONCE)).value
