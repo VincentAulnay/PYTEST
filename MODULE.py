@@ -105,34 +105,40 @@ cVOYAGEUR=10
 cCHAMBRE=11
 cSdB=12
 cLITS=13
-cVILLE=14
-clat=15
-clon=16
-cSUPERHOTE=17
-cCOMMENT_PROFIL=18
-cNB_ANNONCE=19
-cREGISTER=20
-cCHECK_IN=21
-cCHECK_OUT=22
-cENFANT=23
-cSERRURE=24
-cANIMAUX=25
-cCAUTION=26
-cIMAGE_PROFIL=27
-cIMAGE_1=28
-cIMAGE_2=29
-cIMAGE_3=30
-cIMAGE_4=31
-cIMAGE_5=32
-cCOHOTE_URL1=33
-cCOHOTE_NAME1=34
-cCOHOTE_IMAGE1=35
-cNB_COHOTE=36
-cCOHOTE_URL2=37
-cCOHOTE_NAME2=38
-cCOHOTE_IMAGE2=39
-cENTREPRISE=40
-cACTIVE=41
+CODE_INSEE=14
+CODE_POSTALE=15
+Commune=16
+Departement=17
+Region=18
+CIRCONSCRIPTION=19
+cVILLE=20
+clat=21
+clon=22
+cSUPERHOTE=23
+cCOMMENT_PROFIL=24
+cNB_ANNONCE=25
+cREGISTER=26
+cCHECK_IN=27
+cCHECK_OUT=28
+cENFANT=29
+cSERRURE=30
+cANIMAUX=31
+cCAUTION=32
+cIMAGE_PROFIL=33
+cIMAGE_1=34
+cIMAGE_2=35
+cIMAGE_3=36
+cIMAGE_4=37
+cIMAGE_5=38
+cCOHOTE_URL1=39
+cCOHOTE_NAME1=40
+cCOHOTE_IMAGE1=41
+cNB_COHOTE=42
+cCOHOTE_URL2=43
+cCOHOTE_NAME2=44
+cCOHOTE_IMAGE2=45
+cENTREPRISE=46
+cACTIVE=47
 
 
 driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
@@ -195,41 +201,51 @@ while c<=nrow:
 				try:
 					f_ele=0
 					if fm==2:
-						try:
-							button_fermer = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
-							button_fermer.click()
-						except:
-							pass
 						while f_ele<=3:
 							try:
+								time.sleep(2)
 								driver.execute_script("window.scrollBy(0,2000);")
+								time.sleep(1)
+								driver.execute_script("window.scrollBy(0,1000);")
+								time.sleep(1.5)
+								driver.execute_script("window.scrollBy(0,1000);")
+								time.sleep(1.5)
+								driver.execute_script("window.scrollBy(0,2000);")
+								#driver.execute_script("window.scrollBy(0,2000);")
 								#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
 								#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='POLICIES_DEFAULT']")
-								driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								driver.execute_script("window.scrollBy(0,-500);")
-								driver.execute_script("window.scrollBy(0,-500);")
+								#ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='POLICIES_DEFAULT']")
+								#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+								#driver.execute_script("window.scrollBy(0,-500);")
+								#driver.execute_script("window.scrollBy(0,-500);")
 								#driver.execute_script("window.scrollBy(0,50);")
-								ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='LOCATION_DEFAULT']")
-								driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+								#ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='LOCATION_DEFAULT']")
+								#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
 								f_ele=6
 							except:
 								f_ele=f_ele+1
+								driver.get(h)
 								time.sleep(2)
 				#PROFILE
 					time.sleep(1)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
 					#h=ws.cell((c+1, cANNONCE)).value
-					FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
-					Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT_V2"})
-					FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
 					try:
+						FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
+						Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT_V2"})
+						FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
+					except:
+						aaa=1
+					try:
+						FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
+						Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT_V2"})
+						FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "MEET_YOUR_HOST"})
 						FPolicies = soup.find('div', attrs={"data-plugin-in-point-id": "POLICIES_DEFAULT"})
 					except:
 						aaa=1
 					try:
-						FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "HOST_PROFILE_DEFAULT"})
+						FProfile = soup.find('div', attrs={"data-plugin-in-point-id": "MEET_YOUR_HOST"})
 						Vprofil=1
 					except:
 						try:
@@ -266,14 +282,14 @@ while c<=nrow:
 								ee=1
 						#TITLE
 							try:
-								div1=FTitle.find('span', attrs={"_1xxgv6l"})
+								div1=FTitle.find('div', attrs={"_1czgyoo"})
 								ws.cell((c, cTITLE)).value = div1.h1.text
 							except:
 								#print('NO TITLE')
 								aaa=1
 						#TYPE_HOME
 							try:
-								the_tr= Flogement.find('h1')
+								the_tr= Flogement.find('h2')
 								ttt=the_tr.text
 								type_home=ttt.split(' - ')
 								#print(pp)
@@ -363,7 +379,7 @@ while c<=nrow:
 								aaa=1
 						#VILLE
 							try:
-								tp_c=FTitle.find('span', attrs={"class": "_8x4fjw"}).text
+								tp_c=soup.find('div', attrs={"class": "s1qk96pm atm_gq_p5ox87 dir dir-ltr"}).text
 								ws.cell((c, cVILLE)).value = tp_c
 								#print(tp_c)
 							except:
@@ -380,14 +396,9 @@ while c<=nrow:
 										aaa=1
 						#NAME_HOTE
 							try:
-								if Vprofil==1:
-									tp_c=FProfile.find('h2').text
-									pp=tp_c.split('par ')
-									ws.cell((c, cNAME_HOTE)).value = pp[1]
-								elif Vprofil==2:
-									tp_c=FProfile.find('span', attrs={'class': 't1gpcl1t dir dir-ltr'}).text
-									pp=tp_c
-									ws.cell((c, cNAME_HOTE)).value = pp
+								tp_c=FProfile.find('span', attrs={'class': 't1gpcl1t atm_w4_16rzvi6 atm_9s_1o8liyq atm_gi_idpfg4 dir dir-ltr'}).text
+								pp=tp_c
+								ws.cell((c, cNAME_HOTE)).value = pp
 							except:
 								print ('NO_NAME')
 							if "Chambre" in type_home[0]:
@@ -398,13 +409,7 @@ while c<=nrow:
 								except:
 									aaa=1
 						#ANCIENNETE
-							try:
-								tt=FProfile.findAll('li', attrs={'class': 'l7n4lsf atm_9s_1o8liyq_keqd55 dir dir-ltr'})
-								tx=tt[0].text
-								pp=tx.split("depuis ")
-								ws.cell((c, cANCIENNETE)).value = pp[1]
-							except:
-								print('no anciennete')
+
 						#SUPER HOTE
 							try:
 								tp_c=soup.find('div', attrs={"class": "bkwpcc1 atm_mk_stnw88 atm_6i_12gsa0d atm_n3_myb0kj dir dir-ltr"})
@@ -417,8 +422,8 @@ while c<=nrow:
 
 							try:
 								#tp_c=FProfile.find('ul', attrs={"class": "tq6hspd h1aqtv1m dir dir-ltr"})
-								sp=FProfile.find('span', text=re.compile(r'\bcommentaires\b')).text
-								pp=sp.split('c')
+								sp=FProfile.find('span', text=re.compile(r'\bévaluations\b')).text
+								pp=sp.split('é')
 								cc=pp[0]
 								if cc=='Identité vérifiée':
 									cc=0
@@ -430,12 +435,13 @@ while c<=nrow:
 					#N° ENREGISTREMENT
 							try:
 								#the_tr= FProfile.find('li', text=re.compile(r'\benregistrement\b'))
-								tp_c=FProfile.findAll('li', attrs={"class": "f19phm7j atm_gq_logulu atm_gq_exct8b__qky54b dir dir-ltr"})[0].span.text
+								tp_c=FProfile.findAll('div', attrs={"class": "c2a9hgn atm_9s_1txwivl atm_ar_1bp4okc atm_cx_1fwxnve dir dir-ltr"}).text
 								#print(tp_c)
+								pp=tp_c.split(':')
 								if "ç" not in tp_c:
 									if "%" not in tp_c:
 										#pp= the_tr.find('span').text
-										ws.cell((c, cREGISTER)).value = tp_c
+										ws.cell((c, cREGISTER)).value = pp[1]
 							except:
 								aaa=1
 
@@ -547,7 +553,7 @@ while c<=nrow:
 								aaa=1
 					#ENTREPRISE
 							try:
-								the_tr= FProfile.find('button', text=re.compile(r"\bProfessionnel\b"))
+								the_tr= FProfile.find('button', text=re.compile(r"\bentreprise\b"))
 								#print(the_tr)
 								if the_tr is not None:
 									ws.cell((c, cENTREPRISE)).value = 'YES'
@@ -562,7 +568,7 @@ while c<=nrow:
 
 					#CO HOTE
 							try:
-								FCohote = FProfile.find('div', attrs={'class': 'akkoq77 atm_gq_xvenqj dir dir-ltr'})
+								FCohote = FProfile.find('ul', attrs={'class': 'ato18ul atm_84_ave25a atm_9s_1txwivl atm_au_qxlwhf atm_gb_glywfm atm_gq_idpfg4 atm_h3_idpfg4 atm_l8_idpfg4 atm_n5_ave25a dir dir-ltr'})
 								try:
 									url_cohote1 = FCohote.findAll('a')[0]
 									url_cohote2 = FCohote.findAll('a')[1]
