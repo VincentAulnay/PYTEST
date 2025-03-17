@@ -209,7 +209,7 @@ while c<=nrow:
 								driver.execute_script("window.scrollBy(0,1100);")
 								time.sleep(4)
 								driver.execute_script("window.scrollBy(0,1100);")
-								time.sleep(4)
+								time.sleep(6)
 								driver.execute_script("window.scrollBy(0,2000);")
 								#driver.execute_script("window.scrollBy(0,2000);")
 								#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
@@ -227,7 +227,7 @@ while c<=nrow:
 								driver.get(h)
 								time.sleep(2)
 				#PROFILE
-					time.sleep(2)
+					time.sleep(4)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
 					#h=ws.cell((c+1, cANNONCE)).value
