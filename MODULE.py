@@ -27,11 +27,14 @@ import sys
 
 
 chrome_options = webdriver.ChromeOptions()
-#prefs = {"profile.managed_default_content_settings.images": 2}
-#chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument("window-size=2000,1000")
 #chrome_options.add_argument("-headless")
 #chrome_options.add_argument("-disable-gpu")
+
+chrome_options_description = webdriver.ChromeOptions()
+prefs_description = {"profile.managed_default_content_settings.images": 2}
+chrome_options_description.add_experimental_option("prefs", prefs_description)
+
 print ('▀▄▀▄▀▄ STOPBNB ▄▀▄▀▄▀')
 
 now = str(datetime.datetime.now())[:19]
@@ -149,6 +152,10 @@ driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
 driver.implicitly_wait(10)
 wait = WebDriverWait(driver, 5)
 
+driver_description = webdriver.Chrome(service=service, options=chrome_options_description)
+#driver = webdriver.Chrome(options=chrome_options)
+driver_description.set_window_size(200, 200)
+
 c=2
 wait2 = WebDriverWait(driver, 5)
 wait3 = WebDriverWait(driver, 5)
@@ -159,7 +166,22 @@ def scrap(h):
 	driver.get(h)
 	time.sleep(2)
 	scrap_ok=1
+def scrap_description(h,c):
+	driver_description.get(h+'?modal=DESCRIPTION')
+	time.sleep(2)
+	html_description = driver_description.page_source
+	soup_description = BeautifulSoup(html_description, 'html.parser')
+	time.sleep(1)
 
+	try:
+		tp_c=soup_description.find_all('div', attrs={"class": "_gt7myn"})[-1].h2
+		if tp_c.text == "Numéro d'enregistrement":
+			h2tag=tp_c.parent
+			divtag=h2tag.parent
+			value_nc=divtag.span
+			ws.cell(row=c, column=cREGISTER).value = value_nc.text
+	except:
+		aaa=1
 def GSwrite(c):
 	print('=======test écriture title')
 	ws.cell((c, 2)).value = 'test'
@@ -173,6 +195,7 @@ fff=0
 nrow=100000
 h=ws.cell((c, cANNONCE)).value
 threading.Thread(target=scrap, args=(h,)).start()
+threading.Thread(target=scrap_description, args=(h,c,)).start()
 scrap_ok=1
 time.sleep(8)
 while c<=nrow:
@@ -261,6 +284,7 @@ while c<=nrow:
 					FHero = soup.find('div', attrs={"data-plugin-in-point-id": "HERO_DEFAULT"})
 					h=ws.cell((c+1, cANNONCE)).value
 					threading.Thread(target=scrap, args=(h,)).start()
+					threading.Thread(target=scrap_description, args=(h,c+1,)).start()
 					#print('start bs4')
 					try:
 						#GPS
