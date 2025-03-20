@@ -152,7 +152,7 @@ driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
 driver.implicitly_wait(10)
 wait = WebDriverWait(driver, 5)
 
-driver_description = webdriver.Chrome(service=service, options=chrome_options_description)
+driver_description = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options_description)
 #driver = webdriver.Chrome(options=chrome_options)
 driver_description.set_window_size(200, 200)
 
