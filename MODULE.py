@@ -168,16 +168,19 @@ def scrap(h):
 	scrap_ok=1
 def scrap_description(h,c):
 	driver_description.get(h+'?modal=DESCRIPTION')
-	time.sleep(2)
+	time.sleep(4)
 	html_description = driver_description.page_source
 	soup_description = BeautifulSoup(html_description, 'html.parser')
 	time.sleep(1)
 
 	try:
 		tp_c=soup_description.find_all('div', attrs={"class": "_gt7myn"})[-1].h2
+		print(tp_c)
 		if tp_c.text == "Numéro d'enregistrement":
 			h2tag=tp_c.parent
+			print(h2tag)
 			divtag=h2tag.parent
+			print(divtag)
 			value_nc=divtag.span
 			ws.cell(row=c, column=cREGISTER).value = value_nc.text
 	except:
