@@ -154,7 +154,7 @@ wait = WebDriverWait(driver, 5)
 
 driver_description = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options_description)
 #driver = webdriver.Chrome(options=chrome_options)
-driver_description.set_window_size(200, 200)
+driver_description.set_window_size(200, 400)
 
 c=2
 wait2 = WebDriverWait(driver, 5)
