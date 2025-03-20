@@ -160,7 +160,7 @@ c=2
 wait2 = WebDriverWait(driver, 5)
 wait3 = WebDriverWait(driver, 5)
 wait = WebDriverWait(driver, 5)
-
+wait_description = WebDriverWait(driver, 5)
 def scrap(h):
 	global scrap_ok
 	driver.get(h)
@@ -168,6 +168,11 @@ def scrap(h):
 	scrap_ok=1
 def scrap_description(h,c):
 	driver_description.get(h+'?modal=DESCRIPTION')
+	try:
+		clos_translate = wait_description.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+		clos_translate.click()
+	except:
+		aaa=1
 	time.sleep(4)
 	html_description = driver_description.page_source
 	soup_description = BeautifulSoup(html_description, 'html.parser')
@@ -175,14 +180,11 @@ def scrap_description(h,c):
 
 	try:
 		tp_c=soup_description.find_all('div', attrs={"class": "_gt7myn"})[-1].h2
-		print(tp_c)
 		if tp_c.text == "Numéro d'enregistrement":
 			h2tag=tp_c.parent
-			print(h2tag)
 			divtag=h2tag.parent
-			print(divtag)
 			value_nc=divtag.span
-			ws.cell(row=c, column=cREGISTER).value = value_nc.text
+			ws.cell((c, cREGISTER)).value = value_nc.text
 	except:
 		aaa=1
 def GSwrite(c):
