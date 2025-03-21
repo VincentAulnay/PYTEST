@@ -649,7 +649,7 @@ while c<=nrow:
 			time.sleep(2)
 			driver.get(h)
 			time.sleep(2)
-			=1
+			scrap_ok=1
 
 
 	c=c+1
