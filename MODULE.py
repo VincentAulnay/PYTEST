@@ -160,18 +160,19 @@ c=2
 wait2 = WebDriverWait(driver, 5)
 wait3 = WebDriverWait(driver, 5)
 wait = WebDriverWait(driver, 5)
-wait_description = WebDriverWait(driver, 5)
+wait_description = WebDriverWait(driver, 3)
 def scrap(h):
 	driver.get(h)
-	time.sleep(2)
+	#time.sleep(2)
 def scrap_description(h,c):
 	driver_description.get(h+'?modal=DESCRIPTION')
-	try:
-		clos_translate = wait_description.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
-		clos_translate.click()
-	except:
-		aaa=1
-	time.sleep(4)
+	time.sleep(1)
+	#try:
+	#	clos_translate = wait_description.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+	#	clos_translate.click()
+	#except:
+	#	aaa=1
+	
 	html_description = driver_description.page_source
 	soup_description = BeautifulSoup(html_description, 'html.parser')
 	time.sleep(1)
@@ -240,7 +241,7 @@ while c<=nrow:
 								driver.execute_script("window.scrollBy(0,3100);")
 								time.sleep(2)
 								driver.execute_script("window.scrollBy(0,1100);")
-								time.sleep(4)
+								time.sleep(5)
 								#driver.execute_script("window.scrollBy(0,2000);")
 								#driver.execute_script("window.scrollBy(0,2000);")
 								#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
@@ -261,6 +262,7 @@ while c<=nrow:
 					#time.sleep(4)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
+					time.sleep(1)
 					h=ws.cell((c+1, cANNONCE)).value
 					threading.Thread(target=scrap, args=(h,)).start()
 					threading.Thread(target=scrap_description, args=(h,c+1,)).start()
