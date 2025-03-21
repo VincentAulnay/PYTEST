@@ -162,10 +162,10 @@ wait3 = WebDriverWait(driver, 5)
 wait = WebDriverWait(driver, 5)
 wait_description = WebDriverWait(driver, 5)
 def scrap(h):
-	global scrap_ok
+	global 
 	driver.get(h)
 	time.sleep(2)
-	scrap_ok=1
+	=1
 def scrap_description(h,c):
 	driver_description.get(h+'?modal=DESCRIPTION')
 	try:
@@ -201,7 +201,7 @@ nrow=100000
 h=ws.cell((c, cANNONCE)).value
 threading.Thread(target=scrap, args=(h,)).start()
 threading.Thread(target=scrap_description, args=(h,c,)).start()
-scrap_ok=1
+=1
 time.sleep(8)
 while c<=nrow:
 	#scrap_ok=0
@@ -236,14 +236,14 @@ while c<=nrow:
 							except:
 								aaa=1
 							try:
+								#time.sleep(1)
+								#driver.execute_script("window.scrollBy(0,2000);")
 								time.sleep(1)
-								driver.execute_script("window.scrollBy(0,2000);")
-								time.sleep(4)
+								driver.execute_script("window.scrollBy(0,3100);")
+								time.sleep(2)
 								driver.execute_script("window.scrollBy(0,1100);")
 								time.sleep(4)
-								driver.execute_script("window.scrollBy(0,1100);")
-								time.sleep(6)
-								driver.execute_script("window.scrollBy(0,2000);")
+								#driver.execute_script("window.scrollBy(0,2000);")
 								#driver.execute_script("window.scrollBy(0,2000);")
 								#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
 								#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
@@ -260,10 +260,12 @@ while c<=nrow:
 								driver.get(h)
 								time.sleep(2)
 				#PROFILE
-					time.sleep(4)
+					#time.sleep(4)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
-					#h=ws.cell((c+1, cANNONCE)).value
+					h=ws.cell((c+1, cANNONCE)).value
+					threading.Thread(target=scrap, args=(h,)).start()
+					threading.Thread(target=scrap_description, args=(h,c+1,)).start()
 					try:
 						FTitle = soup.find('div', attrs={"data-plugin-in-point-id": "TITLE_DEFAULT"})
 						Flogement = soup.find('div', attrs={"data-plugin-in-point-id": "OVERVIEW_DEFAULT_V2"})
@@ -287,9 +289,6 @@ while c<=nrow:
 						except:
 							aaa=1
 					FHero = soup.find('div', attrs={"data-plugin-in-point-id": "HERO_DEFAULT"})
-					h=ws.cell((c+1, cANNONCE)).value
-					threading.Thread(target=scrap, args=(h,)).start()
-					threading.Thread(target=scrap_description, args=(h,c+1,)).start()
 					#print('start bs4')
 					try:
 						#GPS
@@ -652,7 +651,7 @@ while c<=nrow:
 			time.sleep(2)
 			driver.get(h)
 			time.sleep(2)
-			scrap_ok=1
+			=1
 
 
 	c=c+1
