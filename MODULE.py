@@ -162,10 +162,8 @@ wait3 = WebDriverWait(driver, 5)
 wait = WebDriverWait(driver, 5)
 wait_description = WebDriverWait(driver, 5)
 def scrap(h):
-	global 
 	driver.get(h)
 	time.sleep(2)
-	=1
 def scrap_description(h,c):
 	driver_description.get(h+'?modal=DESCRIPTION')
 	try:
