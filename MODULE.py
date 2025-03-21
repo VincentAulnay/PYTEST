@@ -199,7 +199,7 @@ nrow=100000
 h=ws.cell((c, cANNONCE)).value
 threading.Thread(target=scrap, args=(h,)).start()
 threading.Thread(target=scrap_description, args=(h,c,)).start()
-=1
+scrap_ok=1
 time.sleep(8)
 while c<=nrow:
 	#scrap_ok=0
