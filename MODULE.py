@@ -191,7 +191,7 @@ def GSwrite(c):
 	ws.cell((c, 2)).value = 'test'
 	print('=======print ok')
 
-def SCRAP(c):
+def SCRAP_detail(c):
 	cTITLE=2
 	cANNONCE=3
 	cNAME_HOTE=4
@@ -677,7 +677,7 @@ while c<=nrow:
 					h=ws.cell((c+1, cANNONCE)).value
 					threading.Thread(target=scrap, args=(h,)).start()
 					threading.Thread(target=scrap_description, args=(h,c+1,)).start()
-					threading.Thread(target=scrap, args=(c,)).start()
+					threading.Thread(target=SCRAP_detail, args=(c,)).start()
 
 
 				except:
