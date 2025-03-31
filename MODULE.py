@@ -654,7 +654,7 @@ while c<=nrow:
 							try:
 								#time.sleep(1)
 								#driver.execute_script("window.scrollBy(0,2000);")
-								time.sleep(9)
+								time.sleep(15)
 								driver.execute_script("window.scrollBy(0,3100);")
 								time.sleep(4)
 								driver.execute_script("window.scrollBy(0,1100);")
