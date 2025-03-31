@@ -646,8 +646,11 @@ while c<=nrow:
 									next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 									next_calendar.click()
 								elif c==2:
+									time.sleep(10)
 									next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 									next_calendar.click()
+								else:
+									time.sleep(5)
 							except:
 								aaa=1
 							try:
