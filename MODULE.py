@@ -654,7 +654,7 @@ while c<=nrow:
 							try:
 								#time.sleep(1)
 								#driver.execute_script("window.scrollBy(0,2000);")
-								time.sleep(5)
+								time.sleep(9)
 								driver.execute_script("window.scrollBy(0,3100);")
 								time.sleep(4)
 								driver.execute_script("window.scrollBy(0,1100);")
@@ -679,9 +679,9 @@ while c<=nrow:
 					#time.sleep(4)
 					html = driver.page_source
 					soup = BeautifulSoup(html, 'html.parser')
-					time.sleep(1)
 					h=ws.cell((c+1, cANNONCE)).value
 					threading.Thread(target=scrap, args=(h,)).start()
+					time.sleep(1)
 					threading.Thread(target=scrap_description, args=(h,c+1,)).start()
 					threading.Thread(target=SCRAP_detail, args=(c,)).start()
 
