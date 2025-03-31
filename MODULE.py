@@ -641,16 +641,21 @@ while c<=nrow:
 					if fm==2:
 						while f_ele<=3:
 							try:
-								next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
-								next_calendar.click()
+								time.sleep(1.5)
+								if (c/20).is_integer():
+									next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+									next_calendar.click()
+								elif c==2:
+									next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+									next_calendar.click()
 							except:
 								aaa=1
 							try:
 								#time.sleep(1)
 								#driver.execute_script("window.scrollBy(0,2000);")
-								time.sleep(1)
+								#time.sleep(1)
 								driver.execute_script("window.scrollBy(0,3100);")
-								time.sleep(3)
+								time.sleep(4)
 								driver.execute_script("window.scrollBy(0,1100);")
 								time.sleep(6)
 								#driver.execute_script("window.scrollBy(0,2000);")
