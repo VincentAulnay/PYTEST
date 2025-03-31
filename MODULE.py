@@ -652,13 +652,13 @@ while c<=nrow:
 							except:
 								aaa=1
 							try:
-								#time.sleep(1)
-								#driver.execute_script("window.scrollBy(0,2000);")
-								time.sleep(15)
+								time.sleep(10)
+								driver.execute_script("window.scrollBy(0,2000);")
+								time.sleep(3)
 								driver.execute_script("window.scrollBy(0,3100);")
-								time.sleep(4)
+								time.sleep(3)
 								driver.execute_script("window.scrollBy(0,1100);")
-								time.sleep(6)
+								time.sleep(7)
 								#driver.execute_script("window.scrollBy(0,2000);")
 								#driver.execute_script("window.scrollBy(0,2000);")
 								#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
