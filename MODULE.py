@@ -637,30 +637,14 @@ while c<=nrow:
 		time.sleep(4)
 		driver.execute_script("window.scrollBy(0,1100);")
 		time.sleep(7)
-		#driver.execute_script("window.scrollBy(0,2000);")
-		#driver.execute_script("window.scrollBy(0,2000);")
-		#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
-		#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-		#ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='POLICIES_DEFAULT']")
-		#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-		#driver.execute_script("window.scrollBy(0,-500);")
-		#driver.execute_script("window.scrollBy(0,-500);")
-		#driver.execute_script("window.scrollBy(0,50);")
-		#ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='LOCATION_DEFAULT']")
-		#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-		f_ele=6
+		html = driver.page_source
+		soup = BeautifulSoup(html, 'html.parser')
+		h=ws.cell((c+1, cANNONCE)).value
+		threading.Thread(target=scrap, args=(h,)).start()
+		threading.Thread(target=scrap_description, args=(h,c+1,)).start()
+		threading.Thread(target=SCRAP_detail, args=(c,)).start()
 	except:
-		f_ele=f_ele+1
-		driver.get(h)
-		time.sleep(2)
-
-	#time.sleep(4)
-	html = driver.page_source
-	soup = BeautifulSoup(html, 'html.parser')
-	h=ws.cell((c+1, cANNONCE)).value
-	threading.Thread(target=scrap, args=(h,)).start()
-	threading.Thread(target=scrap_description, args=(h,c+1,)).start()
-	threading.Thread(target=SCRAP_detail, args=(c,)).start()
+		aaa=1
 	c=c+1
 print ('_______    ___    ___     ___')
 print ('|      |   |  |   |  \    |  |')
