@@ -646,17 +646,17 @@ while c<=nrow:
 									next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 									next_calendar.click()
 								elif c==2:
-									time.sleep(10)
+									time.sleep(15)
 									next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 									next_calendar.click()
 							except:
 								aaa=1
 							try:
-								time.sleep(10)
+								time.sleep(15)
 								driver.execute_script("window.scrollBy(0,2000);")
-								time.sleep(3)
+								time.sleep(4)
 								driver.execute_script("window.scrollBy(0,3100);")
-								time.sleep(3)
+								time.sleep(4)
 								driver.execute_script("window.scrollBy(0,1100);")
 								time.sleep(7)
 								#driver.execute_script("window.scrollBy(0,2000);")
