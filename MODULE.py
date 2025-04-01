@@ -166,7 +166,7 @@ def scrap(h):
 	#time.sleep(2)
 def scrap_description(h,c):
 	driver_description.get(h+'?modal=DESCRIPTION')
-	time.sleep(1)
+	time.sleep(8)
 	#try:
 	#	clos_translate = wait_description.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 	#	clos_translate.click()
@@ -437,19 +437,6 @@ def SCRAP_detail(c):
 	            #print('No Comment profil')
 	            aaa=1
 	
-	#N° ENREGISTREMENT
-	        try:
-	            #the_tr= FProfile.find('li', text=re.compile(r'\benregistrement\b'))
-	            tp_c=FProfile.findAll('div', attrs={"class": "c2a9hgn atm_9s_1txwivl atm_ar_1bp4okc atm_cx_1fwxnve dir dir-ltr"}).text
-	            #print(tp_c)
-	            pp=tp_c.split(':')
-	            if "ç" not in tp_c:
-	                if "%" not in tp_c:
-	                    #pp= the_tr.find('span').text
-	                    ws.cell((c, cREGISTER)).value = pp[1]
-	        except:
-	            aaa=1
-	
 	#DURING SEJOUR
 	        try:
 	            tt= FPolicies.find('span', text=re.compile(r'\bArrivée\b'))
@@ -602,8 +589,7 @@ def SCRAP_detail(c):
 	except:
 	    pass
 
-#threading.Thread(target=GSwrite, args=(c, clevel, valeur,)).start()
-	
+
 fm=2
 fff=0
 
@@ -611,12 +597,11 @@ nrow=100000
 h=ws.cell((c, cANNONCE)).value
 threading.Thread(target=scrap, args=(h,)).start()
 threading.Thread(target=scrap_description, args=(h,c,)).start()
-scrap_ok=1
 time.sleep(8)
 while c<=nrow:
-	#scrap_ok=0
 	print (c)
 	if (c/1000).is_integer():
+		driver.quit()
 		driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 		driver.set_window_size(2000, 1000)
 		driver.get('https://www.google.com/')
@@ -629,87 +614,53 @@ while c<=nrow:
 		wait = WebDriverWait(driver, 2)
 		time.sleep(2)
 		driver.get(h)
-		time.sleep(2)
+		time.sleep(20)
 		scrap_ok=1
-	numero=None
-	if numero is None:
-		timer=1
-		while timer<=60:
-			if scrap_ok==1:
-				try:
-					f_ele=0
-					if fm==2:
-						while f_ele<=3:
-							try:
-								time.sleep(1.5)
-								if (c/20).is_integer():
-									next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
-									next_calendar.click()
-								elif c==2:
-									time.sleep(15)
-									next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
-									next_calendar.click()
-							except:
-								aaa=1
-							try:
-								time.sleep(15)
-								driver.execute_script("window.scrollBy(0,2000);")
-								time.sleep(4)
-								driver.execute_script("window.scrollBy(0,3100);")
-								time.sleep(4)
-								driver.execute_script("window.scrollBy(0,1100);")
-								time.sleep(7)
-								#driver.execute_script("window.scrollBy(0,2000);")
-								#driver.execute_script("window.scrollBy(0,2000);")
-								#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
-								#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								#ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='POLICIES_DEFAULT']")
-								#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								#driver.execute_script("window.scrollBy(0,-500);")
-								#driver.execute_script("window.scrollBy(0,-500);")
-								#driver.execute_script("window.scrollBy(0,50);")
-								#ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='LOCATION_DEFAULT']")
-								#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								f_ele=6
-							except:
-								f_ele=f_ele+1
-								driver.get(h)
-								time.sleep(2)
-				#PROFILE
-					#time.sleep(4)
-					html = driver.page_source
-					soup = BeautifulSoup(html, 'html.parser')
-					h=ws.cell((c+1, cANNONCE)).value
-					threading.Thread(target=scrap, args=(h,)).start()
-					time.sleep(1)
-					threading.Thread(target=scrap_description, args=(h,c+1,)).start()
-					threading.Thread(target=SCRAP_detail, args=(c,)).start()
 
+	try:
+		time.sleep(1.5)
+		if (c/20).is_integer():
+			time.sleep(15)
+			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+			next_calendar.click()
+		elif c==2:
+			time.sleep(15)
+			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+			next_calendar.click()
+	except:
+		aaa=1
+	try:
+		time.sleep(15)
+		driver.execute_script("window.scrollBy(0,2000);")
+		time.sleep(4)
+		driver.execute_script("window.scrollBy(0,3100);")
+		time.sleep(4)
+		driver.execute_script("window.scrollBy(0,1100);")
+		time.sleep(7)
+		#driver.execute_script("window.scrollBy(0,2000);")
+		#driver.execute_script("window.scrollBy(0,2000);")
+		#ele=driver.find_element_by_xpath("//div[@class='s9fngse dir dir-ltr']")
+		#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+		#ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='POLICIES_DEFAULT']")
+		#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+		#driver.execute_script("window.scrollBy(0,-500);")
+		#driver.execute_script("window.scrollBy(0,-500);")
+		#driver.execute_script("window.scrollBy(0,50);")
+		#ele=driver.find_element_by_xpath("//div[@data-plugin-in-point-id='LOCATION_DEFAULT']")
+		#driver.execute_script("arguments[0].scrollIntoView(true);", ele)
+		f_ele=6
+	except:
+		f_ele=f_ele+1
+		driver.get(h)
+		time.sleep(2)
 
-				except:
-					pass
-				timer=1000
-			else:
-				time.sleep(1)
-				timer=timer+1
-		if timer==61:
-			driver.quit()
-			driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-			driver.set_window_size(2000, 1000)
-			driver.get('https://www.google.com/')
-			driver.get('chrome://settings/')
-			driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
-			driver.implicitly_wait(10)
-			wait = WebDriverWait(driver, 5)
-			wait2 = WebDriverWait(driver, 5)
-			wait3 = WebDriverWait(driver, 5)
-			wait = WebDriverWait(driver, 2)
-			time.sleep(2)
-			driver.get(h)
-			time.sleep(2)
-			scrap_ok=1
-
-
+	#time.sleep(4)
+	html = driver.page_source
+	soup = BeautifulSoup(html, 'html.parser')
+	h=ws.cell((c+1, cANNONCE)).value
+	threading.Thread(target=scrap, args=(h,)).start()
+	threading.Thread(target=scrap_description, args=(h,c+1,)).start()
+	threading.Thread(target=SCRAP_detail, args=(c,)).start()
 	c=c+1
 print ('_______    ___    ___     ___')
 print ('|      |   |  |   |  \    |  |')
