@@ -330,11 +330,11 @@ def SCRAP_detail(c):
 	            except:
 	                aaa=1
 	    #COMMENTAIRE
-	        try:
-	            tp_c=Flogement.find('a').text
-	            pp=tp_c.split(' ')
-	            cc=pp[0]
-	            ws.cell((c, cCOMMENT)).value = cc
+		try:
+			tp_c=Flogement.find('a').text
+			pp=tp_c.split(' ')
+			cc=pp[0]
+			ws.cell((c, cCOMMENT)).value = cc
 		except:
 			try:
 				tp_c=soup.find('div', attrs={'class': 'r16onr0j atm_c8_vvn7el atm_g3_k2d186 atm_fr_1vi102y atm_gq_myb0kj atm_vv_qvpr2i atm_c8_sz6sci__14195v1 atm_g3_17zsb9a__14195v1 atm_fr_kzfbxz__14195v1 atm_gq_idpfg4__14195v1 dir dir-ltr'}).text
