@@ -260,7 +260,10 @@ def SCRAP_detail(c):
 	        Vprofil=2
 	    except:
 	        aaa=1
-	FHero = soup.find('div', attrs={"data-plugin-in-point-id": "HERO_DEFAULT"})
+	try:
+		FHero = soup.find('div', attrs={"data-plugin-in-point-id": "HERO_DEFAULT"})
+	except:
+		aaa=1
 	#print('start bs4')
 	try:
 	    #GPS
