@@ -501,52 +501,7 @@ def SCRAP_detail(c):
 	        except:
 	            #print('no detecteur monoxyde')
 	            aaa=1
-	#IMAGE
-	        try:
-	            the_tr= FHero.findAll('img')[0]
-	            #print(the_tr)
-	            tt=the_tr['src']
-	            ws.cell((c, cIMAGE_1)).value = tt
-	        except:
-	            aaa=1
-	        try:
-	            the_tr= FHero.findAll('img')[1]
-	            #print(the_tr)
-	            tt=the_tr['src']
-	            ws.cell((c, cIMAGE_2)).value = tt
-	        except:
-	            aaa=1
-	        try:
-	            the_tr= FHero.findAll('img')[2]
-	            #print(the_tr)
-	            tt=the_tr['src']
-	            ws.cell((c, cIMAGE_3)).value = tt
-	        except:
-	            aaa=1
-	        try:
-	            the_tr= FHero.findAll('img')[3]
-	            #print(the_tr)
-	            tt=the_tr['src']
-	            ws.cell((c, cIMAGE_4)).value = tt
-	        except:
-	            aaa=1
-	        try:
-	            the_tr= FHero.findAll('img')[4]
-	            #print(the_tr)
-	            tt=the_tr['src']
-	            #print(tt)
-	            ws.cell((c, cIMAGE_5)).value = tt
-	        except:
-	            aaa=1
-	#IMAGE_HOTE
-	        try:
-	            #the_tr= soup.findAll('div', attrs={"class": ""})[0]
-	            t= FProfile.find('img')
-	            tt=t['src']
-	            ws.cell((c, cIMAGE_PROFIL)).value = tt
-	        except:
-	            #print('no IMAGE_HOTE')
-	            aaa=1
+
 	#ENTREPRISE
 	        try:
 	            the_tr= FProfile.find('button', text=re.compile(r"\bentreprise\b"))
@@ -645,6 +600,7 @@ while c<=nrow:
 		soup = BeautifulSoup(html, 'html.parser')
 		h=ws.cell((c+1, cANNONCE)).value
 		threading.Thread(target=scrap, args=(h,)).start()
+		time.sleep(1)
 		threading.Thread(target=scrap_description, args=(h,c+1,)).start()
 		threading.Thread(target=SCRAP_detail, args=(c,)).start()
 	except:
@@ -657,3 +613,49 @@ print ('|     |    |  |   |    \  |  |')
 print ('|  |       |  |   |  |\ \ |  |')
 print ('|  |       |  |   |  | \ \|  |')
 print ('|__|       |__|   |__|  \____|')
+	#IMAGE
+	        try:
+	            the_tr= FHero.findAll('img')[0]
+	            #print(the_tr)
+	            tt=the_tr['src']
+	            ws.cell((c, cIMAGE_1)).value = tt
+	        except:
+	            aaa=1
+	        try:
+	            the_tr= FHero.findAll('img')[1]
+	            #print(the_tr)
+	            tt=the_tr['src']
+	            ws.cell((c, cIMAGE_2)).value = tt
+	        except:
+	            aaa=1
+	        try:
+	            the_tr= FHero.findAll('img')[2]
+	            #print(the_tr)
+	            tt=the_tr['src']
+	            ws.cell((c, cIMAGE_3)).value = tt
+	        except:
+	            aaa=1
+	        try:
+	            the_tr= FHero.findAll('img')[3]
+	            #print(the_tr)
+	            tt=the_tr['src']
+	            ws.cell((c, cIMAGE_4)).value = tt
+	        except:
+	            aaa=1
+	        try:
+	            the_tr= FHero.findAll('img')[4]
+	            #print(the_tr)
+	            tt=the_tr['src']
+	            #print(tt)
+	            ws.cell((c, cIMAGE_5)).value = tt
+	        except:
+	            aaa=1
+	#IMAGE_HOTE
+	        try:
+	            #the_tr= soup.findAll('div', attrs={"class": ""})[0]
+	            t= FProfile.find('img')
+	            tt=t['src']
+	            ws.cell((c, cIMAGE_PROFIL)).value = tt
+	        except:
+	            #print('no IMAGE_HOTE')
+	            aaa=1
