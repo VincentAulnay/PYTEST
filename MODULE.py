@@ -633,7 +633,7 @@ while c<=nrow:
 		time.sleep(15)
 		driver.execute_script("window.scrollBy(0,2000);")
 		time.sleep(4)
-		driver.execute_script("window.scrollBy(0,3100);")
+		driver.execute_script("window.scrollBy(0,2000);")
 		time.sleep(4)
 		driver.execute_script("window.scrollBy(0,1100);")
 		time.sleep(7)
