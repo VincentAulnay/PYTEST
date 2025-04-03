@@ -152,15 +152,15 @@ driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.5);')
 driver.implicitly_wait(10)
 wait = WebDriverWait(driver, 5)
 
-driver_description = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options_description)
+#driver_description = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options_description)
 #driver = webdriver.Chrome(options=chrome_options)
-driver_description.set_window_size(200, 400)
+#driver_description.set_window_size(200, 400)
 
 c=2
 wait2 = WebDriverWait(driver, 5)
 wait3 = WebDriverWait(driver, 5)
 wait = WebDriverWait(driver, 5)
-wait_description = WebDriverWait(driver, 3)
+#wait_description = WebDriverWait(driver, 3)
 def scrap(h):
 	driver.get(h)
 	#time.sleep(2)
@@ -555,7 +555,7 @@ fff=0
 nrow=100000
 h=ws.cell((c, cANNONCE)).value
 threading.Thread(target=scrap, args=(h,)).start()
-threading.Thread(target=scrap_description, args=(h,c,)).start()
+#threading.Thread(target=scrap_description, args=(h,c,)).start()
 time.sleep(8)
 while c<=nrow:
 	print (c)
@@ -601,7 +601,7 @@ while c<=nrow:
 		h=ws.cell((c+1, cANNONCE)).value
 		threading.Thread(target=scrap, args=(h,)).start()
 		time.sleep(1)
-		threading.Thread(target=scrap_description, args=(h,c+1,)).start()
+		#threading.Thread(target=scrap_description, args=(h,c+1,)).start()
 		threading.Thread(target=SCRAP_detail, args=(c,)).start()
 	except:
 		aaa=1
