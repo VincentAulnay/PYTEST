@@ -51,7 +51,7 @@ import pandas as pd
 #ws = wbx.active
 print('ici1')
 try:
-	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/raspbian-364809-be26e1ee6573.json')
+	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378418-06f4d82571c9.json')
 except:
 	client = pygsheets.authorize(service_account_file='/home/pi/Desktop/raspbian-364809-be26e1ee6573.json')
 print('ici1')
@@ -184,77 +184,77 @@ def whatmounth():
 	global name_mois4
 	global name_mois5
 	if month==1:
-		name_mois1='janvier 2023'
-		name_mois2='février 2023'
-		name_mois3='mars 2023'
-		name_mois4='avril 2023'
-		name_mois5='mai 2023'
+		name_mois1='janvier 2026'
+		name_mois2='février 2026'
+		name_mois3='mars 2026'
+		name_mois4='avril 2026'
+		name_mois5='mai 2026'
 	elif month==2:
-		name_mois1='février 2023'
-		name_mois2='mars 2023'
-		name_mois3='avril 2023'
-		name_mois4='mai 2023'
-		name_mois5='juin 2023'
+		name_mois1='février 2026'
+		name_mois2='mars 2026'
+		name_mois3='avril 2026'
+		name_mois4='mai 2026'
+		name_mois5='juin 2026'
 	elif month==3:
-		name_mois1='mars 2023'
-		name_mois2='avril 2023'
-		name_mois3='mai 2023'
-		name_mois4='juin 2023'
-		name_mois5='juillet 2023'
+		name_mois1='mars 2026'
+		name_mois2='avril 2026'
+		name_mois3='mai 2026'
+		name_mois4='juin 2026'
+		name_mois5='juillet 2026'
 	elif month==4:
-		name_mois1='avril 2023'
-		name_mois2='mai 2023'
-		name_mois3='juin 2023'
-		name_mois4='juillet 2023'
-		name_mois5='août 2023'
+		name_mois1='avril 2026'
+		name_mois2='mai 2026'
+		name_mois3='juin 2026'
+		name_mois4='juillet 2026'
+		name_mois5='août 2026'
 	elif month==5:
-		name_mois1='mai 2023'
-		name_mois2='juin 2023'
-		name_mois3='juillet 2023'
-		name_mois4='août 2023'
-		name_mois5='septembre 2023'
+		name_mois1='mai 2026'
+		name_mois2='juin 2026'
+		name_mois3='juillet 2026'
+		name_mois4='août 2026'
+		name_mois5='septembre 2026'
 	elif month==6:
-		name_mois1='juin 2023'
-		name_mois2='juillet 2023'
-		name_mois3='août 2023'
-		name_mois4='septembre 2023'
-		name_mois5='octobre 2023'
+		name_mois1='juin 2026'
+		name_mois2='juillet 2026'
+		name_mois3='août 2026'
+		name_mois4='septembre 2026'
+		name_mois5='octobre 2026'
 	elif month==7:
-		name_mois1='juillet 2023'
-		name_mois2='août 2023'
-		name_mois3='septembre 2023'
-		name_mois4='octobre 2023'
-		name_mois5='novembre 2023'
+		name_mois1='juillet 2026'
+		name_mois2='août 2026'
+		name_mois3='septembre 2026'
+		name_mois4='octobre 2026'
+		name_mois5='novembre 2026'
 	elif month==8:
-		name_mois1='août 2023'
-		name_mois2='septembre 2023'
-		name_mois3='octobre 2023'
-		name_mois4='novembre 2023'
-		name_mois5='décembre 2023'
+		name_mois1='août 2026'
+		name_mois2='septembre 2026'
+		name_mois3='octobre 2026'
+		name_mois4='novembre 2026'
+		name_mois5='décembre 2026'
 	elif month==9:
-		name_mois1='septembre 2023'
-		name_mois2='octobre 2023'
-		name_mois3='novembre 2023'
-		name_mois4='décembre 2023'
-		name_mois5='janvier 2024'
+		name_mois1='septembre 2026'
+		name_mois2='octobre 2026'
+		name_mois3='novembre 2026'
+		name_mois4='décembre 2026'
+		name_mois5='janvier 2027'
 	elif month==10:
-		name_mois1='octobre 2023'
-		name_mois2='novembre 2023'
-		name_mois3='décembre 2023'
-		name_mois4='janvier 2024'
-		name_mois5='février 2024'
+		name_mois1='octobre 2025'
+		name_mois2='novembre 2025'
+		name_mois3='décembre 2025'
+		name_mois4='janvier 2026'
+		name_mois5='février 2026'
 	elif month==11:
-		name_mois1='novembre 2023'
-		name_mois2='décembre 2023'
-		name_mois3='janvier 2024'
-		name_mois4='février 2024'
-		name_mois5='mars 2024'
+		name_mois1='novembre 2025'
+		name_mois2='décembre 2025'
+		name_mois3='janvier 2026'
+		name_mois4='février 2026'
+		name_mois5='mars 2026'
 	elif month==12:
-		name_mois1='décembre 2023'
-		name_mois2='janvier 2024'
-		name_mois3='février 2024'
-		name_mois4='mars 2024'
-		name_mois5='avril 2024'
+		name_mois1='décembre 2025'
+		name_mois2='janvier 2026'
+		name_mois3='février 2026'
+		name_mois4='mars 2026'
+		name_mois5='avril 2026'
 
 def MnumDay (Mmois):
 	global MNumday
@@ -706,26 +706,15 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	write_c=0
 	if ONC==1:
 		try:
-			#oldcc=ws.cell(row=j, column=c_write+2).value
-			oldcc=ws.cell((j, c_write+2)).value
-			#try:
-			#	tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
-			#except:
-			#	tp_c=soup.find('span', attrs={"class": "_142pbzop"}).text
-			#print(tp_c) _s65ijh7
 			try:
-				tp_c=soup.find('span', attrs={"class": "_bq6krt"}).text
-			except:
-				aaa=1
-			p_c=tp_c.replace("(","")
-			cc=p_c.replace(")","")
-			try:
-				pp=cc.split(' ')
-				#print(pp)
+				tp_c=Flogement.find('a').text
+				pp=tp_c.split(' ')
 				cc=pp[0]
 			except:
-				pass
-			#ws.cell(row=j, column=c_write+2).value=cc
+				try:
+					cc=soup.find('div', attrs={'class': 'rn4plgm atm_c8_efgril atm_g3_1yp71yo atm_fr_17w4rtr atm_gq_myb0kj atm_vv_qvpr2i atm_c8_21sjza__14195v1 atm_g3_1wvsxh1__14195v1 atm_fr_1t2fc69__14195v1 atm_cs_1mexzig__14195v1 atm_gq_idpfg4__14195v1 dir dir-ltr'}).text
+				except:
+					aaa=1
 			ws.update_value((j,c_write+2), cc)
 			if oldcc!=cc:
 				C1=1
@@ -1767,73 +1756,73 @@ def checkmounth(name_mois1,bouton_mois_suivant):
 		which_mount = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1lds9wb'][1]//h1[@class='_14i3z6h']"))).text
 	except:
 		which_mount = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_1lds9wb'][1]//h3[@class='_14i3z6h']"))).text
-	if name_mois1=='septembre 2021':
+	if name_mois1=='septembre 2025':
 		nmount=9
-	elif name_mois1=='octobre 2021':
+	elif name_mois1=='octobre 2025':
 		nmount=10	
-	elif name_mois1=='novembre 2021':
+	elif name_mois1=='novembre 2025':
 		nmount=11
-	elif name_mois1=='décembre 2021':
+	elif name_mois1=='décembre 2025':
 		nmount=12
-	elif name_mois1=='janvier 2022':
+	elif name_mois1=='janvier 2026':
 		nmount=1
-	elif name_mois1=='février 2022':
+	elif name_mois1=='février 2026':
 		nmount=2
-	elif name_mois1=='mars 2022':
+	elif name_mois1=='mars 2026':
 		nmount=3
-	elif name_mois1=='avril 2022':
+	elif name_mois1=='avril 2026':
 		nmount=4
-	elif name_mois1=='mai 2022':
+	elif name_mois1=='mai 2026':
 		nmount=5
-	elif name_mois1=='juin 2022':
+	elif name_mois1=='juin 2026':
 		nmount=6
-	elif name_mois1=='juillet 2022':
+	elif name_mois1=='juillet 2026':
 		nmount=7
-	elif name_mois1=='août 2022':
+	elif name_mois1=='août 2026':
 		nmount=8
-	elif name_mois1=='septembre 2022':
+	elif name_mois1=='septembre 2026':
 		nmount=9
-	elif name_mois1=='octobre 2022':
+	elif name_mois1=='octobre 2026':
 		nmount=10
-	elif name_mois1=='novembre 2022':
+	elif name_mois1=='novembre 2026':
 		nmount=11
-	elif name_mois1=='decembre 2022':
+	elif name_mois1=='decembre 2026':
 		nmount=12
 
 		
 	if which_mount!=name_mois1:
 		#print('check on')
-		if which_mount=='septembre 2021':
+		if which_mount=='septembre 2025':
 			goback=9
-		elif which_mount=='octobre 2021':
+		elif which_mount=='octobre 2025':
 			goback=10
-		elif which_mount=='novembre 2021':
+		elif which_mount=='novembre 2025':
 			goback=11
-		elif which_mount=='décembre 2021':
+		elif which_mount=='décembre 2025':
 			goback=12
-		elif which_mount=='janvier 2022':
+		elif which_mount=='janvier 2026':
 			goback=1
-		elif which_mount=='février 2022':
+		elif which_mount=='février 2026':
 			goback=2
-		elif which_mount=='mars 2022':
+		elif which_mount=='mars 2026':
 			goback=3
-		elif which_mount=='avril 2022':
+		elif which_mount=='avril 2026':
 			goback=4
-		elif which_mount=='mai 2022':
+		elif which_mount=='mai 2026':
 			goback=5
-		elif which_mount=='juin 2022':
+		elif which_mount=='juin 2026':
 			goback=6
-		elif which_mount=='juillet 2022':
+		elif which_mount=='juillet 2026':
 			goback=7
-		elif which_mount=='août 2022':
+		elif which_mount=='août 2026':
 			goback=8
-		elif which_mount=='septembre 2022':
+		elif which_mount=='septembre 2026':
 			goback=9
-		elif which_mount=='octobre 2022':
+		elif which_mount=='octobre 2026':
 			goback=10
-		elif which_mount=='novembre 2022':
+		elif which_mount=='novembre 2026':
 			goback=11
-		elif which_mount=='decembre 2022':
+		elif which_mount=='decembre 2026':
 			goback=12
 		
 		if goback<nmount:
@@ -2004,13 +1993,6 @@ while end==0:
 							wait = WebDriverWait(rootdriver, 5)
 					#rootdriver.get(h)
 					time.sleep(5)
-					#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']"))).text
-					#threading.Thread(target=scroll, args=(1,)).start()
-					#try:
-					#	rootdriver.execute_script("window.scrollBy(0,1200);")
-					#except:
-					#	time.sleep(1)
-					#	pass
 					f_ele=0
 					#threading.Thread(target=f1, args=(h,)).start()
 					des=1
