@@ -54,17 +54,17 @@ try:
 	client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378418-06f4d82571c9.json')
 except:
 	client = pygsheets.authorize(service_account_file='/home/pi/Desktop/raspbian-364809-be26e1ee6573.json')
-print('ici1')
+print('spreadsheet_url')
 #spreadsheet_url = "https://docs.google.com/spreadsheets/d/1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c/edit?usp=sharing"
 #spreadsheet_url = "https://docs.google.com/spreadsheets/d/14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs/edit?usp=sharing"
-print('ici2')	
 spreadsheet_url = url_rpi
+print('sheet_data')
 #sheet_data = client.sheet.get('14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs')
 sheet_data = client.sheet.get(id_rpi)
-print('ici3')
+print('sheet')
 #sheet = client.open('testoct')
 sheet = client.open(name_rpi)
-print('ici4')
+print('ws')
 #ws = sheet.worksheet_by_title('Sheet1')
 ws = sheet.worksheet_by_title('Sheet1')
 print('sheet')
