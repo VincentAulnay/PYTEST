@@ -1636,7 +1636,7 @@ while w_month==0:
 	w_month=1
 
 while c_month==0:
-	k=k+10
+	k=k+1
 #--mois1--
 	print(name_mois1)
 	Mname1=name_mois1.split(' ')
