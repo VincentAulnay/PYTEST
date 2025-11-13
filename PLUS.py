@@ -1783,14 +1783,6 @@ def checkmounth(name_mois1,bouton_mois_suivant):
 		nmount=7
 	elif name_mois1=='août 2026':
 		nmount=8
-	elif name_mois1=='septembre 2026':
-		nmount=9
-	elif name_mois1=='octobre 2026':
-		nmount=10
-	elif name_mois1=='novembre 2026':
-		nmount=11
-	elif name_mois1=='decembre 2026':
-		nmount=12
 
 		
 	if which_mount!=name_mois1:
