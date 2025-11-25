@@ -1891,10 +1891,10 @@ while end==0:
 							aaa=1
 					try:
 								open_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@data-testid='change-dates-checkIn']")))
-								open_calendar.click()
+								#open_calendar.click()
 					except:
 						aaa=1
-					rootdriver.execute_script("window.stop();")
+					#rootdriver.execute_script("window.stop();")
 					f_ele=5
 					des=1
 					b_scrolldown=1
@@ -1923,7 +1923,7 @@ while end==0:
 							#print('DOWN KO')
 
 						f_ele=f_ele+1
-					#time.sleep(3)
+					time.sleep(2)
 					bouton_mois_suivant=1
 					threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 					time.sleep(1)
