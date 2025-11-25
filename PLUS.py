@@ -1885,17 +1885,6 @@ while end==0:
 								close_traduc.click()
 					except:
 						aaa=1
-					gettimer=0
-					while gettimer<=70:
-						gettimer=gettimer+1
-						time.sleep(1)
-						if v_get==1:
-							gettimer=100
-						elif gettimer==60:
-							rootdriver.quit()
-							rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-							rootdriver.set_window_size(2000, 1000)
-							wait = WebDriverWait(rootdriver, 5)
 					time.sleep(5)
 					f_ele=5
 					des=1
@@ -1929,22 +1918,6 @@ while end==0:
 					bouton_mois_suivant=1
 					threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 					if b_scrolldown==1:
-						td28=30
-						while td28<28:
-							#print("try td V4")
-							try:
-								#v_td = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_kuxo8ai']//div[last()]")))
-								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//div[last()]")
-								#v_td=rootdriver.find_element_by_xpath("//div[@class='_kuxo8ai']//tr[2]/td[2]/div").text
-								vv=wait.until(EC.presence_of_element_located((By.XPATH, "(//div[@class='_kuxo8ai']//table//tr//div)[last()]")))
-								v_td=int(vv.get_attribute("textContent"))
-								#print(v_td)
-								if v_td>=28:
-									td28=28
-							except:
-								aaa=1
-							time.sleep(1)
-							td28=td28+7
 						html = rootdriver.page_source
 						time.sleep(2)
 						soup = BeautifulSoup(html, 'html.parser')
