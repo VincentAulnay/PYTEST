@@ -1882,7 +1882,7 @@ while end==0:
 					#run_getdrive=getdrive(h+'#availability-calendar')
 					#run_getdrive=getdrive(h)
 					rootdriver.get(h)
-					if (j/10).is_integer() or j=2:	
+					if (j/10).is_integer() or j==2:	
 						try:
 									close_traduc = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 									close_traduc.click()
