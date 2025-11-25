@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+#from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import xlwt
 import xlrd
 import time
@@ -26,9 +26,8 @@ import threading
 import sys
 
 
-capa = DesiredCapabilities.CHROME
-capa["pageLoadStrategy"] = "none"
 chrome_options = webdriver.ChromeOptions()
+chrome_options.page_load_strategy = 'none' 
 prefs = {"profile.managed_default_content_settings.images": 2}
 chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument("window-size=2000,1000")
@@ -1445,7 +1444,7 @@ def COMPUTE_M1(name_mois1):
 		
 #-----OPEN GOOGLE CHROME and AIRBNB PAGE---------
 
-rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options,desired_capabilities=capa)
+rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 #rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 #rootdriver.set_page_load_timeout(2)
 rootdriver.set_window_size(2000, 1000)
