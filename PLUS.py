@@ -1885,6 +1885,7 @@ while end==0:
 								close_traduc.click()
 					except:
 						aaa=1
+					rootdriver.execute_script("window.stop();")
 					try:
 								open_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@data-testid='change-dates-checkIn']")))
 								open_calendar.click()
