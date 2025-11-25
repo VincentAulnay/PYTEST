@@ -1878,6 +1878,11 @@ while end==0:
 					print('h=None')
 				elif 'airbnb' in h:
 					run_getdrive=getdrive(h+'#availability-calendar')
+					try:
+								close_traduc = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+								close_traduc.click()
+					except:
+						aaa=1
 					gettimer=0
 					while gettimer<=70:
 						gettimer=gettimer+1
@@ -1919,7 +1924,8 @@ while end==0:
 
 						f_ele=f_ele+1
 					#time.sleep(3)
-					#threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
+					bouton_mois_suivant=1
+					threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 					if b_scrolldown==1:
 						td28=30
 						while td28<28:
