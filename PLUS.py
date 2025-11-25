@@ -1885,6 +1885,11 @@ while end==0:
 								close_traduc.click()
 					except:
 						aaa=1
+					try:
+								open_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@data-testid='change-dates-checkIn']")))
+								open_calendar.click()
+					except:
+						aaa=1
 					time.sleep(5)
 					f_ele=5
 					des=1
