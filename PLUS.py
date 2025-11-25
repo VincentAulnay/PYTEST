@@ -1881,7 +1881,7 @@ while end==0:
 				elif 'airbnb' in h:
 					#run_getdrive=getdrive(h+'#availability-calendar')
 					#run_getdrive=getdrive(h)
-					rootdriver.get(h)
+					rootdriver.get(h+'#availability-calendar')
 					if (j/10).is_integer() or j==2:	
 						try:
 									close_traduc = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
@@ -1925,7 +1925,7 @@ while end==0:
 					#time.sleep(3)
 					bouton_mois_suivant=1
 					threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
-					time.sleep(2)
+					time.sleep(1)
 					if b_scrolldown==1:
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
