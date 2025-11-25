@@ -695,31 +695,32 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 		except:
 			aaaa=1
 		try:
-			tp_c=soup.find('div', attrs={"class": "rn4plgm atm_c8_efgril atm_g3_1yp71yo atm_fr_17w4rtr atm_gq_myb0kj atm_vv_qvpr2i atm_c8_21sjza__14195v1 atm_g3_1wvsxh1__14195v1 atm_fr_1t2fc69__14195v1 atm_cs_1mexzig__14195v1 atm_gq_idpfg4__14195v1 dir dir-ltr"}).text
-		except:
 			try:
-				tp_c=soup.findAll('span', attrs={"class": "twzjuqj atm_9s_116y0ak dir dir-ltr"}).h2.div.span.text
+				tp_c=soup.find('div', attrs={"class": "rn4plgm atm_c8_efgril atm_g3_1yp71yo atm_fr_17w4rtr atm_gq_myb0kj atm_vv_qvpr2i atm_c8_21sjza__14195v1 atm_g3_1wvsxh1__14195v1 atm_fr_1t2fc69__14195v1 atm_cs_1mexzig__14195v1 atm_gq_idpfg4__14195v1 dir dir-ltr"}).text
 			except:
 				try:
-					tp_c=soup.find('div', attrs={"class": "rgr5sph atm_c8_1h3mmnw atm_g3_1vnrj90 atm_fr_b3emyl atm_cs_1mexzig atm_h3_ftgil2 atm_9s_1txwivl atm_h_1h6ojuz atm_cx_1y44olf atm_c8_3w7ag0__oggzyc atm_g3_1emqlh9__oggzyc atm_fr_helst__oggzyc dir dir-ltr"}).a.text
+					tp_c=soup.findAll('span', attrs={"class": "twzjuqj atm_9s_116y0ak dir dir-ltr"}).h2.div.span.text
 				except:
 					try:
-						tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
+						tp_c=soup.find('div', attrs={"class": "rgr5sph atm_c8_1h3mmnw atm_g3_1vnrj90 atm_fr_b3emyl atm_cs_1mexzig atm_h3_ftgil2 atm_9s_1txwivl atm_h_1h6ojuz atm_cx_1y44olf atm_c8_3w7ag0__oggzyc atm_g3_1emqlh9__oggzyc atm_fr_helst__oggzyc dir dir-ltr"}).a.text
 					except:
-						aaa=1
-			p_c=tp_c.replace("(","")
-			cc=p_c.replace(")","")
-			try:
-				pp=cc.split(' ')
-				cc=pp[0]
-			except:
-				pass
-			ws.update_value((j,c_write+2), cc)
-			if oldcc!=cc:
-				C1=1
-				write_c=1
-				v_com=int(cc)-int(oldcc)
-				t_com='/C'+toto+':'+str(v_com)
+						try:
+							tp_c=soup.findAll('span', attrs={"class": "_bq6krt"})[1].text
+						except:
+							aaa=1
+				p_c=tp_c.replace("(","")
+				cc=p_c.replace(")","")
+				try:
+					pp=cc.split(' ')
+					cc=pp[0]
+				except:
+					pass
+				ws.update_value((j,c_write+2), cc)
+				if oldcc!=cc:
+					C1=1
+					write_c=1
+					v_com=int(cc)-int(oldcc)
+					t_com='/C'+toto+':'+str(v_com)
 		except:
 			pass
 	
@@ -1736,9 +1737,7 @@ while f_xpathdate==0:
 def f1(a):
 	global des
 	try:
-		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_5z4v7g']")))
 		x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[@class='_14i3z6h']")))
-		#x_title = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='_18hrqvin']")))
 		des=1
 	except:
 		des=0
@@ -1876,98 +1875,6 @@ while end==0:
 				if h==None:
 					j=j+1
 					print('h=None')
-				elif 'plus' in h:
-					ResAirbnb=''
-					run_getdrive=getdrive(h)
-					gettimer=0
-					while gettimer<=70:
-						gettimer=gettimer+1
-						time.sleep(1)
-						if v_get==1:
-							gettimer=100
-						elif gettimer==60:
-							rootdriver.quit()
-							rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-							#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
-							rootdriver.set_window_size(2000, 1000)
-							wait = WebDriverWait(rootdriver, 5)
-					#rootdriver.get(h)
-					time.sleep(5)
-					des=1
-					try:
-						#print('search ele')
-						#ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
-						ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
-						rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-						rootdriver.execute_script("window.scrollBy(0,-200);")
-						time.sleep(2)
-						try:
-							run_checkmounth=checkmounth(name_mois1,bouton_mois_suivant)
-						except:
-							zzzz=1
-						html = rootdriver.page_source
-						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(2)
-						#print('search bouton')
-						next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
-					#b_add_date = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@class='_3uatz29']")))
-						#b_add_date.click()
-						#b_arrival = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='_153lip8'][1]")))
-						#b_arrival.click
-						time.sleep(1)
-						#print('1')
-						run_day=A_Statu_day2(date,m1_write,1,j,0,ResAirbnb,m1_newmonth,500,0,des)
-						#print('2')
-						run_day=A_Statu_day2(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0,des)
-						#print('3')
-						run_resday=A_Statu_day4(m3_write,j,ResAirbnb,m3_newmonth,des)
-						#(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM)
-						#run_PLUS_1=A_Statu_PLUS(date,m1_write,2,j,0,ResAirbnb,m1_newmonth,500,1)
-						#run_PLUS_2=A_Statu_PLUS(1,m2_write,2,j,1,ResAirbnb,m2_newmonth,MNday1,0)
-						#run_PLUS_3=A_Statu_PLUS2(m3_write,j,ResAirbnb,m3_newmonth,2)
-						#print('4')
-						next_calendar.click()
-						time.sleep(1)
-						next_calendar.click()
-						time.sleep(1)
-						next_calendar.click()
-						time.sleep(1)
-						html = rootdriver.page_source
-						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(2)
-						PLUS=1
-						try:
-						#-----RECUPERATION CALANDAR MOIS 4--------
-							run_day=A_Statu_day5(m4_write,j,ResAirbnb,m4_newmonth,0,des)
-						except:
-							pass
-					#-----RECUPERATION CALANDAR MOIS 5--------
-						try:
-							run_day=A_Statu_day5(m5_write,j,ResAirbnb,m5_newmonth,1,des)
-						except:
-							pass
-						#print('6')
-						#https://www.airbnb.fr/rooms/plus/21846063
-						try:
-							#//span[@class='_so3dpm2']
-							#Bcomment=soup.find('button', attrs={"class": "_ff6jfq"})
-							#Scomment=Bcomment.find('span', attrs={"class": "_so3dpm2"}).text
-							Lcomment=[]
-							Icomment=0
-							Scomment=soup.find('span', attrs={"class": "_bq6krt"}).text
-							Lcomment=Scomment.split("(")
-							Tcomment=Lcomment[1].replace(")","")
-							Icomment=int(Tcomment)
-							print(Icomment)
-							#ws.cell(row=j, column=c_write+2).value=Icomment
-							ws.update_value((j,c_write+2), Icomment)
-						except:
-							pass
-					except:
-						print('ECHEC PLUS')
-					#if (j/20).is_integer():
-					#	wbx.save(path_RESULT.filename)
-					j=j+1
 				elif 'airbnb' in h:
 					run_getdrive=getdrive(h+'#availability-calendar')
 					gettimer=0
@@ -1979,10 +1886,8 @@ while end==0:
 						elif gettimer==60:
 							rootdriver.quit()
 							rootdriver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
-							#rootdriver = webdriver.Chrome(chrome_options=chrome_options)
 							rootdriver.set_window_size(2000, 1000)
 							wait = WebDriverWait(rootdriver, 5)
-					#rootdriver.get(h)
 					time.sleep(5)
 					f_ele=5
 					des=1
