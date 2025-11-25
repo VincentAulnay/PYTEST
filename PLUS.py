@@ -1750,7 +1750,9 @@ def f2(bouton_mois_suivant):
 			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13ah4vr']//button[@aria-label='Avancez pour passer au mois suivant.']")))
 	except:
 		a=1
+	print('try stop')
 	rootdriver.execute_script("window.stop();")
+	print('stop ok')
 
 def checkmounth(name_mois1,bouton_mois_suivant):
 	try:
