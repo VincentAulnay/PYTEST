@@ -1890,7 +1890,6 @@ while end==0:
 								open_calendar.click()
 					except:
 						aaa=1
-					time.sleep(5)
 					f_ele=5
 					des=1
 					b_scrolldown=1
@@ -1922,11 +1921,11 @@ while end==0:
 					#time.sleep(3)
 					bouton_mois_suivant=1
 					threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
+					time.sleep(2)
 					if b_scrolldown==1:
 						html = rootdriver.page_source
-						time.sleep(2)
 						soup = BeautifulSoup(html, 'html.parser')
-						time.sleep(2)
+						time.sleep(1)
 						ResAirbnb=''
 						v_m='8'
 
