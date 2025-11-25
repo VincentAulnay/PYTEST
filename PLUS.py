@@ -1879,18 +1879,21 @@ while end==0:
 					j=j+1
 					print('h=None')
 				elif 'airbnb' in h:
-					run_getdrive=getdrive(h+'#availability-calendar')
-					try:
-								close_traduc = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
-								close_traduc.click()
-					except:
-						aaa=1
-					rootdriver.execute_script("window.stop();")
+					#run_getdrive=getdrive(h+'#availability-calendar')
+					#run_getdrive=getdrive(h)
+					rootdriver.get(h)
+					if (j/10).is_integer() or j=2:	
+						try:
+									close_traduc = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
+									close_traduc.click()
+						except:
+							aaa=1
 					try:
 								open_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@data-testid='change-dates-checkIn']")))
 								open_calendar.click()
 					except:
 						aaa=1
+					rootdriver.execute_script("window.stop();")
 					f_ele=5
 					des=1
 					b_scrolldown=1
