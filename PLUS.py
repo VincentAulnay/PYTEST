@@ -1905,7 +1905,7 @@ while end==0:
 					des=1
 					b_scrolldown=1
 					#rootdriver.execute_script("window.scrollBy(0,2000);")
-					while f_ele<=3:
+					while f_ele<=1:
 						try:
 							ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 							rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
@@ -1924,7 +1924,7 @@ while end==0:
 								b_scrolldown=1
 							except:
 								#print('DOWN KO')
-								time.sleep(2)
+								time.sleep(0.5)
 							#rootdriver.execute_script("window.scrollBy(0,2000);")
 							#print('DOWN KO')
 
