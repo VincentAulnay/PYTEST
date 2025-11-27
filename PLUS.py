@@ -1887,18 +1887,19 @@ while end==0:
 				elif 'airbnb' in h:
 					#run_getdrive=getdrive(h+'#availability-calendar')
 					#run_getdrive=getdrive(h)
-					rootdriver.get(h+'#availability-calendar')
+					#rootdriver.get(h+'#availability-calendar')
+					rootdriver.get(h)
 					if (j/10).is_integer() or j==2:	
 						try:
 									close_traduc = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Fermer']")))
 									close_traduc.click()
 						except:
 							aaa=1
-					try:
-								open_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@data-testid='change-dates-checkIn']")))
-								#open_calendar.click()
-					except:
-						aaa=1
+					#try:
+					#			open_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@data-testid='change-dates-checkIn']")))
+					#			#open_calendar.click()
+					#except:
+					#	aaa=1
 					#rootdriver.execute_script("window.stop();")
 					f_ele=0
 					des=1
@@ -1965,11 +1966,11 @@ while end==0:
 						if v_m!='z':
 							try:
 								next_calendar.click()
-								time.sleep(1)
+								time.sleep(0.5)
+								next_calendar.click()
+								time.sleep(0.5)
 								next_calendar.click()
 								time.sleep(1)
-								next_calendar.click()
-								time.sleep(2)
 								print("try click")
 								html = rootdriver.page_source
 								soup = BeautifulSoup(html, 'html.parser')
