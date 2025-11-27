@@ -596,7 +596,8 @@ def A_Statu_day2(date,c_write,page,j,g,ResAirbnb,new_mo,MNday,ONCOM,des):
 	C=0
 	int_timeday=int(date)
 	#month=soup.findAll('div', attrs={"class":u"_1lds9wb"})[g]
-	monthdiv=soup.find('div', attrs={"class":"_1xm48ww"})
+	monthdiv=soup.find('div', attrs={"class":"_2hyui6e"})
+	#monthdiv=soup.find('div', attrs={"class":"_1xm48ww"})
 	month=monthdiv.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
@@ -792,7 +793,8 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	global L3
 	R3=0
 	L3=0
-	monthdiv=soup.find('div', attrs={"class":"_1xm48ww"})
+	#monthdiv=soup.find('div', attrs={"class":"_1xm48ww"})
+	monthdiv=soup.find('div', attrs={"class":"_2hyui6e"})
 	month=monthdiv.find('div', attrs={"class":u"_kuxo8ai"})
 	#print('fevrier')
 	i=0
@@ -923,7 +925,8 @@ def A_Statu_day5(c_write,j,ResAirbnb,new_mo,g,des):
 	global L5
 	R=0
 	L=0
-	monthdiv=soup.find('div', attrs={"class":"_1xm48ww"})
+	#monthdiv=soup.find('div', attrs={"class":"_1xm48ww"})
+	monthdiv=soup.find('div', attrs={"class":"_2hyui6e"})
 	month=monthdiv.findAll('div', attrs={"class":u"_1lds9wb"})[g]
 	i=0
 	li=[]
@@ -1746,9 +1749,11 @@ def f2(bouton_mois_suivant):
 	global next_calendar
 	try:
 		if bouton_mois_suivant==0:
-			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13ah4vr']//div[@aria-label='Avancez pour passer au mois suivant.']")))
+			#next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13ah4vr']//div[@aria-label='Avancez pour passer au mois suivant.']")))
+			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Avancez pour passer au mois suivant.']")))
 		else:
-			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13ah4vr']//button[@aria-label='Avancez pour passer au mois suivant.']")))
+			#next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_13ah4vr']//button[@aria-label='Avancez pour passer au mois suivant.']")))
+			next_calendar = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 	except:
 		a=1
 	print('try stop')
@@ -1895,7 +1900,7 @@ while end==0:
 					except:
 						aaa=1
 					#rootdriver.execute_script("window.stop();")
-					f_ele=5
+					f_ele=0
 					des=1
 					b_scrolldown=1
 					#rootdriver.execute_script("window.scrollBy(0,2000);")
