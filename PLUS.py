@@ -1903,14 +1903,15 @@ while end==0:
 					#rootdriver.execute_script("window.stop();")
 					f_ele=0
 					des=1
-					b_scrolldown=1
+					b_scrolldown=0
 					#rootdriver.execute_script("window.scrollBy(0,2000);")
 					while f_ele<=1:
 						try:
 							ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 							rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-							rootdriver.execute_script("window.scrollBy(0,-150);")
+							#rootdriver.execute_script("window.scrollBy(0,-150);")
 							print("try ele")
+							threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 							f_ele=6
 							bouton_mois_suivant=0
 							b_scrolldown=1
@@ -1918,8 +1919,9 @@ while end==0:
 							try:
 								ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
 								rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								rootdriver.execute_script("window.scrollBy(0,-150);")
+								#rootdriver.execute_script("window.scrollBy(0,-150);")
 								bouton_mois_suivant=1
+								threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 								f_ele=6
 								b_scrolldown=1
 							except:
@@ -1929,9 +1931,7 @@ while end==0:
 							#print('DOWN KO')
 
 						f_ele=f_ele+1
-					time.sleep(2)
 					bouton_mois_suivant=1
-					threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 					time.sleep(1)
 					if b_scrolldown==1:
 						html = rootdriver.page_source
@@ -1971,7 +1971,7 @@ while end==0:
 								time.sleep(0.5)
 								next_calendar.click()
 								time.sleep(1)
-								print("try click")
+								#print("try click")
 								html = rootdriver.page_source
 								soup = BeautifulSoup(html, 'html.parser')
 								time.sleep(1)
