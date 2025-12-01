@@ -1909,7 +1909,7 @@ while end==0:
 						try:
 							ele = wait.until(EC.presence_of_element_located((By.XPATH, "//button[@aria-label='Avancez pour passer au mois suivant.']")))
 							rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-							#rootdriver.execute_script("window.scrollBy(0,-150);")
+							rootdriver.execute_script("window.scrollBy(0,-150);")
 							print("try ele")
 							threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 							f_ele=6
@@ -1919,7 +1919,7 @@ while end==0:
 							try:
 								ele=rootdriver.find_element_by_xpath("//button[@aria-label='Avancez pour passer au mois suivant.']")
 								rootdriver.execute_script("arguments[0].scrollIntoView(true);", ele)
-								#rootdriver.execute_script("window.scrollBy(0,-150);")
+								rootdriver.execute_script("window.scrollBy(0,-150);")
 								bouton_mois_suivant=1
 								threading.Thread(target=f2, args=(bouton_mois_suivant,)).start()
 								f_ele=6
