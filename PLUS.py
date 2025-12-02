@@ -803,7 +803,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 	#monthdiv=soup.find('div', attrs={"class":"_1xm48ww"})
 	monthdiv=soup.find('div', attrs={"class":"_2hyui6e"})
 	month=monthdiv.find('div', attrs={"class":u"_kuxo8ai"})
-	#print('fevrier')
+	print('fevrier')
 	i=0
 	li=[]
 	ResAirbnb='/R'
@@ -873,7 +873,7 @@ def A_Statu_day4(c_write,j,ResAirbnb,new_mo,des):
 		back_li=[]
 	#ws.cell(row=j, column=c_write+1).value = str(li)
 	ws.update_value((j,c_write+1), str(li))
-	#print(li)
+	print(li)
 	c_added=[]
 	c_remove=[]
 	c_added=[elem for elem in li if elem not in back_li ]
@@ -1939,7 +1939,7 @@ while end==0:
 
 						f_ele=f_ele+1
 					bouton_mois_suivant=1
-					time.sleep(1)
+					time.sleep(2)
 					if b_scrolldown==1:
 						html = rootdriver.page_source
 						soup = BeautifulSoup(html, 'html.parser')
