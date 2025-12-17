@@ -27,7 +27,7 @@ import sys
 
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.page_load_strategy = 'none' 
+#chrome_options.page_load_strategy = 'none' 
 prefs = {"profile.managed_default_content_settings.images": 2}
 chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument("window-size=2000,1000")
