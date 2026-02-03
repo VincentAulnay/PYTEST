@@ -51,32 +51,38 @@ import pandas as pd
 #wbx = load_workbook(path_RESULT.filename)
 #ws = wbx.active
 print('ici1')
-try:
-	if name_rpi=='Rpi3':
-		client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378418-06f4d82571c9.json')
-	elif name_rpi=='Rpi1':
-		client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378709-ede595e84cf3.json')
-	elif name_rpi=='Rpi2':
-		client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/raspbian-364809-be26e1ee6573.json')
-	elif name_rpi=='Rpi4':
-		client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi4-404313-beba1f1e0e8f.json')
-except:
-	client = pygsheets.authorize(service_account_file='/home/pi/Desktop/raspbian-364809-be26e1ee6573.json')
-print('spreadsheet_url')
-#spreadsheet_url = "https://docs.google.com/spreadsheets/d/1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c/edit?usp=sharing"
-#spreadsheet_url = "https://docs.google.com/spreadsheets/d/14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs/edit?usp=sharing"
-spreadsheet_url = url_rpi
-print('sheet_data')
-#sheet_data = client.sheet.get('14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs')
-sheet_data = client.sheet.get(id_rpi)
-print('sheet')
-#sheet = client.open('testoct')
-sheet = client.open(name_rpi)
-print('ws')
-#ws = sheet.worksheet_by_title('Sheet1')
-ws = sheet.worksheet_by_title('Sheet1')
-print('sheet')
-#print(ws)
+sheetcapture=0
+while sheetcapture==0:
+	try:
+		if name_rpi=='Rpi3':
+			client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378418-06f4d82571c9.json')
+		elif name_rpi=='Rpi1':
+			client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi1-378709-ede595e84cf3.json')
+		elif name_rpi=='Rpi2':
+			client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/raspbian-364809-be26e1ee6573.json')
+		elif name_rpi=='Rpi4':
+			client = pygsheets.authorize(service_account_file='/home/vincent/Desktop/rpi4-404313-beba1f1e0e8f.json')
+	except:
+		client = pygsheets.authorize(service_account_file='/home/pi/Desktop/raspbian-364809-be26e1ee6573.json')
+	print('spreadsheet_url')
+	try:
+		#spreadsheet_url = "https://docs.google.com/spreadsheets/d/1vx34zctZXc2eQSFFe4I7zY6bjKJz9MtO7pgAIaQix4c/edit?usp=sharing"
+		#spreadsheet_url = "https://docs.google.com/spreadsheets/d/14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs/edit?usp=sharing"
+		spreadsheet_url = url_rpi
+		print('sheet_data')
+		#sheet_data = client.sheet.get('14fiETLENGjJU3LMIybT-LAKw2DgXnol8ZAHgn46FkPs')
+		sheet_data = client.sheet.get(id_rpi)
+		print('sheet')
+		#sheet = client.open('testoct')
+		sheet = client.open(name_rpi)
+		print('ws')
+		#ws = sheet.worksheet_by_title('Sheet1')
+		ws = sheet.worksheet_by_title('Sheet1')
+		print('sheet')
+		#print(ws)
+		sheetcapture=1
+	except:
+		time.sleep(60)
 #-------FIND COLUMN UPDATE------
 up=0
 k=1
